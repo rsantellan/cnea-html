@@ -128,32 +128,36 @@ class MX_Loader extends CI_Loader
 	}
 	
 	/** Load a module library **/
-	public function library($library, $params = NULL, $object_name = NULL) {
+	public function library($library, $params = NULL, $object_name = NULL, $module = NULL) {
 		
-		if (is_array($library)) return $this->libraries($library);		
+        if (is_array($library)) return $this->libraries($library);		
 		
-		$class = strtolower(basename($library));
-
+        if(is_null($module))
+        {
+          $module = $this->_module;
+        }
+        $class = strtolower(basename($library));
+        
 		if (isset($this->_ci_classes[$class]) AND $_alias = $this->_ci_classes[$class])
 			return CI::$APP->$_alias;
-			
+		
 		($_alias = strtolower($object_name)) OR $_alias = $class;
 		
-		list($path, $_library) = Modules::find($library, $this->_module, 'libraries/');
+		list($path, $_library) = Modules::find($library, $module, 'libraries/');
 		
 		/* load library config file as params */
 		if ($params == NULL) {
-			list($path2, $file) = Modules::find($_alias, $this->_module, 'config/');	
-			($path2) AND $params = Modules::load_file($file, $path2, 'config');
+            list($path2, $file) = Modules::find($_alias, $module, 'config/');	
+            ($path2) AND $params = Modules::load_file($file, $path2, 'config');
 		}	
-			
+		//var_dump($path);
+        //var_dump($_library);
 		if ($path === FALSE) {
-			
-			$this->_ci_load_class($library, $params, $object_name);
+            $this->_ci_load_class($library, $params, $object_name);
 			$_alias = $this->_ci_classes[$class];
 			
 		} else {		
-			
+            
 			Modules::load_file($_library, $path);
 			
 			$library = ucfirst($_library);

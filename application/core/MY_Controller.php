@@ -66,7 +66,8 @@ class MY_Controller extends MX_Controller
   
   public function isLogged()
   {
-	
+    $this->load->library('tank_auth', true, NULL, 'auth');
+    $is_logged = $this->tank_auth->is_logged_in();
   }
   
   protected function addJavascript($javascript)

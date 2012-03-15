@@ -266,11 +266,15 @@ class CI_DB_driver {
 		}
 		$user = "nobody";
 		$ci = & get_instance();
+    //var_dump($ci);
+    //var_dump($ci->session);
+    /*
 		$is_logged_in = $ci->session->userdata('is_logged_in');
 		if(isset($is_logged_in) && $is_logged_in == true)
 		{
 		  $user = $ci->session->userdata("username"); 
 		}
+    */
 		log_message('QUERIES', "user : ".$user. " | query: ".$sql);
 		// Is query caching enabled?  If the query is a "read type"
 		// we will load the caching class and return the previously
