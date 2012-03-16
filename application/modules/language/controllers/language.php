@@ -21,10 +21,12 @@ class Language extends MY_Controller {
 
   function __construct() {
     parent::__construct();
+    
     if(!$this->isLogged())
     {
-      redirect('/');
+    //  redirect('/');
     }
+    
     $this->load->helper(array('url', 'file', 'language', 'form')); //load this helpers if youre not doing it in autoload
     $this->load->model(array('model_language'));
     $this->load->library(array('session')); //load session if youre not doing it in autoload

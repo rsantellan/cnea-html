@@ -51,6 +51,31 @@ class Welcome extends MY_Controller {
 		$this->data["dashboard"] = false;
 		$this->load->view('layout', $this->data);
 		*/
+      
+        /*
+        $this->load->library('mimagick', true, NULL, 'mImagick');
+      
+        $this->mimagick->thumbnailWithBackground('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/thumbWithBackgroud.jpg', 100, 100);
+        $this->mimagick->resizeAndCreteReflection('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/resizeAndCreteReflection.jpg');
+        
+        $this->mimagick->thumbnailWithRoundCorners('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/thumbnailWithRoundCorners.jpg', 250);
+      
+        $this->mimagick->simpleEnaceImage('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/simpleEnaceImage.jpg');
+        
+        $this->mimagick->polaroidImage('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/polaroidImage.jpg');
+      
+      
+        $this->mimagick->basicThumbnail('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/basicThumbnail1.jpg', imagickThumbnailTypes::NORMAL, 200, 200);
+        
+        $this->mimagick->basicThumbnail('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/basicThumbnail2.jpg', imagickThumbnailTypes::FIT, 200, 200);
+        
+        $this->mimagick->basicThumbnail('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/basicThumbnail3.jpg', imagickThumbnailTypes::FIXED, 200, 200);
+        
+        $this->mimagick->basicThumbnail('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/basicThumbnail4.jpg', imagickThumbnailTypes::CROP, 200, 200);
+        
+        $this->mimagick->watermarking('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/watermarking.jpg');
+        */
+        
         $this->load->helper('url');
         $this->load->view("welcome_message");
 	}

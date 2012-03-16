@@ -30,7 +30,7 @@ class Model_language extends CI_Model {
 		$dh  = opendir($dir);
 		$i=0;
 		while (false !== ($filename = readdir($dh))) {
-			if($filename!=='.' && $filename!=='..' && is_dir($dir.$filename)){
+			if($filename!=='.svn' && $filename!=='.' && $filename!=='..' && is_dir($dir.$filename)){
 				$files[$i]['dir'] = $filename;
 				$files[$i]['count']=$this->get_count_lfiles($filename);
                 $files[$i]['fulldir'] = $dir;
@@ -46,7 +46,7 @@ class Model_language extends CI_Model {
             $dh  = opendir($dir);
             //$i=0;
             while (false !== ($filename = readdir($dh))) {
-                if($filename!=='.' && $filename!=='..' && is_dir($dir.$filename)){
+                if($filename!=='.svn' && $filename!=='.' && $filename!=='..' && is_dir($dir.$filename)){
                     $files[$i]['dir'] = $filename;
                     $files[$i]['count']=$this->get_count_lfiles($dir.$filename, true);
                     $files[$i]['module'] = $module;
