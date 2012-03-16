@@ -395,11 +395,9 @@ class Users extends CI_Model
     
     public function listUsers()
     {
+      
       $query = $this->db->get('users');
-      foreach ($query->result() as $row)
-       {
-           var_dump($row);
-       }
+      return $query->result();
     }
 }
 

@@ -23,7 +23,9 @@ class Authadmin extends MX_Controller{
     {
       
       $this->load->model('auth/users');
-      $this->users->listUsers();
+      $data['user_list'] = $this->users->listUsers();
+      
+      $this->load->view('auth/user_list', $data);
     }
 
 }
