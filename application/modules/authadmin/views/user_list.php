@@ -21,6 +21,9 @@
       <th>
         Creado el
       </th>
+      <th>
+        Acciones
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -41,8 +44,36 @@
       <td>
         <?php echo ($user->created); ?>
       </td>
+      <td>
+        <a href="javascript:void(0)">
+          Activar
+        </a>
+        <a href="javascript:void(0)">
+          Des Activar
+        </a>
+        <a href="javascript:void(0)">
+          Bannear
+        </a>
+        <a href="javascript:void(0)">
+          Des Bannear
+        </a>
+        <a href="javascript:void(0)">
+          Editar
+        </a>
+        <a href="javascript:void(0)">
+          Resetear pass
+        </a>
+        <a href="javascript:void(0)">
+          Eliminar
+        </a>
+      </td>
     </tr>
       
     <?php endforeach; ?>
   </tbody>
 </table>
+
+
+<a href="<?php echo site_url("authadmin/register");?>">
+  Agregar
+</a>

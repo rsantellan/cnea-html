@@ -79,8 +79,12 @@ class MX_Loader extends CI_Loader
 	}	
 	
 	/** Load a module config file **/
-	public function config($file = 'config', $use_sections = FALSE, $fail_gracefully = FALSE) {
-		return CI::$APP->config->load($file, $use_sections, $fail_gracefully, $this->_module);
+	public function config($file = 'config', $use_sections = FALSE, $fail_gracefully = FALSE, $module = NULL) {
+        if(is_null($module))
+        {
+          $module = $this->_module;
+        }
+		return CI::$APP->config->load($file, $use_sections, $fail_gracefully, $module);
 	}
 
 	/** Load the database drivers **/
