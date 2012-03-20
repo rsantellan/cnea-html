@@ -393,12 +393,47 @@ class Users extends CI_Model
 		$this->db->delete($this->profile_table_name);
 	}
     
-    public function listUsers()
-    {
-      
-      $query = $this->db->get('users');
-      return $query->result();
-    }
+  public function listUsers()
+  {
+    
+    $query = $this->db->get('users');
+    return $query->result();
+  }
+  
+  public function activateUser($user_id)
+  {
+		$this->db->select('1', FALSE);
+		$this->db->where('id', $user_id);
+		$this->db->where('activated', 0);
+		$query = $this->db->get($this->table_name);
+
+		if ($query->num_rows() == 1) {
+			$this->db->set('activated', 1);
+			$this->db->set('new_email_key', NULL);
+			$this->db->where('id', $user_id);
+			$this->db->update($this->table_name);
+			$this->create_profile($user_id);
+			return TRUE;
+		}
+		return FALSE;    
+  }
+  
+  public function deactivateUser($user_id)
+  {
+		$this->db->select('1', FALSE);
+		$this->db->where('id', $user_id);
+		$this->db->where('activated', 1);
+		$query = $this->db->get($this->table_name);
+
+		if ($query->num_rows() == 1) {
+			$this->db->set('activated', 0);
+			$this->db->set('new_email_key', NULL);
+			$this->db->where('id', $user_id);
+			$this->db->update($this->table_name);
+			return TRUE;
+		}
+		return FALSE;    
+  }  
 }
 
 /* End of file users.php */

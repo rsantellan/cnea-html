@@ -26,8 +26,9 @@ class Authadmin extends MY_Controller{
       
       $this->load->model('auth/users');
       $data['user_list'] = $this->users->listUsers();
-      
-      $this->load->view('authadmin/user_list', $data);
+      $data['content'] = "authadmin/user_list";
+      //$this->load->view('authadmin/user_list', $data);
+      $this->load->view("admin/layout", $data);
     }
 
     /**
@@ -108,4 +109,62 @@ class Authadmin extends MY_Controller{
 		$this->email->set_alt_message($this->load->view('email/'.$type.'-txt', $data, TRUE));
 		$this->email->send();
 	}    
+  
+  
+  function activate($user_id)
+  {
+    $this->load->model('auth/users');
+    $return = array();
+    $is_ok = $this->users->activateUser($user_id);
+    $return["result"] = $is_ok;
+    echo json_encode($return);
+  }
+  
+  function deactivate($user_id)
+  {
+    $this->load->model('auth/users');
+    $return = array();
+    $is_ok = $this->users->deactivateUser($user_id);
+    $return["result"] = $is_ok;
+    echo json_encode($return);
+  }  
+  
+  function banUser($user_id)
+  {
+    $this->load->model('auth/users');
+    $return = array();
+    $this->users->ban_user($user_id, "Admin deactivated");
+    $return["result"] = true;
+    echo json_encode($return);
+  }
+  
+  function unbanUser($user_id)
+  {
+    $this->load->model('auth/users');
+    $return = array();
+    $this->users->unban_user($user_id);
+    $return["result"] = true;
+    echo json_encode($return);
+  }  
+  
+  function deleteUser($user_id)
+  {
+    $this->load->model('auth/users');
+    $return = array();
+    $this->users->delete_user($user_id);
+    $return["result"] = true;
+    echo json_encode($return);    
+  }
+  
+  /**
+	 * Show info message
+	 *
+	 * @param	string
+	 * @return	void
+	 */
+	function _show_message($message)
+	{
+		$this->session->set_flashdata('message', $message);
+		redirect('/authadmin/');
+	}
 }

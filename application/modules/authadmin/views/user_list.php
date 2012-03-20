@@ -45,27 +45,34 @@
         <?php echo ($user->created); ?>
       </td>
       <td>
-        <a href="javascript:void(0)">
+        <?php if($user->activated == "0"): ?>
+        <a href="<?php echo site_url('authadmin/activate/'.$user->id); ?>">
           Activar
         </a>
-        <a href="javascript:void(0)">
+        <?php else: ?>
+        <a href="<?php echo site_url('authadmin/deactivate/'.$user->id); ?>">
           Des Activar
         </a>
-        <a href="javascript:void(0)">
+        <?php endif; ?>
+        <?php if($user->banned == "0"): ?>
+        <a href="<?php echo site_url('authadmin/banUser/'.$user->id); ?>">
           Bannear
         </a>
-        <a href="javascript:void(0)">
+        <?php else: ?>
+        <a href="<?php echo site_url('authadmin/unbanUser/'.$user->id); ?>">
           Des Bannear
         </a>
+        <?php endif; ?>
         <a href="javascript:void(0)">
-          Editar
+          Cambiar mail
         </a>
         <a href="javascript:void(0)">
           Resetear pass
         </a>
-        <a href="javascript:void(0)">
+        <a href="<?php echo site_url('authadmin/deleteUser/'.$user->id); ?>">
           Eliminar
         </a>
+        <?php //var_dump($user); ?>
       </td>
     </tr>
       
