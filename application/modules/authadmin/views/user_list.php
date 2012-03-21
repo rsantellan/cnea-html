@@ -1,8 +1,3 @@
-<?php
-
-
-?>
-
 <table>
   <thead>
     <tr>

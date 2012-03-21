@@ -25,10 +25,10 @@ class Authadmin extends MY_Controller{
     {
       
       $this->load->model('auth/users');
-      $data['user_list'] = $this->users->listUsers();
-      $data['content'] = "authadmin/user_list";
+      $this->data['user_list'] = $this->users->listUsers();
+      $this->data['content'] = "authadmin/user_list";
       //$this->load->view('authadmin/user_list', $data);
-      $this->load->view("admin/layout", $data);
+      $this->load->view("admin/layout", $this->data);
     }
 
     /**

@@ -7,10 +7,23 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/960.css";?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/template.css";?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colour.css";?>" />
-		<!--<link rel="stylesheet" href="css/960.css" type="text/css" media="screen" charset="utf-8" />-->
-		<!--<link rel="stylesheet" href="css/fluid.css" type="text/css" media="screen" charset="utf-8" />-->
-		<!--<link rel="stylesheet" href="css/template.css" type="text/css" media="screen" charset="utf-8" /> -->
-		<!--<link rel="stylesheet" href="css/colour.css" type="text/css" media="screen" charset="utf-8" /> -->
+
+      <?php if($jquery_on): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-1.7.1.min.js";?>"></script>
+      <?php endif; ?>
+      <?php if($fancybox_on): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/fancybox/jquery.fancybox-1.3.4.pack.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/fancybox/jquery.mousewheel-3.0.4.pack.js";?>"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/js/fancybox/jquery.fancybox-1.3.4.css";?>" />
+      <?php endif; ?>
+        
+      <?php foreach($javascript as $js): ?>
+        <script type="text/javascript" src="<?php echo base_url() ."assets/js/".$js; ?>"></script>
+      <?php endforeach; ?>
+		
+      <?php foreach($stylesheet as $sheet): ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/css/".$sheet;?>" />
+      <?php endforeach; ?>
 	</head>
 	<body>
 		
@@ -26,7 +39,7 @@
     <?php 
       endforeach; 
       
-      var_dump($modules_enables);
+      //var_dump($modules_enables);
     ?>
 			<li><span class="active">Overview</span></li>
 			<li><a href="#">News</a></li>

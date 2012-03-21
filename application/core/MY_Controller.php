@@ -48,6 +48,9 @@ class MY_Controller extends MX_Controller
 	  $this->data["javascript"] = array();
 	  $this->data["dashboard"] = false;
 	  $this->data["leftBoxOn"] = false;
+      $this->data['jquery_on'] = false;
+      $this->data['jquery_ui_on'] = false;
+      $this->data['fancybox_on'] = false;
   }
 
   public function loadI18n($langfile, $lang = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $_module = '')
@@ -77,7 +80,7 @@ class MY_Controller extends MX_Controller
   
   protected function addModuleJavascript($module, $javascript)
   {
-	$auxJavascript = "../modules/".$module."/js/".$javascript;
+	$auxJavascript = "../".$module."/js/".$javascript;
 	array_push( $this->data["javascript"] , $auxJavascript);
   }
   
@@ -88,8 +91,23 @@ class MY_Controller extends MX_Controller
   
   protected function addModuleStyleSheet($module, $stylesheet)
   {
-	$auxStylesheet = "../modules/".$module."/css/".$stylesheet;
+	$auxStylesheet = "../".$module."/css/".$stylesheet;
 	array_push( $this->data["stylesheet"] , $auxStylesheet);
+  }
+  
+  protected function addJquery()
+  {
+    $this->data['jquery_on'] = true;
+  }
+  
+  protected function addJqueryUI()
+  {
+    $this->data['jquery_ui_on'] = true;
+  }
+  
+  protected function addFancyBox()
+  {
+    $this->data['fancybox_on'] = true;
   }
 }
 
