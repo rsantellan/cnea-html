@@ -4,10 +4,10 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="cache-control" content="no-cache"/>
-	<link href="<?php echo base_url().APPPATH;?>modules/language/css/style.css" type="text/css" rel="stylesheet"/>
+	<link href="<?php echo base_url();?>assets/language/css/style.css" type="text/css" rel="stylesheet"/>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
     
-    <script type="text/javascript" src="<?php echo base_url().APPPATH; ?>js/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/tiny_mce/tiny_mce.js"></script>
     
 	<script type="text/javascript">
 	$(document).ready(function(){

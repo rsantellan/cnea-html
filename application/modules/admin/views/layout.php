@@ -4,9 +4,9 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Administrador</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() .APPPATH . "/modules/admin/css/960.css";?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() .APPPATH . "/modules/admin/css/template.css";?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() .APPPATH . "/modules/admin/css/colour.css";?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/960.css";?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/template.css";?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colour.css";?>" />
 		<!--<link rel="stylesheet" href="css/960.css" type="text/css" media="screen" charset="utf-8" />-->
 		<!--<link rel="stylesheet" href="css/fluid.css" type="text/css" media="screen" charset="utf-8" />-->
 		<!--<link rel="stylesheet" href="css/template.css" type="text/css" media="screen" charset="utf-8" /> -->
