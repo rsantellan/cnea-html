@@ -32,7 +32,10 @@
 		<?php } ?>
       	<?php $this->load->view('language/dir_list_view'); ?>
 		<div class="box clear">
+      <a href="<?php echo site_url('admin/index');?>">Dashboard</a>
+      <!--
 			Created by <a href="http://codebusters.pl/en">Eliza Witkowska</a>
+      -->
 		</div>
 	</div>
 </body>

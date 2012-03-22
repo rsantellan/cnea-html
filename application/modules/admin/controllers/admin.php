@@ -14,22 +14,21 @@ class admin extends MY_Controller{
   {
     parent::__construct();
     $this->loadI18n(get_class($this), $this->lenguage, FALSE, TRUE, '', strtolower(get_class($this)));
-    
-    /*
-    var_dump($this->router->class);
-    var_dump($this->router->method);
-    die;
-    */
-    if(!$this->isLogged() && $this->router->class != "admin" && $this->router->method != "adminLogin")
+
+    if(!$this->isLogged() && $this->router->method != "adminLogin")
     {
       //Si no esta logeado se tiene que ir a loguear
-      redirect('admin/adminLogin'); 
+      $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+      redirect('auth/login'); 
     }
   }
  
   public function index()
   {
-   
+    $this->data['content'] = "admin/welcome";
+    $this->data['menu_id'] = 'dashboard';
+    
+    $this->load->view("admin/layout", $this->data);
   }
   
   public function adminLogin()

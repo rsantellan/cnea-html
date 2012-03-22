@@ -30,20 +30,24 @@
     <h1 id="head">Administrador</h1>
 		
 		<ul id="navigation">
-    <?php 
-      $modules_enables = $this->config->item('modules_enables'); 
-      foreach($modules_enables as $mEnables): ?>
+      <?php if($menu_id == 'dashboard'): ?>
+        <li><span class="active">Dashboard</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
+      <?php endif; ?>
       
-      <?php echo modules::run($module.'/menu')?>
-      
-    <?php 
-      endforeach; 
-      
-      //var_dump($modules_enables);
-    ?>
-			<li><span class="active">Overview</span></li>
-			<li><a href="#">News</a></li>
-			<li><a href="#">Users</a></li>
+			<li><a href="<?php echo site_url('language/index');?>">Idiomas</a></li>
+      <?php if($menu_id == 'users'): ?>
+        <li><span class="active">Usuarios</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('authadmin/index');?>">Usuarios</a></li>
+      <?php endif; ?>
+      <?php if($menu_id == 'actas'): ?>
+        <li><span class="active">Actas</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('actaadmin/index');?>">Actas</a></li>
+      <?php endif; ?>
+			
 		</ul>
 		
 			<div id="content" class="container_16 clearfix">
@@ -82,9 +86,22 @@
 -->
 <!-- Filtro -->
 <!-- Contenido -->
-				<div class="grid_16">
-          <?php echo $this->load->view($content); ?>
-				</div>
+        <!-- pongo un if para el grid 16 por los form -->
+        <?php 
+        $aux_use_grid_16 = true;
+        if(isset($use_grid_16) && $use_grid_16 == false)
+        {
+          $aux_use_grid_16 = false;
+        }
+        ?>
+        <?php if($aux_use_grid_16): ?>
+          <div class="grid_16">
+        <?php endif;?>
+            <?php echo $this->load->view($content); ?>
+        <?php if($aux_use_grid_16): ?>
+          </div>
+        <?php endif;?>
+				
 <!-- Contenido -->
 			</div>
 		

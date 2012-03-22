@@ -15,10 +15,17 @@ class Authadmin extends MY_Controller{
   
   
   	function __construct()
-	{
+    {
 		parent::__construct();
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
+        $this->data['menu_id'] = 'users';
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+          redirect('auth/login'); 
+        }
     }
     
     function index()

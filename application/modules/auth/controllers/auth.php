@@ -70,7 +70,19 @@ class Auth extends MX_Controller
 						$this->form_validation->set_value('remember'),
 						$data['login_by_username'],
 						$data['login_by_email'])) {								// success
-					redirect('');
+          
+          //Url in session
+          $url_to_direct_on_login = $this->session->userdata('url_to_direct_on_login');
+          if($url_to_direct_on_login == false){
+            redirect('');
+          }
+          else
+          {
+            $this->session->unset_userdata('url_to_direct_on_login');
+            redirect($url_to_direct_on_login);
+          }
+           
+					
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();

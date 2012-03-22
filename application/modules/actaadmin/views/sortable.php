@@ -32,7 +32,7 @@
       
       <?php foreach($actas_list as $acta): ?>
         <li id="listItem_<?php echo $acta->id;?>" class="ui-state-default">
-          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $acta->nombre;?> <?php echo $acta->ordinal; ?>
+          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $acta->nombre;?> <?php //echo $acta->ordinal; ?>
         </li>
       <?php endforeach; ?>
     </ul>

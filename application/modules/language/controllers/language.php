@@ -24,7 +24,9 @@ class Language extends MY_Controller {
     
     if(!$this->isLogged())
     {
-    //  redirect('/');
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'language/index');
+      redirect('auth/login'); 
     }
     
     $this->load->helper(array('url', 'file', 'language', 'form')); //load this helpers if youre not doing it in autoload

@@ -309,7 +309,7 @@
 		</form>
 		</div>
 		<div class="box clear">
-			Created by <a href="http://codebusters.pl/en">Eliza Witkowska</a>
+			<a href="<?php echo site_url('admin/index');?>">Dashboard</a>
 		</div>
 	</div>
 </body>
