@@ -75,7 +75,22 @@ class Welcome extends MY_Controller {
         
         $this->mimagick->watermarking('/home/rodrigo/proyectos/www/1024-768-61910.jpg', '/tmp/watermarking.jpg');
         */
-        
+        /*
+        $this->load->library('email');
+
+        $this->email->from('rsantellan@gmail.com', 'Your Name');
+        $this->email->to('rswibmer@hotmail.com'); 
+        $this->email->cc('rswibmer@hotmail.com'); 
+        $this->email->bcc('rswibmer@hotmail.com'); 
+
+        $this->email->subject('Email Test');
+        $this->email->message('Testing the email class.'); 
+
+        $this->email->send();
+
+        echo $this->email->print_debugger();
+        die;
+        */
         $this->load->helper('url');
         $this->load->view("welcome_message");
 	}

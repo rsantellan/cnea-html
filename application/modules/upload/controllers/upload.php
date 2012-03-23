@@ -157,9 +157,9 @@ class Upload extends MY_Controller {
             }
             return $path.'/';
         }
-        //$cacheDir = sfConfig::get('sf_cache_dir');
-        //$rootDir = sfConfig::get('sf_root_dir');
-        //$webDir = sfConfig::get('sf_web_dir');
+        $cacheDir = BASEPATH. '/assets/upload/uploads/';
+        $rootDir = BASEPATH;
+        $webDir = BASEPATH. '/assets/upload/uploads/';
         $folders = $pieces = explode("/", $path);
         //$smallPath = "/";
         $smallPath = "";
@@ -178,6 +178,7 @@ class Upload extends MY_Controller {
                 if(strlen($smallPath) > strlen($cacheDir) && strlen($smallPath) > strlen($rootDir) && strlen($smallPath) > strlen($webDir) ){
                     throw $e;
                 }
+                //throw $e;
             }
             $smallPath .= '/';
         }
