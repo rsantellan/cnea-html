@@ -3,7 +3,7 @@
 class Upload_model extends CI_Model {
 
 	// Table name
-	private $table_name = 'imagess';
+	private $table_name = 'images';
 	
 	// Fields
 	private $id;

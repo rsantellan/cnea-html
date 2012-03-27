@@ -100,7 +100,14 @@ class actas extends MY_Model{
       $data["nombre"] = $this->getNombre();
       $data["ordinal"] = $this->retrieveLastActaOrder();
       $this->db->insert($this->getTablename(), $data);
-      return $this->db->insert_id(); 
+      $id = $this->db->insert_id(); 
+      if(!is_null($id) && $id != 0)
+      {
+        $ci =& get_instance();
+        $ci->load->model('upload/album');
+        $ci->album->createAlbum($id, $this->getObjectClass()); 
+      }
+      return $id;
     }
     
     private function edit()
@@ -134,5 +141,10 @@ class actas extends MY_Model{
         // None
         return NULL;
       }
+    }
+    
+    public function getObjectClass()
+    {
+      return get_class($this);
     }
 }

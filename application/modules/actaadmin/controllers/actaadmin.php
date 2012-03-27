@@ -75,6 +75,9 @@ class actaadmin extends MY_Controller{
     
     function edit($id)
     {
+      $this->addJquery();
+      $this->addFancyBox();
+      $this->addModuleJavascript("actaadmin", "list.js");
       $this->load->model('actas');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "actaadmin/edit";

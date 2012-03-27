@@ -4,13 +4,13 @@
 -- Table structure for table `albums`
 --
 
-CREATE TABLE `albums` (
-  `id` smallint(9) NOT NULL,
-  `name` varchar(64) default NULL,
-  `obj_id` smallint(9) default NULL,
-  `obj_class` varchar(64) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `albums` (
+  `id` smallint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  `obj_id` smallint(9) DEFAULT NULL,
+  `obj_class` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -18,11 +18,12 @@ CREATE TABLE `albums` (
 -- Table structure for table `images`
 --
 
-CREATE TABLE `images` (
-  `id` smallint(9) NOT NULL,
-  `path` varchar(64) default NULL,
-  `name` varchar(64) default NULL,
-  `type` varchar(32) default NULL,
-  `album_id` smallint(9) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` smallint(9) NOT NULL AUTO_INCREMENT,
+  `path` varchar(64) DEFAULT NULL,
+  `name` varchar(64) DEFAULT NULL,
+  `type` varchar(32) DEFAULT NULL,
+  `album_id` smallint(9) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+SET FOREIGN_KEY_CHECKS=1;

@@ -131,8 +131,8 @@ class Upload extends MY_Controller {
 			$model_upload = $this->load->model('upload/upload_model');
 			// album
 			$model_upload->set_album_name($_POST['album_name']);
-			$model_upload->set_obj_id($_POST['obj_id']);
-			$model_upload->set_obj_class($_POST['obj_class']);
+			//$model_upload->set_obj_id($_POST['obj_id']);
+			//$model_upload->set_obj_class($_POST['obj_class']);
 			// file
 			$model_upload->set_file_name($_POST['file_name']);
 			$model_upload->set_file_type('file_type');
@@ -184,6 +184,29 @@ class Upload extends MY_Controller {
             $smallPath .= '/';
         }
         return $path.'/';
+    }
+    
+    public function view($parameters)
+    {
+      //$this->output->enable_profiler(TRUE);
+      $id = $parameters["id"];
+      $classname = $parameters["classname"];
+      $this->load->model('upload/album');
+      $this->load->model('upload/images');
+      
+      $albums = $this->album->retrieveAllObjectAlbums($id, $classname);
+      $salida = array();
+      foreach($albums as $album)
+      {
+        $aux = array();
+        $aux["id"] = $album["id"];
+        $aux["name"] = $album["name"];
+        $aux["images"] = $this->images->retrieveAlbumImages($album["id"]);
+        $salida[] = $aux;
+      }
+      $data['albums'] = $salida;
+      $this->load->view("upload/albums", $data);
+      
     }
     
 }
