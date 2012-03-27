@@ -128,16 +128,24 @@ class Upload extends MY_Controller {
 			exit(0);
 		}
 		else{
-			$model_upload = $this->load->model('upload/upload_model');
+			$this->load->model('images');
+            $obj = new $this->images;
+            $obj->setPath($path);
+            $obj->setName($name);
+            $obj->setType($type);
+            $obj->setAlbumId($album_id);
+            $obj->save();
+            
+            /*$model_upload = $this->load->model('upload/upload_model');
 			// album
 			$model_upload->set_album_name($_POST['album_name']);
-			//$model_upload->set_obj_id($_POST['obj_id']);
-			//$model_upload->set_obj_class($_POST['obj_class']);
+			$model_upload->set_obj_id($_POST['obj_id']);
+			$model_upload->set_obj_class($_POST['obj_class']);
 			// file
 			$model_upload->set_file_name($_POST['file_name']);
 			$model_upload->set_file_type('file_type');
 			// save
-			$model_upload->save();
+			$model_upload->save();*/
 		}
 
 		exit(0);
