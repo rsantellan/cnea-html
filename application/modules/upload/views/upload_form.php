@@ -14,7 +14,7 @@
 			var settings = {
 				flash_url : "<?php echo base_url(); ?>assets/upload/swfupload/swfupload.swf",
 				upload_url: "<?php echo site_url("upload/do_upload"); ?>",
-				post_params: {"obj_class" : "<?php echo $objClass; ?>", "obj_id" : "<?php echo $objId; ?>"},
+				post_params: {"album_id" : "<?php echo $album_id; ?>"},
 				file_size_limit : "100 MB",
 				file_types : "*.*",
 				file_types_description : "All Files",

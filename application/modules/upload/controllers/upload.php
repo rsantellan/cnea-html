@@ -8,11 +8,10 @@ class Upload extends MY_Controller {
 		$this->load->helper(array('form', 'url'));
 	}
 
-	function index($objClass = '', $objId = '')
+	function index($album_id = '')
 	{
 		$data = array();
-		$data['objClass'] = $objClass;
-		$data['objId'] = $objId;
+		$data['album_id'] = $album_id;
 		$this->load->view('upload_form', $data);
 	}
 
@@ -129,14 +128,16 @@ class Upload extends MY_Controller {
 			exit(0);
 		}
 		else{
-			/*$model_upload = $this->load->model('upload/upload_model');
-			$model_upload->set_obj_class($_POST['obj_class']);
+			$model_upload = $this->load->model('upload/upload_model');
+			// album
+			$model_upload->set_album_name($_POST['album_name']);
 			$model_upload->set_obj_id($_POST['obj_id']);
-			$model_upload->set_path('path');
-			$model_upload->set_file_name($_FILES[$upload_name]['name']);
-			$model_upload->set_album('album');
-			$model_upload->set_order('order');
-			$model_upload->save();*/
+			$model_upload->set_obj_class($_POST['obj_class']);
+			// file
+			$model_upload->set_file_name($_POST['file_name']);
+			$model_upload->set_file_type('file_type');
+			// save
+			$model_upload->save();
 		}
 
 		exit(0);
