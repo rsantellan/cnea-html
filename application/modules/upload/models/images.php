@@ -105,7 +105,14 @@ class images extends MY_Model{
   {
     $this->db->where('album_id', $albumId);
     $query = $this->db->get($this->getTablename());
-    //var_dump(get_class($query));
+    
+    $salida = array();
+    
+    foreach($query->result_object() as $object)
+    {
+      var_dump($object->path);
+      $this->mupload->get_file_of_path($object->path);
+    }
     return $query->result_object();
   }
 }

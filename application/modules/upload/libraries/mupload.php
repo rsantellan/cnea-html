@@ -22,7 +22,7 @@ class mupload {
             }
             return $path.DIRECTORY_SEPARATOR;
         }
-        $cacheDir = BASEPATH. DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'';
+        $cacheDir = BASEPATH. DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'';
         $rootDir = BASEPATH;
         $webDir = BASEPATH. ''.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'';
         
@@ -58,4 +58,47 @@ class mupload {
         return $path.DIRECTORY_SEPARATOR;
     }
   
+    
+    public function checkImageCacheDirectory($path, $width, $height, $type = "1")
+    {
+      $aux = $width."x".$height."_".$type;
+      $cacheDir = BASEPATH. DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.$aux;
+      $mPath = str_replace(BASEPATH, $cacheDir, $path);
+      $this->checkDirectory($mPath);
+      var_dump($mPath);
+      
+    }
+    
+    /**
+     *
+     * @author Rodrigo Santellan
+     * 
+     */    
+    public function get_file_of_path($path)
+    {
+      $pieces = explode(DIRECTORY_SEPARATOR, $path);
+      return $pieces[count($pieces) - 1];
+    }
+    
+    
+    
+    /**
+     *
+     * @author Rodrigo Santellan
+     * 
+     */
+    public function get_file_extension($file_name) {
+        return substr(strrchr($file_name, '.'), 1);
+    }
+
+    /**
+     *
+     * @author Rodrigo Santellan
+     * 
+     */
+    public function get_file_name($file_name) {
+        return substr($file_name, 0, strrpos($file_name, '.'));
+        //return substr(strrchr($file_name,'.'),0);
+    }    
+    
 }
