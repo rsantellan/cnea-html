@@ -78,6 +78,9 @@ class actaadmin extends MY_Controller{
       $this->addJquery();
       $this->addFancyBox();
       $this->addModuleJavascript("actaadmin", "edit.js");
+      $this->addModuleStyleSheet("upload", "albums.css");
+      $this->addModuleJavascript("upload", "imagesAdmin.js");
+      
       $this->load->model('actas');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "actaadmin/edit";

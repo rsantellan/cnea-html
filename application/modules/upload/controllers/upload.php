@@ -166,8 +166,9 @@ class Upload extends MY_Controller {
       $classname = $parameters["classname"];
       $this->load->model('upload/album');
       $this->load->model('upload/images');
-      $this->load->library('mupload');
-      
+      $this->load->library('upload/mupload');
+      $this->load->helper('upload/mimage');
+
       $albums = $this->album->retrieveAllObjectAlbums($id, $classname);
       $salida = array();
       foreach($albums as $album)
@@ -178,11 +179,37 @@ class Upload extends MY_Controller {
         $aux["images"] = $this->images->retrieveAlbumImages($album["id"]);
         $salida[] = $aux;
       }
-      //var_dump($salida);
       $data['albums'] = $salida;
       $this->load->view("upload/albums", $data);
       
     }
     
+    public function editFile($fileId)
+    {
+      $this->load->model('upload/images');
+      $file = $this->images->getFile($fileId);
+      
+      $data['file'] = $file[0];
+      //var_dump($file[0]);
+      $this->load->library('upload/mupload');
+      $this->load->helper('upload/mimage');
+      $this->load->view("upload/file_detail", $data);
+    }
+    
+    public function deleteFile($fileId)
+    {
+      
+    }
+    
+    public function downloadFile($fileId)
+    {
+      $this->load->model('upload/images');
+      $file = $this->images->getFile($fileId);
+      $aux = $file[0];
+      $this->load->helper('download');
+      $data = file_get_contents($aux->path); // Read the file's contents
+      $name = $aux->name;
+      force_download($name, $data);
+    }
 }
 ?>

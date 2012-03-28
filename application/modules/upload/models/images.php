@@ -107,12 +107,14 @@ class images extends MY_Model{
     $query = $this->db->get($this->getTablename());
     
     $salida = array();
-    
-    foreach($query->result_object() as $object)
-    {
-      var_dump($object->path);
-      $this->mupload->get_file_of_path($object->path);
-    }
+    return $query->result_object();
+  }
+  
+  public function getFile($id)
+  {
+    $this->db->where('id', $id);
+    $this->db->limit(1);
+    $query = $this->db->get($this->getTablename());
     return $query->result_object();
   }
 }
