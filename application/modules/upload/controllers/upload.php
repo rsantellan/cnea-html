@@ -102,7 +102,10 @@ class Upload extends MY_Controller {
         $type = $info['extension'];
         $randName = md5(rand() * time());
         $file_name = $randName.".".$type;
-
+        
+        //log_message("INFO", "El nombre deberia ser (1): ".$randName);
+        
+        log_message("INFO", "El nombre del archivo subido es: ".$file_name);
 		// Validate that we won't over-write an existing file
 		if (file_exists($save_path . $file_name)) {
 			$this->HandleError('File with this name already exists');
@@ -149,7 +152,7 @@ class Upload extends MY_Controller {
 			// save
 			$model_upload->save();*/
 		}
-
+        sleep(1);
 		exit(0);
 	}
 
@@ -161,7 +164,7 @@ class Upload extends MY_Controller {
 	
     public function view($parameters)
     {
-      $this->output->enable_profiler(TRUE);
+      //$this->output->enable_profiler(TRUE);
       $id = $parameters["id"];
       $classname = $parameters["classname"];
       $this->load->model('upload/album');
@@ -177,6 +180,8 @@ class Upload extends MY_Controller {
         $aux["id"] = $album["id"];
         $aux["name"] = $album["name"];
         $aux["images"] = $this->images->retrieveAlbumImages($album["id"]);
+        
+        $aux['completo'] = $this->load->view('upload/single_album', $aux, true);
         $salida[] = $aux;
       }
       $data['albums'] = $salida;
@@ -198,7 +203,12 @@ class Upload extends MY_Controller {
     
     public function deleteFile($fileId)
     {
-      
+      $this->load->model('upload/images');
+      $this->images->deleteFile($fileId);
+      $salida['response'] = "OK";
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
     }
     
     public function downloadFile($fileId)
@@ -211,5 +221,43 @@ class Upload extends MY_Controller {
       $name = $aux->name;
       force_download($name, $data);
     }
+    
+    function sort($albumId){
+      //$this->output->enable_profiler(TRUE);
+      $this->load->model('upload/images');
+      $this->load->library('upload/mupload');
+      $this->load->helper('upload/mimage');
+      
+      $this->data['files_list'] = $this->images->retrieveAlbumImages($albumId);
+      $this->data['album_id'] = $albumId;
+      $this->load->view('upload/sortable', $this->data);
+    }
+    
+    function applySort()
+    {
+      /*
+      $salida = array();
+      $salida['response'] = "OK";
+      
+      echo json_encode($salida);
+      die;
+      */
+      $lista = $this->input->post('listItem');
+      $album_id = $this->input->post('listItem');
+      $this->load->model('upload/images');
+      
+      $cantidad = count($lista) - 1;
+      while($cantidad >= 0)
+      {
+        //echo $lista[$cantidad] . " - ".$cantidad;
+        $this->images->updateOrder($lista[$cantidad], $cantidad);
+        $cantidad --;
+      }
+      $salida = array();
+      $salida['response'] = "OK";
+      
+      echo json_encode($salida);
+      die;
+    }    
 }
 ?>

@@ -91,9 +91,20 @@ class images extends MY_Model{
     $data["name"] = $this->getName();
     $data["type"] = $this->getType();
     $data["album_id"] = $this->getAlbumId();
+    $data["ordinal"] = $this->retrieveOrdinal();
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
     return $id;
+  }
+  
+  
+  private function retrieveOrdinal()
+  {
+    $this->db->select_max('ordinal');
+    $this->db->where('album_id', $this->getAlbumId());
+    $query = $this->db->get($this->getTablename());
+    $result = $query->result('array');
+    return ((int)$result[0]['ordinal'] + 1);
   }
   
   private function edit()
@@ -104,9 +115,8 @@ class images extends MY_Model{
   public function retrieveAlbumImages($albumId)
   {
     $this->db->where('album_id', $albumId);
+    $this->db->order_by("ordinal", "asc");
     $query = $this->db->get($this->getTablename());
-    
-    $salida = array();
     return $query->result_object();
   }
   
@@ -116,5 +126,27 @@ class images extends MY_Model{
     $this->db->limit(1);
     $query = $this->db->get($this->getTablename());
     return $query->result_object();
+  }
+  
+  public function deleteFile($id)
+  {
+    $file = $this->getFile($id);
+    $file = $file[0];
+    $ci = &get_instance();
+    $ci->load->library("mupload");
+    $ci->mupload->deleteImageCache($file->path);
+    unlink($file->path);
+    $this->db->where('id', $id);
+    $this->db->delete($this->getTablename());
+  }
+  
+  
+  function updateOrder($file_id, $order)
+  {
+    $data = array(
+              'ordinal' => $order
+           );
+    $this->db->where('id', $file_id);
+    $this->db->update($this->getTablename(), $data);
   }
 }

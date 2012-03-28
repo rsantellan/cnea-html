@@ -81,12 +81,21 @@ class mupload {
     public function returnImageCachePath($path, $width, $height, $type = 1)
     {
       $aux = $width."x".$height."_".$type;
+      //$cacheDir = FCPATH. 'assets'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR;
+      //$mPath = str_replace(FCPATH, $cacheDir, $path);
+      //$file_path = $this->get_path_of_file($mPath);
+      $file_path = $this->returnBasicCachePath($path);// $this->get_path_of_file($mPath);
+      $file_name = $this->get_file_of_path($path);
+      $mPath = $file_path.DIRECTORY_SEPARATOR.$aux.DIRECTORY_SEPARATOR.$file_name;
+      return $mPath;
+    }
+    
+    public function returnBasicCachePath($path)
+    {
       $cacheDir = FCPATH. 'assets'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR;
       $mPath = str_replace(FCPATH, $cacheDir, $path);
       $file_path = $this->get_path_of_file($mPath);
-      $file_name = $this->get_file_of_path($mPath);
-      $mPath = $file_path.DIRECTORY_SEPARATOR.$aux.DIRECTORY_SEPARATOR.$file_name;
-      return $mPath;
+      return $file_path;
     }
     
     public function createImageCache($path, $width, $height, $type = 1)
@@ -100,7 +109,6 @@ class mupload {
       //echo '<br/> image on cache: '.$mPath;
       
       $CI =& get_instance();
-
       $CI->load->library('mimagick', true, NULL, 'mImagick');
       $CI->mimagick->basicThumbnail($path, $mPath, $type, $width, $height); 
       
@@ -146,4 +154,18 @@ class mupload {
         //return substr(strrchr($file_name,'.'),0);
     }    
     
+    public function deleteImageCache($path)
+    {
+      $cache_dir = $this->returnBasicCachePath($path);
+      $file_name = $this->get_file_of_path($path);
+      $list = scandir($cache_dir);
+      foreach($list as $dir)
+      {
+        if($dir != "." && $dir != ".." && $dir != ".svn")
+        {
+          $aux = $cache_dir.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$file_name;
+          unlink($aux);
+        } 
+      }
+    }
 }

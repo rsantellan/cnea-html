@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `name` varchar(64) DEFAULT NULL,
   `type` varchar(32) DEFAULT NULL,
   `album_id` smallint(9) DEFAULT NULL,
+  `ordinal` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 SET FOREIGN_KEY_CHECKS=1;
