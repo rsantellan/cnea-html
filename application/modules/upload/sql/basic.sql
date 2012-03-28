@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
 
 CREATE TABLE IF NOT EXISTS `images` (
   `id` smallint(9) NOT NULL AUTO_INCREMENT,
-  `path` varchar(64) DEFAULT NULL,
+  `path` varchar(256) DEFAULT NULL,
   `name` varchar(64) DEFAULT NULL,
   `type` varchar(32) DEFAULT NULL,
   `album_id` smallint(9) DEFAULT NULL,

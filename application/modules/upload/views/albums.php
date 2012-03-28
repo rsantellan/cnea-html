@@ -8,7 +8,8 @@ foreach($albums as $album):
   upload
   </a>
   <?php foreach($album["images"] as $image): ?>
-
+    <?php var_dump($image); ?>
+    <hr/>
   <?php endforeach; ?>
 </div>
 <?php endforeach; ?>

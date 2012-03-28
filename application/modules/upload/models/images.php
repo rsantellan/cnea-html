@@ -103,7 +103,7 @@ class images extends MY_Model{
   
   public function retrieveAlbumImages($albumId)
   {
-    $this->db->where('id', $albumId);
+    $this->db->where('album_id', $albumId);
     $query = $this->db->get($this->getTablename());
     //var_dump(get_class($query));
     return $query->result_object();

@@ -38,9 +38,11 @@ class Upload extends MY_Controller {
 			exit(0);
 		}
 
+        $this->load->library('mupload');
+        
 		// Settings
-		$save_path = getcwd() . '/assets/upload/uploads/'.$_POST['obj_class']."/".$_POST['obj_id']."/"; // The path were we will save the file (getcwd() may not be reliable and should be tested in your environment)
-        $this->checkDirectory($save_path);
+		$save_path = getcwd() . '/assets/upload/uploads/'.$_POST['album_id']."/"; // The path were we will save the file (getcwd() may not be reliable and should be tested in your environment)
+        $this->mupload->checkDirectory($save_path);
         $upload_name = 'Filedata'; 
 		$max_file_size_in_bytes = 2147483647; // 2GB in bytes
 		$extension_whitelist = array('jpg', 'gif', 'png'); // Allowed file extensions
@@ -130,10 +132,10 @@ class Upload extends MY_Controller {
 		else{
 			$this->load->model('images');
             $obj = new $this->images;
-            $obj->setPath($path);
-            $obj->setName($name);
+            $obj->setPath($save_path.$file_name);
+            $obj->setName($file);
             $obj->setType($type);
-            $obj->setAlbumId($album_id);
+            $obj->setAlbumId($_POST['album_id']);
             $obj->save();
             
             /*$model_upload = $this->load->model('upload/upload_model');
@@ -157,46 +159,9 @@ class Upload extends MY_Controller {
 		echo $message;
 	}
 	
-    public static function checkDirectory($path){
-        $path = str_replace('\\', '/', $path);
-        if (is_dir($path)) {
-            $last = $path[strlen($path)-1];
-            if($last == '/'){
-                return $path;
-            }
-            return $path.'/';
-        }
-        $cacheDir = BASEPATH. '/assets/upload/uploads/';
-        $rootDir = BASEPATH;
-        $webDir = BASEPATH. '/assets/upload/uploads/';
-        $folders = $pieces = explode("/", $path);
-        //$smallPath = "/";
-        $smallPath = "";
-        foreach($folders as $key => $folder){
-            $smallPath .= $folder;
-            try{
-                if (!is_dir($smallPath)) {
-                    if(!mkdir($smallPath)) {
-                        if (!is_dir($smallPath)) {
-                            throw new Exception('Unable to create format directory');
-                        }
-                    }
-                    chmod($smallPath,0775);
-                }
-            }catch(Exception $e){
-                if(strlen($smallPath) > strlen($cacheDir) && strlen($smallPath) > strlen($rootDir) && strlen($smallPath) > strlen($webDir) ){
-                    throw $e;
-                }
-                //throw $e;
-            }
-            $smallPath .= '/';
-        }
-        return $path.'/';
-    }
-    
     public function view($parameters)
     {
-      //$this->output->enable_profiler(TRUE);
+      $this->output->enable_profiler(TRUE);
       $id = $parameters["id"];
       $classname = $parameters["classname"];
       $this->load->model('upload/album');
@@ -212,6 +177,7 @@ class Upload extends MY_Controller {
         $aux["images"] = $this->images->retrieveAlbumImages($album["id"]);
         $salida[] = $aux;
       }
+      //var_dump($salida);
       $data['albums'] = $salida;
       $this->load->view("upload/albums", $data);
       
