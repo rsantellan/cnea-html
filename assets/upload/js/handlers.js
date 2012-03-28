@@ -106,7 +106,17 @@ function uploadSuccess(file, serverData) {
 		progress.setComplete();
 		progress.setStatus("Complete.");
 		progress.toggleCancel(false);
-
+        if(typeof window.refreshAlbum == 'function') 
+        {
+          refreshAlbum(serverData);
+        }
+        else
+        {
+          if(typeof parent.refreshAlbum == 'function')
+          {
+            parent.refreshAlbum(serverData);
+          }
+        }
 	} catch (ex) {
 		this.debug(ex);
 	}

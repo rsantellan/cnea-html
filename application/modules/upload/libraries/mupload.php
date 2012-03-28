@@ -164,7 +164,11 @@ class mupload {
         if($dir != "." && $dir != ".." && $dir != ".svn")
         {
           $aux = $cache_dir.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$file_name;
-          unlink($aux);
+          if(file_exists($aux))
+          {
+            unlink($aux);
+          }
+          
         } 
       }
     }

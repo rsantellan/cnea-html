@@ -29,7 +29,7 @@ function deleteFile(mUrl, itemId)
       var obj = jQuery.parseJSON(json.responseText);
       if(obj.response == "OK")
       {
-        $('#file_container_' + itemId).fadeOut(500, function() { $(this).remove(); });
+        $('#file_container_' + itemId).fadeOut(500, function() {$(this).remove();});
       }
     }        
   });
@@ -38,7 +38,7 @@ function deleteFile(mUrl, itemId)
 function refreshAlbum(albumId)
 {
  //console.log('refreshAlbum ' + albumId);
- 
+ var mUrl = $('#refresh_album_' + albumId).val();
  $.ajax({
     url: mUrl,
     type: 'post',
@@ -48,7 +48,9 @@ function refreshAlbum(albumId)
       var obj = jQuery.parseJSON(json.responseText);
       if(obj.response == "OK")
       {
-        $('#file_container_' + itemId).fadeOut(500, function() { $(this).remove(); });
+        $('#album_' + albumId).replaceWith(obj.content.album);
+        hoversImages();
+        startFancyLinks();
       }
     }        
   }); 

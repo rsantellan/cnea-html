@@ -1,3 +1,8 @@
 $(document).ready(function() { 
-  $("a.fancy_link").fancybox();
+  startFancyLinks();
 });
+
+function startFancyLinks()
+{
+  $("a.fancy_link").fancybox();
+}

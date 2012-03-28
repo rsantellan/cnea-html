@@ -7,7 +7,7 @@
   <div class="file_data">
     <span class="title">Nombre: <?php echo $file->name;?></span>
     <a href="<?php echo site_url('upload/downloadFile/'.$file->id);?>">
-      Bajar original
+      <img src="<?php echo base_url().'assets/upload/images/download.png'?>" />
     </a>
   </div>
 </div>

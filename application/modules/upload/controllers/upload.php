@@ -140,7 +140,8 @@ class Upload extends MY_Controller {
             $obj->setType($type);
             $obj->setAlbumId($_POST['album_id']);
             $obj->save();
-            
+            echo $_POST['album_id'];
+            //echo json_encode(array('id' => $_POST['album_id']));
             /*$model_upload = $this->load->model('upload/upload_model');
 			// album
 			$model_upload->set_album_name($_POST['album_name']);
@@ -186,6 +187,26 @@ class Upload extends MY_Controller {
       }
       $data['albums'] = $salida;
       $this->load->view("upload/albums", $data);
+      
+    }
+    
+    public function viewAlbum($albumId)
+    {
+      $this->load->model('upload/album');
+      $this->load->model('upload/images');
+      $this->load->library('upload/mupload');
+      $this->load->helper('upload/mimage');
+      $album = $this->album->getById($albumId);
+      $aux = array();
+      $aux['id'] = $album->getId();
+      $aux['name'] = $album->getName();
+      $aux["images"] = $this->images->retrieveAlbumImages($album->getId());
+      $contenido = $this->load->view('upload/single_album', $aux, true);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['content'] = array('album' => $contenido);
+      echo json_encode($salida);
+      die;
       
     }
     
