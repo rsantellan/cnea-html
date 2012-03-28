@@ -41,7 +41,7 @@ class Upload extends MY_Controller {
         $this->load->library('mupload');
         
 		// Settings
-		$save_path = getcwd() . ''.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.''.$_POST['album_id']."/"; // The path were we will save the file (getcwd() may not be reliable and should be tested in your environment)
+		$save_path = getcwd() . ''.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.''.$_POST['album_id'].DIRECTORY_SEPARATOR; // The path were we will save the file (getcwd() may not be reliable and should be tested in your environment)
         $this->mupload->checkDirectory($save_path);
         $upload_name = 'Filedata'; 
 		$max_file_size_in_bytes = 2147483647; // 2GB in bytes
