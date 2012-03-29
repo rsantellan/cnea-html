@@ -28,8 +28,7 @@
 	<body>
 		
     <h1 id="head">Administrador</h1>
-		
-		<ul id="navigation">
+      <ul id="navigation">
       <?php if($menu_id == 'dashboard'): ?>
         <li><span class="active">Dashboard</span></li>
       <?php else: ?>
@@ -47,7 +46,7 @@
       <?php else: ?>
         <li><a href="<?php echo site_url('actaadmin/index');?>">Actas</a></li>
       <?php endif; ?>
-			
+        <li style="float: right;"><a href="<?php echo site_url('auth/logout');?>">Salir</a></li>	
 		</ul>
 		
 			<div id="content" class="container_16 clearfix">

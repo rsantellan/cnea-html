@@ -301,6 +301,31 @@ class tank_auth
 		return NULL;
 	}
 
+/**
+	 * Set new password key for user and return some data about user:
+	 * user_id, username, email, new_pass_key.
+	 * The password key can be used to verify user when resetting his/her password.
+	 *
+	 * @param	string
+	 * @return	array
+	 */
+	function user_forgot_password($user_id)
+	{
+      $user = $this->ci->users->get_user_by_id($user_id, TRUE);
+      if (!is_null($user)) 
+      {
+        $data = array(
+            'user_id'		=> $user->id,
+            'username'		=> $user->username,
+            'email'			=> $user->email,
+            'new_pass_key'	=> md5(rand().microtime()),
+        );
+        $this->ci->users->set_password_key($user->id, $data['new_pass_key']);
+        return $data;
+      }
+		return NULL;
+	}    
+    
 	/**
 	 * Check if given password key is valid and user is authenticated.
 	 *
@@ -443,6 +468,43 @@ class tank_auth
 		return NULL;
 	}
 
+    
+    
+    function set_user_new_email($new_email, $user_id)
+    {
+      //Obtengo el usuario
+      $user = $this->ci->users->get_user_by_id($user_id, TRUE);
+      if (!is_null($user)) 
+      {
+        $data = array(
+					'user_id'	=> $user_id,
+					'username'	=> $user->username,
+					'new_email'	=> $new_email,
+				);
+        
+        if ($user->email == $new_email) {
+            $this->error = array('email' => 'auth_current_email');
+
+        } elseif ($user->new_email == $new_email) {		// leave email key as is
+            $data['new_email_key'] = $user->new_email_key;
+            return $data;
+
+        } elseif ($this->ci->users->is_email_available($new_email)) {
+            $data['new_email_key'] = md5(rand().microtime());
+            $this->ci->users->set_new_email($user_id, $new_email, $data['new_email_key'], TRUE);
+            return $data;
+
+        } else {
+            $this->error = array('email' => 'auth_email_in_use');
+        }
+      }
+      else
+      {
+        $this->error = array('user' => 'auth_user_not_exists');
+      }
+      return NULL;
+    }
+    
 	/**
 	 * Activate new email, if email activation key is valid.
 	 *

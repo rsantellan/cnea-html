@@ -39,7 +39,7 @@ class Auth extends MX_Controller
 
 		} else {
 			$data['login_by_username'] = ($this->config->item('login_by_username', 'tank_auth') AND
-					$this->config->item('use_username', 'tank_auth'));
+            $this->config->item('use_username', 'tank_auth'));
 			$data['login_by_email'] = $this->config->item('login_by_email', 'tank_auth');
 
 			$this->form_validation->set_rules('login', 'Login', 'trim|required|xss_clean');
@@ -55,6 +55,7 @@ class Auth extends MX_Controller
 			}
 
 			$data['use_recaptcha'] = $this->config->item('use_recaptcha', 'tank_auth');
+            
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
 				if ($data['use_recaptcha'])
 					$this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
@@ -97,6 +98,7 @@ class Auth extends MX_Controller
 					}
 				}
 			}
+            
 			$data['show_captcha'] = FALSE;
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
 				$data['show_captcha'] = TRUE;

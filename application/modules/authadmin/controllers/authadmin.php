@@ -32,12 +32,30 @@ class Authadmin extends MY_Controller{
     {
       
       $this->load->model('auth/users');
+      $this->load->library('tank_auth', true, NULL, 'auth');
       $this->data['user_list'] = $this->users->listUsers();
+      $rows = array();
+      foreach($this->data['user_list'] as $user)
+      {
+        $mData['user'] = $user;
+        $show_delete = true;
+        if($this->tank_auth->get_user_id() == $user->id)
+        {
+          $show_delete = false;
+        }
+        $mData['delete'] = $show_delete;
+        $view = $this->load->view('authadmin/user_row', $mData, true);
+        $rows[] = $view;
+      }
+      $this->data['user_rows'] = $rows;
+      
       $this->data['content'] = "authadmin/user_list";
       //$this->load->view('authadmin/user_list', $data);
       $this->load->view("admin/layout", $this->data);
     }
 
+    
+    
     /**
 	 * Register user on the site
 	 *
@@ -46,29 +64,44 @@ class Authadmin extends MY_Controller{
 	function register()
 	{
       
-      $this->config->load('tank_auth', false, false, 'auth');
-      $this->load->library('tank_auth', true, NULL, 'auth');
-      $use_username = $this->config->item('use_username');
-      
+        $this->config->load('tank_auth', false, false, 'auth');
+        $this->load->library('tank_auth', true, NULL, 'auth');
+        $use_username = $this->config->item('use_username', 'tank_auth');
+        
 		if ($use_username) {
-			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length').']|max_length['.$this->config->item('username_max_length').']|alpha_dash');
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']|alpha_dash');
 		}
         $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
         $data['errors'] = array();
 
-        $email_activation = $this->config->item('email_activation');
-        $randPassword = "654654654";
+        $email_activation = $this->config->item('email_activation', 'tank_auth');
+        $password = "";
+        $length = 8;
+        $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
+        $maxlength = strlen($possible);
+        if ($length > $maxlength) {
+          $length = $maxlength;
+        } 
+        $i = 0; 
+        while ($i < $length) { 
+          $char = substr($possible, mt_rand(0, $maxlength-1), 1);
+          if (!strstr($password, $char)){
+            $password .= $char;
+            $i++;
+          }
+        }
+        
         if ($this->form_validation->run()) {								// validation ok
             if (!is_null($data = $this->tank_auth->create_user(
-                    $use_username ? $this->form_validation->set_value('username') : '',
+                    $use_username ? $this->form_validation->set_value('username', 'tank_auth') : '',
                     $this->form_validation->set_value('email'),
-                    $randPassword,
+                    $password,
                     $email_activation))) {									// success
 
-                $data['site_name'] = $this->config->item('website_name');
+                $data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
                 if ($email_activation) {									// send "activate" email
-                    $data['activation_period'] = $this->config->item('email_activation_expire') / 3600;
+                    $data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
 
                     $this->_send_email('activate', $data['email'], $data);
 
@@ -77,7 +110,7 @@ class Authadmin extends MY_Controller{
                     $this->_show_message($this->lang->line('auth_message_registration_completed_1'));
 
                 } else {
-                    if ($this->config->item('email_account_details')) {	// send "welcome" email
+                    if ($this->config->item('email_account_details', 'tank_auth')) {	// send "welcome" email
 
                         $this->_send_email('welcome', $data['email'], $data);
                     }
@@ -97,6 +130,73 @@ class Authadmin extends MY_Controller{
 		
 	}
     
+    
+	/**
+	 * Change user email
+	 *
+	 * @return void
+	 */
+	function change_email($userId)
+	{
+		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
+			redirect('/auth/login/');
+
+		} else {
+            $this->config->load('tank_auth', false, false, 'auth');
+            $this->load->library('tank_auth', true, NULL, 'auth');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
+            $this->form_validation->set_rules('user_id', 'user_id', 'required|xss_clean');
+            
+            $aux_user_id = $this->input->post('user_id');
+            if($aux_user_id !== '')
+            {
+              $userId = $aux_user_id;
+            }
+            
+            $data['user_id'] = $userId;
+			$data['errors'] = array();
+            
+			if ($this->form_validation->run()) {								// validation ok
+                $data = $this->tank_auth->set_user_new_email($this->form_validation->set_value('email'),$userId);
+                if (!is_null($data)) {			// success
+                    $data['site_name'] = $this->config->item('website_name', 'tank_auth');
+
+					// Send email with new email address and its activation link
+					$this->_send_email('change_email', $data['new_email'], $data);
+
+					$this->_show_message(sprintf($this->lang->line('auth_message_new_email_sent'), $data['new_email']));
+
+				} else {
+					$errors = $this->tank_auth->get_error_message();
+					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+				}
+			}
+            $data['user_id'] = $userId;
+			$this->load->view('authadmin/change_email_form', $data);
+		}
+	}    
+    
+    function resetPassword($userId)
+    {
+      $this->config->load('tank_auth', false, false, 'auth');
+      $this->load->library('tank_auth', true, NULL, 'auth');
+      
+      $is_ok = false;
+      $data = $this->tank_auth->user_forgot_password($userId);
+      if(!is_null($data))
+      {
+        $is_ok = true;
+        $data['site_name'] = $this->config->item('website_name', 'tank_auth');
+        // Send email with password activation link
+        $this->_send_email('forgot_password', $data['email'], $data);
+        $this->_show_message($this->lang->line('auth_message_new_password_sent'));
+      }
+      
+      $return = array();
+      $return["result"] = $is_ok;
+      echo json_encode($return);
+    }
+    
 	/**
 	 * Send email message of given type (activate, forgot_password, etc.)
 	 *
@@ -107,6 +207,7 @@ class Authadmin extends MY_Controller{
 	 */
 	function _send_email($type, $email, &$data)
 	{
+      
 		$this->load->library('email');
 		$this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
 		$this->email->reply_to($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
@@ -115,6 +216,7 @@ class Authadmin extends MY_Controller{
 		$this->email->message($this->load->view('email/'.$type.'-html', $data, TRUE));
 		$this->email->set_alt_message($this->load->view('email/'.$type.'-txt', $data, TRUE));
 		$this->email->send();
+        //echo $this->email->print_debugger();
 	}    
   
   
