@@ -98,3 +98,5 @@ $lang["cnea.integrantes.protectora_animales"] = "Protectora de Animales";
 $lang["cnea.integrantes.protectora_animales.persona1"] = "Sylvia Corte";
 $lang["cnea.integrantes.protectora_animales.persona2"] = "Leonardo Monzillo";
 
+$lang["contacto.titulo"] = "Contacto";
+$lang["contacto.mensaje_enviado"] = "<p>Gracias por ponerse con contacto con la CNEA, a la brevedad nos comunicaremos con usted.</p>";

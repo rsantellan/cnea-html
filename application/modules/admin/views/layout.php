@@ -46,6 +46,11 @@
       <?php else: ?>
         <li><a href="<?php echo site_url('actaadmin/index');?>">Actas</a></li>
       <?php endif; ?>
+      <?php if($menu_id == 'contacto'): ?>
+        <li><span class="active">Contacto</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('contacto/contactoadmin');?>">Contacto</a></li>
+      <?php endif; ?>        
         <li style="float: right;"><a href="<?php echo site_url('auth/logout');?>">Salir</a></li>	
 		</ul>
 		

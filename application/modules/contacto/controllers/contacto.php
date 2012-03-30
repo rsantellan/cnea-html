@@ -50,35 +50,42 @@ class contacto extends MY_Controller{
 			
         $form_data = array(
                         'nombre' => set_value('nombre'),
+                        'institucion' => set_value('institucion'),
                         'email' => set_value('email'),
                         'telefono' => set_value('telefono'),
+                        'celular' => set_value('celular'),
                         'comentario' => set_value('comentario')
                     );
         $data['form_data'] = $form_data;
+        
+        $this->load->model('mail_db');
+        $return = $this->mail_db->retrieveContactMailInfo();
+        
         //Con estos datos preparo un email para enviar.
         $this->load->library('email');
 
-        $this->email->from('rsantellan@gmail.com', 'Your Name');
-        $this->email->to('rsantellan@gmail.com'); 
-        $this->email->cc('rswibmer@hotmail.com'); 
-        $this->email->bcc('rswibmer@hotmail.com'); 
+        $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+        $this->email->to($return['to']); 
+        $this->email->cc($return['cc']); 
+        $this->email->bcc($return['bcc']);
+        $this->email->reply_to($form_data['email'], $form_data['nombre']);
 
-        $this->email->subject('Email Test');
-        $message = $this->load->view('memail', $data, true);
+        $this->email->subject('Contacto desde el sitio web');
+        $message = $this->load->view('memail', $form_data, true);
         $this->email->message($message); 
 
         $this->email->send();
 
         //echo $this->email->print_debugger();
-        //redirect('contacto/success');   // or whatever logic needs to occur
+        redirect('contacto/success');   // or whatever logic needs to occur
         
       }
     }
     
     function success()
 	{
-      echo 'this form has been successfully submitted with all validation being passed. All messages or logic here. Please note
-      sessions have not been used and would need to be added in to suit your app';
+      $this->data['content'] = 'mail_success';
+      $this->load->view('layout', $this->data);
 	}
 
     
