@@ -11,7 +11,7 @@
     
 	<script type="text/javascript">
 	$(document).ready(function(){
-        startTinyMCE();
+        
 		$("#add_new_key").click(function() { ///add click action for button
 			var n = $('.ex_key').length+1; ///get lenght of new keys and values
 			var m = $('.ex_val').length+1;
@@ -58,7 +58,18 @@
 				return FALSE;
 			}
 		});
+        startTinyMCE();
 	});
+    
+    $(window).load(function() { 
+      forceTinyMceIframeResize(); 
+    });
+    
+    function forceTinyMceIframeResize() { 
+      $('.mceEditor .mceIframeContainer iframe').each(function(i) { 
+        $(this).height($(this).height()+1); 
+      }); 
+    }
     function startTinyMCE(){
       
     
@@ -74,20 +85,10 @@
             
           plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist, spellchecker",
           
+          // Theme options
           theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect,|",
           theme_advanced_buttons2 : "bullist,numlist,|link,unlink,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|fullscreen,|,cut,copy,paste,pastetext,pasteword,|",
           theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid",
-
-
-          // Theme options
-
-          //theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
-
-          //theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-
-          //theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
-
-          //theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
 
           theme_advanced_toolbar_location : "top",
 
@@ -101,22 +102,6 @@
           
           force_br_newlines : true,
           force_p_newlines : false
-
-
-          //force_br_newlines : true,
-          //force_p_newlines : false,
-          
-          //force_br_newlines : true,
-          //forced_root_block : ''
-          // Drop lists for link/image/media/template dialogs
-
-          //template_external_list_url : "js/template_list.js",
-
-          //external_link_list_url : "js/link_list.js",
-
-          //external_image_list_url : "js/image_list.js",
-
-          //media_external_list_url : "js/media_list.js"
 
       });
     }

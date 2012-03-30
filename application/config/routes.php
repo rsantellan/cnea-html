@@ -38,11 +38,12 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "sitio";
 $route['404_override'] = '';
 
 $route["login"] = "login";
 
+//$route["sitio/cneaMision"] = "cnea/mision.html";
 /*
 $route['^es/(.+)$'] = "$1";
 $route['^en/(.+)$'] = "$1";

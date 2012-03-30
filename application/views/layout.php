@@ -1,69 +1,181 @@
 <?php echo doctype(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-		<script type="text/javascript" src="<?php echo base_url() .APPPATH;?>js/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url() .APPPATH;?>js/loadController.js"></script>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>CNEA | Comisi&oacute;n Nacional de Experimentaci&oacute;n Animal</title>
+      <!--<meta name="Title" content="Diseño Web y Gráfico Uruguay para empresas y particulares. Loopita Design" />
+      <meta name="AUTHOR" content="Loopita design" />
+      <meta name="SUBJECT" content="Diseño Web, Diseño Gráfico, Diseño Corporativo, Diseños Perzonalizados, Estudio de diseño Loopita Design" />
+      <meta name="RATIN" content="GENERAL" />
+      <meta name="description" content="Loopitadesign es un emprendimiento dedicado a analizar e interpretar las necesidades de los clientes, desarrollando ideas y  convirti&eacute;ndolas en soluciones. Nuestra gama de servicios abarca el diseño de Imagen Corporativa, Desarrollo Web, Diseñeo de Flyers e Impresos, Producciones Fotográficas, Animaciones y más..." />
+      <meta name="ABSTRACT" content="Loopitadesign es un emprendimiento dedicado a analizar e interpretar las necesidades de los clientes, desarrollando ideas y  convirti&eacute;ndolas en soluciones. Nuestra gama de servicios abarca el diseño de Imagen Corporativa, Desarrollo Web, Diseñeo de Flyers e Impresos, Producciones Fotográficas, Animaciones y más" />
+      <meta name="keywords" content="Loopita Design, diseño, diseño grafico, diseño web, animaciones, animaciones flash, creacion de html, css, grafica, web, ilustraciones, fotografias, producciones fotográficas, imagen corporativa, logotipos, papelaria institucional, estudio de diseño, publicidad" />
+      <meta name="REVISIT-AFTER" content="15 DAYS" />
+      <meta name="GENERATOR" content="www.loopitadesign.com" />
+      <meta name="Copyright" content="Copyright (c) 2009 LOOPITADESIGN.COM" />
+      <meta name="ROBOTS" content="ALL"/>
+      <meta name="robot" content="index, follow" />
+      <meta name="language" content="sp" />
+      <meta name="distribution" content="Global" />
+      <meta name="expires" content="Never" />
+      <meta name="google-site-verification" content="vkQeLfGfXjDTSawf3osUdbtByslfbr3FIFnK16B0Xlw" />-->
+      <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/favicon.ico" />
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles.css" media="screen"/>
+      <script type="text/javascript" src="<?php echo base_url();?>assets/js/dropdown.js"></script>
+      <!--[if IE 6]><script type="text/javascript" src="<?php echo base_url();?>assets/js/unitpngfix.js"></script><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles_ie6.css" media="screen"/><![endif]-->
+      <!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles_ie7.css" media="screen"/><![endif]-->
+      <!--[if IE 8]><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles_ie8.css" media="screen"/><![endif]-->      
+
+      <?php foreach($javascript as $js): ?>
+<!--	  <script type="text/javascript" src="<?php echo base_url() .APPPATH ."js/".$js; ?>"></script>-->
+      <?php endforeach; ?>
 		
-		<?php foreach($javascript as $js): ?>
-		  <script type="text/javascript" src="<?php echo base_url() .APPPATH ."js/".$js; ?>"></script>
-		<?php endforeach; ?>
-		
-		<?php foreach($stylesheet as $sheet): ?>
-		  <link rel="stylesheet" type="text/css" href="<?php echo base_url() .APPPATH . "css/".$sheet;?>" />
-		<?php endforeach; ?>
+      <?php foreach($stylesheet as $sheet): ?>
+<!--	  <link rel="stylesheet" type="text/css" href="<?php echo base_url() .APPPATH . "css/".$sheet;?>" />-->
+      <?php endforeach; ?>
     </head>
-    <body>
-	  <!--[if !IE]>start wrapper<![endif]-->
+    
+  <body>
+      <div id="wrapper">
+          <div id="header">
+              <div class="logo">
+                  <a href="index.html"><img src="<?php echo base_url();?>assets/images/logo.jpg" /></a>
+              </div>
+              <div class="clear"></div>
+              <div class="menu">
+                  <dl class="dropdown">
+                      <dt style="margin-left:18px; border-left:2px solid #FFFFFF;"><a href="<?php echo site_url('sitio/index'); ?>" class="current"><?php echo lang('menu.inicio');?></a></dt>
+                  </dl>
+                  <dl class="dropdown">
+                       <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="cnea"><?php echo lang('menu.cnea');?></dt>
+                       <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
+                           <ul class="ul_cnea">
+                              <li class="sub_menu"><a href="<?php echo site_url('sitio/cneaMision'); ?>"><?php echo lang('menu.mision');?></a></li>
+                              <li class="sub_menu"><a href="objetivos.html"><?php echo lang('menu.objetivos');?></a></li>
+                              <li class="sub_menu"><a href="integrantes.html"><?php echo lang('menu.integrantes');?></a></li>
+                           </ul>
+                       </dd>
+                  </dl>
+                  <dl class="dropdown">
+                       <dt id="two-ddheader" onmouseover="ddMenu('two',1)" onmouseout="ddMenu('two',-1)" class="instituciones"><?php echo lang('menu.instituciones');?></dt>
+                       <dd id="two-ddcontent" onmouseover="cancelHide('two')" onmouseout="ddMenu('two',-1)">
+                           <ul class="ul_instituciones">
+                              <li class="sub_menu"><a href="registro_bases.html"><?php echo lang('menu.instituciones_bases');?></a></li>
+                              <li class="sub_menu"><a href="registro_formulario.html"><?php echo lang('menu.instituciones_formulario');?></a></li>
+                              <li class="sub_menu"><a href="registro_registro.html"><?php echo lang('menu.instituciones_registro');?></a></li>
+                              <li class="sub_menu"><a href="registro_reglamentacion.html"><?php echo lang('menu.instituciones_reglamento');?></a></li>
+                           </ul>
+                       </dd>
+                  </dl>
+                  <dl class="dropdown">
+                       <dt id="three-ddheader" onmouseover="ddMenu('three',1)" onmouseout="ddMenu('three',-1)" class="personas"><?php echo lang('menu.personas');?></dt>
+                       <dd id="three-ddcontent" onmouseover="cancelHide('three')" onmouseout="ddMenu('three',-1)">
+                           <ul class="ul_personas">
+                              <li class="sub_menu"><a href="personas_bases.html"><?php echo lang('menu.personas_bases');?></a></li>
+                              <li class="sub_menu"><a href="personas_formulario.html"><?php echo lang('menu.personas_formulario');?></a></li>
+                              <li class="sub_menu"><a href="personas_registro.html"><?php echo lang('menu.personas_registro');?></a></li>
+                              <li class="sub_menu"><a href="personas_reglamentacion.html"><?php echo lang('menu.personas_reglamento');?></a></li>
+                           </ul>
+                       </dd>
+                  </dl>
+                  <dl class="dropdown">
+                      <dt><a href="actas.html"><?php echo lang('menu.actas');?></a></dt>
+                  </dl>
+                  <dl class="dropdown">
+                      <dt><a href="novedades.html"><?php echo lang('menu.novedades');?></a></dt>
+                  </dl>
+                  <dl class="dropdown">
+                      <dt><a href="faq.html"><?php echo lang('menu.faq');?></a></dt>
+                  </dl>
+                  <dl class="dropdown">
+                      <dt style="border-right:2px solid #FFFFFF;"><a href="contacto.html"><?php echo lang('menu.contacto');?></a></dt>
+                  </dl>
+              </div>
+          </div><!--HEADER-->
+          <div id="content">
+            
+              <?php echo modules::run('sitio/leftBar')?>
+              
+              <?php if(isset($content)): ?>
+                <?php echo $this->load->view($content) ?>
+              <?php endif; ?>
+            
+<!--              <div class="content_right img_home">
+                  <h1>Comisión Nacional de Experimentación Animal</h1>
+                  <p>La Comisión Nacional de Experimentación Animal <strong>(CNEA)</strong> fue creada por la Ley de Experimentación Animal <a href="http://sip.parlamento.gub.uy/leyes/AccesoTextoLey.asp?Ley=18611&Anchor=" target="_blank">(Ley 18.611 "Utilización de animales de experimentación, docencia e investigación científica")</a> sancionada por el Parlamento uruguayo en 2009. Está presidida por el Ministerio de Educación y Cultura e integrada por representantes de diversas instituciones y organizaciones vinculadas a la temática de la experimentación animal.</p>
+                  <p>La <strong>CNEA</strong> dispone los lineamientos para el trato adecuado de animales vertebrados durante su cría o utilización en actividades de experimentación, investigación o docencia en todo el territorio nacional. De acuerdo con las regulaciones internacionales vigentes, la CNEA vela por asegurar el máximo bienestar de los animales a través del establecimiento de normativas nacionales que promuevan la reducción del número de animales utilizados para estos fines y eviten el sufrimiento físico innecesario.</p>
+                  <p>La <strong>CNEA</strong> centraliza la organización de la actividad de experimentación animal en el país a través del Registro de Instituciones habilitadas y de la creación del Sistema Nacional de Acreditaciones Personales, asegurando capacitación y otorgando licencias a las personas que utilicen animales en experimentación, docencia e investigación científica</p>
+              </div>-->
+              <!--CONTENT RIGHT-->
+              
+              
+          </div><!--CONTENT-->
+          
+          
+          <div class="bottom">
+              <p><a href="enlaces.html"><?php echo lang('footer.enlaces_interes');?></a> | <a href="documentos.html"><?php echo lang('footer.documentos_interes');?></a></p>
+          </div>
+          <div id="footer">
+              <div class="firm">
+                  Dise&ntilde;o: <a href="http://www.loopitadesign/com" target="_blank">LoopitaDesign</a>
+              </div>
+              <?php echo lang('footer.cnea'); ?>
+              
+          </div>
+      </div><!--WRAPPER-->
+  </body>    
+    
+<!--    <body>
+	  [if !IE]>start wrapper<![endif]
 	  <div id="wrapper">
-            <?php $this->load->view('header'); ?>
+            <?php //$this->load->view('header'); ?>
 		    
             
 				
 			 		
-		<!--[if !IE]>start content<![endif]-->
+		[if !IE]>start content<![endif]
 		<div id="content">
 		
-			<!--[if !IE]>start page<![endif]-->
+			[if !IE]>start page<![endif]
 			<div id="page">
 				<div class="inner">
 					
-                    <?php echo $this->load->view($content) ?>
+                    <?php //echo $this->load->view($content) ?>
 					<?php //include('msg.php'); ?>
 									
 					
 					
 				</div>
 			</div>
-			<!--[if !IE]>end page<![endif]-->
+			[if !IE]>end page<![endif]
 			
-			<!--[if !IE]>start sidebar<![endif]-->
+			[if !IE]>start sidebar<![endif]
 			<div id="sidebar">
 				<div class="inner">
 					
 					<?php //include('quick_stats.php'); ?>
 					<?php //echo modules::run('menu/menu')?>
 					<?php
-					  if($leftBoxOn):
+					  //if($leftBoxOn):
 					?>
-					  <?php echo $this->load->view($leftBoxContent) ?>
-				  <?php endif; ?>
+					  <?php //echo $this->load->view($leftBoxContent) ?>
+				  <?php //endif; ?>
 				</div>
 			</div>
-			<!--[if !IE]>end sidebar<![endif]-->
+			[if !IE]>end sidebar<![endif]
 		
 		</div>
-		<!--[if !IE]>end content<![endif]-->
+		[if !IE]>end content<![endif]
 	</div>
-	<!--[if !IE]>end wrapper<![endif]-->	  
-	  <?php $this->load->view('footer'); ?>
+	[if !IE]>end wrapper<![endif]	  
+	  <?php //$this->load->view('footer'); ?>
 
 	<div style="display:none" class="upload_progress" id="upload_container">
 	  <div class="progressWindow">Procesando, por favor espere ...</div>
-	  <img src="<?php echo base_url() .APPPATH;?>images/ajax-loader.gif" alt="" />
+	  <img src="<?php //echo base_url() .APPPATH;?>images/ajax-loader.gif" alt="" />
 	</div>
 	<div style="display:none" class="upload_progress" id="message_container">
 	  <div class="progressWindow" style="padding-top: 33px;"></div>
 	</div>
-    </body>
+    </body>-->
 </html>
