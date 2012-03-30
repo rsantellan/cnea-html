@@ -27,11 +27,11 @@
       <!--[if IE 8]><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles_ie8.css" media="screen"/><![endif]-->      
 
       <?php foreach($javascript as $js): ?>
-<!--	  <script type="text/javascript" src="<?php echo base_url() .APPPATH ."js/".$js; ?>"></script>-->
+        <script type="text/javascript" src="<?php echo base_url() ."assets/js/".$js; ?>"></script>
       <?php endforeach; ?>
 		
       <?php foreach($stylesheet as $sheet): ?>
-<!--	  <link rel="stylesheet" type="text/css" href="<?php echo base_url() .APPPATH . "css/".$sheet;?>" />-->
+	  <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/".$sheet;?>" />
       <?php endforeach; ?>
     </head>
     
@@ -44,15 +44,15 @@
               <div class="clear"></div>
               <div class="menu">
                   <dl class="dropdown">
-                      <dt style="margin-left:18px; border-left:2px solid #FFFFFF;"><a href="<?php echo site_url('sitio/index'); ?>" class="current"><?php echo lang('menu.inicio');?></a></dt>
+                      <dt style="margin-left:18px; border-left:2px solid #FFFFFF;"><a href="<?php echo site_url('sitio/index'); ?>" class="<?php if($menu_id == 'index') echo 'current';?>"><?php echo lang('menu.inicio');?></a></dt>
                   </dl>
                   <dl class="dropdown">
-                       <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="cnea"><?php echo lang('menu.cnea');?></dt>
+                       <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="cnea <?php if($menu_id == 'cnea') echo 'current';?>"><?php echo lang('menu.cnea');?></dt>
                        <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
                            <ul class="ul_cnea">
                               <li class="sub_menu"><a href="<?php echo site_url('sitio/cneaMision'); ?>"><?php echo lang('menu.mision');?></a></li>
-                              <li class="sub_menu"><a href="objetivos.html"><?php echo lang('menu.objetivos');?></a></li>
-                              <li class="sub_menu"><a href="integrantes.html"><?php echo lang('menu.integrantes');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url('sitio/cneaObjetivos'); ?>"><?php echo lang('menu.objetivos');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url('sitio/cneaIntegrantes'); ?>"><?php echo lang('menu.integrantes');?></a></li>
                            </ul>
                        </dd>
                   </dl>
@@ -88,7 +88,7 @@
                       <dt><a href="faq.html"><?php echo lang('menu.faq');?></a></dt>
                   </dl>
                   <dl class="dropdown">
-                      <dt style="border-right:2px solid #FFFFFF;"><a href="contacto.html"><?php echo lang('menu.contacto');?></a></dt>
+                      <dt style="border-right:2px solid #FFFFFF;"><a href="<?php echo site_url('contacto/index');?>"><?php echo lang('menu.contacto');?></a></dt>
                   </dl>
               </div>
           </div><!--HEADER-->

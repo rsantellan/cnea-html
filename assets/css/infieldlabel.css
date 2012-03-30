@@ -1,0 +1,9 @@
+.infield
+{
+  top: 10px !important;
+}
+
+
+form.infield_form p{
+  position:relative !important;
+}  
