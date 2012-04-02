@@ -80,7 +80,7 @@ class mupload {
     }
     public function returnImageCachePath($path, $width, $height, $type = 1)
     {
-      log_message("INFO", " El supuesto path es: ". $path);
+      //log_message("INFO", " El supuesto path es: ". $path);
       $path = $this->retrieveDocumentsFilesPath($path);
       $aux = $width."x".$height."_".$type;
       $file_path = $this->returnBasicCachePath($path);// $this->get_path_of_file($mPath);
@@ -88,7 +88,7 @@ class mupload {
       $mPath = $file_path.DIRECTORY_SEPARATOR.$aux.DIRECTORY_SEPARATOR.$file_name;
       
       
-      log_message("INFO", " El path final es: ". $mPath);
+      //log_message("INFO", " El path final es: ". $mPath);
       return $mPath;
     }
     
@@ -110,9 +110,9 @@ class mupload {
       
       
       $this->checkDirectory($cachePath);
-      log_message("INFO", "Los parametros que estoy pasando son, width: ". $width. " | height : ".$height);
-      log_message("INFO", " El supuesto path es: ". $path);
-      log_message("INFO", " El supuesto cache path es: ". $mPath);
+      //log_message("INFO", "Los parametros que estoy pasando son, width: ". $width. " | height : ".$height);
+      //log_message("INFO", " El supuesto path es: ". $path);
+      //log_message("INFO", " El supuesto cache path es: ". $mPath);
       
       $CI =& get_instance();
       $CI->load->library('mimagick', true, NULL, 'mImagick');

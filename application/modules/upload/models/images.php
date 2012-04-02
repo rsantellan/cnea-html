@@ -163,7 +163,7 @@ class images extends MY_Model{
     $file = $this->getFile($id);
     $file = $file[0];
     $ci = &get_instance();
-    $ci->load->library("mupload");
+    $ci->load->library("upload/mupload");
     $ci->mupload->deleteImageCache($file->path);
     unlink($file->path);
     $this->db->where('id', $id);

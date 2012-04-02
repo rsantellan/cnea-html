@@ -27,7 +27,14 @@
         </p>
         <p>
           <label for="comentario">Consulta</label><br />
-          <?php echo form_textarea( array('id' => 'comentario', 'name' => 'comentario', 'rows' => '5', 'cols' => '80', 'value' => set_value('comentario') ) )?>
+          <?php 
+            $t_class = ""; 
+            if(form_error('email') != "")
+            {
+              $t_class = "textarea_error";  
+            }
+          ?>
+          <?php echo form_textarea( array('class' => $t_class, 'id' => 'comentario', 'name' => 'comentario', 'rows' => '5', 'cols' => '80', 'value' => set_value('comentario') ) )?>
         </p>
         <?php echo form_submit( 'submit', 'enviar formulario', 'class="button button_large"'); ?>
     <?php echo form_close(); ?>

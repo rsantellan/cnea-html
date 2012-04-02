@@ -58,6 +58,24 @@ class album extends MY_Model{
     $this->name = $name;
   }
 
+  public function deleteAllOf($objectId, $objectClass)
+  {
+    $albums = $this->retrieveAllObjectAlbums($objectId, $objectClass);
+    foreach($albums as $album)
+    {
+      
+      $ci = &get_instance();
+      $ci->load->model("upload/images");
+      $images = $ci->images->retrieveAlbumImages($album["id"]);
+      foreach($images as $image)
+      {
+        $ci->images->deleteFile($image->id);
+      }
+      $this->db->where('id', $album["id"]);
+      $this->db->delete($this->getTablename());
+    }
+  }
+  
   public function retrieveAllObjectAlbums($objectId, $objectClass)
   {
     $this->db->where('obj_id', $objectId);
@@ -137,5 +155,10 @@ class album extends MY_Model{
     $ci->load->model("upload/images");
     
     return $ci->images->retrieveAvatar($album->id);
+  }
+  
+  public function getObjectClass()
+  {
+    return get_class($this);
   }
 }

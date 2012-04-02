@@ -19,3 +19,6 @@ $lang["inicio.contenido"] = '<p>La Comisión Nacional de Experimentación Animal
 
 $lang["contacto.titulo"] = "Contacto";
 $lang["contacto.mensaje_enviado"] = "<p>Gracias por ponerse con contacto con la CNEA, a la brevedad nos comunicaremos con usted.</p>";
+
+$lang["faq.titulo"] = "preguntas frecuentes";
+$lang["faq.contenido"] = "<p>Sección disponible proximamente.</p>";

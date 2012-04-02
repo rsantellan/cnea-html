@@ -93,16 +93,20 @@ class interesesadmin extends MY_Controller{
     function add($type)
     {
 	  $objecto = null;
+      $texto = "";
 	  if($type == "enlaces_intereses")
 	  {
 		$this->load->model('interesesadmin/enlaces_intereses');
 		$objecto  = new $this->enlaces_intereses;
+        $texto = "enlace";
 	  }
 	  else
 	  {
 		$this->load->model('interesesadmin/documentos_intereses');
         $objecto  = new $this->documentos_intereses;
+        $texto = "documento";
 	  }
+      $this->data['texto'] = $texto;
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "interesesadmin/add";
       $this->data['object'] = $objecto;
@@ -112,17 +116,20 @@ class interesesadmin extends MY_Controller{
     function edit($type, $id)
     {
 	  $objecto = null;
+      $texto = "";
 	  if($type == "enlaces_intereses")
 	  {
 		$this->load->model('interesesadmin/enlaces_intereses');
 		$objecto  = $this->enlaces_intereses->getById($id);
+        $texto = "enlace";
 	  }
 	  else
 	  {
 		$this->load->model('interesesadmin/documentos_intereses');
         $objecto  = $this->documentos_intereses->getById($id);
+        $texto = "documento";
 	  }
-	  
+	  $this->data['texto'] = $texto;
       $this->addJquery();
       $this->addFancyBox();
       //$this->addModuleJavascript("interesesadmin", "edit.js");
@@ -144,15 +151,18 @@ class interesesadmin extends MY_Controller{
 	  $objClass = $this->input->post('objClass', true);
 	  
 	  $obj = NULL;
+      $texto = "";
 	  if($objClass == "enlaces_intereses")
 	  {
 		$this->load->model('interesesadmin/enlaces_intereses');
 		$obj  = new $this->enlaces_intereses;
+        $texto = "enlace";
 	  }
 	  else
       {
         $this->load->model('interesesadmin/documentos_intereses');
         $obj  = new $this->documentos_intereses;
+        $texto = "documento";
       }
 	  //$this->load->model('actas');
       // Get ID from form
@@ -160,7 +170,7 @@ class interesesadmin extends MY_Controller{
       
       //$this->form_validation->set_rules('id', 'id', '');			
       $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');
-      $this->form_validation->set_rules('link', 'link', 'required|max_length[255]');
+      $this->form_validation->set_rules('link', 'link', 'required|max_length[255]|valid_url');
 	  
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -187,6 +197,7 @@ class interesesadmin extends MY_Controller{
       }
       else
       {
+        $this->data['texto'] = $texto;
         if($obj->isNew())
         {
           $this->data['use_grid_16'] = false;

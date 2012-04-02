@@ -46,6 +46,11 @@
       <?php else: ?>
         <li><a href="<?php echo site_url('actaadmin/index');?>">Actas</a></li>
       <?php endif; ?>
+      <?php if($menu_id == 'novedades'): ?>
+        <li><span class="active">Novedades</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('novedadesadmin/index');?>">Novedades</a></li>
+      <?php endif; ?> 
       <?php if($menu_id == 'intereses'): ?>
         <li><span class="active">Intereses</span></li>
       <?php else: ?>

@@ -26,6 +26,13 @@ class sitio extends MY_Controller {
     $this->load->view('layout', $this->data);
   }
   
+  public function faq()
+  {
+    $this->data['content'] = 'faq';
+    $this->data['menu_id'] = 'faq';
+    $this->load->view('layout', $this->data);    
+  }
+  
   public function leftBar()
   {
     

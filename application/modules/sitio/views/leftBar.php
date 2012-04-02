@@ -1,6 +1,9 @@
 <div class="content_left">
   <h3>buscador</h3>
-  <input type="text" value="búsqueda de contenido" />
+  <form>
+    <input type="text" value="búsqueda de contenido" />
+    <input type="submit" class="search" value="" />
+  </form>
   <h3>&uacute;ltimas novedades</h3>
   <div class="ultimas_novedades">
       llamado a concurso logotipo cnea

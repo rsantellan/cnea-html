@@ -36,6 +36,12 @@ class MY_Form_validation extends CI_Form_validation{
 	  }
 	  return $fieldname;
   }
+  
+  function valid_url($url)
+  {
+    return (bool) filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED);
+  } 
+  
 }
 
 

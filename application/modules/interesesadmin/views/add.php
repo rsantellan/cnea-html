@@ -1,5 +1,5 @@
 <div class="grid_16">
-  <h2>Agregar acta</h2>
+  <h2>Agregar <?php echo $texto;?></h2>
   <?php echo form_error('nombre'); ?>
   <?php echo form_error('link'); ?>
 </div>

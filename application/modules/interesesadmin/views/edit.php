@@ -1,5 +1,5 @@
 <div class="grid_16">
-  <h2>Editar acta</h2>
+  <h2>Editar <?php echo $texto;?></h2>
   <?php echo form_error('nombre'); ?>
 </div>
 <?php

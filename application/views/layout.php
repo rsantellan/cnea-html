@@ -82,10 +82,10 @@
                       <dt><a href="<?php echo site_url('acta/index'); ?>" class="<?php if($menu_id == 'actas') echo 'current';?>"><?php echo lang('menu.actas');?></a></dt>
                   </dl>
                   <dl class="dropdown">
-                      <dt><a href="novedades.html"><?php echo lang('menu.novedades');?></a></dt>
+                      <dt><a href="<?php echo site_url('novedades/index'); ?>" class="<?php if($menu_id == 'novedades') echo 'current';?>"><?php echo lang('menu.novedades');?></a></dt>
                   </dl>
                   <dl class="dropdown">
-                      <dt><a href="faq.html"><?php echo lang('menu.faq');?></a></dt>
+                      <dt><a href="<?php echo site_url('sitio/faq'); ?>" class="<?php if($menu_id == 'faq') echo 'current';?>"><?php echo lang('menu.faq');?></a></dt>
                   </dl>
                   <dl class="dropdown">
                       <dt style="border-right:2px solid #FFFFFF;"><a href="<?php echo site_url('contacto/index');?>"><?php echo lang('menu.contacto');?></a></dt>
