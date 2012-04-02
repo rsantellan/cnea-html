@@ -46,7 +46,12 @@
       <?php else: ?>
         <li><a href="<?php echo site_url('actaadmin/index');?>">Actas</a></li>
       <?php endif; ?>
-      <?php if($menu_id == 'contacto'): ?>
+      <?php if($menu_id == 'intereses'): ?>
+        <li><span class="active">Intereses</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('interesesadmin/index');?>">Intereses</a></li>
+      <?php endif; ?>
+	  <?php if($menu_id == 'contacto'): ?>
         <li><span class="active">Contacto</span></li>
       <?php else: ?>
         <li><a href="<?php echo site_url('contacto/contactoadmin');?>">Contacto</a></li>
