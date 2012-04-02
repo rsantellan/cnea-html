@@ -7,21 +7,22 @@ if (!defined('BASEPATH'))
  */
 
 /**
- * Description of actas
+ * Description of enlaces_intereses
  *
  * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
  */
-class actas extends MY_Model{
+class documentos_intereses extends MY_Model{
   
-    //private $table_name			= 'actas';
+    //private $table_name			= 'enlaces_intereses';
   
     private $id;
     private $nombre;
+	private $link;
     
     function __construct()
 	{
 		parent::__construct();
-        $this->setTablename('actas');
+        $this->setTablename('documentos_intereses');
     }
 
     public function getId() {
@@ -40,38 +41,23 @@ class actas extends MY_Model{
       $this->nombre = $nombre;
     }    
     
-    function retrieveActas($number = NULL, $offset = NULL, $returnObjects = FALSE)
+	public function getLink() {
+	  return $this->link;
+	}
+
+	public function setLink($link) {
+	  $this->link = $link;
+	}
+
+	function retrieveIntereses()
     {
       $this->db->order_by("ordinal", "desc");
-      $query = null;
-      if(is_null($number))
-      {
-        $query = $this->db->get($this->getTablename());
-      }
-      else
-      {
-        $query = $this->db->get($this->getTablename(), $number, $offset);
-      }
-      if(!$returnObjects)
-      {
-        return $query->result();
-      }
-      else
-      {
-        $salida = array();
-        foreach($query->result() as $obj)
-        {
-          $aux = new actas();
-          $aux->setId($obj->id);
-          $aux->setNombre($obj->nombre);
-          
-          $salida[] = $aux;
-        }
-        return $salida;
-      }
+      $query = $this->db->get($this->getTablename());
+      
+      return $query->result();
     }
 
-    function retrieveActasForSort()
+    function retrieveInteresesForSort()
     {
       $this->db->select(array('id', 'nombre', 'ordinal'));
       $this->db->order_by("ordinal", "desc");
@@ -80,17 +66,17 @@ class actas extends MY_Model{
       return $query->result();
     }
     
-    function updateActaOrder($acta_id, $order)
+    function updateInteresesOrder($interes_id, $order)
     {
       $data = array(
                 'ordinal' => $order
              );
-      $this->db->where('id', $acta_id);
+      $this->db->where('id', $interes_id);
       $this->db->update($this->getTablename(), $data);
     }
     
     
-    function retrieveLastActaOrder()
+    function retrieveLastInteresOrder()
     {
       $this->db->select_max('ordinal');
       $query = $this->db->get($this->getTablename());
@@ -121,22 +107,18 @@ class actas extends MY_Model{
     {
       $data = array();
       $data["nombre"] = $this->getNombre();
-      $data["ordinal"] = $this->retrieveLastActaOrder();
+	  $data["link"] = $this->getLink();
+      $data["ordinal"] = $this->retrieveLastInteresOrder();
       $this->db->insert($this->getTablename(), $data);
-      $id = $this->db->insert_id(); 
-      if(!is_null($id) && $id != 0)
-      {
-        $ci =& get_instance();
-        $ci->load->model('upload/album');
-        $ci->album->createAlbum($id, $this->getObjectClass()); 
-      }
+      $id = $this->db->insert_id();
       return $id;
     }
     
     private function edit()
     {
       $data = array(
-          'nombre' => $this->getNombre()
+          'nombre' => $this->getNombre(),
+		  'link' => $this->getLink()
        );
       $this->db->where('id', $this->getId());
       $this->db->update($this->getTablename(), $data);
@@ -154,9 +136,10 @@ class actas extends MY_Model{
         $obj = $query->row();        
         if($return_obj)
         {
-          $aux = new actas();
+          $aux = new documentos_intereses();
           $aux->setId($obj->id);
           $aux->setNombre($obj->nombre);
+		  $aux->setLink($obj->link);
           return $aux;
         }
         return $obj;
@@ -169,29 +152,5 @@ class actas extends MY_Model{
     public function getObjectClass()
     {
       return get_class($this);
-    }
-    
-    public function hasAvatar($albumName = "default")
-    {
-      if(!is_null($this->getId()) && $this->getId() != "")
-      {
-        $ci = &get_instance();
-        $ci->load->model("upload/album");
-        return $ci->album->albumHasAvatar($this->getId(), $this->getObjectClass(), $albumName);
-      }
-      return false;
-    }
-    
-    public function retrieveAvatar($albumName = "default", $id = NULL)
-    {
-      if(!is_null($id)) $this->setId($id);
-      
-      if(!is_null($this->getId()) && $this->getId() != "")
-      {
-        $ci = &get_instance();
-        $ci->load->model("upload/album");
-        return $ci->album->retrieveAlbumAvatar($this->getId(), $this->getObjectClass(), $albumName);
-      }
-      return NULL;      
     }
 }

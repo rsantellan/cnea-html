@@ -5,10 +5,11 @@
     </a>
   </h6>
   <ul class="img_thumb_ul">
+  <?php $firstImage = true; ?>  
   <?php foreach($images as $image): ?>
     
     <li id="file_container_<?php echo $image->id;?>" class="img_thumb_li">
-      <div class="img_thumb_container">
+      <div class="img_thumb_container <?php if($firstImage) echo 'avatar';?>">
         <div class="img_edit">
           <a href="<?php echo site_url('upload/editFile/'.$image->id);?>" class="fancy_link">
             Editar
@@ -25,7 +26,7 @@
         </div>
       </div>
     </li>
-    
+    <?php $firstImage = false; ?>  
   <?php endforeach; ?>
   </ul>
   <div class="clear"></div>

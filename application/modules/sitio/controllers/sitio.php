@@ -15,6 +15,7 @@ class sitio extends MY_Controller {
   function  __construct()  {
 	parent::__construct();
     $this->loadI18n("sitio", "", FALSE, TRUE, "", "sitio");
+    $this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
     $this->data['menu_id'] = '';
   }
   
@@ -22,28 +23,6 @@ class sitio extends MY_Controller {
   {
     $this->data['content'] = 'inicio';
     $this->data['menu_id'] = 'index';
-    $this->load->view('layout', $this->data);
-  }
-  
-  public function cneaMision()
-  {
-    $this->data['content'] = 'cnea_mision';
-    $this->data['menu_id'] = 'cnea';
-    $this->load->view('layout', $this->data);
-  }
-  
-  public function cneaObjetivos()
-  {
-    $this->data['content'] = 'cnea_objetivos';
-    $this->data['menu_id'] = 'cnea';
-    $this->load->view('layout', $this->data);
-  }
-  
-  
-  public function cneaIntegrantes()
-  {
-    $this->data['content'] = 'cnea_integrantes';
-    $this->data['menu_id'] = 'cnea';
     $this->load->view('layout', $this->data);
   }
   

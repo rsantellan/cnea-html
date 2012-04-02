@@ -1572,7 +1572,7 @@ class CI_DB_active_record extends CI_DB_driver {
 		{
 			$this->_reset_write();
 		}
-
+        log_message('QUERIES', "user : Nobody | query: ".$sql);
 		return $this->query($sql);
 	}
 

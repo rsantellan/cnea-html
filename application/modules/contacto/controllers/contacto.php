@@ -18,6 +18,7 @@ class contacto extends MY_Controller{
       parent::__construct();
       $this->data['menu_id'] = 'contacto';
       $this->loadI18n("sitio", "", FALSE, TRUE, "", "sitio");
+      $this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
       $this->addJavascript("jquery-1.7.1.min.js");
       $this->addJavascript("jquery.infieldlabel.min.js");
       $this->addJavascript("basicInfieldForm.js");

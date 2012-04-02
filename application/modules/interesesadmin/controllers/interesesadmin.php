@@ -28,33 +28,59 @@ class interesesadmin extends MY_Controller{
     
     function index(){
       $this->load->model('interesesadmin/enlaces_intereses');
+      $this->load->model('interesesadmin/documentos_intereses');
       $this->data['intereses_list'] = $this->enlaces_intereses->retrieveIntereses();
+      $this->data['documentos_list'] = $this->documentos_intereses->retrieveIntereses();
       $this->data['content'] = "interesesadmin/enlaces_list";
       
       $this->addJquery();
       $this->addFancyBox();
-      //$this->addModuleJavascript("interesesadmin", "list.js");
+      $this->addModuleJavascript("interesesadmin", "list.js");
       $this->load->view("admin/layout", $this->data);
     }
     
     
-    function sort(){
-      $this->load->model('interesesadmin/actas');
-      $this->data['actas_list'] = $this->actas->retrieveActasForSort();
-      
+    function sort($type){
+      $listado = array();
+      if($type == "enlaces_intereses")
+	  {
+		$this->load->model('interesesadmin/enlaces_intereses');
+		$listado  = $this->enlaces_intereses->retrieveInteresesForSort();
+	  }
+	  else
+	  {
+		$this->load->model('interesesadmin/documentos_intereses');
+        $listado  = $this->documentos_intereses->retrieveInteresesForSort();
+	  }
+      $this->data['type'] = $type;
+      $this->data['list'] = $listado;
       $this->load->view('interesesadmin/sortable', $this->data);
     }
     
     function applySort()
     {
       $lista = $this->input->post('listItem');
-      $this->load->model('interesesadmin/actas');
-      
+      $type = $this->input->post('type', true);
       $cantidad = count($lista) - 1;
+      
+      $obj = NULL;
+	  if($type == "enlaces_intereses")
+	  {
+		$this->load->model('interesesadmin/enlaces_intereses');
+		$obj  = new $this->enlaces_intereses;
+	  }
+	  else
+      {
+        $this->load->model('interesesadmin/documentos_intereses');
+        $obj  = new $this->documentos_intereses;
+      }
+      
+      
+      
       while($cantidad >= 0)
       {
         //echo $lista[$cantidad] . " - ".$cantidad;
-        $this->actas->updateActaOrder($lista[$cantidad], $cantidad);
+        $obj->updateInteresesOrder($lista[$cantidad], $cantidad);
         $cantidad --;
       }
       $salida = array();
@@ -74,7 +100,8 @@ class interesesadmin extends MY_Controller{
 	  }
 	  else
 	  {
-		
+		$this->load->model('interesesadmin/documentos_intereses');
+        $objecto  = new $this->documentos_intereses;
 	  }
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "interesesadmin/add";
@@ -92,14 +119,15 @@ class interesesadmin extends MY_Controller{
 	  }
 	  else
 	  {
-		
+		$this->load->model('interesesadmin/documentos_intereses');
+        $objecto  = $this->documentos_intereses->getById($id);
 	  }
 	  
       $this->addJquery();
       $this->addFancyBox();
-      $this->addModuleJavascript("interesesadmin", "edit.js");
-      $this->addModuleStyleSheet("upload", "albums.css");
-      $this->addModuleJavascript("upload", "imagesAdmin.js");
+      //$this->addModuleJavascript("interesesadmin", "edit.js");
+      //$this->addModuleStyleSheet("upload", "albums.css");
+      //$this->addModuleJavascript("upload", "imagesAdmin.js");
       
       
       $this->data['use_grid_16'] = false;
@@ -121,7 +149,11 @@ class interesesadmin extends MY_Controller{
 		$this->load->model('interesesadmin/enlaces_intereses');
 		$obj  = new $this->enlaces_intereses;
 	  }
-	  
+	  else
+      {
+        $this->load->model('interesesadmin/documentos_intereses');
+        $obj  = new $this->documentos_intereses;
+      }
 	  //$this->load->model('actas');
       // Get ID from form
       $id = $this->input->post('id', true);
@@ -172,10 +204,19 @@ class interesesadmin extends MY_Controller{
       }
     }
     
-    function delete($id)
+    function delete($id, $type)
     {
-      $this->load->model('actas');
-      $result = $this->actas->deleteById($id);
+      $result = false;
+      if($type == "enlaces_intereses")
+	  {
+		$this->load->model('interesesadmin/enlaces_intereses');
+		$result = $this->enlaces_intereses->deleteById($id);
+	  }
+	  else
+	  {
+		$this->load->model('interesesadmin/documentos_intereses');
+        $result = $this->documentos_intereses->deleteById($id);
+	  }
       $salida['response'] = "OK";
       $this->output
        ->set_content_type('application/json')

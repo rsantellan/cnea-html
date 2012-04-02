@@ -34,5 +34,10 @@ class MY_Model extends CI_Model{
     $this->db->where('id', $id);
     return $this->db->delete($this->getTablename());
   }
+  
+  public function countAllRecords()
+  {
+    return $this->db->count_all($this->getTablename());
+  }
 
 }

@@ -50,9 +50,9 @@
                        <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="cnea <?php if($menu_id == 'cnea') echo 'current';?>"><?php echo lang('menu.cnea');?></dt>
                        <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
                            <ul class="ul_cnea">
-                              <li class="sub_menu"><a href="<?php echo site_url('sitio/cneaMision'); ?>"><?php echo lang('menu.mision');?></a></li>
-                              <li class="sub_menu"><a href="<?php echo site_url('sitio/cneaObjetivos'); ?>"><?php echo lang('menu.objetivos');?></a></li>
-                              <li class="sub_menu"><a href="<?php echo site_url('sitio/cneaIntegrantes'); ?>"><?php echo lang('menu.integrantes');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url('cnea/mision'); ?>"><?php echo lang('menu.mision');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url('cnea/objetivos'); ?>"><?php echo lang('menu.objetivos');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url('cnea/integrantes'); ?>"><?php echo lang('menu.integrantes');?></a></li>
                            </ul>
                        </dd>
                   </dl>
@@ -68,18 +68,18 @@
                        </dd>
                   </dl>
                   <dl class="dropdown">
-                       <dt id="three-ddheader" onmouseover="ddMenu('three',1)" onmouseout="ddMenu('three',-1)" class="personas"><?php echo lang('menu.personas');?></dt>
+                       <dt id="three-ddheader" onmouseover="ddMenu('three',1)" onmouseout="ddMenu('three',-1)" class="personas <?php if($menu_id == 'acreditaciones') echo 'current';?>"><?php echo lang('menu.personas');?></dt>
                        <dd id="three-ddcontent" onmouseover="cancelHide('three')" onmouseout="ddMenu('three',-1)">
                            <ul class="ul_personas">
-                              <li class="sub_menu"><a href="personas_bases.html"><?php echo lang('menu.personas_bases');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/bases");?>"><?php echo lang('menu.personas_bases');?></a></li>
                               <li class="sub_menu"><a href="personas_formulario.html"><?php echo lang('menu.personas_formulario');?></a></li>
-                              <li class="sub_menu"><a href="personas_registro.html"><?php echo lang('menu.personas_registro');?></a></li>
-                              <li class="sub_menu"><a href="personas_reglamentacion.html"><?php echo lang('menu.personas_reglamento');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/registro");?>"><?php echo lang('menu.personas_registro');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/reglamentacion");?>"><?php echo lang('menu.personas_reglamento');?></a></li>
                            </ul>
                        </dd>
                   </dl>
                   <dl class="dropdown">
-                      <dt><a href="actas.html"><?php echo lang('menu.actas');?></a></dt>
+                      <dt><a href="<?php echo site_url('acta/index'); ?>" class="<?php if($menu_id == 'actas') echo 'current';?>"><?php echo lang('menu.actas');?></a></dt>
                   </dl>
                   <dl class="dropdown">
                       <dt><a href="novedades.html"><?php echo lang('menu.novedades');?></a></dt>
@@ -113,7 +113,7 @@
           
           
           <div class="bottom">
-              <p><a href="enlaces.html"><?php echo lang('footer.enlaces_interes');?></a> | <a href="documentos.html"><?php echo lang('footer.documentos_interes');?></a></p>
+              <p><a href="<?php echo site_url('intereses/enlaces');?>"><?php echo lang('footer.enlaces_interes');?></a> | <a href="<?php echo site_url('intereses/documentos');?>"><?php echo lang('footer.documentos_interes');?></a></p>
           </div>
           <div id="footer">
               <div class="firm">

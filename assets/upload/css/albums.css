@@ -53,3 +53,9 @@
   font-size:20px;
   font-weight: bold;
 }
+
+div.avatar{
+  border-color: blue;
+  border-style: solid;
+  border-width: 3px;
+}

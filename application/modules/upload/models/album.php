@@ -64,8 +64,17 @@ class album extends MY_Model{
     $this->db->where('obj_class', $objectClass);
     $query = $this->db->get($this->getTablename());
     return $query->result_array();
-    
   }
+
+  public function retrieveObjectAlbum($objectId, $objectClass, $albumName)
+  {
+    $this->db->where('obj_id', $objectId);
+    $this->db->where('obj_class', $objectClass);
+    $this->db->where('name', $albumName);
+    $this->db->limit('1');
+    $query = $this->db->get($this->getTablename());
+    return $query->row();
+  }  
   
   public function getById($id, $return_obj = true)
   {
@@ -101,5 +110,32 @@ class album extends MY_Model{
     );
     $this->db->insert($this->getTablename(), $data);
     return $this->db->insert_id(); 
+  }
+  
+  
+  public function albumHasAvatar($objectId, $objectClass, $albumName = "default")
+  {
+    $album = $this->retrieveObjectAlbum($objectId, $objectClass, $albumName);
+    
+    $ci = &get_instance();
+    $ci->load->model("upload/images");
+    
+    $quantity = $ci->images->retrieveQuantity($album->id);
+    
+    if($quantity == 0)
+    {
+      return false;
+    }
+    return true;
+  }
+  
+  public function retrieveAlbumAvatar($objectId, $objectClass, $albumName = "default")
+  {
+    $album = $this->retrieveObjectAlbum($objectId, $objectClass, $albumName);
+    
+    $ci = &get_instance();
+    $ci->load->model("upload/images");
+    
+    return $ci->images->retrieveAvatar($album->id);
   }
 }

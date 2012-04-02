@@ -120,6 +120,36 @@ class images extends MY_Model{
     return $query->result_object();
   }
   
+  public function retrieveQuantity($albumId)
+  {
+    $this->db->where('album_id', $albumId);
+    $this->db->limit(1);
+    $query = $this->db->get($this->getTablename());
+    return $query->num_rows();
+  }
+
+  public function retrieveAvatar($albumId)
+  {
+    $this->db->where('album_id', $albumId);
+    $this->db->order_by("ordinal", "asc");
+    $this->db->limit(1);
+    $query = $this->db->get($this->getTablename());
+    if( $query->num_rows() == 1 ){
+      // One row, match!
+      $obj = $query->row();        
+      $aux = new images();
+      $aux->setId($obj->id);
+      $aux->setName($obj->name);
+      $aux->setPath($obj->path);
+      $aux->setAlbumId($albumId);
+      $aux->setType($obj->type);
+      return $aux;
+    } else {
+      // None
+      return NULL;
+    }
+  }
+  
   public function getFile($id)
   {
     $this->db->where('id', $id);

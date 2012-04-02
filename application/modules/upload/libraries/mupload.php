@@ -80,13 +80,15 @@ class mupload {
     }
     public function returnImageCachePath($path, $width, $height, $type = 1)
     {
+      log_message("INFO", " El supuesto path es: ". $path);
+      $path = $this->retrieveDocumentsFilesPath($path);
       $aux = $width."x".$height."_".$type;
-      //$cacheDir = FCPATH. 'assets'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR;
-      //$mPath = str_replace(FCPATH, $cacheDir, $path);
-      //$file_path = $this->get_path_of_file($mPath);
       $file_path = $this->returnBasicCachePath($path);// $this->get_path_of_file($mPath);
       $file_name = $this->get_file_of_path($path);
       $mPath = $file_path.DIRECTORY_SEPARATOR.$aux.DIRECTORY_SEPARATOR.$file_name;
+      
+      
+      log_message("INFO", " El path final es: ". $mPath);
       return $mPath;
     }
     
@@ -100,18 +102,48 @@ class mupload {
     
     public function createImageCache($path, $width, $height, $type = 1)
     {
+      $path = $this->retrieveDocumentsFilesPath($path);
+      
       $mPath = $this->returnImageCachePath($path, $width, $height, $type);
       $cachePath = $this->get_path_of_file($mPath);
       //echo ' <br/> cache path '.$cachePath;
       
-      $this->checkDirectory($cachePath);
       
-      //echo '<br/> image on cache: '.$mPath;
+      $this->checkDirectory($cachePath);
+      log_message("INFO", "Los parametros que estoy pasando son, width: ". $width. " | height : ".$height);
+      log_message("INFO", " El supuesto path es: ". $path);
+      log_message("INFO", " El supuesto cache path es: ". $mPath);
       
       $CI =& get_instance();
       $CI->load->library('mimagick', true, NULL, 'mImagick');
       $CI->mimagick->basicThumbnail($path, $mPath, $type, $width, $height); 
       
+    }
+    
+    public function retrieveDocumentsFilesPath($path)
+    {
+      $extension = $this->get_file_extension($path);
+      $basic_path = FCPATH. 'assets'.DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR."images".DIRECTORY_SEPARATOR;
+      switch ($extension) {
+        case "pdf":
+            return $basic_path."adobe_acrobat_pdf_icon.jpg";
+          break;
+        case "doc":
+        case "docx":
+            return $basic_path."office_word_icon.png";
+          break;
+        case "xls":
+        case "xlsx":
+            return $basic_path."office_excel_icon.png";
+          break;
+        case "ppt":
+        case "pptx":
+            return $basic_path."office_powerpoint_icon.png";
+          break;        
+        default:
+          return $path;
+        break;
+      }
     }
     
     public function get_path_of_file($path)
