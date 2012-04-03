@@ -24,6 +24,9 @@
       <?php foreach($stylesheet as $sheet): ?>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/css/".$sheet;?>" />
       <?php endforeach; ?>
+        
+      <!-- Menu drop down-->  
+<!--      <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/dropdown_menu.js";?>"></script>-->
 	</head>
 	<body>
 		
@@ -56,6 +59,12 @@
       <?php else: ?>
         <li><a href="<?php echo site_url('interesesadmin/index');?>">Intereses</a></li>
       <?php endif; ?>
+      <?php if($menu_id == 'registros_personas'): ?>
+        <li><span class="active">Registro Personas</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('registros/index');?>">Registro Personas</a></li>
+      <?php endif; ?>
+      
 	  <?php if($menu_id == 'contacto'): ?>
         <li><span class="active">Contacto</span></li>
       <?php else: ?>

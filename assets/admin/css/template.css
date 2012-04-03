@@ -142,6 +142,28 @@ th, td {
 	text-decoration:none;
 }
 
+#navigation li ul {
+  position:absolute;
+  visibility:hidden;
+  border-top:1px solid #fff;
+  margin:0;
+  padding:0;
+}
+
+#navigation li ul li{
+  display:inline;
+  float:none;
+}
+
+#navigation li ul li a:link, .myMenu li ul li a:visited {
+	background-color:#09F;
+	width:auto;
+}
+
+#navigation li ul li a:hover {
+	background-color:#0CF;	
+}
+
 /* Content */
 
 #content {

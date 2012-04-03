@@ -3,13 +3,18 @@
 	<?php if(count($list) == 0): ?>
 	  <?php echo lang("personal.registro.contenido_vacio"); ?>
 	<?php else: ?>
-	  <h2><?php echo lang("personal.registro.contenido_vacio"); ?></h2>
+	  <h2><?php echo lang("personal.registro.subtitulo"); ?></h2>
+    <?php $counter = (1 * (int) $page) + 1; ?>
 	<?php foreach($list as $registro): ?>
 		<div class="registradas">
-			<strong>1) Fundación IRAUy</strong><br />
-			código: 001/11 | <a href="http://www.irauy.org.uy" target="_blank">www.irauy.org.uy</a>
+			<strong><?php echo $counter;?>) <?php echo $registro->getNombre();?></strong><br />
+			código: <?php echo $registro->getCode();?> | <a href="mailto:<?php echo $registro->getEmail();?>"><?php echo $registro->getEmail();?></a>
 		</div>
+      <?php $counter++; ?>
 	<?php endforeach; ?>
+    <div class="paginador">
+      <?php echo $this->pagination->create_links(); ?>
+    </div>
 	<?php endif; ?>
     
 </div>

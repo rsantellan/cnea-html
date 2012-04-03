@@ -52,6 +52,7 @@ $lang["personal.base.contenido"] = '<h2>Registro nacional de personas que críen
 
 $lang["personal.registro.titulo"] = "registro de acreditaciones personales";
 $lang["personal.registro.contenido_vacio"] = "Aún no hay registros personales";
+$lang["personal.registro.subtitulo"] = "Personas inscriptas";
 
 $lang["personal.reglamentacion.titulo"] = "reglamentación acreditaciones personales";
 $lang["personal.reglamentacion.contenido"] = '<h2>Comisión nacional de experimentación animal Sistema nacional de acreditaciones personales Reglamentación del proceso</h2>
@@ -75,3 +76,10 @@ $lang["personal.reglamentacion.contenido"] = '<h2>Comisión nacional de experime
                 <p><strong>Artículo 7º-</strong> El registro nacional de personas acreditadas se publicará en la pagina web de la <a href="http://www.cnea.org.uy" target="_blank">CNEA</a> al que se podrá acceder por nombre o por institución registrada a la que pertenece el funcionario y se actualizará cada 6 meses.</p>
                 <p><strong>Artículo 8º-</strong> Las acreditaciones personales tendrán una vigencia de hasta 5 años.</p>
                 <p><strong>Artículo 9º-</strong> Para ingresar al Sistema de Acreditaciones personales, para la renovación de una acreditación personal caducada, o para solicitar cambio de categorización, se realizará la petición llenando el formulario ad hoc disponible en la página web de la <a href="http://www.cnea.org.uy" target="_blank">CNEA</a></p>';
+
+
+$lang["personal.formulario.titulo"] = "formulario para acreditaciones personales";
+$lang["personal.formulario.subtitulo"] = "Los campos con asterisco (*) son requeridos para enviar la solicitud";
+$lang["personal.formulario.subtitulo_errores"] = "Por favor completar los campos marcados en rojo";
+$lang["personal.formulario.subtitulo_identificacion"] = "1- IDENTIFICACIÓN PERSONAL";
+

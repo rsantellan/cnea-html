@@ -25,7 +25,9 @@
       <!--[if IE 6]><script type="text/javascript" src="<?php echo base_url();?>assets/js/unitpngfix.js"></script><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles_ie6.css" media="screen"/><![endif]-->
       <!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles_ie7.css" media="screen"/><![endif]-->
       <!--[if IE 8]><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/styles_ie8.css" media="screen"/><![endif]-->      
-
+      <?php if($jquery_on): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-1.7.1.min.js";?>"></script>
+      <?php endif; ?>
       <?php foreach($javascript as $js): ?>
         <script type="text/javascript" src="<?php echo base_url() ."assets/js/".$js; ?>"></script>
       <?php endforeach; ?>
@@ -72,7 +74,7 @@
                        <dd id="three-ddcontent" onmouseover="cancelHide('three')" onmouseout="ddMenu('three',-1)">
                            <ul class="ul_personas">
                               <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/bases");?>"><?php echo lang('menu.personas_bases');?></a></li>
-                              <li class="sub_menu"><a href="personas_formulario.html"><?php echo lang('menu.personas_formulario');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/formulario");?>"><?php echo lang('menu.personas_formulario');?></a></li>
                               <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/registro");?>"><?php echo lang('menu.personas_registro');?></a></li>
                               <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/reglamentacion");?>"><?php echo lang('menu.personas_reglamento');?></a></li>
                            </ul>

@@ -16,7 +16,7 @@ class registros extends MY_Controller{
     function __construct()
     {
       parent::__construct();
-      $this->data['menu_id'] = 'registros';
+      $this->data['menu_id'] = 'registros_personas';
       if(!$this->isLogged())
       {
         //Si no esta logeado se tiene que ir a loguear
