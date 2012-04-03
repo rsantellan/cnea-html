@@ -138,6 +138,10 @@ class album extends MY_Model{
     $ci = &get_instance();
     $ci->load->model("upload/images");
     
+	if(is_null($album) || count($album) == 0)
+	{
+	  return 0;
+	}
     $quantity = $ci->images->retrieveQuantity($album->id);
     
     if($quantity == 0)

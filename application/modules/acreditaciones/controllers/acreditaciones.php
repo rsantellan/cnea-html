@@ -28,6 +28,8 @@ class acreditaciones extends MY_Controller{
   
   function registro()
   {
+	$this->load->model('registros/registro_persona');
+	$this->data['list'] = $this->registro_persona->retrieveRegistros();
     $this->data['content'] = 'registro';
     $this->load->view('layout', $this->data);
   }
