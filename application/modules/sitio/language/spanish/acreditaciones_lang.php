@@ -82,4 +82,24 @@ $lang["personal.formulario.titulo"] = "formulario para acreditaciones personales
 $lang["personal.formulario.subtitulo"] = "Los campos con asterisco (*) son requeridos para enviar la solicitud";
 $lang["personal.formulario.subtitulo_errores"] = "Por favor completar los campos marcados en rojo";
 $lang["personal.formulario.subtitulo_identificacion"] = "1- IDENTIFICACIÓN PERSONAL";
-
+$lang["personal.formulario.subtitulo_realizacion"] = "¿Ha realizado cursos de capacitación relacionados a la experimentacióncon animales?";
+$lang["personal.formulario.subtitulo_cursos"] = "Indique cuáles son los cursos realizados";
+$lang["personal.formulario.subtitulo_adjuntar_cursos"] = "Adjuntar programas con la carga horaria total y certificados de aprobación de dichos cursos.";
+$lang["personal.formulario.subtitulo_acreditacion"] = "¿Posee acreditación personal para el trabajo con animales de experimentación?";
+$lang["personal.formulario.subtitulo_tiene_acreditacion"] = "En caso de que posea acreditación";
+$lang["personal.formulario.subtitulo_categoria_aspirada"] = "De forma independiente a que Ud. ya posea acreditación personal, a qué categoría de acreditación establecida por la CNEA aspira? ";
+$lang["personal.formulario.subtitulo_ver_bases"] = "Ver documento adjunto de categorización de la CNEA";
+$lang["personal.formulario.texto_categoria"] = '<span><strong>(*)</strong>Si aspira a la categoría C1 por competencia notoria, adjunte documentación probatoria de actividad con animales en los últimos 10 años:<br />
+      • CV resumido (2 carillas)<br />
+      • Antecedentes en la producción y uso de animales de experimentación.<br />
+      • Responsable de proyectos/convenios/asesoramientos que involucren el uso de animales de experimentación<br />
+      • Prestación de servicios que involucren el uso de animales de experimentación<br />
+      • Formación de recursos humanos</span>
+    <span><strong>(**)</strong>	Si aspira a la categoría C2 por competencia notoria, adjunte documentación probatoria de actividad con animales en los últimos 10 años:<br />
+      • CV resumido (2 carillas)<br />
+      • Publicaciones arbitradas indicativas del uso de animales de experimentación.<br />
+      • Concursos con pruebas prácticas experimentales.<br />
+      • Responsable de proyectos de investigación financiados donde se usaron animales de experimentación<br />
+      • Formación de recursos humanos<br />
+      • Otros antecedentes en el uso de animales de experimentación.</span>';
+$lang["personal.formulario.subtitulo_ver_bases"] = "Ver documento adjunto de categorización de la CNEA";
