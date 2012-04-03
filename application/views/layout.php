@@ -63,7 +63,7 @@
                               <li class="sub_menu"><a href="<?php echo site_url('instituciones/bases'); ?>"><?php echo lang('menu.instituciones_bases');?></a></li>
                               <li class="sub_menu"><a href="registro_formulario.html"><?php echo lang('menu.instituciones_formulario');?></a></li>
                               <li class="sub_menu"><a href="registro_registro.html"><?php echo lang('menu.instituciones_registro');?></a></li>
-                              <li class="sub_menu"><a href="registro_reglamentacion.html"><?php echo lang('menu.instituciones_reglamento');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url('instituciones/reglamentacion'); ?>"><?php echo lang('menu.instituciones_reglamento');?></a></li>
                            </ul>
                        </dd>
                   </dl>

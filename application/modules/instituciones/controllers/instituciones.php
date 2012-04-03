@@ -26,4 +26,10 @@ class instituciones extends MY_Controller{
     $this->data['content'] = 'instituciones_bases';
     $this->load->view('layout', $this->data);
   }
+  
+  public function reglamentacion()
+  {
+    $this->data['content'] = 'instituciones_reglamentacion';
+    $this->load->view('layout', $this->data);
+  }
 }
