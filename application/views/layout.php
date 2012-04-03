@@ -57,10 +57,10 @@
                        </dd>
                   </dl>
                   <dl class="dropdown">
-                       <dt id="two-ddheader" onmouseover="ddMenu('two',1)" onmouseout="ddMenu('two',-1)" class="instituciones"><?php echo lang('menu.instituciones');?></dt>
+                       <dt id="two-ddheader" onmouseover="ddMenu('two',1)" onmouseout="ddMenu('two',-1)" class="instituciones <?php if($menu_id == 'instituciones') echo 'current';?>"><?php echo lang('menu.instituciones');?></dt>
                        <dd id="two-ddcontent" onmouseover="cancelHide('two')" onmouseout="ddMenu('two',-1)">
                            <ul class="ul_instituciones">
-                              <li class="sub_menu"><a href="registro_bases.html"><?php echo lang('menu.instituciones_bases');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url('instituciones/bases'); ?>"><?php echo lang('menu.instituciones_bases');?></a></li>
                               <li class="sub_menu"><a href="registro_formulario.html"><?php echo lang('menu.instituciones_formulario');?></a></li>
                               <li class="sub_menu"><a href="registro_registro.html"><?php echo lang('menu.instituciones_registro');?></a></li>
                               <li class="sub_menu"><a href="registro_reglamentacion.html"><?php echo lang('menu.instituciones_reglamento');?></a></li>
