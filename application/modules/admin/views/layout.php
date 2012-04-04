@@ -64,7 +64,11 @@
       <?php else: ?>
         <li><a href="<?php echo site_url('registros/index');?>">Registro Personas</a></li>
       <?php endif; ?>
-      
+      <?php if($menu_id == 'registros_instituciones'): ?>
+		<li><span class="active">Registro Instituciones</span></li>
+	  <?php else: ?>
+		<li><a href="<?php echo site_url('registros/instituciones');?>">Registro Instituciones</a></li>
+	  <?php endif; ?>
 	  <?php if($menu_id == 'contacto'): ?>
         <li><span class="active">Contacto</span></li>
       <?php else: ?>

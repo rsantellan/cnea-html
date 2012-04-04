@@ -16,31 +16,26 @@ $lang['instituciones.bases.contenido']='<h2>REGISTRO NACIONAL DE INSTITUCIONES Q
 		<p>Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a></p>';
 $lang['instituciones.reglamentacion.titulo']='Regamentaci&oacute;n registro de instituciones';
 $lang['instituciones.reglamentacion.contenido']='<h2>Comisi&oacute;n nacional de experimentaci&oacute;n animal Registro nacional de instituciones Reglamentaci&oacute;n del proceso</h2>
-<p><strong>Art&iacute;culo 1&ordm;-</strong> Todas las instituciones que se dediquen a la cria, utilizaci&oacute;n o transporte de animales para la experimentaci&oacute;n, docencia e investigaci&oacute;n deber&aacute;n registrarse en el Registro Nacional de Instituciones de la Comisi&oacute;n Nacional de Experimentaci&oacute;n Animal (CNEA).</p>
-
-<p><strong>Art&iacute;culo 2&ordm;-</strong> Para integrar el Registro Nacional de Instituciones de la CNEA, cada instituci&oacute;n deber&aacute; documentar la constituci&oacute;n previa a su registro de su Comisi&oacute;n de &eacute;tica en el Uso de Animales de acuerdo al art. 9 de la ley 18.611 y llenar el formulario correspondiente.</p>
-
-<h4>DATOS A REGISTRAR</h4>
-
-<p><strong>Art&iacute;culo 3&ordm;-</strong> A los efectos de la solicitud de registro las instituciones deber&aacute;n aportar los siguientes elementos:</p>
-
-<p>
-<strong>a)</strong> Nombre de la Instituci&oacute;n<br />
-<strong>b)</strong> Caracterizaci&oacute;n de la Institucional<br />
-<strong>c)</strong> Raz&oacute;n Social<br />
-<strong>d)</strong> N&ordm; de Registro Unico de Tributario (RUT)<br />
-<strong>e)</strong> Naturaleza Jur&iacute;dica: Publica, Privada, Mixta.<br />
-<strong>f)</strong> Domicilio real<br />
-<strong>g)</strong> Domicilio constituido<br />
-<strong>h)</strong> Unidades dependientes en otra ubicaci&oacute;n con animales de experimentaci&oacute;n<br /> 
-<strong>i)</strong> N&ordm; Registro de DICOSE.<br />
-</p>
-
-<p><strong>Art&iacute;culo 3&ordm;-</strong> La solicitud antes referida deber&aacute; presentarse a trav&eacute;s del formulario electr&oacute;nico que estar&aacute; disponible en el portal www.cnea.org.uy con toda la informaci&oacute;n que se solicita, dicha informaci&oacute;n tendr&aacute; car&aacute;cter de declaraci&oacute;n jurada.</p> 
-
-<p><strong>Art&iacute;culo 4&ordm;-</strong> Se otorga un plazo de 180 d&iacute;as, a partir de la vigencia de la presente reglamentaci&oacute;n, para que las instituciones que est&aacute;n comprendidas en la obligaci&oacute;n de inscribirse cumplan con dicha exigencia.</p>
-
-<p><strong>Art&iacute;culo 5&ordm;-</strong> Una vez ingresadas las solicitudes por parte de las instituciones, la CNEA le adjudicar&aacute; un n&uacute;mero de tr&aacute;mite a cada Instituci&oacute;n al cual har&aacute; referencia en futuras acciones. La CNEA estudiar&aacute; las solicitudes y en un plazo de hasta 3 meses comunicar&aacute; a las Instituciones que est&aacute;n habilitadas para integrar el registro.</p>
-
-<p><strong>Art&iacute;culo 6&ordm;-</strong> La CNEA publicar&aacute; un listado de las Instituciones incluidas en el Registro Nacional que se actualizar&aacute; cada 6 meses (en los meses de junio y diciembre).</p>';
+	<p><strong>Art&iacute;culo 1&ordm;-</strong> Todas las instituciones que se dediquen a la cria, utilizaci&oacute;n o transporte de animales para la experimentaci&oacute;n, docencia e investigaci&oacute;n deber&aacute;n registrarse en el Registro Nacional de Instituciones de la Comisi&oacute;n Nacional de Experimentaci&oacute;n Animal (CNEA).</p>
+	<p><strong>Art&iacute;culo 2&ordm;-</strong> Para integrar el Registro Nacional de Instituciones de la CNEA, cada instituci&oacute;n deber&aacute; documentar la constituci&oacute;n previa a su registro de su Comisi&oacute;n de &eacute;tica en el Uso de Animales de acuerdo al art. 9 de la ley 18.611 y llenar el formulario correspondiente.</p>
+	<h4>DATOS A REGISTRAR</h4>
+	<p><strong>Art&iacute;culo 3&ordm;-</strong> A los efectos de la solicitud de registro las instituciones deber&aacute;n aportar los siguientes elementos:</p>
+	<p>
+		<strong>a)</strong> Nombre de la Instituci&oacute;n<br />
+		<strong>b)</strong> Caracterizaci&oacute;n de la Institucional<br />
+		<strong>c)</strong> Raz&oacute;n Social<br />
+		<strong>d)</strong> N&ordm; de Registro Unico de Tributario (RUT)<br />
+		<strong>e)</strong> Naturaleza Jur&iacute;dica: Publica, Privada, Mixta.<br />
+		<strong>f)</strong> Domicilio real<br />
+		<strong>g)</strong> Domicilio constituido<br />
+		<strong>h)</strong> Unidades dependientes en otra ubicaci&oacute;n con animales de experimentaci&oacute;n<br /> 
+		<strong>i)</strong> N&ordm; Registro de DICOSE.<br />
+	</p>
+	<p><strong>Art&iacute;culo 3&ordm;-</strong> La solicitud antes referida deber&aacute; presentarse a trav&eacute;s del formulario electr&oacute;nico que estar&aacute; disponible en el portal www.cnea.org.uy con toda la informaci&oacute;n que se solicita, dicha informaci&oacute;n tendr&aacute; car&aacute;cter de declaraci&oacute;n jurada.</p> 
+	<p><strong>Art&iacute;culo 4&ordm;-</strong> Se otorga un plazo de 180 d&iacute;as, a partir de la vigencia de la presente reglamentaci&oacute;n, para que las instituciones que est&aacute;n comprendidas en la obligaci&oacute;n de inscribirse cumplan con dicha exigencia.</p>
+	<p><strong>Art&iacute;culo 5&ordm;-</strong> Una vez ingresadas las solicitudes por parte de las instituciones, la CNEA le adjudicar&aacute; un n&uacute;mero de tr&aacute;mite a cada Instituci&oacute;n al cual har&aacute; referencia en futuras acciones. La CNEA estudiar&aacute; las solicitudes y en un plazo de hasta 3 meses comunicar&aacute; a las Instituciones que est&aacute;n habilitadas para integrar el registro.</p>
+	<p><strong>Art&iacute;culo 6&ordm;-</strong> La CNEA publicar&aacute; un listado de las Instituciones incluidas en el Registro Nacional que se actualizar&aacute; cada 6 meses (en los meses de junio y diciembre).</p>';
+$lang['instituciones.registro.titulo']='registro nacional de instituciones';
+$lang['instituciones.registro.contenido_vacio']='A&uacute;n no hay registros personales';
+$lang['instituciones.registro.subtitulo']='Instituciones inscriptas';
 /* End of file instituciones_lang.php */
