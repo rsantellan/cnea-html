@@ -7,8 +7,12 @@
 */
 
 .actas_container div.tag_div{
-  width: 15%;
+  min-width: 15%;
   float: left;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .actas_container div.tag_div a{
