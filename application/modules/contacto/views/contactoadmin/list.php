@@ -22,7 +22,7 @@
   <tbody>
     <?php foreach($list as $funcion => $arr): ?>
     <?php foreach($arr as $contacto): ?>
-    <tr id="contacto_row_<?php echo $contacto->id;?>">
+    <tr id="registro_row_<?php echo $contacto->id;?>">
     <td>
         <?php echo ($contacto->direccion); ?>
       </td>

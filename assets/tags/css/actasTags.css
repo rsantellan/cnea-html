@@ -1,0 +1,16 @@
+/* 
+    Document   : actasTags
+    Created on : Apr 5, 2012, 1:06:45 PM
+    Author     : Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.actas_container div.tag_div{
+  width: 15%;
+  float: left;
+}
+
+.actas_container div.tag_div a{
+  color: white;
+}

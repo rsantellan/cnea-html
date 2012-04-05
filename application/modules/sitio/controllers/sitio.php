@@ -35,8 +35,62 @@ class sitio extends MY_Controller {
   
   public function leftBar()
   {
-    
+    $this->load->model('novedadesadmin/novedad');
+    $this->loadI18n("novedades", "", FALSE, TRUE, "", "sitio");
+    $novedades = $this->novedad->retrieveNovedades(3, 0, true);
+    //$novedades = array();
     $data = array();
+    $data['last_novedades'] = $novedades;
+    
+    
     $this->load->view('leftBar', $data);
+  }
+  
+  public function buscar()
+  {
+    $data = $this->input->get('t');
+    $data_list = explode(" ", $data);
+    //var_dump($data_list);
+    foreach($data_list as $key => $value)
+    {
+      if(strlen($value) <= 0)
+      {
+        unset($data_list[$key]);
+      }
+    }
+    
+    //Primero busco las novedades.
+    $this->load->model('novedadesadmin/novedad');
+    
+    $novedades_list = array();
+    foreach($data_list as $value)
+    {
+      $novedades = $this->novedad->retrieveSearchNovedades($value);
+      $novedades_list = array_merge($novedades_list, $novedades);
+    }
+    
+    // Buscaria las novedades con los tags
+    // SELECT * FROM actas a where a.id IN (SELECT ta.id_acta FROM tags_actas ta where id_tag IN (SELECT t.id FROM tags t where t.name LIKE "%te%"))
+    $this->load->model('tags/tag');
+    
+    //Busco las actas
+    $this->load->model('actaadmin/actas');
+    $actas_list = array();
+    foreach($data_list as $value)
+    {
+      $novedades = $this->actas->retrieveSearchActas($value);
+      $actas_list = array_merge($actas_list, $novedades);
+    }
+    
+    //Busco las actas con tags
+    
+    
+    
+    $this->load->helper('text');
+    $this->data['actas'] = $actas_list;
+    $this->data['novedades'] = $novedades_list;
+    $this->data['content'] = 'busqueda';
+    $this->data['menu_id'] = '';
+    $this->load->view('layout', $this->data);
   }
 }

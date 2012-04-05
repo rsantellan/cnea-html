@@ -194,4 +194,20 @@ class actas extends MY_Model{
       }
       return NULL;      
     }
+    
+    public function retrieveSearchActas($text)
+    {
+      $this->db->like('nombre', $text);
+      $query = $this->db->get($this->getTablename());
+
+      $salida = array();
+      foreach($query->result() as $obj)
+      {
+        $aux = new actas();
+        $aux->setId($obj->id);
+        $aux->setNombre($obj->nombre);
+        $salida[$obj->id] = $aux;
+      }
+      return $salida;
+    }    
 }

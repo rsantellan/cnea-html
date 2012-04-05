@@ -8,7 +8,19 @@
 ?>
 
 <hr/>
-<h4>Imagenes</h4>
+<h4>
+  Tags
+  <a class="fancy_link" href="<?php echo site_url('tags/index');?>">
+    <img src="<?php echo base_url().'assets/upload/images/add.png'?>" />
+  </a>
+</h4>    
+
+
+<?php echo modules::run('tags/viewActas', array('id' => $object->getId()));?>
+
+<hr/>
+
+<h4>Archivos</h4>
 
 <?php echo modules::run('upload/view', array('id' => $object->getId(), 'classname'=> $object->getObjectClass()));?>
 <?php endif; ?>

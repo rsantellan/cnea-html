@@ -206,4 +206,22 @@ class novedad extends MY_Model{
       }
       return NULL;      
     }
+    
+    public function retrieveSearchNovedades($text)
+    {
+      $this->db->like('nombre', $text);
+      $this->db->or_like('descripcion', $text);
+      $query = $this->db->get($this->getTablename());
+
+      $salida = array();
+      foreach($query->result() as $obj)
+      {
+        $aux = new novedad();
+        $aux->setId($obj->id);
+        $aux->setNombre($obj->nombre);
+        $aux->setDescripcion($obj->descripcion);
+        $salida[$obj->id] = $aux;
+      }
+      return $salida;
+    }
 }
