@@ -28,3 +28,25 @@ CREATE TABLE IF NOT EXISTS `tags_actas` (
 ALTER TABLE `tags_actas`
   ADD CONSTRAINT `tags_actas_ibfk_2` FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id`),
   ADD CONSTRAINT `tags_actas_ibfk_1` FOREIGN KEY (`id_acta`) REFERENCES `actas` (`id`) ON DELETE CASCADE;
+
+--
+-- Table structure for table `tags_novedades`
+--
+
+CREATE TABLE IF NOT EXISTS `tags_novedades` (
+  `id_novedad` int(11) NOT NULL,
+  `id_tag` int(11) NOT NULL,
+  PRIMARY KEY (`id_novedad`,`id_tag`),
+  KEY `id_tag` (`id_tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tags_novedades`
+--
+ALTER TABLE `tags_novedades`
+  ADD CONSTRAINT `tags_novedades_ibfk_2` FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tags_novedades_ibfk_1` FOREIGN KEY (`id_novedad`) REFERENCES `novedades` (`id`) ON DELETE CASCADE;

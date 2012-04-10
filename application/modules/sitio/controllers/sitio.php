@@ -48,6 +48,7 @@ class sitio extends MY_Controller {
   
   public function buscar()
   {
+    $this->output->enable_profiler(TRUE);
     $data = $this->input->get('t');
     $data_list = explode(" ", $data);
     //var_dump($data_list);
@@ -66,26 +67,65 @@ class sitio extends MY_Controller {
     foreach($data_list as $value)
     {
       $novedades = $this->novedad->retrieveSearchNovedades($value);
-      $novedades_list = array_merge($novedades_list, $novedades);
+      foreach($novedades as $key => $aValue)
+      {
+        if(!isset($novedades_list[$key]))
+        {
+          $novedades_list[$key] = $aValue;
+        }
+      }
+      $novedades_tags = $this->novedad->retrieveSearchNovedadesTags($value);
+      foreach($novedades_tags as $key => $aValue)
+      {
+        if(!isset($novedades_list[$key]))
+        {
+          $novedades_list[$key] = $aValue;
+        }
+      }
     }
     
     // Buscaria las novedades con los tags
-    // SELECT * FROM actas a where a.id IN (SELECT ta.id_acta FROM tags_actas ta where id_tag IN (SELECT t.id FROM tags t where t.name LIKE "%te%"))
-    $this->load->model('tags/tag');
     
+    $this->load->model('tags/tag');
     //Busco las actas
     $this->load->model('actaadmin/actas');
     $actas_list = array();
     foreach($data_list as $value)
     {
-      $novedades = $this->actas->retrieveSearchActas($value);
-      $actas_list = array_merge($actas_list, $novedades);
+      //Busco por palabras
+      $actas = $this->actas->retrieveSearchActas($value);
+      foreach($actas as $key => $aValue)
+      {
+        if(!isset($actas_list[$key]))
+        {
+          $actas_list[$key] = $aValue;
+        }
+      }
+      //Busco por tags
+      $tags_list = $this->actas->retrieveSearchActasTags($value);
+      foreach($tags_list as $key => $aValue)
+      {
+        if(!isset($actas_list[$key]))
+        {
+          $actas_list[$key] = $aValue;
+        }
+      }
+      
     }
-    
     //Busco las actas con tags
-    
-    
-    
+    /*
+    foreach($data_list as $value)
+    {
+      $tags_list = $this->actas->retrieveSearchActasTags($value);
+      foreach($tags_list as $key => $aValue)
+      {
+        if(!isset($actas_list[$key]))
+        {
+          $actas_list[$key] = $aValue;
+        }
+      }
+    }
+    */
     $this->load->helper('text');
     $this->data['actas'] = $actas_list;
     $this->data['novedades'] = $novedades_list;

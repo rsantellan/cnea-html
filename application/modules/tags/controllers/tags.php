@@ -179,8 +179,6 @@ class tags extends MY_Controller{
       $this->output
          ->set_content_type('application/json')
          ->set_output(json_encode($salida));
-      //echo json_encode($salida);
-      //die(0);
     }
     
     function removeActaTag()
@@ -213,128 +211,84 @@ class tags extends MY_Controller{
          ->set_content_type('application/json')
          ->set_output(json_encode($salida));
     }
+
+    /**
+     *
+     * Esto solo pertenece a las novedades
+     * 
+     * 
+     * 
+     */
     
-//    function index(){
-//      $this->load->model('actaadmin/actas');
-//      $this->data['actas_list'] = $this->actas->retrieveActas();
-//      $this->data['content'] = "actaadmin/actas_list";
-//      
-//      $this->addJquery();
-//      $this->addFancyBox();
-//      $this->addModuleJavascript("actaadmin", "list.js");
-//      $this->load->view("admin/layout", $this->data);
-//    }
-//    
-//    
-//    function sort(){
-//      $this->load->model('actaadmin/actas');
-//      $this->data['actas_list'] = $this->actas->retrieveActasForSort();
-//      
-//      $this->load->view('actaadmin/sortable', $this->data);
-//    }
-//    
-//    function applySort()
-//    {
-//      $lista = $this->input->post('listItem');
-//      $this->load->model('actaadmin/actas');
-//      
-//      $cantidad = count($lista) - 1;
-//      while($cantidad >= 0)
-//      {
-//        //echo $lista[$cantidad] . " - ".$cantidad;
-//        $this->actas->updateActaOrder($lista[$cantidad], $cantidad);
-//        $cantidad --;
-//      }
-//      $salida = array();
-//      $salida['response'] = "OK";
-//      
-//      echo json_encode($salida);
-//      die;
-//    }
-//    
-//    function add()
-//    {
-//      $this->load->model('actas');
-//      $this->data['use_grid_16'] = false;
-//      $this->data['content'] = "actaadmin/add";
-//      $this->data['object'] = new $this->actas;
-//      $this->load->view("admin/layout", $this->data);
-//    }
-//    
-//    function edit($id)
-//    {
-//      $this->addJquery();
-//      $this->addFancyBox();
-//      $this->addModuleJavascript("actaadmin", "edit.js");
-//      $this->addModuleStyleSheet("upload", "albums.css");
-//      $this->addModuleJavascript("upload", "imagesAdmin.js");
-//      
-//      $this->load->model('actas');
-//      $this->data['use_grid_16'] = false;
-//      $this->data['content'] = "actaadmin/edit";
-//      $this->data['object'] = $this->actas->getById($id);
-//      $this->load->view("admin/layout", $this->data);
-//    }
-//    
-//    function save()
-//    {
-//      $this->load->library('form_validation');
-//      $this->load->model('actas');
-//      // Get ID from form
-//      $id = $this->input->post('id', true);
-//      
-//      //$this->form_validation->set_rules('id', 'id', '');			
-//      $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');
-//        
-//      $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
-//      
-//      $is_valid = false;
-//      if (!$this->form_validation->run() == FALSE) 
-//      {
-//        $is_valid = true;
-//      }
-//      $nombre = set_value('nombre');
-//      //var_dump($nombre);
-//      $obj = new $this->actas;
-//      $obj->setNombre($nombre);
-//      $obj->setId($id);
-//      //var_dump($obj);
-//      
-//      if($is_valid)
-//      {
-//        //Como es valido lo salvo
-//        $id = $obj->save();
-//        
-//        redirect('actaadmin/edit/'.$id);
-//      }
-//      else
-//      {
-//        if($obj->isNew())
-//        {
-//          $this->data['use_grid_16'] = false;
-//          $this->data['content'] = "actaadmin/add";
-//          $this->data['object'] = $obj;
-//          $this->load->view("admin/layout", $this->data);
-//        }
-//        else
-//        {
-//          $this->data['use_grid_16'] = false;
-//          $this->data['content'] = "actaadmin/edit";
-//          $this->data['object'] = $obj;
-//          $this->load->view("admin/layout", $this->data);
-//        }
-//      }
-//    }
-//    
-//    function delete($id)
-//    {
-//      $this->load->model('actas');
-//      $result = $this->actas->deleteById($id);
-//      $salida['response'] = "OK";
-//      $this->output
-//       ->set_content_type('application/json')
-//       ->set_output(json_encode($salida));
-//      //echo json_encode($salida);
-//      //die;
-//    }
+    
+    function viewNovedades($parameters)
+    {
+      //$this->output->enable_profiler(TRUE);
+      $this->load->model('tags/tags_novedades');
+      $this->load->model('tags/tag');
+      $id = $parameters["id"];
+      $data = $this->retrieveViewNovedadesData($id);
+      $this->load->view('tags/novedadesTags', $data);
+    }
+    
+    private function retrieveViewNovedadesData($id)
+    {
+      
+      $tags_used = $this->tag->retrieveAllTagsOfObject($this->tags_novedades->retrieveTableName(), "id_novedad", $id, true);
+      $tags_list = $this->tag->retrieveAllTags(true);
+      $data['tags'] = $this->tag->removeDuplicated($tags_list, $tags_used);
+      $data['tags_used'] = $tags_used;
+      $data['id'] = $id;
+      return $data;
+    }
+    
+    function addNovedadTag()
+    {
+      $actaId = $this->input->post("actaId");
+      $tagId = $this->input->post("tagId");
+      $this->load->model('tags/tags_novedades');
+      $this->tags_novedades->save($actaId, $tagId);
+      $this->load->model('tags/tag');
+      $data = $this->retrieveViewNovedadesData($actaId);
+      $body = $this->load->view('tags/novedadesTags', $data, true);
+      $salida = array();
+      $salida['body'] = $body;
+      $salida['response'] = "OK";
+      $this->output
+         ->set_content_type('application/json')
+         ->set_output(json_encode($salida));
+    }
+    
+    function removeNovedadTag()
+    {
+      $actaId = $this->input->post("actaId");
+      $tagId = $this->input->post("tagId");
+      $this->load->model('tags/tags_novedades');
+      $this->tags_novedades->remove($actaId, $tagId);
+      $this->load->model('tags/tag');
+      $data = $this->retrieveViewNovedadesData($actaId);
+      $body = $this->load->view('tags/novedadesTags', $data, true);
+      $salida = array();
+      $salida['body'] = $body;
+      $salida['response'] = "OK";
+      $this->output
+         ->set_content_type('application/json')
+         ->set_output(json_encode($salida));
+    }
+    
+    function refreshNovedadesTags($id)
+    {
+      $this->load->model('tags/tag');
+      $this->load->model('tags/tags_novedades');
+      $data = $this->retrieveViewNovedadesData($id);
+      $body = $this->load->view('tags/novedadesTags', $data, true);
+      $salida = array();
+      $salida['body'] = $body;
+      $salida['response'] = "OK";
+      $this->output
+         ->set_content_type('application/json')
+         ->set_output(json_encode($salida));
+    }
+
+    
 }

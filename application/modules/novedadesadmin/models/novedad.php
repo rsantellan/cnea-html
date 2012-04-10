@@ -224,4 +224,24 @@ class novedad extends MY_Model{
       }
       return $salida;
     }
+    
+    public function retrieveSearchNovedadesTags($text)
+    {
+      //SELECT n.id, n.nombre, n.descripcion FROM novedades n where n.id IN (SELECT tn.id_novedad FROM tags_novedades tn where tn.id_tag IN (SELECT t.id FROM tags t where t.name LIKE '%at%'))
+      $sql = "SELECT n.id, n.nombre, n.descripcion FROM novedades n ";
+      $sql.= "where n.id IN (SELECT tn.id_novedad FROM tags_novedades tn ";
+      $sql.= "where tn.id_tag IN (SELECT t.id FROM tags t where t.name LIKE '%".$this->db->escape_like_str($text)."%'))";
+      $query = $this->db->query($sql);
+      
+      $salida = array();
+      foreach($query->result() as $obj)
+      {
+        $aux = new novedad();
+        $aux->setId($obj->id);
+        $aux->setNombre($obj->nombre);
+        $aux->setDescripcion($obj->descripcion);
+        $salida[$obj->id] = $aux;
+      }
+      return $salida;
+    }    
 }

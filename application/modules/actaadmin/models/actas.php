@@ -209,5 +209,24 @@ class actas extends MY_Model{
         $salida[$obj->id] = $aux;
       }
       return $salida;
-    }    
+    }
+    
+    public function retrieveSearchActasTags($text)
+    {
+      $sql = "SELECT a.id, a.nombre, a.ordinal FROM actas a ";
+      $sql.= "where a.id IN (SELECT ta.id_acta FROM tags_actas ta ";
+      $sql.= "where id_tag IN (SELECT t.id FROM tags t where t.name LIKE '%".$this->db->escape_like_str($text)."%'))";
+      
+      $query = $this->db->query($sql);
+      $salida = array();
+      foreach($query->result() as $obj)
+      {
+        $aux = new actas();
+        $aux->setId($obj->id);
+        $aux->setNombre($obj->nombre);
+        $salida[$obj->id] = $aux;
+      }
+      return $salida;      
+      
+    }
 }

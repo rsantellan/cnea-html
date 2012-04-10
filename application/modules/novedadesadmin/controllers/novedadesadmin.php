@@ -86,6 +86,9 @@ class novedadesadmin extends MY_Controller{
       $this->addModuleJavascript("novedadesadmin", "edit.js");
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");
+      $this->addModuleJavascript("tags", "actaTags.js");
+      $this->addModuleJavascript("tags", "tagManagement.js");
+      $this->addModuleStyleSheet("tags", "actasTags.css");
       
       $this->load->model('novedadesadmin/novedad');
       $this->data['use_grid_16'] = false;
