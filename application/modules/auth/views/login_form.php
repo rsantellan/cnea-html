@@ -4,17 +4,26 @@
 <!--[if IE 8]>    <html class="no-js ie8 ie9-and-less ie8-and-less" lang="en"> <![endif]-->
 <!--[if IE 9]>    <html class="no-js ie9 ie9-and-less" lang="en"> <![endif]-->
 <!--[if gt IE 9]><!-->
-<html class=" js flexbox multiplebgs boxshadow textshadow opacity cssanimations cssgradients csstransitions firefox unix" lang="en"><!--<![endif]--><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html class=" js flexbox multiplebgs boxshadow textshadow opacity cssanimations cssgradients csstransitions firefox unix" lang="en"><!--<![endif]-->
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="author" content="Rodrigo Santellan">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>Administrador</title>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.infieldlabel.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/auth/css/style_guide_plus_base.css";?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/auth/css/login-v3.css";?>" />
 <!--    <script type="text/javascript" src="login_files/style_guide_plus_base_head.js"></script>-->
-    <style type="text/css">#hsnav .primary li:hover a + div.sub, #hsnav .primary li.hover a + div.sub {display: block;}</style></head>
+    <style type="text/css">#hsnav .primary li:hover a + div.sub, #hsnav .primary li.hover a + div.sub {display: block;}</style>
+	<script type="text/javascript">
+	  $(document).ready(function(){
+		  $("p.label_infield label").inFieldLabels();
+	  });
+	</script>
+  </head>
 <body class="hubspot">  
 
 <?php
@@ -60,16 +69,21 @@ $captcha = array(
         <div class="form-container">
         
         <?php echo form_open($this->uri->uri_string(), array('class' => 'auth-box', 'id' => 'hs-login')); ?>
-          <span style="font-family: Helvetica,Arial,sans-serif; font-size: 16px; padding-left: 12px;" class="fake-placeholder faded-placeholder">Email Address</span>
+		  <p class="label_infield">
+		  <label for="login">Usuario</label>
+<!--          <span style="font-family: Helvetica,Arial,sans-serif; font-size: 16px; padding-left: 12px;" class="fake-placeholder faded-placeholder">Email Address</span>-->
 <!--          <input id="username" name="username" class="hs-input has-fake-placeholder" spellcheck="false" type="text"/>-->
           <?php echo form_input($login); ?>
-          <span style="font-family: Helvetica,Arial,sans-serif; font-size: 16px; padding-left: 12px;" class="fake-placeholder">Password</span>
+<!--          <span style="font-family: Helvetica,Arial,sans-serif; font-size: 16px; padding-left: 12px;" class="fake-placeholder">Password</span>-->
 <!--          <input id="password" name="password" class="hs-input has-fake-placeholder" type="password"/>-->
-          <?php echo form_password($password); ?>
-          <?php echo anchor('/auth/forgot_password/', 'Forgot?', array('class' => 'forgot-password')); ?>
+          </p>
+		  <p class="label_infield">
+		  <label for="password">Password</label>
+		  <?php echo form_password($password); ?>
+		  
 <!--          <a id="forgot-password" href="https://login.hubspot.com/login/newforgotPassword">Forgot?</a>-->
-  
-
+		  </p>
+<?php echo anchor('/auth/forgot_password/', 'Forgot?', array('class' => 'forgot-password')); ?>
           <div>
             <?php if ($show_captcha): 
                     if ($use_recaptcha):
