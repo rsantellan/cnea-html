@@ -8,7 +8,7 @@
     <h4><?php echo lang("personal_formulario_subtitulo_identificacion"); ?></h4>
     <div class="clear"></div>
     <p>
-      <label class="fecha_infield" for="fecha">Fecha*</label><br />
+      <label class="fecha_infield" for="fecha">Fecha*</label>
       <input class="<?php echo (form_error('fecha') != "")? "input_error" : "";?>" id="fecha" type="date" name="fecha" maxlength="255" value="<?php echo set_value('fecha'); ?>"  />
     </p>
     
@@ -26,7 +26,7 @@
            'name'        => 'renovacion',
            'id'          => 'renovacion',
            'value'       => 'Primera Vez',
-           'checked'     => $checked,
+           'checked'     => $this->form_validation->set_radio('renovacion', 'Primera Vez', TRUE),
            'class'       => 'radiobuttom'
            );
       
@@ -35,7 +35,7 @@
            'name'        => 'renovacion',
            'id'          => 'renovacion2',
            'value'       => 'Renovación',
-           'checked'     => $checked2,
+           'checked'     => $this->form_validation->set_radio('renovacion', 'Renovación', FALSE),
            'class'       => 'radiobuttom'
            );
     ?>
@@ -75,29 +75,51 @@
     </p>
     
     <label for="realizacion"><?php echo lang("personal_formulario_subtitulo_realizacion"); ?></label>
+    <?php 
+      $rdata = array(
+           'name'        => 'realizacion',
+           'id'          => 'realizacion',
+           'value'       => 'si',
+           'checked'     => $this->form_validation->set_radio('realizacion', 'si', TRUE),
+           'class'       => 'radiobuttom',
+		   'onchange'    => 'hideShowRealizacion(this)'
+           );
+      
+      
+      $rdata2 = array(
+           'name'        => 'realizacion',
+           'id'          => 'realizacion2',
+           'value'       => 'no',
+           'checked'     => $this->form_validation->set_radio('realizacion', 'no',FALSE),
+           'class'       => 'radiobuttom',
+		   'onchange'    => 'hideShowRealizacion(this)'
+           );
+	  $extra_r_class = "";
+	  if($this->form_validation->set_radio('realizacion', 'no',FALSE)) $extra_r_class = "hidden";
+    ?>
     <div class="float_left" style="margin-right:20px;">
       <label>Si</label>
-      <input class="radiobuttom" id="realizacion" name="realizacion" type="radio" value="si" <?php echo $this->form_validation->set_radio('realizacion', 'si'); ?> />
+      <?php echo form_radio($rdata);?>
     </div>
     <div class="float_left">
       <label>No</label>
-      <input class="radiobuttom" id="realizacion" name="realizacion" type="radio" value="no" <?php echo $this->form_validation->set_radio('realizacion', 'no'); ?> />
+      <?php echo form_radio($rdata2);?>
     </div>
     <div class="clear"></div>
-    <h5><?php echo lang("personal_formulario_subtitulo_cursos"); ?></h5>
-    <p>
+    <h5 class="realizacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_subtitulo_cursos"); ?></h5>
+    <p class="realizacion_field <?php echo $extra_r_class; ?>">
         <label for="curso_1">1</label>
         <input class="<?php echo (form_error('curso_1') != "")? "input_error" : "";?>" id="curso_1" type="text" name="curso_1" maxlength="255" value="<?php echo set_value('curso_1'); ?>"  />
     </p>
-    <p>
+    <p class="realizacion_field <?php echo $extra_r_class; ?>">
         <label for="curso_2">2</label>
         <input class="<?php echo (form_error('curso_2') != "")? "input_error" : "";?>" id="curso_2" type="text" name="curso_2" maxlength="255" value="<?php echo set_value('curso_2'); ?>"  />
     </p>
-    <p>
+    <p class="realizacion_field <?php echo $extra_r_class; ?>">
         <label for="curso_3">3</label>
         <input class="<?php echo (form_error('curso_3') != "")? "input_error" : "";?>" id="curso_3" type="text" name="curso_3" maxlength="255" value="<?php echo set_value('curso_3'); ?>"  />
     </p>
-    <p>
+    <p class="realizacion_field <?php echo $extra_r_class; ?>">
       <label for="observaciones_curso">Observaciones</label>
       <?php 
             $t_class = ""; 
@@ -109,37 +131,60 @@
       <?php echo form_textarea( array('class' => $t_class, 'id' => 'observaciones_curso', 'name' => 'observaciones_curso', 'rows' => '5', 'cols' => '80', 'value' => set_value('observaciones_curso') ) )?>
       
     </p>
-    <span><?php echo lang("personal_formulario_subtitulo_adjuntar_cursos"); ?></span>
+    <span class="realizacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_subtitulo_adjuntar_cursos"); ?></span>
     
-    <input type="button" class="button button_short" value="adjuntar" />
+    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
     <div class="clear"></div>
     
     <label><?php echo lang("personal_formulario_subtitulo_acreditacion"); ?></label>
-    
+	  <?php 
+      $adata = array(
+           'name'        => 'acreditacion',
+           'id'          => 'acreditacion',
+           'value'       => 'si',
+           'checked'     => $this->form_validation->set_radio('acreditacion', 'si', TRUE),
+           'class'       => 'radiobuttom',
+		   'onchange'    => 'hideShowAcreditacion(this)'
+           );
+      
+      
+      $adata2 = array(
+           'name'        => 'acreditacion',
+           'id'          => 'acreditacion2',
+           'value'       => 'no',
+           'checked'     => $this->form_validation->set_radio('acreditacion', 'no',FALSE),
+           'class'       => 'radiobuttom',
+		   'onchange'    => 'hideShowAcreditacion(this)'
+           );
+	  $extra_r_class = "";
+	  if($this->form_validation->set_radio('acreditacion', 'no',FALSE)) $extra_r_class = "hidden";
+    ?>
+	
+	
     <div class="float_left" style="margin-right:20px;">
       <label>Si</label>
-      <input id="acreditacion" name="acreditacion" type="radio" class="radiobuttom" value="si" <?php echo $this->form_validation->set_radio('acreditacion', 'si'); ?> />
+      <?php echo form_radio($adata);?>
     </div>
     <div class="float_left">
       <label>No</label>
-      <input id="acreditacion" name="acreditacion" type="radio" class="radiobuttom" value="no" <?php echo $this->form_validation->set_radio('acreditacion', 'no'); ?> />
+      <?php echo form_radio($adata2);?>
     </div>
     <div class="clear"></div>
-    <h5><?php echo lang("personal_formulario_subtitulo_tiene_acreditacion"); ?></h5>
-    <p>
+    <h5 class="acreditacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_subtitulo_tiene_acreditacion"); ?></h5>
+    <p class="acreditacion_field <?php echo $extra_r_class; ?>">
         <label for="acreditacion_institucion">institución que la expidió</label>
         <input class="<?php echo (form_error('acreditacion_institucion') != "")? "input_error" : "";?>" id="acreditacion_institucion" type="text" name="acreditacion_institucion" maxlength="255" value="<?php echo set_value('acreditacion_institucion'); ?>"  />
     </p>    
-    <p>
+    <p class="acreditacion_field <?php echo $extra_r_class; ?>">
         <label for="acreditacion_categoria">categoría que le fue adjudicada</label>
         <input class="<?php echo (form_error('acreditacion_categoria') != "")? "input_error" : "";?>" id="acreditacion_categoria" type="text" name="acreditacion_categoria" maxlength="255" value="<?php echo set_value('acreditacion_categoria'); ?>"  />
     </p>
-    <p>
+    <p class="acreditacion_field <?php echo $extra_r_class; ?>">
         <label for="acreditacion_fecha">fecha de vencimiento de dicha acreditación</label>
         <input class="<?php echo (form_error('acreditacion_fecha') != "")? "input_error" : "";?>" id="acreditacion_fecha" type="date" name="acreditacion_fecha" maxlength="255" value="<?php echo set_value('acreditacion_fecha'); ?>"  />
     </p>
-    <span>Adjuntar certificado de acreditación</span>
-    <input type="button" class="button button_short" value="adjuntar" />
+    <span class="acreditacion_field <?php echo $extra_r_class; ?>">Adjuntar certificado de acreditación</span>
+    <input type="button" class="button button_short acreditacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
     <div class="clear"></div>
     
     <h5><?php echo lang("personal_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("personal_formulario_subtitulo_ver_bases"); ?></a></h5>
@@ -172,9 +217,6 @@
     <input type="button" class="button button_short" value="adjuntar" />
     <div class="clear"></div>
     <input type="submit" class="button button_large" value="enviar formulario" />
-    <script>
-      $(":date").dateinput();
-    </script>  
   <?php echo form_close(); ?>
   <div class="clear"></div>
   <p>Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a></p>

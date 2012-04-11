@@ -64,6 +64,7 @@ class acreditaciones extends MY_Controller{
     $this->addStyleSheet("skin1.css");
     $this->addJavascript("jquery.infieldlabel.min.js");
     $this->addJavascript("basicInfieldFormPersonas.js");
+	//$this->addJavascript("acreditacion.js");
     $this->addStyleSheet("infieldlabelPersonas.css");
     $this->load->library('form_validation');
     $this->load->helper('form');
@@ -81,10 +82,10 @@ class acreditaciones extends MY_Controller{
     $this->form_validation->set_rules('curso_2', 'curso_2', 'max_length[255]');			
     $this->form_validation->set_rules('curso_3', 'curso_3', 'max_length[255]');			
     $this->form_validation->set_rules('observaciones_curso', 'observaciones_curso', 'max_length[1000]');			
-    $this->form_validation->set_rules('acreditacion', 'acreditacion', 'required|max_length[5]');			
-    $this->form_validation->set_rules('acreditacion_institucion', 'acreditacion_institucion', 'required|max_length[255]');			
-    $this->form_validation->set_rules('acreditacion_categoria', 'acreditacion_categoria', 'required|max_length[255]');			
-    $this->form_validation->set_rules('acreditacion_fecha', 'acreditacion_fecha', 'required|max_length[255]');			
+    $this->form_validation->set_rules('acreditacion', 'acreditacion', 'max_length[5]');			
+    $this->form_validation->set_rules('acreditacion_institucion', 'acreditacion_institucion', 'max_length[255]');			
+    $this->form_validation->set_rules('acreditacion_categoria', 'acreditacion_categoria', 'max_length[255]');			
+    $this->form_validation->set_rules('acreditacion_fecha', 'acreditacion_fecha', 'max_length[255]');			
     $this->form_validation->set_rules('categoria_a', 'categoria_a', 'max_length[255]');			
     $this->form_validation->set_rules('categoria_b', 'categoria_b', 'max_length[255]');			
     $this->form_validation->set_rules('categoria_c1', 'categoria_c1', 'max_length[255]');			

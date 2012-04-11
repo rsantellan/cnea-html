@@ -87,9 +87,9 @@ class Language extends MY_Controller {
         $exists = true;
       }
     }
-
+	
     if ($exists) {
-      require($mFile);
+	  require($mFile);
       $data = array(
           'lang' => $lang,
           'language' => $l,
@@ -303,10 +303,10 @@ class Language extends MY_Controller {
         if (!is_null($module)) {
           $url_to_go .= "/" . $module;
         }
-        redirect($url_to_go);
+        //redirect($url_to_go);
       } else {
         $this->session->set_flashdata('error', $this->lang->line('language_error_dir_not_exist'));
-        redirect('/language');
+        //redirect('/language');
       }
     } else {
       $this->session->set_flashdata('error', $this->lang->line('language_error_no_direct_access'));
