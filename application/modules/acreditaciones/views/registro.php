@@ -1,9 +1,9 @@
 <div class="content_right img_personas">
-    <h1><?php echo lang("personal.registro.titulo"); ?></h1>
+    <h1><?php echo lang("personal_registro_titulo"); ?></h1>
 	<?php if(count($list) == 0): ?>
-	  <?php echo lang("personal.registro.contenido_vacio"); ?>
+	  <?php echo lang("personal_registro_contenido_vacio"); ?>
 	<?php else: ?>
-	  <h2><?php echo lang("personal.registro.subtitulo"); ?></h2>
+	  <h2><?php echo lang("personal_registro_subtitulo"); ?></h2>
     <?php $counter = (1 * (int) $page) + 1; ?>
 	<?php foreach($list as $registro): ?>
 		<div class="registradas">

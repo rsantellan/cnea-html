@@ -16,7 +16,7 @@
         </tr>
         <tr>
         	<td style="padding-bottom:10px; font-size:13px; font-weight:bold;text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#AB1917;">
-              <?php echo lang("personal.formulario.subtitulo_identificacion"); ?>
+              <?php echo lang("personal_formulario_subtitulo_identificacion"); ?>
             </td>
         </tr>
        <tr>

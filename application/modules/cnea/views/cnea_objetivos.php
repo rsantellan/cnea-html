@@ -1,5 +1,5 @@
 <div class="content_right img_cnea">
-    <h1><?php echo lang("cnea.objetivos.titulo"); ?></h1>
-    <?php echo lang("cnea.objetivos.contenido"); ?>
+    <h1><?php echo lang("cnea_objetivos_titulo"); ?></h1>
+    <?php echo lang("cnea_objetivos_contenido"); ?>
 </div>
 <!--CONTENT RIGHT-->

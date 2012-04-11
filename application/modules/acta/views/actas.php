@@ -1,5 +1,5 @@
 <div class="content_right img_doc">
-    <h1><?php echo lang("actas.titulo"); ?></h1>
+    <h1><?php echo lang("actas_titulo"); ?></h1>
     <?php foreach($list as $acta): ?>
       <div class="actas">
           <?php echo $acta->getNombre();?> 

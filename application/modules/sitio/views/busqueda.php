@@ -5,7 +5,7 @@
     <div class="novedades_lisado">
         <h4><?php echo $novedad->getNombre();?></h4>
         <?php echo character_limiter($novedad->getDescripcion(), 350);?>
-        <a href="<?php echo site_url("novedades/detalle/".$novedad->getId());?>" target="_blank"><?php echo lang("novedades.ver_mas"); ?></a>
+        <a href="<?php echo site_url("novedades/detalle/".$novedad->getId());?>" target="_blank"><?php echo lang("novedades_ver_mas"); ?></a>
     </div>
   <?php endforeach; ?>
   <h4>Actas</h4>

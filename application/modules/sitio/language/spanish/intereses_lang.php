@@ -6,6 +6,6 @@ if (!defined('BASEPATH'))
  */
 
 
-$lang["intereses.enlaces.titulo"] = "enlaces de interés";
+$lang["intereses_enlaces_titulo"] = "enlaces de interés";
 
-$lang["intereses.documentos.titulo"] = "documentos de interés";
+$lang["intereses_documentos_titulo"] = "documentos de interés";

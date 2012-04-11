@@ -5,5 +5,5 @@ if (!defined('BASEPATH'))
 /* 
  */
 
-$lang['actas.titulo'] = 'actas';
+$lang['actas_titulo'] = 'actas';
 

@@ -11,7 +11,7 @@
   <div class="ultimas_novedades">
       <?php foreach($last_novedades as $novedad): ?>
           <?php echo $novedad->getNombre();?>
-          <a href="<?php echo site_url("novedades/detalle/".$novedad->getId());?>"><?php echo lang("novedades.ver_mas"); ?></a>
+          <a href="<?php echo site_url("novedades/detalle/".$novedad->getId());?>"><?php echo lang("novedades_ver_mas"); ?></a>
           <div class="clear"></div>
           <hr />
       <?php endforeach; ?>

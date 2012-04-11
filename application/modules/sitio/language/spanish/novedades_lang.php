@@ -5,5 +5,5 @@ if (!defined('BASEPATH'))
 /* 
  */
 
-$lang['novedades.titulo'] = 'novedades';
-$lang['novedades.ver_mas'] = 'ver más';
+$lang['novedades_titulo'] = 'novedades';
+$lang['novedades_ver_mas'] = 'ver más';

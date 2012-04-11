@@ -1,11 +1,11 @@
 <div class="content_right img_instituciones">
-  <h1><?php echo lang("personal.formulario.titulo"); ?></h1>
-  <h5><?php echo lang("personal.formulario.subtitulo"); ?></h5>
-  <span class="msg_error"><?php echo lang("personal.formulario.subtitulo_errores"); ?></span>
+  <h1><?php echo lang("personal_formulario_titulo"); ?></h1>
+  <h5><?php echo lang("personal_formulario_subtitulo"); ?></h5>
+  <span class="msg_error"><?php echo lang("personal_formulario_subtitulo_errores"); ?></span>
   <?php
   $attributes = array('class' => 'infield_form', 'id' => '');
   echo form_open_multipart('acreditaciones/formulario', $attributes); ?>    
-    <h4><?php echo lang("personal.formulario.subtitulo_identificacion"); ?></h4>
+    <h4><?php echo lang("personal_formulario_subtitulo_identificacion"); ?></h4>
     <div class="clear"></div>
     <p>
       <label class="fecha_infield" for="fecha">Fecha*</label><br />
@@ -74,7 +74,7 @@
       <input class="<?php echo (form_error('cargo') != "")? "input_error" : "";?>" id="cargo" type="text" name="cargo" maxlength="255" value="<?php echo set_value('cargo'); ?>"  />
     </p>
     
-    <label for="realizacion"><?php echo lang("personal.formulario.subtitulo_realizacion"); ?></label>
+    <label for="realizacion"><?php echo lang("personal_formulario_subtitulo_realizacion"); ?></label>
     <div class="float_left" style="margin-right:20px;">
       <label>Si</label>
       <input class="radiobuttom" id="realizacion" name="realizacion" type="radio" value="si" <?php echo $this->form_validation->set_radio('realizacion', 'si'); ?> />
@@ -84,7 +84,7 @@
       <input class="radiobuttom" id="realizacion" name="realizacion" type="radio" value="no" <?php echo $this->form_validation->set_radio('realizacion', 'no'); ?> />
     </div>
     <div class="clear"></div>
-    <h5><?php echo lang("personal.formulario.subtitulo_cursos"); ?></h5>
+    <h5><?php echo lang("personal_formulario_subtitulo_cursos"); ?></h5>
     <p>
         <label for="curso_1">1</label>
         <input class="<?php echo (form_error('curso_1') != "")? "input_error" : "";?>" id="curso_1" type="text" name="curso_1" maxlength="255" value="<?php echo set_value('curso_1'); ?>"  />
@@ -109,12 +109,12 @@
       <?php echo form_textarea( array('class' => $t_class, 'id' => 'observaciones_curso', 'name' => 'observaciones_curso', 'rows' => '5', 'cols' => '80', 'value' => set_value('observaciones_curso') ) )?>
       
     </p>
-    <span><?php echo lang("personal.formulario.subtitulo_adjuntar_cursos"); ?></span>
+    <span><?php echo lang("personal_formulario_subtitulo_adjuntar_cursos"); ?></span>
     
     <input type="button" class="button button_short" value="adjuntar" />
     <div class="clear"></div>
     
-    <label><?php echo lang("personal.formulario.subtitulo_acreditacion"); ?></label>
+    <label><?php echo lang("personal_formulario_subtitulo_acreditacion"); ?></label>
     
     <div class="float_left" style="margin-right:20px;">
       <label>Si</label>
@@ -125,7 +125,7 @@
       <input id="acreditacion" name="acreditacion" type="radio" class="radiobuttom" value="no" <?php echo $this->form_validation->set_radio('acreditacion', 'no'); ?> />
     </div>
     <div class="clear"></div>
-    <h5><?php echo lang("personal.formulario.subtitulo_tiene_acreditacion"); ?></h5>
+    <h5><?php echo lang("personal_formulario_subtitulo_tiene_acreditacion"); ?></h5>
     <p>
         <label for="acreditacion_institucion">institución que la expidió</label>
         <input class="<?php echo (form_error('acreditacion_institucion') != "")? "input_error" : "";?>" id="acreditacion_institucion" type="text" name="acreditacion_institucion" maxlength="255" value="<?php echo set_value('acreditacion_institucion'); ?>"  />
@@ -142,7 +142,7 @@
     <input type="button" class="button button_short" value="adjuntar" />
     <div class="clear"></div>
     
-    <h5><?php echo lang("personal.formulario.subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("personal.formulario.subtitulo_ver_bases"); ?></a></h5>
+    <h5><?php echo lang("personal_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("personal_formulario_subtitulo_ver_bases"); ?></a></h5>
     <p>
       <label for="categoria_a">A</label>
       <input id="categoria_a" type="text" name="categoria_a" maxlength="255" value="<?php echo set_value('categoria_a'); ?>"  />
@@ -159,7 +159,7 @@
         <label for="categoria_c2">C2(**)</label>
         <input id="categoria_c2" type="text" name="categoria_c2" maxlength="255" value="<?php echo set_value('categoria_c2'); ?>"  />
     </p>
-    <?php echo lang("personal.formulario.texto_categoria"); ?>
+    <?php echo lang("personal_formulario_texto_categoria"); ?>
     
     <h5>Firma del Interesado*</h5>
     <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>
