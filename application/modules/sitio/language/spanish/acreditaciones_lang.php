@@ -90,4 +90,5 @@ $lang['personal_formulario_texto_categoria']='<span><strong>(*)</strong>Si aspir
       • Responsable de proyectos de investigación financiados donde se usaron animales de experimentación<br />
       • Formación de recursos humanos<br />
       • Otros antecedentes en el uso de animales de experimentación.</span>';
+$lang['personal_formulario_enviado']= '<p>La solicitud se ha enviado correctamente, la CNEA se pondrá con contacto con usted.</p>';	  
 /* End of file acreditaciones_lang.php */

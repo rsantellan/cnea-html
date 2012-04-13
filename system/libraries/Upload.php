@@ -1066,6 +1066,10 @@ class CI_Upload {
 		$this->file_type = $file['type'];
 	}
 
+	public function clean_errors(){
+		$this->error_msg = array();
+	}
+
 	// --------------------------------------------------------------------
 
 }

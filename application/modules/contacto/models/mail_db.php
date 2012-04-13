@@ -109,6 +109,8 @@ class mail_db extends MY_Model{
     return $return;
   }
   
+  
+  
   public function retrieveAllMailDbData()
   {
     $this->db->order_by("funcion", "desc");
