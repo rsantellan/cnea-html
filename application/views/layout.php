@@ -63,7 +63,7 @@
                        <dd id="two-ddcontent" onmouseover="cancelHide('two')" onmouseout="ddMenu('two',-1)">
                            <ul class="ul_instituciones">
                               <li class="sub_menu"><a href="<?php echo site_url('instituciones/bases'); ?>"><?php echo lang('menu_instituciones_bases');?></a></li>
-                              <li class="sub_menu"><a href="registro_formulario.html"><?php echo lang('menu_instituciones_formulario');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url("instituciones/formulario");?>"><?php echo lang('menu_instituciones_formulario');?></a></li>
                               <li class="sub_menu"><a href="<?php echo site_url('instituciones/registro'); ?>"><?php echo lang('menu_instituciones_registro');?></a></li>
                               <li class="sub_menu"><a href="<?php echo site_url('instituciones/reglamentacion'); ?>"><?php echo lang('menu_instituciones_reglamento');?></a></li>
                            </ul>

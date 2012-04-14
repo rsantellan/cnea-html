@@ -38,4 +38,7 @@ $lang['instituciones_reglamentacion_contenido']='<h2>Comisi&oacute;n nacional de
 $lang['instituciones_registro_titulo']='registro nacional de instituciones';
 $lang['instituciones_registro_contenido_vacio']='A&uacute;n no hay registros personales';
 $lang['instituciones_registro_subtitulo']='Instituciones inscriptas';
-/* End of file instituciones_lang.php */
+$lang['instituciones_formulario_titulo']='formulario para el registro nacional de instituciones';
+$lang['instituciones_formulario_subtitulo']='Los campos con asterisco (*) son requeridos para enviar la solicitud';
+$lang['instituciones_formulario_subtitulo_errores']='Por favor completar los campos marcados en rojo';
+$lang['instituciones_formulario_subtitulo_identificacion']='1- IDENTIFICACI&Oacute;N INSTITUCIONAL';
