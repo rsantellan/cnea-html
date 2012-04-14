@@ -16,19 +16,21 @@ echo form_open('contacto/contactoadmin/saveContacto', $attributes); ?>
 <div class="grid_5">
   <p>
     <label for="tipo">Tipo <small>Requerido</small></label>
-    <input type="text" name="tipo" maxlength="255" value="<?php echo $object->getTipo() ?>" />
+    <!--<input type="text" name="tipo" maxlength="255" value="<?php echo $object->getTipo() ?>" />-->
+    <?php echo form_dropdown('tipo', $object->getArrTipo(), $object->getTipo()); ?>
   </p>
 </div>
 <div class="grid_5">
   <p>
-    <label for="nombre">Nombre</label>
+    <label for="nombre">Nombre <small>Requerido</small></label>
     <input type="text" name="nombre" maxlength="255" value="<?php echo $object->getNombre() ?>" />
   </p>
 </div>
 <div class="grid_5">
   <p>
-    <label for="funcion">Funci&oacute;n</label>
-    <input type="text" name="funcion" maxlength="255" value="<?php echo $object->getFuncion() ?>" />
+    <label for="funcion">Funci&oacute;n <small>Requerido</small></label>
+    <!--<input type="text" name="funcion" maxlength="255" value="<?php echo $object->getFuncion() ?>" />-->
+    <?php echo form_dropdown('funcion', $object->getArrFuncion(), $object->getFuncion()); ?>
   </p>
 </div>
 <div class="grid_16">

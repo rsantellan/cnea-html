@@ -18,6 +18,8 @@ class mail_db extends MY_Model{
   private $tipo;
   private $nombre;
   private $funcion;
+  private $arr_tipo = array(""=>"", "from"=>"from", "to"=>"to", "cc"=>"cc", "bcc"=>"bcc", "reply"=>"reply");
+  private $arr_funcion = array(""=>"", "contacto"=>"contacto");
   
   function __construct()
   {
@@ -37,12 +39,20 @@ class mail_db extends MY_Model{
       return $this->tipo;
   }
   
+  public function getArrTipo() {
+      return $this->arr_tipo;
+  }
+  
   public function getNombre() {
       return $this->nombre;
   }
   
   public function getFuncion() {
       return $this->funcion;
+  }
+  
+  public function getArrFuncion() {
+      return $this->arr_funcion;
   }
   
   public function setId($id) {
