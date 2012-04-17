@@ -52,6 +52,24 @@ class acreditaciones extends MY_Controller {
 		$this -> load -> view('layout', $this -> data);
 	}
 
+    function descargarFormularioPersona()
+    {
+      $this->load->helper('download');
+      $name = "Acreditaciones_Personales.docx";
+      $path = base_url()."assets/docs/Registro_Intsituciones.docx";
+      $data = file_get_contents($path); // Read the file's contents
+      force_download($name, $data);      
+    }
+    
+    function descargarFormularioEmpresa()
+    {
+      $this->load->helper('download');
+      $name = "Registro_Intsituciones.docx";
+      $path = base_url()."assets/docs/Registro_Intsituciones.docx";
+      $data = file_get_contents($path); // Read the file's contents
+      force_download($name, $data);
+    }
+    
 	function formulario() {
 		//$this->addJquery();
 		$this -> addJavascript("jquery.js");

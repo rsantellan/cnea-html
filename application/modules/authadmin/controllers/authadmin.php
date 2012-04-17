@@ -92,6 +92,7 @@ class Authadmin extends MY_Controller{
         }
         
         if ($this->form_validation->run()) {								// validation ok
+            
             if (!is_null($data = $this->tank_auth->create_user(
                     $use_username ? $this->form_validation->set_value('username', 'tank_auth') : '',
                     $this->form_validation->set_value('email'),
@@ -99,7 +100,7 @@ class Authadmin extends MY_Controller{
                     $email_activation))) {									// success
 
                 $data['site_name'] = $this->config->item('website_name', 'tank_auth');
-
+                
                 if ($email_activation) {									// send "activate" email
                     $data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
 
@@ -124,10 +125,13 @@ class Authadmin extends MY_Controller{
             }
         }
         
-        
+        $this->data['errors'] = $data['errors'];
         $data['use_username'] = $use_username;
-        $this->load->view('authadmin/register_form', $data);
-		
+        $this->data['use_username'] = $use_username;
+        //$this->load->view('authadmin/register_form', $data);
+        $this->data['content'] = "authadmin/register_form";
+        //$this->load->view('authadmin/user_list', $data);
+        $this->load->view("admin/layout", $this->data);
 	}
     
     

@@ -215,21 +215,26 @@
     
     <h5>Firma del Interesado*</h5>
     <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>
-    <input type="button" class="button button_short_descargar" value="descargar" />
+<!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_persona_upload'])): ?>
 		<?php echo $errores['firma_persona_upload'];?>
 	<?php endif;?>
     <input type="file" name="firma_persona_upload" id="firma_persona_upload" class="file" />
-    <input type="button" class="button button_short" value="adjuntar" />
+<!--    <input type="button" class="button button_short" value="adjuntar" />-->
+    <button class="adjuntar">Adjuntar</button>
+    <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
     <div class="clear"></div>
     <h5>Firma de un integrante del CEUA de su Institución*</h5>
     <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>
-    <input type="button" class="button button_short_descargar" value="descargar" />
+    
+<!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_institucion_upload'])): ?>
 		<?php echo $errores['firma_institucion_upload'];?>
 	<?php endif;?>
     <input type="file" name="firma_institucion_upload" id="firma_institucion_upload" class="file"/>
-    <input type="button" class="button button_short" value="adjuntar" />
+<!--    <input type="button" class="button button_short" value="adjuntar" />-->
+    <button class="adjuntar">Adjuntar</button>
+    <a href="<?php echo site_url("acreditaciones/descargarFormularioEmpresa");?>" class="descargar descargar_forms">descargar</a>
     <div class="clear"></div>
     <input type="submit" class="button button_large" value="enviar formulario" />
   <?php echo form_close(); ?>
