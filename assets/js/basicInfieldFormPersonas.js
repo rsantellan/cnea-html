@@ -1,6 +1,11 @@
 $(document).ready(function() {
    $(":date").dateinput();
    $(".infield_form p label").inFieldLabels();
+   $('.button_short').each(function(index, val){
+      $(this).bind('click', function() {
+        $(this).prev().trigger('click');
+      });
+    });
  });
 
 

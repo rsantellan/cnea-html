@@ -135,7 +135,7 @@
     <?php if(isset($errores['cursos_upload'])): ?>
 		<?php echo $errores['cursos_upload'];?>
 	<?php endif;?>
-    <input type="file" name="cursos_upload" id="cursos_upload" />
+    <input type="file" name="cursos_upload" id="cursos_upload" class="file" />
     <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
     <div class="clear"></div>
     
@@ -190,7 +190,7 @@
     <?php if(isset($errores['acreditacion_upload'])): ?>
 		<?php echo $errores['acreditacion_upload'];?>
 	<?php endif;?>
-    <input type="file" name="acreditacion_upload" id="acreditacion_upload" />
+    <input type="file" name="acreditacion_upload" id="acreditacion_upload" class="file" />
     <input type="button" class="button button_short acreditacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
     <div class="clear"></div>
     
@@ -219,7 +219,7 @@
     <?php if(isset($errores['firma_persona_upload'])): ?>
 		<?php echo $errores['firma_persona_upload'];?>
 	<?php endif;?>
-    <input type="file" name="firma_persona_upload" id="firma_persona_upload" />
+    <input type="file" name="firma_persona_upload" id="firma_persona_upload" class="file" />
     <input type="button" class="button button_short" value="adjuntar" />
     <div class="clear"></div>
     <h5>Firma de un integrante del CEUA de su Institución*</h5>
@@ -228,7 +228,7 @@
     <?php if(isset($errores['firma_institucion_upload'])): ?>
 		<?php echo $errores['firma_institucion_upload'];?>
 	<?php endif;?>
-    <input type="file" name="firma_institucion_upload" id="firma_institucion_upload" />
+    <input type="file" name="firma_institucion_upload" id="firma_institucion_upload" class="file"/>
     <input type="button" class="button button_short" value="adjuntar" />
     <div class="clear"></div>
     <input type="submit" class="button button_large" value="enviar formulario" />

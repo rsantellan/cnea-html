@@ -188,6 +188,8 @@ class acreditaciones extends MY_Controller {
 				}
 				 
 		        $this->email->send();
+                //echo $this->email->print_debugger();
+                //die;
 				$this -> data['content'] = 'formulario_ok';
 				$this -> load -> view('layout', $this -> data);
 				
