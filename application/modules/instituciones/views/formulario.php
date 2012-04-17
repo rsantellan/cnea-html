@@ -58,7 +58,7 @@
         <textarea name="ObservacionesComite">Observaciones</textarea>
         <span>-	Si su Institución no tiene constituido un CEUA, deberá crearla. Su integración esta especificada en el Artículo 10 de la Ley Nº 18.611- “La Comisión de Ética en el Uso de Animales estará integrada al menos por: un médico veterinario, un docente o investigador, un representante de la comunidad local…”</span>
         <p>Indique fecha de constitución del CEUA y adjunte copia de la resolución de su institución*.</p>
-        <input type="file" name="file" class="file">
+        <input type="file" name="copia_resolucion_institucion" class="file">
         <button>Adjuntar</button>
         <div class="clear"></div>
         <h5>Persona de contacto de la Institución</h5>
@@ -67,7 +67,7 @@
         <input type="text" name="TelContacto" value="Teléfono de contacto*" />
         <h5>Responsable Institucional</h5>
         <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada*</span>
-        <input type="file" name="file" class="file">
+        <input type="file" name="responsable_institucional" class="file">
         <button>Adjuntar</button>
         <a href="#" class="descargar descargar_forms">descargar</a>
         <div class="clear"></div>

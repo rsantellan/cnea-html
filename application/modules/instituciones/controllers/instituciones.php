@@ -97,49 +97,28 @@ class instituciones extends MY_Controller{
         } else {
             $send_email = true;
 
-            /*//Chequeo los archivos a subir.
+            //Chequeo los archivos a subir.
             $config['upload_path'] = sys_get_temp_dir() . "/";
             $config['allowed_types'] = 'pdf|doc|docx';
             $this -> load -> library('upload', $config);
             $errores = array();
             $upload_data = array();
-            if($_POST['realizacion'] == "si"){
-                //cursos_upload
-                if (!$this -> upload -> do_upload('cursos_upload')) {
-                    $errores['cursos_upload'] = $this -> upload -> display_errors();
-                    $this->upload->clean_errors();
-                    $send_email = false;
-                }else{
-                    $upload_data['cursos_upload'] = $this->upload->data();
-                }
-            }
-            if($_POST['acreditacion'] == "si"){
-                //acreditacion_upload
-                if (!$this -> upload -> do_upload('acreditacion_upload')) {
-                    $errores['acreditacion_upload'] = $this -> upload -> display_errors();
-                    $this->upload->clean_errors();
-                    $send_email = false;
-                }else{
-                    $upload_data['acreditacion_upload'] = $this->upload->data();
-                }
+            
+            if (!$this -> upload -> do_upload('copia_resolucion_institucion')) {
+                $errores['copia_resolucion_institucion'] = $this -> upload -> display_errors();
+                $this->upload->clean_errors();
+                $send_email = false;
+            }else{
+                $upload_data['copia_resolucion_institucion'] = $this->upload->data();
             }
             
-            //firma_persona_upload
-            if (!$this -> upload -> do_upload('firma_persona_upload')) {
-                $errores['firma_persona_upload'] = $this -> upload -> display_errors();
+            if (!$this -> upload -> do_upload('responsable_institucional')) {
+                $errores['responsable_institucional'] = $this -> upload -> display_errors();
                 $this->upload->clean_errors();
                 $send_email = false;
             }else{
-                $upload_data['firma_persona_upload'] = $this->upload->data();
+                $upload_data['responsable_institucional'] = $this->upload->data();
             }
-            //firma_institucion_upload
-            if (!$this -> upload -> do_upload('firma_institucion_upload')) {
-                $errores['firma_institucion_upload'] = $this -> upload -> display_errors();
-                $this->upload->clean_errors();
-                $send_email = false;
-            }else{
-                $upload_data['firma_institucion_upload'] = $this->upload->data();
-            }*/
             
             //unidades dependientes
             $arr_unidep = array();
@@ -221,9 +200,9 @@ class instituciones extends MY_Controller{
                 $this->email->subject('Formulario para el registro nacional de instituciones');
                 $this->email->message($message);
                 
-                /*foreach($upload_data as $uploaded){
+                foreach($upload_data as $uploaded){
                     $this->email->attach($uploaded["full_path"]);
-                }*/
+                }
                  
                 $this->email->send();
                 
