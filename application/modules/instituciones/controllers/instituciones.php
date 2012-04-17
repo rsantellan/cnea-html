@@ -1,4 +1,3 @@
-
 <?php
 
 if (!defined('BASEPATH'))
@@ -90,6 +89,7 @@ class instituciones extends MY_Controller{
 
         $this -> form_validation -> set_error_delimiters('<br /><span class="error">', '</span>');
         if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
+        //if (FALSE)// validation hasn't been passed
         {
             $this -> data['errores'] = array();
             $this -> data['content'] = 'formulario';
@@ -97,13 +97,13 @@ class instituciones extends MY_Controller{
         } else {
             $send_email = true;
 
-            //Chequeo los archivos a subir.
+            /*//Chequeo los archivos a subir.
             $config['upload_path'] = sys_get_temp_dir() . "/";
             $config['allowed_types'] = 'pdf|doc|docx';
             $this -> load -> library('upload', $config);
             $errores = array();
             $upload_data = array();
-            if(set_value('realizacion') == "si"){
+            if($_POST['realizacion'] == "si"){
                 //cursos_upload
                 if (!$this -> upload -> do_upload('cursos_upload')) {
                     $errores['cursos_upload'] = $this -> upload -> display_errors();
@@ -113,7 +113,7 @@ class instituciones extends MY_Controller{
                     $upload_data['cursos_upload'] = $this->upload->data();
                 }
             }
-            if(set_value('acreditacion') == "si"){
+            if($_POST['acreditacion'] == "si"){
                 //acreditacion_upload
                 if (!$this -> upload -> do_upload('acreditacion_upload')) {
                     $errores['acreditacion_upload'] = $this -> upload -> display_errors();
@@ -139,34 +139,69 @@ class instituciones extends MY_Controller{
                 $send_email = false;
             }else{
                 $upload_data['firma_institucion_upload'] = $this->upload->data();
+            }*/
+            
+            //unidades dependientes
+            $arr_unidep = array();
+            $post = $_POST;
+            foreach($post as $k=>$v){
+                if(substr_count($k, "UnidadesDependientes")>0){
+                    $i = (int)str_replace("UnidadesDependientes","",$k);
+                    $arr_unidep[] = $v;
+                    //..
+                }
             }
-
+            
+            //especies
+            $arr_especies = array();
+            $post = $_POST;
+            foreach($post as $k=>$v){
+                if(substr_count($k, "NombreEspecie_")>0){
+                    $i = (int)str_replace("NombreEspecie_","",$k);
+                    $arr_especies[] = array('nombre' => $v, 'observaciones' => $_POST['ObservacionesEspecie_'.$i]);
+                    //..
+                }
+            }
+            
+            //comite
+            $arr_comite = array();
+            $post = $_POST;
+            foreach($post as $k=>$v){
+                if(substr_count($k, "NombreApellido_")>0){
+                    $i = (int)str_replace("NombreApellido_","",$k);
+                    $arr_comite[] = array('nombre' => $v, 'profesion' => $_POST['Profesion_'.$i], 'ocupacion' => $_POST['Ocupacion_'.$i]);
+                    //..
+                }
+            }
+            
             //Esta todo bien, entonces mando el mail
             if ($send_email) {
                 $form_data = array(
-                    'fecha' => set_value('fecha'), 
-                    'renovacion' => set_value('renovacion'), 
-                    'nombre' => set_value('nombre'), 
-                    'postal' => set_value('postal'), 
-                    'email' => set_value('email'), 
-                    'telefono' => set_value('telefono'), 
-                    'institucion' => set_value('institucion'), 
-                    'cargo' => set_value('cargo'), 
-                    'realizacion' => set_value('realizacion'), 
-                    'curso_1' => set_value('curso_1'), 
-                    'curso_2' => set_value('curso_2'), 
-                    'curso_3' => set_value('curso_3'), 
-                    'observaciones_curso' => set_value('observaciones_curso'), 
-                    'acreditacion' => set_value('acreditacion'), 
-                    'acreditacion_institucion' => set_value('acreditacion_institucion'), 
-                    'acreditacion_categoria' => set_value('acreditacion_categoria'), 
-                    'acreditacion_fecha' => set_value('acreditacion_fecha'), 
-                    'categoria_a' => set_value('categoria_a'), 
-                    'categoria_b' => set_value('categoria_b'), 
-                    'categoria_c1' => set_value('categoria_c1'), 
-                    'categoria_c2' => set_value('categoria_c2')
+                    'NombreInsititucion' => $_POST['NombreInsititucion'], 
+                    'RazonSocial' => $_POST['RazonSocial'],
+                    'RUT' => $_POST['RUT'],
+                    'Naturaleza' => $_POST['Naturaleza'],
+                    'PrimerNivel' => $_POST['PrimerNivel'],
+                    'SegundoNivel' => $_POST['SegundoNivel'],
+                    'TercerNivel' => $_POST['TercerNivel'],
+                    'DomicilioInstitucional' => $_POST['DomicilioInstitucional'],
+                    'DomicilioFiscal' => $_POST['DomicilioFiscal'],
+                    'Dicose' => $_POST['Dicose'],
+                    'UnidadesDependientes' => $arr_unidep,
+                    'TipoEstablecimiento' => $_POST['TipoEstablecimiento'],
+                    'Especie' => $arr_especies,
+                    'Comite' => $arr_comite,
+                    'ObservacionesComite' => $_POST['ObservacionesComite'],
+                    'NombreContacto' => $_POST['NombreContacto'],
+                    'MailContacto' => $_POST['MailContacto'],
+                    'TelContacto' => $_POST['TelContacto'],
                     );
-                $message = $this -> load -> view('acreditaciones/email_formulario', $form_data, TRUE);
+                
+                //..
+                
+                //die(print_r($form_data));
+                $message = $this -> load -> view('instituciones/email_formulario', $form_data, TRUE);
+                
                 $this->load->model('contacto/mail_db');
                 $return = $this->mail_db->retrieveContactMailInfo();
                 //Con estos datos preparo un email para enviar.
@@ -181,16 +216,17 @@ class instituciones extends MY_Controller{
                     $this->email->cc($return['cc']); 
                 if(isset($return['cc']))
                     $this->email->bcc($return['cc']);
-                $this->email->reply_to($form_data['email'], $form_data['nombre']);
+                $this->email->reply_to($form_data['MailContacto'], $form_data['NombreContacto']);
         
-                $this->email->subject('Acreditacion de persona pedida');
+                $this->email->subject('Formulario para el registro nacional de instituciones');
                 $this->email->message($message);
                 
-                foreach($upload_data as $uploaded){
+                /*foreach($upload_data as $uploaded){
                     $this->email->attach($uploaded["full_path"]);
-                }
+                }*/
                  
                 $this->email->send();
+                
                 $this -> data['content'] = 'formulario_ok';
                 $this -> load -> view('layout', $this -> data);
                 

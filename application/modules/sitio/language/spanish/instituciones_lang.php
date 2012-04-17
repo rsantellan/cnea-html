@@ -35,10 +35,3 @@ $lang['instituciones_reglamentacion_contenido']='<h2>Comisi&oacute;n nacional de
 	<p><strong>Art&iacute;culo 4&ordm;-</strong> Se otorga un plazo de 180 d&iacute;as, a partir de la vigencia de la presente reglamentaci&oacute;n, para que las instituciones que est&aacute;n comprendidas en la obligaci&oacute;n de inscribirse cumplan con dicha exigencia.</p>
 	<p><strong>Art&iacute;culo 5&ordm;-</strong> Una vez ingresadas las solicitudes por parte de las instituciones, la CNEA le adjudicar&aacute; un n&uacute;mero de tr&aacute;mite a cada Instituci&oacute;n al cual har&aacute; referencia en futuras acciones. La CNEA estudiar&aacute; las solicitudes y en un plazo de hasta 3 meses comunicar&aacute; a las Instituciones que est&aacute;n habilitadas para integrar el registro.</p>
 	<p><strong>Art&iacute;culo 6&ordm;-</strong> La CNEA publicar&aacute; un listado de las Instituciones incluidas en el Registro Nacional que se actualizar&aacute; cada 6 meses (en los meses de junio y diciembre).</p>';
-$lang['instituciones_registro_titulo']='registro nacional de instituciones';
-$lang['instituciones_registro_contenido_vacio']='A&uacute;n no hay registros personales';
-$lang['instituciones_registro_subtitulo']='Instituciones inscriptas';
-$lang['instituciones_formulario_titulo']='formulario para el registro nacional de instituciones';
-$lang['instituciones_formulario_subtitulo']='Los campos con asterisco (*) son requeridos para enviar la solicitud';
-$lang['instituciones_formulario_subtitulo_errores']='Por favor completar los campos marcados en rojo';
-$lang['instituciones_formulario_subtitulo_identificacion']='1- IDENTIFICACI&Oacute;N INSTITUCIONAL';
