@@ -36,6 +36,9 @@
               Naturaleza:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Naturaleza;?></span></td>
        </tr>
        <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Caracterización Institucional</td>
+        </tr>
+       <tr>
         	<td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
               1º NIVEL* (por ejemplo UdelR):<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $PrimerNivel;?></span></td>
         </tr>
@@ -55,6 +58,9 @@
         	<td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
               Domicilio Fiscal (si corresponde):<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $DomicilioFiscal;?></span></td>
         </tr>
+        <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Unidades dependientes en otra ubicación con animales de experimentación (indicar nombre, dirección y DICOSE de cada una)</td>
+        </tr>
        <tr>
         	<td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
               DICOSE (si corresponde):<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Dicose;?></span></td>
@@ -69,6 +75,15 @@
         <?php endfor; ?>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left"><span style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"></span></td>
+        </tr>
+        <tr>
+            <td style="padding-bottom:10px; font-size:13px; font-weight:bold;text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#AB1917;">
+              2- TIPO DE ESTABLECIMIENTO
+            </td>
+        </tr>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              <span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $TipoEstablecimiento;?></span></td>
         </tr>
         <tr>
             <td style="padding-bottom:10px; font-size:13px; font-weight:bold;text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#AB1917;">
@@ -95,22 +110,69 @@
               4- COMITÉ DE ÉTICA EN EL USO DE ANIMALES (CEUA)*
             </td>
         </tr>
+        <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Indique su integración</td>
+        </tr>
+        <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Docente / Investigador</td>
+        </tr>
         <?php
-          for($i=0; $i<count($Comite); $i++):
+          for($i=0; $i<count($ComiteDocente); $i++):
         ?>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
-              Nombre y Apellido <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Comite[$i]['nombre'];?></span></td>
+              Nombre y Apellido <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteDocente[$i]['nombre'];?></span></td>
         </tr>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
-              Profesión <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Comite[$i]['profesion'];?></span></td>
+              Profesión <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteDocente[$i]['profesion'];?></span></td>
         </tr>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
-              Ocupación <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Comite[$i]['ocupacion'];?></span></td>
+              Ocupación <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteDocente[$i]['ocupacion'];?></span></td>
         </tr>
         <?php endfor; ?>
+        <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Veterinario</td>
+        </tr>
+        <?php
+          for($i=0; $i<count($ComiteVeterinario); $i++):
+        ?>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              Nombre y Apellido <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteVeterinario[$i]['nombre'];?></span></td>
+        </tr>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              Profesión <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteVeterinario[$i]['profesion'];?></span></td>
+        </tr>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              Ocupación <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteVeterinario[$i]['ocupacion'];?></span></td>
+        </tr>
+        <?php endfor; ?>
+        <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Sociedad Civil</td>
+        </tr>
+        <?php
+          for($i=0; $i<count($ComiteSociedad); $i++):
+        ?>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              Nombre y Apellido <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteSociedad[$i]['nombre'];?></span></td>
+        </tr>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              Profesión <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteSociedad[$i]['profesion'];?></span></td>
+        </tr>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              Ocupación <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteSociedad[$i]['ocupacion'];?></span></td>
+        </tr>
+        <?php endfor; ?>
+        <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Persona de contacto de la Institución</td>
+        </tr>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
               Observaciones:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ObservacionesComite;?></span></td>

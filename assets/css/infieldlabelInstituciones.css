@@ -1,0 +1,13 @@
+.infield
+{
+  top: -5px !important;
+}
+
+form.infield_form p{
+  position:relative !important;
+  margin-bottom: 0px !important;
+}  
+
+.hidden {
+  display: none;
+}

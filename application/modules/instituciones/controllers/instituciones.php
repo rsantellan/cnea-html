@@ -57,39 +57,30 @@ class instituciones extends MY_Controller{
   }
   
   function formulario() {
+        //$this->addJquery();
+        $this -> load -> helper('form');
+        $this -> load -> library('form_validation');
         $this -> addJavascript("jquery.js");
         $this -> addStyleSheet("skin1.css");
         $this -> addJavascript("jquery.infieldlabel.min.js");
-        $this -> addJavascript("basicInfieldFormPersonas.js");
-        $this -> addStyleSheet("infieldlabelPersonas.css");
-        $this -> load -> library('form_validation');
-        $this -> load -> helper('form');
+        $this -> addJavascript("basicInfieldFormInstituciones.js");
+        //$this->addJavascript("acreditacion.js");
+        $this -> addStyleSheet("infieldlabelInstituciones.css");
+        $this -> addJavascript("FormInstituciones.js");
 
-        /*$this -> form_validation -> set_rules('fecha', 'fecha', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('renovacion', 'renovacion', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('nombre', 'nombre', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('postal', 'postal', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('email', 'email', 'required|valid_email|max_length[255]');
-        $this -> form_validation -> set_rules('telefono', 'telefono', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('institucion', 'institucion', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('cargo', 'cargo', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('realizacion', 'realizacion', 'required|max_length[5]');
-        $this -> form_validation -> set_rules('curso_1', 'curso_1', 'max_length[255]');
-        $this -> form_validation -> set_rules('curso_2', 'curso_2', 'max_length[255]');
-        $this -> form_validation -> set_rules('curso_3', 'curso_3', 'max_length[255]');
-        $this -> form_validation -> set_rules('observaciones_curso', 'observaciones_curso', 'max_length[1000]');
-        $this -> form_validation -> set_rules('acreditacion', 'acreditacion', 'max_length[5]');
-        $this -> form_validation -> set_rules('acreditacion_institucion', 'acreditacion_institucion', 'max_length[255]');
-        $this -> form_validation -> set_rules('acreditacion_categoria', 'acreditacion_categoria', 'max_length[255]');
-        $this -> form_validation -> set_rules('acreditacion_fecha', 'acreditacion_fecha', 'max_length[255]');
-        $this -> form_validation -> set_rules('categoria_a', 'categoria_a', 'max_length[255]');
-        $this -> form_validation -> set_rules('categoria_b', 'categoria_b', 'max_length[255]');
-        $this -> form_validation -> set_rules('categoria_c1', 'categoria_c1', 'max_length[255]');
-        $this -> form_validation -> set_rules('categoria_c2', 'categoria_c2', 'max_length[255]');*/
-
+        $this -> form_validation -> set_rules('NombreInsititucion', 'NombreInsititucion', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('Naturaleza', 'Naturaleza', 'required');
+        $this -> form_validation -> set_rules('PrimerNivel', 'PrimerNivel', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('SegundoNivel', 'SegundoNivel', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('TercerNivel', 'TercerNivel', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('DomicilioInstitucional', 'DomicilioInstitucional', 'required|max_length[255]');        
+        $this -> form_validation -> set_rules('TipoEstablecimiento', 'TipoEstablecimiento', 'required');
+        $this -> form_validation -> set_rules('NombreContacto', 'NombreContacto', 'required');
+        $this -> form_validation -> set_rules('MailContacto', 'MailContacto', 'required|valid_email');
+        $this -> form_validation -> set_rules('TelContacto', 'TelContacto', 'required');
+        
         $this -> form_validation -> set_error_delimiters('<br /><span class="error">', '</span>');
         if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
-        //if (FALSE)// validation hasn't been passed
         {
             $this -> data['errores'] = array();
             $this -> data['content'] = 'formulario';
@@ -98,7 +89,7 @@ class instituciones extends MY_Controller{
             $send_email = true;
 
             //Chequeo los archivos a subir.
-            $config['upload_path'] = sys_get_temp_dir() . "/";
+            $config['upload_path'] = sys_get_temp_dir();
             $config['allowed_types'] = 'pdf|doc|docx';
             $this -> load -> library('upload', $config);
             $errores = array();
@@ -142,13 +133,35 @@ class instituciones extends MY_Controller{
                 }
             }
             
-            //comite
-            $arr_comite = array();
+            //docente
+            $arr_comite_docente = array();
             $post = $_POST;
             foreach($post as $k=>$v){
-                if(substr_count($k, "NombreApellido_")>0){
-                    $i = (int)str_replace("NombreApellido_","",$k);
-                    $arr_comite[] = array('nombre' => $v, 'profesion' => $_POST['Profesion_'.$i], 'ocupacion' => $_POST['Ocupacion_'.$i]);
+                if(substr_count($k, "DocenteNombreApellido_")>0){
+                    $i = (int)str_replace("DocenteNombreApellido_","",$k);
+                    $arr_comite_docente[] = array('nombre' => $v, 'profesion' => $_POST['DocenteProfesion_'.$i], 'ocupacion' => $_POST['DocenteOcupacion_'.$i]);
+                    //..
+                }
+            }
+            
+            //veterinario
+            $arr_comite_veterinario = array();
+            $post = $_POST;
+            foreach($post as $k=>$v){
+                if(substr_count($k, "VeterinarioNombreApellido_")>0){
+                    $i = (int)str_replace("VeterinarioNombreApellido_","",$k);
+                    $arr_comite_veterinario[] = array('nombre' => $v, 'profesion' => $_POST['VeterinarioProfesion_'.$i], 'ocupacion' => $_POST['VeterinarioOcupacion_'.$i]);
+                    //..
+                }
+            }
+            
+            //sociedad
+            $arr_comite_sociedad = array();
+            $post = $_POST;
+            foreach($post as $k=>$v){
+                if(substr_count($k, "SociedadNombreApellido_")>0){
+                    $i = (int)str_replace("SociedadNombreApellido_","",$k);
+                    $arr_comite_sociedad[] = array('nombre' => $v, 'profesion' => $_POST['SociedadProfesion_'.$i], 'ocupacion' => $_POST['SociedadOcupacion_'.$i]);
                     //..
                 }
             }
@@ -169,7 +182,9 @@ class instituciones extends MY_Controller{
                     'UnidadesDependientes' => $arr_unidep,
                     'TipoEstablecimiento' => $_POST['TipoEstablecimiento'],
                     'Especie' => $arr_especies,
-                    'Comite' => $arr_comite,
+                    'ComiteDocente' => $arr_comite_docente,
+                    'ComiteVeterinario' => $arr_comite_veterinario,
+                    'ComiteSociedad' => $arr_comite_sociedad,
                     'ObservacionesComite' => $_POST['ObservacionesComite'],
                     'NombreContacto' => $_POST['NombreContacto'],
                     'MailContacto' => $_POST['MailContacto'],
@@ -178,9 +193,7 @@ class instituciones extends MY_Controller{
                 
                 //..
                 
-                //die(print_r($form_data));
                 $message = $this -> load -> view('instituciones/email_formulario', $form_data, TRUE);
-                
                 $this->load->model('contacto/mail_db');
                 $return = $this->mail_db->retrieveContactMailInfo();
                 //Con estos datos preparo un email para enviar.
