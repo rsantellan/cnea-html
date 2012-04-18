@@ -198,6 +198,14 @@ class tank_auth
 		return NULL;
 	}
 
+    public function hashPassword($password)
+    {
+      $hasher = new PasswordHash(
+					$this->ci->config->item('phpass_hash_strength', 'tank_auth'),
+					$this->ci->config->item('phpass_hash_portable', 'tank_auth'));
+      $hashed_password = $hasher->HashPassword($password);
+      return $hashed_password;
+    }
 	/**
 	 * Check if username available for registering.
 	 * Can be called for instant form validation.

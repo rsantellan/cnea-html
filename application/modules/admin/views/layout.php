@@ -39,11 +39,13 @@
       <?php endif; ?>
       
 			<li><a href="<?php echo site_url('language/index');?>">Idiomas</a></li>
+      <!--      
       <?php if($menu_id == 'users'): ?>
         <li><span class="active">Usuarios</span></li>
       <?php else: ?>
         <li><a href="<?php echo site_url('authadmin/index');?>">Usuarios</a></li>
       <?php endif; ?>
+      -->  
       <?php if($menu_id == 'actas'): ?>
         <li><span class="active">Actas</span></li>
       <?php else: ?>

@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="cache-control" content="no-cache"/>
+    <title>Administrador idiomas</title>
 	<link href="<?php echo base_url();?>assets/language/css/style.css" type="text/css" rel="stylesheet"/>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
     
@@ -135,9 +136,11 @@
               <?php echo $this->lang->line('language_file_list_link');?>
             </a>
             &nbsp;|&nbsp;
+            <!--
             <a href="#" id="new_file">
               <?php echo $this->lang->line('language_create_file_link');?>
             </a>
+            -->
 			<div class="right">
               <?php echo $this->lang->line('language_module_label');?>: <strong><?php echo $module;?></strong> 
               <?php echo $this->lang->line('language_lang_label');?>: <strong><?php echo $language;?></strong>
@@ -265,8 +268,10 @@
 				<?php foreach($keys as $key) :?>
 					<div class="row" id="row_<?php echo $key;?>">
 						<label class="left"><?php echo $key;?> <?php if(is_array($lang)&&!array_key_exists($key,$lang)){ ?><small>(NEW!)</small><?php }?> : </label>
-						<input type="button" class="delete_key right" value="<?php echo $this->lang->line('language_delete_key');?>" id="key_<?php echo $key;?>"/>
-						<?php if(isset($pattern) && array_key_exists($key,$pattern)){
+						<!--
+                        <input type="button" class="delete_key right" value="<?php echo $this->lang->line('language_delete_key');?>" id="key_<?php echo $key;?>"/>
+						-->
+                          <?php if(isset($pattern) && array_key_exists($key,$pattern)){
 							echo '<p class="pattern clear">'.$pattern[$key].'</p>';
 						}?>
                         <!--
@@ -289,8 +294,10 @@
             <input type="hidden" name="module" value="<?php echo $module;?>" />
 			<input type="hidden" name="filename" value="<?php echo $file;?>" />
 			<input type="hidden" name="language" value="<?php echo $language;?>" />
-			<input type="button" name="add_new_key" id="add_new_key" value="<?php echo $this->lang->line('language_add_new_key');?>" />
-			<input type="submit" name="change" value="<?php echo $this->lang->line('language_save_changes');?>"/>
+			<!--
+            <input type="button" name="add_new_key" id="add_new_key" value="<?php echo $this->lang->line('language_add_new_key');?>" />
+			-->
+            <input type="submit" name="change" value="<?php echo $this->lang->line('language_save_changes');?>"/>
 		</form>
 		</div>
 		<div class="box clear">

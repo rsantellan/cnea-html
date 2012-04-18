@@ -212,9 +212,7 @@
         <input id="categoria_c2" type="text" name="categoria_c2" maxlength="255" value="<?php echo set_value('categoria_c2'); ?>"  />
     </p>
     <?php echo lang("personal_formulario_texto_categoria"); ?>
-    
-    <h5>Firma del Interesado*</h5>
-    <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>
+    <?php echo lang("personal_formulario_texto_firma_persona"); ?>
 <!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_persona_upload'])): ?>
 		<?php echo $errores['firma_persona_upload'];?>
@@ -224,9 +222,7 @@
     <button class="adjuntar">Adjuntar</button>
     <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
     <div class="clear"></div>
-    <h5>Firma de un integrante del CEUA de su Institución*</h5>
-    <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>
-    
+    <?php echo lang("personal_formulario_texto_firma_institucion"); ?>
 <!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_institucion_upload'])): ?>
 		<?php echo $errores['firma_institucion_upload'];?>

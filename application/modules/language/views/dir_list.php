@@ -18,6 +18,7 @@
 		});
    });
 	</script>
+    <title>Administrador idiomas</title>
 </head>
 <body>
 	<div id="wrapper">

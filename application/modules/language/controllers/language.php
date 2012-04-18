@@ -33,7 +33,7 @@ class Language extends MY_Controller {
     $this->load->model(array('model_language'));
     $this->load->library(array('session')); //load session if youre not doing it in autoload
     $this->load->database(); //load database if youre not doing it in autoload
-    $this->load->language('language', 'english'); //you can delete it if you have translation for you language
+    $this->load->language('language'); //you can delete it if you have translation for you language
     $this->config->load('language_editor');
   }
 
@@ -71,7 +71,7 @@ class Language extends MY_Controller {
    * @return void
    */
   function lang_file($l=FALSE, $file=FALSE, $module = NULL) {
-    $this->output->enable_profiler(TRUE);
+    //$this->output->enable_profiler(TRUE);
     $exists = false;
     if ($l !== FALSE && $file !== FALSE) {
       $mFile = "";

@@ -31,8 +31,12 @@ class Authadmin extends MY_Controller{
     function index()
     {
       
+      
       $this->load->model('auth/users');
       $this->load->library('tank_auth', true, NULL, 'auth');
+      
+      //$pass = $this->tank_auth->hashPassword('Cnea.Adm1n1strador');
+      //var_dump($pass);
       $this->data['user_list'] = $this->users->listUsers();
       $rows = array();
       foreach($this->data['user_list'] as $user)

@@ -91,4 +91,10 @@ $lang['personal_formulario_texto_categoria']='<span><strong>(*)</strong>Si aspir
       • Formación de recursos humanos<br />
       • Otros antecedentes en el uso de animales de experimentación.</span>';
 $lang['personal_formulario_enviado']= '<p>La solicitud se ha enviado correctamente, la CNEA se pondrá con contacto con usted.</p>';	  
+
+$lang['personal_formulario_texto_firma_persona']= '<h5>Firma del Interesado*</h5>
+    <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>';	  
+
+$lang['personal_formulario_texto_firma_institucion']= '<h5>Firma del Interesado y firma de un integrante del CEUA*</h5>
+    <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>';
 /* End of file acreditaciones_lang.php */

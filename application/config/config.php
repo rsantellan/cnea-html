@@ -369,7 +369,7 @@ $config['proxy_ips'] = '';
 | 'ERROR','DEBUG','INFO' are the system defaults. 
 */
 //$config['show_in_log']= array('DEBUG','ERROR','INFO', 'QUERIES'); 
-$config['show_in_log']= array('ERROR','INFO', 'QUERIES', 'MY_USER'); 
+$config['show_in_log']= array('DEBUG', 'ERROR','INFO', 'MY_USER'); 
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

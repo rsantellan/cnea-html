@@ -13,15 +13,17 @@
               }
             ?>
 			<li><a href="<?php echo site_url($site_url);?>"><?php echo $dir_name;?> (files: <?php echo $d['count'];?>)</a>
-				<?php echo form_open(site_url('/language/delete_language'));?>
-					<input type="hidden" name="language" value="<?php echo $d['dir'];?>" />
+				<?php //echo form_open(site_url('/language/delete_language'));?>
+<!--					<input type="hidden" name="language" value="<?php echo $d['dir'];?>" />
 					<input type="submit" name="delete" value="<?php echo $this->lang->line('language_delete_lang');?>" class="button_del" />
 				</form>
+-->
 			<p class="clear"></p></li>
 		<?php } ?>
 		</ul>
 		<div class="clear"></div><br/>
 	<?php } ?>
+<!--        
 	<p><a href="#" id="new_lang"><?php echo $this->lang->line('language_create_lang');?></a></p>
 	<div id="new_lang_form">
 		<?php echo form_open(site_url('/language/create_new_language'));?>
@@ -42,4 +44,5 @@
 			</div>
 		</form>
 	</div>
+-->    
 </div>
