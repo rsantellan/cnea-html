@@ -78,90 +78,116 @@
         <div class="clear"></div>
         <h4>3- ESPECIES CRIADAS Y/O UTILIZADAS* (si es necesario, agregue más filas)</h4>
         <div id="especies">
-                <div id="especies_1">
+                <?php
+                $i = 0;
+                while($i==0 || set_value('NombreEspecie_'.$i)!=""){
+                $i++;
+                ?>
+                <div id="especies_<?php echo $i; ?>">
                         <p>
-                                <label for="NombreEspecie_1">Nombre de Especie</label>
-                                <input class="input_short <?php echo (form_error('NombreEspecie_1') != "")? "input_error" : "";?>" id="NombreEspecie_1" type="text" name="NombreEspecie_1"  value="<?php echo set_value('NombreEspecie_1'); ?>"  />
+                                <label for="NombreEspecie_<?php echo $i; ?>">Nombre de Especie</label>
+                                <input class="input_short <?php echo (form_error('NombreEspecie_'.$i) != "")? "input_error" : "";?>" id="NombreEspecie_<?php echo $i; ?>" type="text" name="NombreEspecie_<?php echo $i; ?>"  value="<?php echo set_value('NombreEspecie_'.$i); ?>"  />
                         </p>
                         <div class="float_right">
                                 <label style="margin:5px;">USO</label>
-                                <input type="radio" class="radiobuttom" name="TipoEspecie_1" value="uso" checked="checked" />
+                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" checked="checked" />
                                 <label style="margin:5px 5px 5px 15px;">CRÍA</label>
-                                <input type="radio" class="radiobuttom" name="TipoEspecie_1" value="cria" />
+                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="cria" />
                         </div>
                         <div class="clear"></div>
                         <p>
-                                <label for="ObservacionesEspecie_1">Observaciones</label>
-                                <textarea class="<?php echo (form_error('ObservacionesEspecie_1') != "")? "input_error" : "";?>" id="ObservacionesEspecie_1" name="ObservacionesEspecie_1" value="<?php echo set_value('ObservacionesEspecie_1'); ?>"></textarea>
+                                <label for="ObservacionesEspecie_<?php echo $i; ?>">Observaciones</label>
+                                <textarea class="<?php echo (form_error('ObservacionesEspecie_'.$i) != "")? "input_error" : "";?>" id="ObservacionesEspecie_<?php echo $i; ?>" name="ObservacionesEspecie_<?php echo $i; ?>" value="<?php echo set_value('ObservacionesEspecie_'.$i); ?>"></textarea>
                         </p>
                 </div>
+                <?php
+                }
+                ?>
         </div>
         <a href="javascript:agregarEscpecie();" style="float:right">Agregar más</a><div class="clear"></div>
         <h4>4- COMITÉ DE ÉTICA EN EL USO DE ANIMALES (CEUA)*</h4>
         <h5>Indique su integración</h5>
         <h5>Docente / Investigador</h5>
         <div id="docentes">
-                <div id="docentes_1">
+                <?php
+                $i = 1;
+                while($i==1 || set_value('DocenteNombreApellido_'.$i)!=""){
+                ?>
+                <div id="docentes_<?php echo $i; ?>">
                         <p>
-                                <label for="DocenteNombreApellido_1" >Nombre y Apellido</label>
-                                <input class="input_comite_name <?php echo (form_error('DocenteNombreApellido_1') != "")? "input_error" : "";?>" id="DocenteNombreApellido_1" type="text" name="DocenteNombreApellido_1"  value="<?php echo set_value('DocenteNombreApellido_1'); ?>"  />
+                                <label for="DocenteNombreApellido_<?php echo $i; ?>" >Nombre y Apellido</label>
+                                <input class="<?php echo (form_error('DocenteNombreApellido_'.$i) != "")? "input_error" : "";?>" id="DocenteNombreApellido_<?php echo $i; ?>" type="text" name="DocenteNombreApellido_<?php echo $i; ?>"  value="<?php echo set_value('DocenteNombreApellido_'.$i); ?>"  />
                         </p>
                         <p>
-                                <label for="DocenteProfesion_1" >Profesión</label>
-                                <input class="input_comite_short <?php echo (form_error('DocenteProfesion_1') != "")? "input_error" : "";?>" id="DocenteProfesion_1" type="text" name="DocenteProfesion_1"  value="<?php echo set_value('DocenteProfesion_1'); ?>"  />
+                                <label for="DocenteProfesion_<?php echo $i; ?>" >Profesión</label>
+                                <input class="<?php echo (form_error('DocenteProfesion_'.$i) != "")? "input_error" : "";?>" id="DocenteProfesion_<?php echo $i; ?>" type="text" name="DocenteProfesion_<?php echo $i; ?>"  value="<?php echo set_value('DocenteProfesion_'.$i); ?>"  />
                         </p>
                         <p>
-                                <label for="DocenteOcupacion_1" >Ocupación</label>
-                                <input class="input_comite_short <?php echo (form_error('DocenteProfesion_1') != "")? "input_error" : "";?>" id="DocenteOcupacion_1" type="text" name="DocenteOcupacion_1"  value="<?php echo set_value('DocenteOcupacion_1'); ?>"  />
+                                <label for="DocenteOcupacion_<?php echo $i; ?>" >Ocupación</label>
+                                <input class="<?php echo (form_error('DocenteProfesion_'.$i) != "")? "input_error" : "";?>" id="DocenteOcupacion_<?php echo $i; ?>" type="text" name="DocenteOcupacion_<?php echo $i; ?>"  value="<?php echo set_value('DocenteOcupacion_'.$i); ?>"  />
                         </p>
                 </div>
-                <div class="clear"></div>
+                <?php
+                $i++;
+                }
+                ?>
         </div>
         <a href="javascript:agregarDoncente();" style="float:right">Agregar más</a><div class="clear"></div>
         <h5>Veterinario</h5>
         <div id="veterinarios">
-                <div id="veterinarios_1">
+                <?php
+                $i = ;
+                while($i==1 || set_value('VeterinarioNombreApellido_'.$i)!=""){
+                ?>
+                <div id="veterinarios_<?php echo $i; ?>">
                         <p>
-                                <label for="VeterinarioNombreApellido_1" >Nombre y Apellido</label>
-                                <input class="input_comite_name <?php echo (form_error('VeterinarioNombreApellido_1') != "")? "input_error" : "";?>" id="VeterinarioNombreApellido_1" type="text" name="VeterinarioNombreApellido_1"  value="<?php echo set_value('VeterinarioNombreApellido_1'); ?>"  />
+                                <label for="VeterinarioNombreApellido_<?php echo $i; ?>" >Nombre y Apellido</label>
+                                <input class="<?php echo (form_error('VeterinarioNombreApellido_'.$i) != "")? "input_error" : "";?>" id="VeterinarioNombreApellido_<?php echo $i; ?>" type="text" name="VeterinarioNombreApellido_<?php echo $i; ?>"  value="<?php echo set_value('VeterinarioNombreApellido_'.$i); ?>"  />
                         </p>
                         <p>
-                                <label for="VeterinarioProfesion_1" >Profesión</label>
-                                <input class="input_comite_short <?php echo (form_error('VeterinarioProfesion_1') != "")? "input_error" : "";?>" id="VeterinarioProfesion_1" type="text" name="VeterinarioProfesion_1"  value="<?php echo set_value('VeterinarioProfesion_1'); ?>"  />
+                                <label for="VeterinarioProfesion_<?php echo $i; ?>" >Profesión</label>
+                                <input class="<?php echo (form_error('VeterinarioProfesion_'.$i) != "")? "input_error" : "";?>" id="VeterinarioProfesion_<?php echo $i; ?>" type="text" name="VeterinarioProfesion_<?php echo $i; ?>"  value="<?php echo set_value('VeterinarioProfesion_'.$i); ?>"  />
                         </p>
                         <p>
-                                <label for="VeterinarioOcupacion_1" >Ocupación</label>
-                                <input class="input_comite_short <?php echo (form_error('VeterinarioProfesion_1') != "")? "input_error" : "";?>" id="VeterinarioOcupacion_1" type="text" name="VeterinarioOcupacion_1"  value="<?php echo set_value('VeterinarioOcupacion_1'); ?>"  />
+                                <label for="VeterinarioOcupacion_<?php echo $i; ?>" >Ocupación</label>
+                                <input class="<?php echo (form_error('VeterinarioProfesion_'.$i) != "")? "input_error" : "";?>" id="VeterinarioOcupacion_<?php echo $i; ?>" type="text" name="VeterinarioOcupacion_<?php echo $i; ?>"  value="<?php echo set_value('VeterinarioOcupacion_'.$i); ?>"  />
                         </p>
                 </div>
-                <div class="clear"></div>
+                <?php
+                $i++;
+                }
+                ?>
         </div>
         <a href="javascript:agregarVeterinario();" style="float:right">Agregar más</a><div class="clear"></div>
         <h5>Sociedad Civil</h5>
         <div id="sociedades">
-                <div id="sociedades_1">
+                <?php
+                $i = 1;
+                while($i==1 || set_value('SociedadNombreApellido_'.$i)!=""){
+                ?>
+                <div id="sociedades_<?php echo $i; ?>">
                         <p>
-                                <label for="SociedadNombreApellido_1" >Nombre y Apellido</label>
-                                <input class="input_comite_name <?php echo (form_error('SociedadNombreApellido_1') != "")? "input_error" : "";?>" id="SociedadNombreApellido_1" type="text" name="SociedadNombreApellido_1"  value="<?php echo set_value('SociedadNombreApellido_1'); ?>"  />
+                                <label for="SociedadNombreApellido_<?php echo $i; ?>" >Nombre y Apellido</label>
+                                <input class="<?php echo (form_error('SociedadNombreApellido_'.$i) != "")? "input_error" : "";?>" id="SociedadNombreApellido_<?php echo $i; ?>" type="text" name="SociedadNombreApellido_<?php echo $i; ?>"  value="<?php echo set_value('SociedadNombreApellido_'.$i); ?>"  />
                         </p>
-                        <div class="clear"></div>
                         <p>
                                 <label for="SociedadProfesion_1" >Profesión</label>
-                                <input class="input_comite_short <?php echo (form_error('SociedadProfesion_1') != "")? "input_error" : "";?>" id="SociedadProfesion_1" type="text" name="SociedadProfesion_1"  value="<?php echo set_value('SociedadProfesion_1'); ?>"  />
+                                <input class="<?php echo (form_error('SociedadProfesion_'.$i) != "")? "input_error" : "";?>" id="SociedadProfesion_<?php echo $i; ?>" type="text" name="SociedadProfesion_<?php echo $i; ?>"  value="<?php echo set_value('SociedadProfesion_'.$i); ?>"  />
                         </p>
-                        <div class="clear"></div>
                         <p>
                                 <label for="SociedadOcupacion_1" >Ocupación</label>
-                                <input class="input_comite_short <?php echo (form_error('SociedadProfesion_1') != "")? "input_error" : "";?>" id="SociedadOcupacion_1" type="text" name="SociedadOcupacion_1"  value="<?php echo set_value('SociedadOcupacion_1'); ?>"  />
+                                <input class="<?php echo (form_error('SociedadProfesion_'.$i) != "")? "input_error" : "";?>" id="SociedadOcupacion_<?php echo $i; ?>" type="text" name="SociedadOcupacion_<?php echo $i; ?>"  value="<?php echo set_value('SociedadOcupacion_'.$i); ?>"  />
                         </p>
-                        <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
+                <?php
+                $i++;
+                }
+                ?>
         </div>
         <a href="javascript:agregarSociedad();" style="margin-bottom:10px; float:right;">Agregar más</a><div class="clear"></div>
         <p>
                 <label for="ObservacionesComite">Observaciones</label>
-                <input class="<?php echo (form_error('ObservacionesComite') != "")? "input_error" : "";?>" id="ObservacionesComite" type="text" name="ObservacionesComite"  value="<?php echo set_value('ObservacionesComite'); ?>"  />
+                <textarea class="<?php echo (form_error('ObservacionesComite') != "")? "input_error" : "";?>" id="ObservacionesComite" name="ObservacionesComite" value="<?php echo set_value('ObservacionesComite'); ?>"></textarea>
         </p>
         <span>-	Si su Institución no tiene constituido un CEUA, deberá crearla. Su integración esta especificada en el Artículo 10 de la Ley Nº 18.611- “La Comisión de Ética en el Uso de Animales estará integrada al menos por: un médico veterinario, un docente o investigador, un representante de la comunidad local…”</span>
         <p>Indique fecha de constitución del CEUA y adjunte copia de la resolución de su institución*.</p>
@@ -187,8 +213,11 @@
         </p>
         <h5>Responsable Institucional</h5>
         <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada*</span>
-        <input type="file" name="responsable_institucional" class="file">
-        <button>Adjuntar</button>
+        <!--<input type="file" name="responsable_institucional" class="file">
+        <button>Adjuntar</button>-->
+        <input type="file" name="responsable_institucional" id="responsable_institucional" />
+        <input type="button" class="button button_short realizacion_field" value="adjuntar" />
+        <div class="clear"></div>
         <a href="#" class="descargar descargar_forms">descargar</a>
         <div class="clear"></div>
         <input type="submit" class="button button_large" value="enviar formulario" />

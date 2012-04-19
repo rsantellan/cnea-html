@@ -69,15 +69,71 @@ class instituciones extends MY_Controller{
         $this -> addJavascript("FormInstituciones.js");
 
         $this -> form_validation -> set_rules('NombreInsititucion', 'NombreInsititucion', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('RazonSocial', 'RazonSocial', 'max_length[255]');
+        $this -> form_validation -> set_rules('RUT', 'RUT', 'max_length[255]');
         $this -> form_validation -> set_rules('Naturaleza', 'Naturaleza', 'required');
         $this -> form_validation -> set_rules('PrimerNivel', 'PrimerNivel', 'required|max_length[255]');
         $this -> form_validation -> set_rules('SegundoNivel', 'SegundoNivel', 'required|max_length[255]');
         $this -> form_validation -> set_rules('TercerNivel', 'TercerNivel', 'required|max_length[255]');
         $this -> form_validation -> set_rules('DomicilioInstitucional', 'DomicilioInstitucional', 'required|max_length[255]');        
-        $this -> form_validation -> set_rules('TipoEstablecimiento', 'TipoEstablecimiento', 'required');
-        $this -> form_validation -> set_rules('NombreContacto', 'NombreContacto', 'required');
-        $this -> form_validation -> set_rules('MailContacto', 'MailContacto', 'required|valid_email');
-        $this -> form_validation -> set_rules('TelContacto', 'TelContacto', 'required');
+        $this -> form_validation -> set_rules('DomicilioFiscal', 'DomicilioFiscal', 'max_length[255]');
+        $this -> form_validation -> set_rules('Dicose', 'Dicose', 'max_length[255]');
+        $this -> form_validation -> set_rules('UnidadesDependientes1', 'UnidadesDependientes1', 'max_length[255]');
+        $this -> form_validation -> set_rules('UnidadesDependientes2', 'UnidadesDependientes2', 'max_length[255]');
+        $this -> form_validation -> set_rules('UnidadesDependientes3', 'UnidadesDependientes3', 'max_length[255]');
+        $this -> form_validation -> set_rules('UnidadesDependientes4', 'UnidadesDependientes4', 'max_length[255]');
+        $this -> form_validation -> set_rules('TipoEstablecimiento', 'TipoEstablecimiento', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('ObservacionesComite', 'ObservacionesComite', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('NombreContacto', 'NombreContacto', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('MailContacto', 'MailContacto', 'required|valid_email|max_length[255]');
+        $this -> form_validation -> set_rules('TelContacto', 'TelContacto', 'required|max_length[255]');
+        
+        //especies
+        $post = $_POST;
+        $i = 0;
+        foreach($post as $k=>$v){
+            if(substr_count($k, "NombreEspecie_")>0){
+                $i++;
+                $this -> form_validation -> set_rules('NombreEspecie_'.$i, 'NombreEspecie_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('ObservacionesEspecie_'.$i, 'ObservacionesEspecie_'.$i, 'max_length[255]');
+            }
+        }
+        
+        //docente
+        $post = $_POST;
+        $i = 0;
+        foreach($post as $k=>$v){
+            if(substr_count($k, "DocenteNombreApellido_")>0){
+                $i++;
+                $this -> form_validation -> set_rules('DocenteNombreApellido_'.$i, 'DocenteNombreApellido_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('DocenteProfesion_'.$i, 'DocenteProfesion_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('DocenteOcupacion_'.$i, 'DocenteOcupacion_'.$i, 'max_length[255]');
+            }
+        }
+        
+        //veterinario
+        $post = $_POST;
+        $i = 0;
+        foreach($post as $k=>$v){
+            if(substr_count($k, "VeterinarioNombreApellido_")>0){
+                $i++;
+                $this -> form_validation -> set_rules('VeterinarioNombreApellido_'.$i, 'VeterinarioNombreApellido_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('VeterinarioProfesion_'.$i, 'VeterinarioProfesion_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('VeterinarioOcupacion_'.$i, 'VeterinarioOcupacion_'.$i, 'max_length[255]');
+            }
+        }
+        
+        //sociedad
+        $post = $_POST;
+        $i = 0;
+        foreach($post as $k=>$v){
+            if(substr_count($k, "SociedadNombreApellido_")>0){
+                $i++;
+                $this -> form_validation -> set_rules('SociedadNombreApellido_'.$i, 'SociedadNombreApellido_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('SociedadProfesion_'.$i, 'SociedadProfesion_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('SociedadOcupacion_'.$i, 'SociedadOcupacion_'.$i, 'max_length[255]');
+            }
+        }
         
         $this -> form_validation -> set_error_delimiters('<br /><span class="error">', '</span>');
         if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
