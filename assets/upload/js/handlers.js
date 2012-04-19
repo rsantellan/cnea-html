@@ -183,5 +183,5 @@ function uploadComplete(file) {
 // This event comes from the Queue Plugin
 function queueComplete(numFilesUploaded) {
 	var status = document.getElementById("divStatus");
-	status.innerHTML = numFilesUploaded + " file" + (numFilesUploaded === 1 ? "" : "s") + " uploaded.";
+	status.innerHTML = numFilesUploaded + " archivo" + (numFilesUploaded === 1 ? "" : "s") + " subido"+ (numFilesUploaded === 1 ? "" : "s") +".";
 }

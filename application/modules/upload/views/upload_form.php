@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-<title>SWFUpload Demos - Simple Demo</title>
+<title>Administrador - Subir archivo</title>
 <link href="<?php echo base_url(); ?>assets/upload/css/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/swfupload/swfupload.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/js/swfupload.queue.js"></script>
@@ -24,7 +24,7 @@
 					progressTarget : "fsUploadProgress",
 					cancelButtonId : "btnCancel"
 				},
-				debug: true,
+				debug: false,
 
 				// Button settings
 				button_image_url: "<?php echo base_url(); ?>assets/upload/images/TestImageNoText_65x29.png",
@@ -54,17 +54,15 @@
 </head>
 <body>
 <div id="content">
-	<h2>Simple Demo</h2>
+	<h2>Subir archivos</h2>
 	<?php echo form_open_multipart('upload/do_upload');?>
-		<p>This page demonstrates a simple usage of SWFUpload.  It uses the Queue Plugin to simplify uploading or cancelling all queued files.</p>
-
 			<div class="fieldset flash" id="fsUploadProgress">
-			<span class="legend">Upload Queue</span>
+			<span class="legend">Cola de archivos</span>
 			</div>
-		<div id="divStatus">0 Files Uploaded</div>
+		<div id="divStatus">0 Archivos subidos</div>
 			<div>
 				<span id="spanButtonPlaceHolder"></span>
-				<input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
+				<input id="btnCancel" type="button" value="Cancelar" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
 			</div>
 
 	</form>

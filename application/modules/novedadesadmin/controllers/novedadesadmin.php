@@ -83,6 +83,7 @@ class novedadesadmin extends MY_Controller{
       $this->addJquery();
       $this->addFancyBox();
       $this->addJavascript("tiny_mce/tiny_mce.js");
+      //$this->addJavascript("jquery.markitup.js");
       $this->addModuleJavascript("novedadesadmin", "edit.js");
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");
@@ -115,7 +116,7 @@ class novedadesadmin extends MY_Controller{
         $is_valid = true;
       }
       $nombre = set_value('nombre');
-      $descripcion = html_escape(set_value('descripcion'));
+      $descripcion = html_escape(set_value('descripcion'), ENT_COMPAT | 0, 'UTF-8');
       //var_dump($nombre);
       $obj = new $this->novedad;
       $obj->setNombre($nombre);

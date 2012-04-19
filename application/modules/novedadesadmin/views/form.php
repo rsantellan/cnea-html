@@ -16,7 +16,7 @@ echo form_open('novedadesadmin/save', $attributes); ?>
 <div class="grid_16">
   <p>
       <label>Descripcion <small>Requerido</small></label>
-      <?php echo form_textarea( array( 'name' => 'descripcion', 'rows' => '5', 'cols' => '80', 'value' => html_entity_decode($object->getDescripcion())) )?>
+      <?php echo form_textarea( array( 'name' => 'descripcion', 'rows' => '5', 'cols' => '80', 'value' => html_entity_decode($object->getDescripcion(), ENT_COMPAT | 0, 'UTF-8')) )?>
   </p>
 </div>
 <div class="grid_16">

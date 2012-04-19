@@ -41,8 +41,12 @@ class novedad extends MY_Model{
       $this->nombre = $nombre;
     }    
     
-    public function getDescripcion() {
-      return html_entity_decode($this->descripcion);
+    public function getDescripcion($decode = true) {
+      if(!$decode)
+      {
+        return $this->descripcion;
+      }
+      return html_entity_decode($this->descripcion, ENT_COMPAT | 0, 'UTF-8');
     }
 
     public function setDescripcion($descripcion) {
