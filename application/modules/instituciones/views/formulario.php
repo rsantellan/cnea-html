@@ -21,10 +21,10 @@
         </p>
         <div class="select" style="margin-bottom:3px">
             <select name="Naturaleza">
-                <option value="" selected="selected">Naturaleza*</option>
-                <option>Pública</option>
-                <option>Privada</option>
-                <option>Mixta</option>
+                <option value="" <?php echo (set_value('Naturaleza') == "")? "selected=\"selected\"" : "";?>>Naturaleza*</option>
+                <option value="publica" <?php echo (set_value('Naturaleza') == "publica")? "selected=\"selected\"" : "";?>>Pública</option>
+                <option value="privada" <?php echo (set_value('Naturaleza') == "privada")? "selected=\"selected\"" : "";?>>Privada</option>
+                <option value="mixta" <?php echo (set_value('Naturaleza') == "mixta")? "selected=\"selected\"" : "";?>>Mixta</option>
             </select>
         </div>
         <span>Seleccionar uno de los tres tipos de naturaleza</span>
@@ -72,9 +72,18 @@
                 <input class="<?php echo (form_error('UnidadesDependientes4') != "")? "input_error" : "";?>" id="UnidadesDependientes4" type="text" name="UnidadesDependientes4"  value="<?php echo set_value('UnidadesDependientes4'); ?>"  />
         </p>
         <h4>2- TIPO DE ESTABLECIMIENTO*</h4>
-        <div class="float_left" style="margin-right:120px;"><label>Cría</label><input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="cria" checked="checked" /></div>
-        <div class="float_left"><label>Experimientación</label><input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="experimentación" /></div>
-        <div class="float_right"><label>Mixto</label><input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="mixto"/></div>
+        <div class="float_left" style="margin-right:120px;">
+                <label>Cría</label>
+                <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="cria" <?php echo (set_value('TipoEstablecimiento') == "cria")? "checked=\"checked\"" : "";?> />
+        </div>
+        <div class="float_left">
+                <label>Experimientación</label>
+                <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="experimentación" <?php echo (set_value('TipoEstablecimiento') == "experimentación")? "checked=\"checked\"" : "";?> />
+        </div>
+        <div class="float_right">
+                <label>Mixto</label>
+                <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="mixto" <?php echo (set_value('TipoEstablecimiento') == "mixto")? "checked=\"checked\"" : "";?> />
+        </div>
         <div class="clear"></div>
         <h4>3- ESPECIES CRIADAS Y/O UTILIZADAS* (si es necesario, agregue más filas)</h4>
         <div id="especies">
@@ -89,14 +98,22 @@
                         </p>
                         <div class="float_right">
                                 <label style="margin:5px;">USO</label>
-                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" checked="checked" />
+                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" <?php echo (set_value('TipoEspecie_'.$i) == "uso")? "checked=\"checked\"" : "";?> />
                                 <label style="margin:5px 5px 5px 15px;">CRÍA</label>
-                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="cria" />
+                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="cria" <?php echo (set_value('TipoEspecie_'.$i) == "cria")? "checked=\"checked\"" : "";?> />
                         </div>
                         <div class="clear"></div>
                         <p>
-                                <label for="ObservacionesEspecie_<?php echo $i; ?>">Observaciones</label>
-                                <textarea class="<?php echo (form_error('ObservacionesEspecie_'.$i) != "")? "input_error" : "";?>" id="ObservacionesEspecie_<?php echo $i; ?>" name="ObservacionesEspecie_<?php echo $i; ?>" value="<?php echo set_value('ObservacionesEspecie_'.$i); ?>"></textarea>
+                                <!--<label for="ObservacionesEspecie_<?php echo $i; ?>">Observaciones</label>
+                                <textarea class="<?php echo (form_error('ObservacionesEspecie_'.$i) != "")? "input_error" : "";?>" id="ObservacionesEspecie_<?php echo $i; ?>" name="ObservacionesEspecie_<?php echo $i; ?>" value="<?php echo set_value('ObservacionesEspecie_'.$i); ?>"></textarea>-->
+                                <label for="<?php echo 'ObservacionesEspecie_'.$i ?>">Observaciones</label><br />
+                                <?php 
+                                    $t_class = ""; 
+                                    if(form_error('ObservacionesEspecie_'.$i) != ""){
+                                        $t_class = "textarea_error";  
+                                    }
+                                ?>
+                                <?php echo form_textarea( array('class' => $t_class, 'id' => 'ObservacionesEspecie_'.$i, 'name' => 'ObservacionesEspecie_'.$i, 'rows' => '5', 'cols' => '80', 'value' => set_value('ObservacionesEspecie_'.$i) ) )?>
                         </p>
                 </div>
                 <?php
@@ -186,8 +203,16 @@
         </div>
         <a href="javascript:agregarSociedad();" style="margin-bottom:10px; float:right;">Agregar más</a><div class="clear"></div>
         <p>
-                <label for="ObservacionesComite">Observaciones</label>
-                <textarea class="<?php echo (form_error('ObservacionesComite') != "")? "input_error" : "";?>" id="ObservacionesComite" name="ObservacionesComite" value="<?php echo set_value('ObservacionesComite'); ?>"></textarea>
+                <!--<label for="ObservacionesComite">Observaciones</label>
+                <textarea class="<?php echo (form_error('ObservacionesComite') != "")? "input_error" : "";?>" id="ObservacionesComite" name="ObservacionesComite" value="<?php echo set_value('ObservacionesComite'); ?>"></textarea>-->
+                <label for="<?php echo 'ObservacionesComite' ?>">Observaciones</label><br />
+                <?php 
+                    $t_class = ""; 
+                    if(form_error('ObservacionesComite') != ""){
+                        $t_class = "textarea_error";  
+                    }
+                ?>
+                <?php echo form_textarea( array('class' => $t_class, 'id' => 'ObservacionesComite', 'name' => 'ObservacionesComite', 'rows' => '5', 'cols' => '80', 'value' => set_value('ObservacionesComite') ) )?>
         </p>
         <span>-	Si su Institución no tiene constituido un CEUA, deberá crearla. Su integración esta especificada en el Artículo 10 de la Ley Nº 18.611- “La Comisión de Ética en el Uso de Animales estará integrada al menos por: un médico veterinario, un docente o investigador, un representante de la comunidad local…”</span>
         <p>Indique fecha de constitución del CEUA y adjunte copia de la resolución de su institución*.</p>

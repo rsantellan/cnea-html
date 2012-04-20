@@ -86,6 +86,9 @@
               <span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $TipoEstablecimiento;?></span></td>
         </tr>
         <tr>
+                <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Caracterización Institucional</td>
+        </tr>
+        <tr>
             <td style="padding-bottom:10px; font-size:13px; font-weight:bold;text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#AB1917;">
               3- ESPECIES CRIADAS Y/O UTILIZADAS* (si es necesario, agregue más filas)
             </td>
@@ -95,7 +98,7 @@
         ?>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
-              Nombre de Especie <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Especie[$i]['nombre'];?></span></td>
+              Nombre de Especie <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Especie[$i]['nombre'];?> (<?php echo $Especie[$i]['tipo_especie'];?>)</span></td>
         </tr>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
@@ -170,6 +173,10 @@
               Ocupación <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ComiteSociedad[$i]['ocupacion'];?></span></td>
         </tr>
         <?php endfor; ?>
+        <tr>
+                <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
+              Observaciones:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $ObservacionesComite;?></span></td>
+        </tr>
         <tr>
                 <td style="padding:10px 0 10px 0; font-size:12px; font-weight:bold; text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold;">Persona de contacto de la Institución</td>
         </tr>
