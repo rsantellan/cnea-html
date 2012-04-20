@@ -74,7 +74,7 @@
         <h4>2- TIPO DE ESTABLECIMIENTO*</h4>
         <div class="float_left" style="margin-right:120px;">
                 <label>Cría</label>
-                <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="cria" <?php echo (set_value('TipoEstablecimiento') == "cria")? "checked=\"checked\"" : "";?> />
+                <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="cria" <?php echo (set_value('TipoEstablecimiento') == "cria" || set_value('TipoEstablecimiento') == "")? "checked=\"checked\"" : "";?> />
         </div>
         <div class="float_left">
                 <label>Experimientación</label>
@@ -98,7 +98,7 @@
                         </p>
                         <div class="float_right">
                                 <label style="margin:5px;">USO</label>
-                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" <?php echo (set_value('TipoEspecie_'.$i) == "uso")? "checked=\"checked\"" : "";?> />
+                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" <?php echo (set_value('TipoEspecie_'.$i) == "uso" || set_value('TipoEspecie_'.$i) == "")? "checked=\"checked\"" : "";?> />
                                 <label style="margin:5px 5px 5px 15px;">CRÍA</label>
                                 <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="cria" <?php echo (set_value('TipoEspecie_'.$i) == "cria")? "checked=\"checked\"" : "";?> />
                         </div>
@@ -113,7 +113,8 @@
                                         $t_class = "textarea_error";  
                                     }
                                 ?>
-                                <?php echo form_textarea( array('class' => $t_class, 'id' => 'ObservacionesEspecie_'.$i, 'name' => 'ObservacionesEspecie_'.$i, 'rows' => '5', 'cols' => '80', 'value' => set_value('ObservacionesEspecie_'.$i) ) )?>
+                                <?php //echo form_textarea( array('class' => $t_class, 'id' => 'ObservacionesEspecie_'.$i, 'name' => 'ObservacionesEspecie_'.$i, 'rows' => '5', 'cols' => '80', 'value' => set_value('ObservacionesEspecie_'.$i) ) )?>
+                                <textarea class="<?php echo $t_class; ?>" id="ObservacionesEspecie_<?php echo $i; ?>" name="ObservacionesEspecie_<?php echo $i; ?>"><?php echo set_value('ObservacionesEspecie_'.$i); ?></textarea>
                         </p>
                 </div>
                 <?php
@@ -212,7 +213,8 @@
                         $t_class = "textarea_error";  
                     }
                 ?>
-                <?php echo form_textarea( array('class' => $t_class, 'id' => 'ObservacionesComite', 'name' => 'ObservacionesComite', 'rows' => '5', 'cols' => '80', 'value' => set_value('ObservacionesComite') ) )?>
+                <?php //echo form_textarea( array('class' => $t_class, 'id' => 'ObservacionesComite', 'name' => 'ObservacionesComite', 'rows' => '5', 'cols' => '80', 'value' => set_value('ObservacionesComite') ) )?>
+                <textarea class="<?php echo $t_class; ?>" id="ObservacionesComite" name="ObservacionesComite"><?php echo set_value('ObservacionesComite'); ?></textarea>
         </p>
         <span>-	Si su Institución no tiene constituido un CEUA, deberá crearla. Su integración esta especificada en el Artículo 10 de la Ley Nº 18.611- “La Comisión de Ética en el Uso de Animales estará integrada al menos por: un médico veterinario, un docente o investigador, un representante de la comunidad local…”</span>
         <p>Indique fecha de constitución del CEUA y adjunte copia de la resolución de su institución*.</p>

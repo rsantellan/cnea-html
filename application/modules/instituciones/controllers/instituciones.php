@@ -96,6 +96,7 @@ class instituciones extends MY_Controller{
                 $i++;
                 $this -> form_validation -> set_rules('NombreEspecie_'.$i, 'NombreEspecie_'.$i, 'max_length[255]');
                 $this -> form_validation -> set_rules('ObservacionesEspecie_'.$i, 'ObservacionesEspecie_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('TipoEspecie_'.$i, 'TipoEspecie_'.$i, 'max_length[255]');
             }
         }
         
@@ -174,7 +175,6 @@ class instituciones extends MY_Controller{
                 if(substr_count($k, "UnidadesDependientes")>0){
                     $i = (int)str_replace("UnidadesDependientes","",$k);
                     $arr_unidep[] = $v;
-                    //..
                 }
             }
             
@@ -184,8 +184,7 @@ class instituciones extends MY_Controller{
             foreach($post as $k=>$v){
                 if(substr_count($k, "NombreEspecie_")>0){
                     $i = (int)str_replace("NombreEspecie_","",$k);
-                    $arr_especies[] = array('nombre' => $v, 'observaciones' => $_POST['ObservacionesEspecie_'.$i]);
-                    //..
+                    $arr_especies[] = array('nombre' => $v, 'observaciones' => $_POST['ObservacionesEspecie_'.$i], 'tipo_especie' => $_POST['TipoEspecie_'.$i]);
                 }
             }
             
@@ -196,7 +195,6 @@ class instituciones extends MY_Controller{
                 if(substr_count($k, "DocenteNombreApellido_")>0){
                     $i = (int)str_replace("DocenteNombreApellido_","",$k);
                     $arr_comite_docente[] = array('nombre' => $v, 'profesion' => $_POST['DocenteProfesion_'.$i], 'ocupacion' => $_POST['DocenteOcupacion_'.$i]);
-                    //..
                 }
             }
             
@@ -207,7 +205,6 @@ class instituciones extends MY_Controller{
                 if(substr_count($k, "VeterinarioNombreApellido_")>0){
                     $i = (int)str_replace("VeterinarioNombreApellido_","",$k);
                     $arr_comite_veterinario[] = array('nombre' => $v, 'profesion' => $_POST['VeterinarioProfesion_'.$i], 'ocupacion' => $_POST['VeterinarioOcupacion_'.$i]);
-                    //..
                 }
             }
             
@@ -218,7 +215,6 @@ class instituciones extends MY_Controller{
                 if(substr_count($k, "SociedadNombreApellido_")>0){
                     $i = (int)str_replace("SociedadNombreApellido_","",$k);
                     $arr_comite_sociedad[] = array('nombre' => $v, 'profesion' => $_POST['SociedadProfesion_'.$i], 'ocupacion' => $_POST['SociedadOcupacion_'.$i]);
-                    //..
                 }
             }
             
@@ -246,8 +242,6 @@ class instituciones extends MY_Controller{
                     'MailContacto' => $_POST['MailContacto'],
                     'TelContacto' => $_POST['TelContacto'],
                     );
-                
-                //..
                 
                 $message = $this -> load -> view('instituciones/email_formulario', $form_data, TRUE);
                 $this->load->model('contacto/mail_db');
