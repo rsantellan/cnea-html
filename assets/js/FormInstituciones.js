@@ -32,7 +32,7 @@ function agregarDoncente(){
   //str = $('#comite_'+(counter)).html();
   //str = str.replace('_'+counter, '_'+(counter+1));
   //cambiar esta chanchada :S
-  str = '<div id="docentes_'+(counter+1)+'"><input type="text" name="DocenteNombreApellido_'+(counter+1)+'" value="Nombre y Apellido" class="input_comite_name" /><input type="text" name="DocenteProfesion_'+(counter+1)+'" value="Profesi&oacute;n" class="input_comite_short" /><input type="text" name="DocenteOcupacion_'+(counter+1)+'" value="Ocupaci&oacute;n" class="input_comite_short" /></div><div class="clear"></div>';
+  str = '<div id="docentes_'+(counter+1)+'"><input type="text" name="DocenteNombreApellido_'+(counter+1)+'" value="Nombre y Apellido" /><input type="text" name="DocenteProfesion_'+(counter+1)+'" value="Profesi&oacute;n" /><input type="text" name="DocenteOcupacion_'+(counter+1)+'" value="Ocupaci&oacute;n" /></div><div class="clear"></div>';
   $('#docentes_'+(counter+1)).html(str);
 }
 
@@ -51,7 +51,7 @@ function agregarVeterinario(){
   //str = $('#comite_'+(counter)).html();
   //str = str.replace('_'+counter, '_'+(counter+1));
   //cambiar esta chanchada :S
-  str = '<div id="veterinarios_'+(counter+1)+'"><input type="text" name="VeterinarioNombreApellido_'+(counter+1)+'" value="Nombre y Apellido" class="input_comite_name" /><input type="text" name="VeterinarioProfesion_'+(counter+1)+'" value="Profesi&oacute;n" class="input_comite_short" /><input type="text" name="VeterinarioOcupacion_'+(counter+1)+'" value="Ocupaci&oacute;n" class="input_comite_short" /></div><div class="clear"></div>';
+  str = '<div id="veterinarios_'+(counter+1)+'"><input type="text" name="VeterinarioNombreApellido_'+(counter+1)+'" value="Nombre y Apellido" /><input type="text" name="VeterinarioProfesion_'+(counter+1)+'" value="Profesi&oacute;n" /><input type="text" name="VeterinarioOcupacion_'+(counter+1)+'" value="Ocupaci&oacute;n" /></div><div class="clear"></div>';
   $('#veterinarios_'+(counter+1)).html(str);
 }
 
@@ -70,6 +70,6 @@ function agregarSociedad(){
   //str = $('#comite_'+(counter)).html();
   //str = str.replace('_'+counter, '_'+(counter+1));
   //cambiar esta chanchada :S
-  str = '<div id="sociedades_'+(counter+1)+'"><input type="text" name="SociedadNombreApellido_'+(counter+1)+'" value="Nombre y Apellido" class="input_comite_name" /><input type="text" name="SociedadProfesion_'+(counter+1)+'" value="Profesi&oacute;n" class="input_comite_short" /><input type="text" name="SociedadOcupacion_'+(counter+1)+'" value="Ocupaci&oacute;n" class="input_comite_short" /></div><div class="clear"></div>';
+  str = '<div id="sociedades_'+(counter+1)+'"><input type="text" name="SociedadNombreApellido_'+(counter+1)+'" value="Nombre y Apellido" /><input type="text" name="SociedadProfesion_'+(counter+1)+'" value="Profesi&oacute;n" /><input type="text" name="SociedadOcupacion_'+(counter+1)+'" value="Ocupaci&oacute;n" /></div><div class="clear"></div>';
   $('#sociedades_'+(counter+1)).html(str);
 }

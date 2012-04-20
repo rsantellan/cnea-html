@@ -79,9 +79,8 @@
         <h4>3- ESPECIES CRIADAS Y/O UTILIZADAS* (si es necesario, agregue más filas)</h4>
         <div id="especies">
                 <?php
-                $i = 0;
-                while($i==0 || set_value('NombreEspecie_'.$i)!=""){
-                $i++;
+                $i = 1;
+                while($i==1 || set_value('NombreEspecie_'.$i)!=""){
                 ?>
                 <div id="especies_<?php echo $i; ?>">
                         <p>
@@ -101,6 +100,7 @@
                         </p>
                 </div>
                 <?php
+                $i++;
                 }
                 ?>
         </div>
@@ -136,7 +136,7 @@
         <h5>Veterinario</h5>
         <div id="veterinarios">
                 <?php
-                $i = ;
+                $i = 1;
                 while($i==1 || set_value('VeterinarioNombreApellido_'.$i)!=""){
                 ?>
                 <div id="veterinarios_<?php echo $i; ?>">
