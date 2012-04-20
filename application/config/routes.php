@@ -41,7 +41,16 @@
 $route['default_controller'] = "sitio";
 $route['404_override'] = '';
 
+$config['index_page'] = "";
+
 $route["login"] = "login";
+
+
+// URI like '/en/about' -> use controller 'about'
+$route['^(es|en|de|fr|nl)/(.+)$'] = "$2";
+
+// '/en', '/de', '/fr' and '/nl' URIs -> use default controller
+$route['^(es|en|de|fr|nl)$'] = $route['default_controller']; 
 
 //$route["sitio/cneaMision"] = "cnea/mision.html";
 /*
