@@ -113,10 +113,19 @@ class mupload {
       //log_message("INFO", "Los parametros que estoy pasando son, width: ". $width. " | height : ".$height);
       //log_message("INFO", " El supuesto path es: ". $path);
       //log_message("INFO", " El supuesto cache path es: ". $mPath);
+      if(class_exists("Imagick"))
+      {
+        $CI =& get_instance();
+        $CI->load->library('mimagick', true, NULL, 'mImagick');
+        $CI->mimagick->basicThumbnail($path, $mPath, $type, $width, $height); 
+      }
+      else
+      {
+        $CI =& get_instance();
+        $CI->load->library('mgd', true, NULL, 'mgd');
+        $CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height); 
+      }
       
-      $CI =& get_instance();
-      $CI->load->library('mimagick', true, NULL, 'mImagick');
-      $CI->mimagick->basicThumbnail($path, $mPath, $type, $width, $height); 
       
     }
     
