@@ -106,7 +106,7 @@
                         <p>
                                 <!--<label for="ObservacionesEspecie_<?php echo $i; ?>">Observaciones</label>
                                 <textarea class="<?php echo (form_error('ObservacionesEspecie_'.$i) != "")? "input_error" : "";?>" id="ObservacionesEspecie_<?php echo $i; ?>" name="ObservacionesEspecie_<?php echo $i; ?>" value="<?php echo set_value('ObservacionesEspecie_'.$i); ?>"></textarea>-->
-                                <label for="<?php echo 'ObservacionesEspecie_'.$i ?>">Observaciones</label><br />
+                                <label for="<?php echo 'ObservacionesEspecie_'.$i ?>">Observaciones</label>
                                 <?php 
                                     $t_class = ""; 
                                     if(form_error('ObservacionesEspecie_'.$i) != ""){
@@ -206,7 +206,7 @@
         <p>
                 <!--<label for="ObservacionesComite">Observaciones</label>
                 <textarea class="<?php echo (form_error('ObservacionesComite') != "")? "input_error" : "";?>" id="ObservacionesComite" name="ObservacionesComite" value="<?php echo set_value('ObservacionesComite'); ?>"></textarea>-->
-                <label for="<?php echo 'ObservacionesComite' ?>">Observaciones</label><br />
+                <label for="<?php echo 'ObservacionesComite' ?>">Observaciones</label>
                 <?php 
                     $t_class = ""; 
                     if(form_error('ObservacionesComite') != ""){
@@ -218,11 +218,11 @@
         </p>
         <span>-	Si su Institución no tiene constituido un CEUA, deberá crearla. Su integración esta especificada en el Artículo 10 de la Ley Nº 18.611- “La Comisión de Ética en el Uso de Animales estará integrada al menos por: un médico veterinario, un docente o investigador, un representante de la comunidad local…”</span>
         <p>Indique fecha de constitución del CEUA y adjunte copia de la resolución de su institución*.</p>
-        <!--<input type="file" name="copia_resolucion_institucion" class="file">
-        <button>Adjuntar</button>
+        <!--<input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
+        <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
         <div class="clear"></div>-->
-        <input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" />
-        <input type="button" class="button button_short realizacion_field" value="adjuntar" />
+        <input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
+        <button class="adjuntar">Adjuntar</button>
         <div class="clear"></div>
             
         <h5>Persona de contacto de la Institución</h5>
@@ -241,11 +241,11 @@
         <h5>Responsable Institucional</h5>
         <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada*</span>
         <!--<input type="file" name="responsable_institucional" class="file">
-        <button>Adjuntar</button>-->
-        <input type="file" name="responsable_institucional" id="responsable_institucional" />
-        <input type="button" class="button button_short realizacion_field" value="adjuntar" />
-        <div class="clear"></div>
-        <a href="#" class="descargar descargar_forms">descargar</a>
+        <button>Adjuntar</button>
+        <div class="clear"></div>-->
+        <input type="file" name="responsable_institucional" id="responsable_institucional" class="file" />
+        <button class="adjuntar">Adjuntar</button>
+        <a href="<?php echo site_url("instituciones/descargarFormularioInstitucion");?>" class="descargar descargar_forms">descargar</a>
         <div class="clear"></div>
         <input type="submit" class="button button_large" value="enviar formulario" />
     <?php echo form_close(); ?>
