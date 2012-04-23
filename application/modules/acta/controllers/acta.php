@@ -19,6 +19,11 @@ class acta extends MY_Controller{
     $this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
     $this->data['menu_id'] = 'actas';
     $this->load->model("actaadmin/actas");
+    //Esto es para cnea
+      $this -> addJavascript("jquery.js");
+      $this -> addJavascript("jquery.infieldlabel.min.js");
+      $this->addJavascript("busqueda.js");
+      $this->addStyleSheet("busqueda.css");        
   }
 
   public function index($page = 0)

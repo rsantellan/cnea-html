@@ -8,7 +8,7 @@
     <h4><?php echo lang("personal_formulario_subtitulo_identificacion"); ?></h4>
     <div class="clear"></div>
     <p>
-      <label class="fecha_infield" for="fecha">Fecha*</label>
+      <label class="fecha_infield" for="fecha"><?php echo lang("personal_formulario_fecha"); ?></label>
       <input class="<?php echo (form_error('fecha') != "")? "input_error" : "";?>" id="fecha" type="date" name="fecha" maxlength="255" value="<?php echo set_value('fecha'); ?>"  />
     </p>
     
@@ -40,37 +40,37 @@
            );
     ?>
     <div class="float_left" style="margin-right:20px;">
-      <label>Primera Vez</label>
+      <label><?php echo lang("personal_formulario_primera_vez"); ?></label>
       <?php echo form_radio($data);?>
     </div>
     <div class="float_left">
-      <label>Renovación</label>
+      <label><?php echo lang("personal_formulario_renovacion"); ?></label>
       <?php echo form_radio($data2);?>
     </div>
     <div class="clear"></div>
     <p>
-      <label for="nombre">Nombre y apellidos completos*</label>
+      <label for="nombre"><?php echo lang("personal_formulario_nombre"); ?></label>
       <input class="<?php echo (form_error('nombre') != "")? "input_error" : "";?>" id="nombre" type="text" name="nombre"  value="<?php echo set_value('nombre'); ?>"  />
     </p>
     <p>
-      <label for="postal">Dirección postal*</label>
+      <label for="postal"><?php echo lang("personal_formulario_postal"); ?></label>
       <input class="<?php echo (form_error('postal') != "")? "input_error" : "";?>" id="postal" type="text" name="postal" maxlength="255" value="<?php echo set_value('postal'); ?>"  />
     </p>    
     
     <p>
-        <label for="email">Dirección electrónica*</label>
+        <label for="email"><?php echo lang("personal_formulario_email"); ?></label>
         <input class="<?php echo (form_error('email') != "")? "input_error" : "";?>" id="email" type="text" name="email"  value="<?php echo set_value('email'); ?>"  />
     </p>  
     <p>
-        <label for="telefono">Teléfonos de contacto*</label>
+        <label for="telefono"><?php echo lang("personal_formulario_telefono"); ?></label>
         <input class="<?php echo (form_error('telefono') != "")? "input_error" : "";?>" id="telefono" type="text" name="telefono" maxlength="255" value="<?php echo set_value('telefono'); ?>"  />
     </p>
     <p>
-      <label for="institucion">Institución en la que se desempeña*</label>
+      <label for="institucion"><?php echo lang("personal_formulario_institucion"); ?></label>
       <input class="<?php echo (form_error('institucion') != "")? "input_error" : "";?>" id="institucion" type="text" name="institucion" maxlength="255" value="<?php echo set_value('institucion'); ?>"  />
     </p>
     <p>
-      <label for="cargo">Cargo / función en dicha institución*</label>
+      <label for="cargo"><?php echo lang("personal_formulario_institucion_cargo"); ?></label>
       <input class="<?php echo (form_error('cargo') != "")? "input_error" : "";?>" id="cargo" type="text" name="cargo" maxlength="255" value="<?php echo set_value('cargo'); ?>"  />
     </p>
     
@@ -120,7 +120,7 @@
         <input class="<?php echo (form_error('curso_3') != "")? "input_error" : "";?>" id="curso_3" type="text" name="curso_3" maxlength="255" value="<?php echo set_value('curso_3'); ?>"  />
     </p>
     <p class="realizacion_field <?php echo $extra_r_class; ?>">
-      <label for="observaciones_curso">Observaciones</label>
+      <label for="observaciones_curso"><?php echo lang("personal_formulario_observaciones"); ?></label>
       <?php 
             $t_class = ""; 
             if(form_error('observaciones_curso') != "")
@@ -175,18 +175,18 @@
     <div class="clear"></div>
     <h5 class="acreditacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_subtitulo_tiene_acreditacion"); ?></h5>
     <p class="acreditacion_field <?php echo $extra_r_class; ?>">
-        <label for="acreditacion_institucion">institución que la expidió</label>
+        <label for="acreditacion_institucion"><?php echo lang("personal_formulario_institucion_expidio"); ?></label>
         <input class="<?php echo (form_error('acreditacion_institucion') != "")? "input_error" : "";?>" id="acreditacion_institucion" type="text" name="acreditacion_institucion" maxlength="255" value="<?php echo set_value('acreditacion_institucion'); ?>"  />
     </p>    
     <p class="acreditacion_field <?php echo $extra_r_class; ?>">
-        <label for="acreditacion_categoria">categoría que le fue adjudicada</label>
+        <label for="acreditacion_categoria"><?php echo lang("personal_formulario_categoria_adjudicada"); ?></label>
         <input class="<?php echo (form_error('acreditacion_categoria') != "")? "input_error" : "";?>" id="acreditacion_categoria" type="text" name="acreditacion_categoria" maxlength="255" value="<?php echo set_value('acreditacion_categoria'); ?>"  />
     </p>
     <p class="acreditacion_field <?php echo $extra_r_class; ?>">
-        <label for="acreditacion_fecha">fecha de vencimiento de dicha acreditación</label>
+        <label for="acreditacion_fecha"><?php echo lang("personal_formulario_fecha_vencimiento_acreditacion"); ?></label>
         <input class="<?php echo (form_error('acreditacion_fecha') != "")? "input_error" : "";?>" id="acreditacion_fecha" type="date" name="acreditacion_fecha" maxlength="255" value="<?php echo set_value('acreditacion_fecha'); ?>"  />
     </p>
-    <span class="acreditacion_field <?php echo $extra_r_class; ?>">Adjuntar certificado de acreditación</span>
+    <span class="acreditacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_adjuntar_acreditacion"); ?></span>
     <?php if(isset($errores['acreditacion_upload'])): ?>
 		<?php echo $errores['acreditacion_upload'];?>
 	<?php endif;?>
@@ -235,5 +235,5 @@
     <input type="submit" class="button button_large" value="enviar formulario" />
   <?php echo form_close(); ?>
   <div class="clear"></div>
-  <p>Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a></p>
+  <?php echo lang("personal_formulario_texto_consultas"); ?>
 </div><!--CONTENT RIGHT-->

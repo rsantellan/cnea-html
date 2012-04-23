@@ -39,6 +39,7 @@ class MY_Controller extends MX_Controller
 		$this->loadI18n("header");
 		$this->loadEnabledModules();
 	  }
+      
 	  $this->data["stylesheet"] = array();
 	  $this->data["javascript"] = array();
 	  $this->data["dashboard"] = false;
@@ -47,11 +48,7 @@ class MY_Controller extends MX_Controller
       $this->data['jquery_ui_on'] = false;
       $this->data['fancybox_on'] = false;
 	  
-	  //Esto es para cnea
-	  $this -> addJavascript("jquery.js");
-	  $this -> addJavascript("jquery.infieldlabel.min.js");
-	  $this->addJavascript("busqueda.js");
-	  $this->addStyleSheet("busqueda.css");
+
   }
 
   public function loadI18n($langfile, $lang = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $_module = '')

@@ -97,4 +97,21 @@ $lang['personal_formulario_texto_firma_persona']= '<h5>Firma del Interesado*</h5
 
 $lang['personal_formulario_texto_firma_institucion']= '<h5>Firma del Interesado y firma de un integrante del CEUA*</h5>
     <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>';
+
+$lang['personal_formulario_fecha']= 'Fecha*';
+$lang['personal_formulario_primera_vez']= 'Primera Vez';
+$lang['personal_formulario_renovacion']= 'Renovación';
+$lang['personal_formulario_nombre']= 'Nombre y apellidos completos*';
+$lang['personal_formulario_postal']= 'Dirección postal*';
+$lang['personal_formulario_email']= 'Dirección electrónica*';
+$lang['personal_formulario_telefono']= 'Teléfonos de contacto*';
+$lang['personal_formulario_institucion']= 'Institución en la que se desempeña*';
+$lang['personal_formulario_institucion_cargo']= 'Cargo / función en dicha institución*';
+$lang['personal_formulario_observaciones']= 'Observaciones';
+$lang['personal_formulario_institucion_expidio']= 'institución que la expidió';
+$lang['personal_formulario_categoria_adjudicada']= 'categoría que le fue adjudicada';
+$lang['personal_formulario_fecha_vencimiento_acreditacion']= 'fecha de vencimiento de dicha acreditación';
+$lang['personal_formulario_adjuntar_acreditacion']= 'Adjuntar certificado de acreditación';
+$lang['personal_formulario_texto_consultas']= '<p>Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a></p>';
+
 /* End of file acreditaciones_lang.php */

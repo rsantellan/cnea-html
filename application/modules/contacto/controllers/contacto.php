@@ -19,10 +19,13 @@ class contacto extends MY_Controller{
       $this->data['menu_id'] = 'contacto';
       $this->loadI18n("sitio", "", FALSE, TRUE, "", "sitio");
       $this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
+      $this->loadI18n("contacto", "", FALSE, TRUE, "", "sitio");
       $this->addJavascript("jquery-1.7.1.min.js");
       $this->addJavascript("jquery.infieldlabel.min.js");
       $this->addJavascript("basicInfieldForm.js");
       $this->addStyleSheet("infieldlabel.css");
+      $this->addJavascript("busqueda.js");
+      $this->addStyleSheet("busqueda.css");  
     }
     
     function index()

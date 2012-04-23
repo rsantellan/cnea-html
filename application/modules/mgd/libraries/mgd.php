@@ -38,14 +38,21 @@ class mgd {
     $config['source_image'] = $file;
     $config['new_image'] = $cacheFile;
     //$config['create_thumb'] = TRUE;
-    $config['maintain_ratio'] = TRUE;
+    //$config['maintain_ratio'] = FALSE;
     $config['width'] = $width;
     $config['height'] = $height;
-    
+    log_message('error', "width: ".$width . " height:".$height );
     $CI =& get_instance();
-    $CI->load->library('image_lib', $config); 
+    if(isset($CI->image_lib))
+    {
+      $CI->image_lib->clear();
+      $CI->image_lib->initialize($config);
+    }
+    else
+    {
+      $CI->load->library('image_lib', $config); 
+    }
     $CI->image_lib->resize();
-    //$CI->image_lib->clear();
     
     /*
     $im = new Imagick($file);

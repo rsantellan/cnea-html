@@ -18,6 +18,11 @@ class acreditaciones extends MY_Controller {
 		$this -> loadI18n("acreditaciones", "", FALSE, TRUE, "", "sitio");
 		$this -> loadI18n("menu", "", FALSE, TRUE, "", "sitio");
 		$this -> data['menu_id'] = 'acreditaciones';
+        //Esto es para cnea
+      $this -> addJavascript("jquery.js");
+      $this -> addJavascript("jquery.infieldlabel.min.js");
+      $this->addJavascript("busqueda.js");
+      $this->addStyleSheet("busqueda.css");        
 	}
 
 	function bases() {

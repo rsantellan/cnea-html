@@ -19,6 +19,11 @@ class novedades extends MY_Controller{
     $this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
     $this->data['menu_id'] = 'novedades';
     $this->load->model("novedadesadmin/novedad");
+    //Esto es para cnea
+      $this -> addJavascript("jquery.js");
+      $this -> addJavascript("jquery.infieldlabel.min.js");
+      $this->addJavascript("busqueda.js");
+      $this->addStyleSheet("busqueda.css");        
   }
 
   public function index($page = 0)
