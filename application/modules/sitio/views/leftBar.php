@@ -1,11 +1,14 @@
 <div class="content_left">
   <h3>buscador</h3>
   <?php // Change the css classes to suit your needs    
-    $attributes = array('class' => '', 'id' => '', "method" => "GET");
+    $attributes = array('class' => 'buscador_form', 'id' => '', "method" => "GET");
     echo form_open('sitio/buscar', $attributes); 
   ?>
-    <input type="text" name="t" value="búsqueda de contenido" />
-    <input type="submit" class="search" value="" />
+  <p>
+	<label for="t">búsqueda de contenido</label>
+    <input id="t" type="text" name="t" value="" />
+  </p>
+  <input type="submit" class="search" value="" />
   <?php echo form_close(); ?>
   <h3>&uacute;ltimas novedades</h3>
   <div class="ultimas_novedades">

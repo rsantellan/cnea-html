@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of MY_Controller
  *
@@ -51,6 +46,12 @@ class MY_Controller extends MX_Controller
       $this->data['jquery_on'] = false;
       $this->data['jquery_ui_on'] = false;
       $this->data['fancybox_on'] = false;
+	  
+	  //Esto es para cnea
+	  $this -> addJavascript("jquery.js");
+	  $this -> addJavascript("jquery.infieldlabel.min.js");
+	  $this->addJavascript("busqueda.js");
+	  $this->addStyleSheet("busqueda.css");
   }
 
   public function loadI18n($langfile, $lang = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $_module = '')
@@ -76,7 +77,8 @@ class MY_Controller extends MX_Controller
   
   protected function addJavascript($javascript)
   {
-	array_push( $this->data["javascript"] , $javascript);
+	$this->data["javascript"][$javascript] = $javascript;
+	//array_push( $this->data["javascript"] , $javascript);
   }
   
   protected function addModuleJavascript($module, $javascript)
@@ -87,7 +89,8 @@ class MY_Controller extends MX_Controller
   
   protected function addStyleSheet($stylesheet)
   {
-	array_push( $this->data["stylesheet"] , $stylesheet);
+	$this->data["stylesheet"][$stylesheet] = $stylesheet;
+	//array_push( $this->data["stylesheet"] , $stylesheet);
   }
   
   protected function addModuleStyleSheet($module, $stylesheet)
