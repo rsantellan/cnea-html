@@ -150,7 +150,7 @@ class instituciones extends MY_Controller{
         } else {
             $send_email = true;
 
-            /*//Chequeo los archivos a subir.
+            //Chequeo los archivos a subir.
             $config['upload_path'] = sys_get_temp_dir();
             $config['allowed_types'] = 'pdf|doc|docx';
             $this -> load -> library('upload', $config);
@@ -171,7 +171,7 @@ class instituciones extends MY_Controller{
                 $send_email = false;
             }else{
                 $upload_data['responsable_institucional'] = $this->upload->data();
-            }*/
+            }
             
             //unidades dependientes
             $arr_unidep = array();
@@ -249,7 +249,6 @@ class instituciones extends MY_Controller{
                     );
                 
                 $message = $this -> load -> view('instituciones/email_formulario', $form_data, TRUE);
-                die($message);
                 $this->load->model('contacto/mail_db');
                 $return = $this->mail_db->retrieveContactMailInfo();
                 //Con estos datos preparo un email para enviar.
