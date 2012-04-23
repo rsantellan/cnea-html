@@ -107,3 +107,5 @@ $lang['instituciones_formulario_responsable_institucional_adjuntar']='Adjuntar';
 $lang['instituciones_formulario_responsable_institucional_descargar']='descargar';
 
 $lang['instituciones_formulario_consultas']='Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a>';
+
+$lang['instituciones_formulario_enviado']= '<p>La solicitud se ha enviado correctamente, la CNEA se pondr&aacute; con contacto con usted.</p>';
