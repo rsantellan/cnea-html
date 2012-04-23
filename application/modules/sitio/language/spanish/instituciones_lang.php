@@ -35,3 +35,75 @@ $lang['instituciones_reglamentacion_contenido']='<h2>Comisi&oacute;n nacional de
 	<p><strong>Art&iacute;culo 4&ordm;-</strong> Se otorga un plazo de 180 d&iacute;as, a partir de la vigencia de la presente reglamentaci&oacute;n, para que las instituciones que est&aacute;n comprendidas en la obligaci&oacute;n de inscribirse cumplan con dicha exigencia.</p>
 	<p><strong>Art&iacute;culo 5&ordm;-</strong> Una vez ingresadas las solicitudes por parte de las instituciones, la CNEA le adjudicar&aacute; un n&uacute;mero de tr&aacute;mite a cada Instituci&oacute;n al cual har&aacute; referencia en futuras acciones. La CNEA estudiar&aacute; las solicitudes y en un plazo de hasta 3 meses comunicar&aacute; a las Instituciones que est&aacute;n habilitadas para integrar el registro.</p>
 	<p><strong>Art&iacute;culo 6&ordm;-</strong> La CNEA publicar&aacute; un listado de las Instituciones incluidas en el Registro Nacional que se actualizar&aacute; cada 6 meses (en los meses de junio y diciembre).</p>';
+
+$lang['instituciones_formulario_titulo']='formulario para el registro nacional de instituciones';
+
+$lang['instituciones_formulario_subtitulo_1']='1- IDENTIFICACI&Oacute;N INSTITUCIONAL';
+$lang['instituciones_formulario_subtitulo_2']='2- TIPO DE ESTABLECIMIENTO*';
+$lang['instituciones_formulario_subtitulo_3']='3- ESPECIES CRIADAS Y/O UTILIZADAS* (si es necesario, agregue m&aacute;s filas)';
+$lang['instituciones_formulario_subtitulo_4']='4- COMIT&Eacute; DE &Eacute;TICA EN EL USO DE ANIMALES (CEUA)*';
+
+$lang['instituciones_formulario_nombre_institucion']='Nombre de la Instituci&oacute;n*';
+$lang['instituciones_formulario_razon_social']='Raz&oacute;n Social';
+$lang['instituciones_formulario_rut']='RUT';
+$lang['instituciones_formulario_naturaleza']='Naturaleza *';
+$lang['instituciones_formulario_publica']='P&uacute;blica';
+$lang['instituciones_formulario_privada']='Privada';
+$lang['instituciones_formulario_mixta']='Mixta';
+$lang['instituciones_formulario_1_nivel']='1&deg; NIVEL* (por ejemplo UdelR)';
+$lang['instituciones_formulario_2_nivel']='2&deg; NIVEL* (por ejemplo Facultad de Ciencias Sociales)';
+$lang['instituciones_formulario_3_nivel']='3&deg; NIVEL* (por ejemplo Departamento de Econom&iacute;a)';
+$lang['instituciones_formulario_domicilio_institucional']='Domicilio Institucional*';
+$lang['instituciones_formulario_domicilio_fiscal']='Domicilio Fiscal (si corresponde)';
+$lang['instituciones_formulario_dicose']='DICOSE (si corresponde)';
+$lang['instituciones_formulario_1']='1';
+$lang['instituciones_formulario_2']='2';
+$lang['instituciones_formulario_3']='3';
+$lang['instituciones_formulario_4']='4';
+$lang['instituciones_formulario_cria']='Cr&iacute;a';
+$lang['instituciones_formulario_experimentacion']='Experimientaci&oacute;n';
+$lang['instituciones_formulario_mixto']='Mixto';
+$lang['instituciones_formulario_nombre_especie']='Nombre de Especie';
+$lang['instituciones_formulario_eso']='USO';
+$lang['instituciones_formulario_cria']='CR&Iacute;A';
+$lang['instituciones_formulario_especies_observaciones']='Observaciones';
+$lang['instituciones_formulario_docente_nombre_apellido']='Nombre y Apellido';
+$lang['instituciones_formulario_docente_profesion']='Profesi&oacute;n';
+$lang['instituciones_formulario_docente_ocupacion']='Ocupaci&oacute;n';
+$lang['instituciones_formulario_veterinario_nombre_apellido']='Nombre y Apellido';
+$lang['instituciones_formulario_veterinario_profesion']='Profesi&oacute;n';
+$lang['instituciones_formulario_veterinario_ocupacion']='Ocupaci&oacute;n';
+$lang['instituciones_formulario_sociedades_nombre_apellido']='Nombre y Apellido';
+$lang['instituciones_formulario_sociedades_profesion']='Profesi&oacute;n';
+$lang['instituciones_formulario_sociedades_ocupacion']='Ocupaci&oacute;n';
+$lang['instituciones_formulario_sociedad_civil_observaciones']='Observaciones';
+$lang['instituciones_formulario_persona_contacto_nombre_completo']='Nombre completo*';
+$lang['instituciones_formulario_persona_contacto_email']='E-mail*';
+$lang['instituciones_formulario_persona_contacto_telefono']='Tel&eacute;fono de contacto*';
+
+$lang['instituciones_formulario_strong_text_1']='Los campos con asterisco (*) son requeridos para enviar la solicitud';
+$lang['instituciones_formulario_strong_text_2']='Caracterizaci&oacute;n Institucional*';
+$lang['instituciones_formulario_strong_text_3']='Unidades dependientes en otra ubicaci&oacute;n con animales de experimentaci&oacute;n (indicar nombre, direcci&oacute;n y DICOSE de cada una)';
+$lang['instituciones_formulario_strong_text_4']='Indique su integraci&oacute;n';
+$lang['instituciones_formulario_strong_text_5']='Docente / Investigador';
+$lang['instituciones_formulario_strong_text_6']='Veterinario';
+$lang['instituciones_formulario_strong_text_7']='Sociedad Civil';
+$lang['instituciones_formulario_strong_text_8']='Persona de contacto de la Instituci&oacute;n';
+$lang['instituciones_formulario_strong_text_9']='Responsable Institucional';
+
+$lang['instituciones_formulario_info_text_1']='Por favor completar los campos marcados en rojo';
+$lang['instituciones_formulario_info_text_2']='Seleccionar uno de los tres tipos de naturaleza';
+$lang['instituciones_formulario_info_text_3']='En el primer nivel ingrese la denominaci&oacute;n m&aacute;s general de la instituci&oacute;n para luego avanzar en el grado de especificaci&oacute;n. Por ejemplo 1º UDELAR - 2º Facultad de Ciencias Sociales - 3º Departamento de Econom&iacute;a.';
+$lang['instituciones_formulario_info_text_4']='-	Si su Instituci&oacute;n no tiene constituido un CEUA, deber&aacute; crearla. Su integraci&oacute;n esta especificada en el Art&iacute;culo 10 de la Ley N&deg; 18.611- "La Comisi&oacute;n de &Eacute;tica en el Uso de Animales estar&aacute; integrada al menos por: un m&eacute;dico veterinario, un docente o investigador, un representante de la comunidad local..."';
+$lang['instituciones_formulario_info_text_5']='Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada*';
+
+$lang['instituciones_formulario_especies_mas']='Agregar m&aacute;s';
+$lang['instituciones_formulario_docentes_mas']='Agregar m&aacute;s';
+$lang['instituciones_formulario_veterinarios_mas']='Agregar m&aacute;s';
+$lang['instituciones_formulario_sociedades_mas']='Agregar m&aacute;s';
+
+$lang['instituciones_formulario_copia_resolucion_institucion_adjuntar']='Adjuntar';
+$lang['instituciones_formulario_responsable_institucional_adjuntar']='Adjuntar';
+$lang['instituciones_formulario_responsable_institucional_descargar']='descargar';
+
+$lang['instituciones_formulario_consultas']='Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a>';
