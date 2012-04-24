@@ -99,7 +99,7 @@
                                 <input class="input_short <?php echo (form_error('NombreEspecie_'.$i) != "")? "input_error" : "";?>" id="NombreEspecie_<?php echo $i; ?>" type="text" name="NombreEspecie_<?php echo $i; ?>"  value="<?php echo set_value('NombreEspecie_'.$i); ?>"  />
                         </p>
                         <div class="float_right">
-                                <label style="margin:5px;"><?php echo lang("instituciones_formulario_ueso"); ?></label>
+                                <label style="margin:5px;"><?php echo lang("instituciones_formulario_uso"); ?></label>
                                 <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" <?php echo (set_value('TipoEspecie_'.$i) == "uso" || set_value('TipoEspecie_'.$i) == "")? "checked=\"checked\"" : "";?> />
                                 <label style="margin:5px 5px 5px 15px;"><?php echo lang("instituciones_formulario_cria"); ?></label>
                                 <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="cria" <?php echo (set_value('TipoEspecie_'.$i) == "cria")? "checked=\"checked\"" : "";?> />
