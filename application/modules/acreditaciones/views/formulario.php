@@ -1,7 +1,9 @@
 <div class="content_right img_instituciones">
   <h1><?php echo lang("personal_formulario_titulo"); ?></h1>
   <h5><?php echo lang("personal_formulario_subtitulo"); ?></h5>
+  <?php if(strlen(validation_errors()) > 0): ?>
   <span class="msg_error"><?php echo lang("personal_formulario_subtitulo_errores"); ?></span>
+  <?php endif;?>
   <?php
   $attributes = array('class' => 'infield_form', 'id' => '');
   echo form_open_multipart('acreditaciones/formulario', $attributes); ?>    
