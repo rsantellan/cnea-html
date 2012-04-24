@@ -22,7 +22,7 @@ class contactoadmin extends MY_Controller{
       $this->session->set_userdata('url_to_direct_on_login', 'contactoadmin/index');
       redirect('auth/login'); 
     }
-
+	$this->addJquery();
   }
   
   /*function index(){
@@ -116,7 +116,7 @@ class contactoadmin extends MY_Controller{
       {
     //Como es valido lo salvo
         $id = $obj->save();
-        
+        $this->session->set_flashdata("salvado", "ok");
         redirect('contacto/contactoadmin/editContacto/'.$id);
       }
       else

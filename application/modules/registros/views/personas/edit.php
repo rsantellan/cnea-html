@@ -3,6 +3,17 @@
   <?php echo form_error('name'); ?>
   <?php echo form_error('code'); ?>
   <?php echo form_error('email'); ?>
+  <?php
+   if($this->session->flashdata('salvado') == "ok"):
+  ?>
+  	<p id="salvado_ok" class="success">Registro salvado</p>
+  	
+  	<script type="text/javascript">
+ 		$(document).ready(function() {
+ 			$("#salvado_ok").fadeOut(3000);
+ 		});
+ 	</script>
+  <?php endif; ?>  
 </div>
 
 <?php if(!is_null($object)): ?>

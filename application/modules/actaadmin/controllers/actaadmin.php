@@ -119,7 +119,7 @@ class actaadmin extends MY_Controller{
       {
         //Como es valido lo salvo
         $id = $obj->save();
-        
+        $this->session->set_flashdata("salvado", "ok");
         redirect('actaadmin/edit/'.$id);
       }
       else

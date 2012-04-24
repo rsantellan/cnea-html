@@ -23,7 +23,7 @@ class registros extends MY_Controller{
         $this->session->set_userdata('url_to_direct_on_login', 'actaadmin/index');
         redirect('auth/login'); 
       }
-
+	  $this->addJquery();
     }
     
     function index(){
@@ -178,7 +178,7 @@ class registros extends MY_Controller{
       {
 		//Como es valido lo salvo
         $id = $obj->save();
-        
+        $this->session->set_flashdata("salvado", "ok");
         redirect('registros/editPersona/'.$id);
       }
       else
@@ -234,7 +234,7 @@ class registros extends MY_Controller{
       {
       //Como es valido lo salvo
         $id = $obj->save();
-        
+        $this->session->set_flashdata("salvado", "ok");
         redirect('registros/editInstitucion/'.$id);
       }
       else

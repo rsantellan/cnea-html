@@ -192,7 +192,7 @@ class interesesadmin extends MY_Controller{
       {
         //Como es valido lo salvo
         $id = $obj->save();
-        
+        $this->session->set_flashdata("salvado", "ok");
         redirect('interesesadmin/edit/'.$obj->getObjectClass().'/'.$id);
       }
       else
