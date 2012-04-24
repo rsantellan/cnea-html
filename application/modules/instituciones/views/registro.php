@@ -1,5 +1,6 @@
 <div class="content_right img_instituciones">
     <h1><?php echo lang("instituciones_registro_titulo"); ?></h1>
+		<h2><?php echo lang("instituciones_registro_subtitulo"); ?></h2>
 	<?php if(count($list) == 0): ?>
 	  <?php echo lang("instituciones_registro_contenido_vacio"); ?>
 	<?php else: ?>

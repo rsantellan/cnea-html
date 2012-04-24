@@ -1,4 +1,6 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+$lang['instituciones_registro_titulo']='registro nacional de instituciones';
+$lang['instituciones_registro_subtitulo']='Instituciones inscriptas';
 $lang['instituciones_bases_titulo']='Bases registro de instituciones';
 $lang['instituciones_bases_contenido']='<h2>REGISTRO NACIONAL DE INSTITUCIONES QUE CR&iacute;EN, UTILICEN O TRANSPORTEN ANIMALES EN EXPERIMENTACI&oacute;N, DOCENCIA E INVESTIGACI&oacute;N CIENT&iacute;FICA</h2>
 		<h4>Objetivo</h4>
