@@ -49,7 +49,16 @@ class actaadmin extends MY_Controller{
     {
       $lista = $this->input->post('listItem');
       $this->load->model('actaadmin/actas');
+      //var_dump($lista);
+      $maximo = count($lista) - 1;
+      $cantidad = 0;
+      while($cantidad <= $maximo)
+      {
+        $this->actas->updateActaOrder($lista[$maximo - $cantidad], $cantidad);
+        $cantidad ++;
+      }
       
+      /*
       $cantidad = count($lista) - 1;
       while($cantidad >= 0)
       {
@@ -57,6 +66,7 @@ class actaadmin extends MY_Controller{
         $this->actas->updateActaOrder($lista[$cantidad], $cantidad);
         $cantidad --;
       }
+      */
       $salida = array();
       $salida['response'] = "OK";
       

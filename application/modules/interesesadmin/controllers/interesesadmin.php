@@ -27,6 +27,7 @@ class interesesadmin extends MY_Controller{
     }
     
     function index(){
+      //$this->output->enable_profiler(TRUE);
       $this->load->model('interesesadmin/enlaces_intereses');
       $this->load->model('interesesadmin/documentos_intereses');
       $this->data['intereses_list'] = $this->enlaces_intereses->retrieveIntereses();
@@ -64,6 +65,7 @@ class interesesadmin extends MY_Controller{
       $cantidad = count($lista) - 1;
       
       $obj = NULL;
+      //var_dump($type);die;
 	  if($type == "enlaces_intereses")
 	  {
 		$this->load->model('interesesadmin/enlaces_intereses');
@@ -76,13 +78,21 @@ class interesesadmin extends MY_Controller{
       }
       
       
-      
+      $maximo = count($lista) - 1;
+      $cantidad = 0;
+      while($cantidad <= $maximo)
+      {
+        $obj->updateInteresesOrder($lista[$maximo - $cantidad], $cantidad);
+        $cantidad ++;
+      }
+      /*
       while($cantidad >= 0)
       {
         //echo $lista[$cantidad] . " - ".$cantidad;
         $obj->updateInteresesOrder($lista[$cantidad], $cantidad);
         $cantidad --;
       }
+      */
       $salida = array();
       $salida['response'] = "OK";
       

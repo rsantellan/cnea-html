@@ -1,6 +1,8 @@
 $(document).ready(function() { 
   
-  $("a.fancy_link").fancybox();
+    $("a.fancy_link").fancybox({
+		'onClosed': function(){window.location.reload();}
+	});
 });
 
 function deleteItem(itemId, text, mUrl)

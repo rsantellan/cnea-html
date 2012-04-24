@@ -15,7 +15,7 @@ echo form_open('actaadmin/save', $attributes); ?>
 </div>
 <div class="grid_16">
   <p class="submit">
-    <?php echo form_submit( 'submit', 'Submit'); ?>
+    <?php echo form_submit( 'submit', 'Guardar'); ?>
   </p>
 </div>
 <?php echo form_close(); ?>

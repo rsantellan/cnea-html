@@ -301,7 +301,7 @@
 		</form>
 		</div>
 		<div class="box clear">
-			<a href="<?php echo site_url('admin/index');?>">Dashboard</a>
+			<a href="<?php echo site_url('admin/index');?>">Escritorio</a>
 		</div>
 	</div>
 </body>

@@ -33,7 +33,7 @@
 		<?php } ?>
       	<?php $this->load->view('language/dir_list_view'); ?>
 		<div class="box clear">
-      <a href="<?php echo site_url('admin/index');?>">Dashboard</a>
+      <a href="<?php echo site_url('admin/index');?>">Escritorio</a>
       <!--
 			Created by <a href="http://codebusters.pl/en">Eliza Witkowska</a>
       -->

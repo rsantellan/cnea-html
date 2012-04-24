@@ -85,7 +85,7 @@
 			<div class="box files"><?php echo $this->lang->line('language_no_files');?></div>
 		<?php } ?>
 		<div class="box clear">
-      <a href="<?php echo site_url('admin/index');?>">Dashboard</a>
+      <a href="<?php echo site_url('admin/index');?>">Escritorio</a>
 		</div>
 	</div>
 </body>

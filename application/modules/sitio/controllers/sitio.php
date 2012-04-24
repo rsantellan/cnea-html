@@ -53,7 +53,7 @@ class sitio extends MY_Controller {
   
   public function buscar()
   {
-    $this->output->enable_profiler(TRUE);
+    //$this->output->enable_profiler(TRUE);
     $data = $this->input->get('t');
     $data_list = explode(" ", $data);
     //var_dump($data_list);

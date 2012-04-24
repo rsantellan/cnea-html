@@ -71,6 +71,15 @@ class registros extends MY_Controller{
       $lista = $this->input->post('listItem');
       $this->load->model('registros/registro_persona');
       
+      
+      $maximo = count($lista) - 1;
+      $cantidad = 0;
+      while($cantidad <= $maximo)
+      {
+        $this->registro_persona->updateOrder($lista[$maximo - $cantidad], $cantidad);
+        $cantidad ++;
+      }
+      /*
       $cantidad = count($lista) - 1;
       while($cantidad >= 0)
       {
@@ -78,6 +87,7 @@ class registros extends MY_Controller{
         $this->registro_persona->updateOrder($lista[$cantidad], $cantidad);
         $cantidad --;
       }
+      */
       $salida = array();
       $salida['response'] = "OK";
       
@@ -92,6 +102,15 @@ class registros extends MY_Controller{
       $lista = $this->input->post('listItem');
       $this->load->model('registros/registro_institucion');
       
+      
+      $maximo = count($lista) - 1;
+      $cantidad = 0;
+      while($cantidad <= $maximo)
+      {
+        $this->registro_institucion->updateOrder($lista[$maximo - $cantidad], $cantidad);
+        $cantidad ++;
+      }
+      /*
       $cantidad = count($lista) - 1;
       while($cantidad >= 0)
       {
@@ -99,6 +118,7 @@ class registros extends MY_Controller{
         $this->registro_institucion->updateOrder($lista[$cantidad], $cantidad);
         $cantidad --;
       }
+      */
       $salida = array();
       $salida['response'] = "OK";
       

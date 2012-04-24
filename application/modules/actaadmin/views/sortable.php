@@ -16,7 +16,7 @@
             padding: 0; 
             width: 80%; 
           }
-          #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+          #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 0.6em; height: 18px; }
           #sortable li span { position: absolute; margin-left: -1.3em; }
           h1{
             margin-left: auto;

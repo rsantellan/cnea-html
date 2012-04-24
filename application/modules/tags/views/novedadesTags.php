@@ -1,5 +1,5 @@
 <div id="object_tags_container" class="actas_container" >
-  <span>Usadas</span>
+  <span>Tags Usadas</span>
   <div>
     <?php foreach($tags_used as $tag):
     ?>  
@@ -15,7 +15,8 @@
     ?>
   </div>
   <div class="clear"></div>
-  <span>Tags</span>
+  <hr/>
+  <span>Tags posibles</span>
   <div>
   <?php foreach($tags as $tag):
   ?>  

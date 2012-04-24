@@ -4,9 +4,9 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Administrador</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/960.css";?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/template.css";?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colour.css";?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/960.css";?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/template.css";?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colour.css";?>" />
 
       <?php if($jquery_on): ?>
         <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-1.7.1.min.js";?>"></script>
@@ -29,8 +29,12 @@
 <!--      <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/dropdown_menu.js";?>"></script>-->
 	</head>
 	<body>
-		
-    <h1 id="head">Administrador</h1>
+      <div class="header_div">
+        <label>Administrador</label>
+<!--        <h1 id="head">Administrador</h1>-->
+        <img src="<?php echo base_url();?>assets/images/logo.jpg" />
+      </div>
+      
       <ul id="navigation">
       <?php if($menu_id == 'dashboard'): ?>
         <li><span class="active">Dashboard</span></li>
@@ -38,7 +42,7 @@
         <li><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
       <?php endif; ?>
       
-			<li><a href="<?php echo site_url('language/index');?>">Idiomas</a></li>
+        <li><a href="<?php echo site_url('language/index');?>">Textos</a></li>
       <!--      
       <?php if($menu_id == 'users'): ?>
         <li><span class="active">Usuarios</span></li>
@@ -135,8 +139,8 @@
 			</div>
 		
 		<div id="foot">
-					<a href="#">Contact Me</a>
-				
+<!--					<a href="#">Contact Me</a>-->
+				<div class="espacio"></div>
 		</div>
 	</body>
 </html>

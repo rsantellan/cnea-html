@@ -1,5 +1,5 @@
 <div id="album_<?php echo $id;?>">
-  <h6>Album: <?php echo $name;?>
+  <h6>Album: <?php echo $name;?> | <span class="agregar_span">Agregar archivos</span>
     <a class="fancy_link iframe" href="<?php echo site_url('upload/index/'.$id);?>">
       <img src="<?php echo base_url().'assets/upload/images/add.png'?>" />
     </a>
