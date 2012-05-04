@@ -214,16 +214,20 @@
         <input id="categoria_c2" type="text" name="categoria_c2" maxlength="255" value="<?php echo set_value('categoria_c2'); ?>"  />
     </p>
     <?php echo lang("personal_formulario_texto_categoria"); ?>
-    <?php echo lang("personal_formulario_texto_firma_persona"); ?>
+    
+    <?php //echo lang("personal_formulario_texto_firma_persona"); ?>
+    
 <!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
-    <?php if(isset($errores['firma_persona_upload'])): ?>
-		<?php echo $errores['firma_persona_upload'];?>
-	<?php endif;?>
+    <?php //if(isset($errores['firma_persona_upload'])): ?>
+		<?php //echo $errores['firma_persona_upload'];?>
+	<?php //endif;?>
+    <!--
     <input type="file" name="firma_persona_upload" id="firma_persona_upload" class="file" />
-<!--    <input type="button" class="button button_short" value="adjuntar" />-->
     <button class="adjuntar">Adjuntar</button>
-    <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
+    <a href="<?php //echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
+    -->
     <div class="clear"></div>
+    
     <?php echo lang("personal_formulario_texto_firma_institucion"); ?>
 <!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_institucion_upload'])): ?>
@@ -236,6 +240,15 @@
     <div class="clear"></div>
     <input type="submit" class="button button_large" value="enviar formulario" />
   <?php echo form_close(); ?>
+  
+  <div class="clear"></div>
+  <div style="width:515px">
+    <span>
+      <?php echo lang("personal_formulario_texto_descarga"); ?>
+    </span>
+    <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
+  </div>  
+    
   <div class="clear"></div>
   <?php echo lang("personal_formulario_texto_consultas"); ?>
 </div><!--CONTENT RIGHT-->

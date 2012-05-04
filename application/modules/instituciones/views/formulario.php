@@ -252,5 +252,12 @@
         <input type="submit" class="button button_large" value="enviar formulario" />
     <?php echo form_close(); ?>
     <div class="clear"></div>
+      <div style="width:515px">
+        <span>
+          <?php echo lang('instituciones_formulario_descarga_texto'); ?>
+        </span>
+        <a href="<?php echo site_url("instituciones/descargarFormularioInstitucion");?>" class="descargar descargar_forms">descargar</a>
+      </div>
+    <div class="clear"></div>
     <p><?php echo lang("instituciones_formulario_consultas"); ?></p>
 </div><!--CONTENT RIGHT-->

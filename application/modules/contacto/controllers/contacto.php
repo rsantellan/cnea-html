@@ -92,5 +92,12 @@ class contacto extends MY_Controller{
       $this->load->view('layout', $this->data);
 	}
 
-    
+    function descargarFormulario()
+    {
+      $this->load->helper('download');
+      $name = "Formulario_Denuncias.docx";
+      $path = base_url()."assets/docs/Formulario_Denuncias.docx";
+      $data = file_get_contents($path); // Read the file's contents
+      force_download($name, $data);      
+    }
 }

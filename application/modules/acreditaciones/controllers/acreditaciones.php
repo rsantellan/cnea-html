@@ -60,8 +60,8 @@ class acreditaciones extends MY_Controller {
     function descargarFormularioPersona()
     {
       $this->load->helper('download');
-      $name = "Acreditaciones_Personales.docx";
-      $path = base_url()."assets/docs/Registro_Intsituciones.docx";
+      $name = "Acreditaciones_Personales.doc";
+      $path = base_url()."assets/docs/Acreditaciones_Personales.docx";
       $data = file_get_contents($path); // Read the file's contents
       force_download($name, $data);      
     }
@@ -145,13 +145,16 @@ class acreditaciones extends MY_Controller {
 			}
 			
 			//firma_persona_upload
-			if (!$this -> upload -> do_upload('firma_persona_upload')) {
+			/*
+            if (!$this -> upload -> do_upload('firma_persona_upload')) {
 				$errores['firma_persona_upload'] = $this -> upload -> display_errors();
 				$this->upload->clean_errors();
 				$send_email = false;
 			}else{
 				$upload_data['firma_persona_upload'] = $this->upload->data();
 			}
+            */
+            
 			//firma_institucion_upload
 			if (!$this -> upload -> do_upload('firma_institucion_upload')) {
 				$errores['firma_institucion_upload'] = $this -> upload -> display_errors();

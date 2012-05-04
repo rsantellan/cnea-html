@@ -113,5 +113,5 @@ $lang['personal_formulario_categoria_adjudicada']= 'categoría que le fue adjudi
 $lang['personal_formulario_fecha_vencimiento_acreditacion']= 'fecha de vencimiento de dicha acreditación';
 $lang['personal_formulario_adjuntar_acreditacion']= 'Adjuntar certificado de acreditación';
 $lang['personal_formulario_texto_consultas']= '<p>Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a></p>';
-
+$lang['personal_formulario_texto_descarga']= 'Si desea puede descargar el formulario para completarlo y enviarlo vía mail o en persona en la sede de la CNEA';
 /* End of file acreditaciones_lang.php */

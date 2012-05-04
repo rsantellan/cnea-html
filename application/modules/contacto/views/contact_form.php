@@ -39,5 +39,5 @@
         <?php echo form_submit( 'submit', 'enviar formulario', 'class="button button_large"'); ?>
     <?php echo form_close(); ?>
     <div class="clear"></div>
-    <p><a href="#" style="float:right"><?php echo lang("contacto_denuncias"); ?></a></p>
+    <p><a href="<?php echo site_url("contacto/descargarFormulario");?>" style="float:right"><?php echo lang("contacto_denuncias"); ?></a></p>
 </div><!--CONTENT RIGHT-->

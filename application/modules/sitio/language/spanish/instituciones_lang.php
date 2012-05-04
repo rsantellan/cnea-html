@@ -95,7 +95,7 @@ $lang['instituciones_formulario_strong_text_9']='Responsable Institucional';
 
 $lang['instituciones_formulario_info_text_1']='Por favor completar los campos marcados en rojo';
 $lang['instituciones_formulario_info_text_2']='Seleccionar uno de los tres tipos de naturaleza';
-$lang['instituciones_formulario_info_text_3']='En el primer nivel ingrese la denominaci&oacute;n m&aacute;s general de la instituci&oacute;n para luego avanzar en el grado de especificaci&oacute;n. Por ejemplo 1º UDELAR - 2º Facultad de Ciencias Sociales - 3º Departamento de Econom&iacute;a.';
+$lang['instituciones_formulario_info_text_3']='En el primer nivel ingrese la denominaci&oacute;n m&aacute;s general de la instituci&oacute;n para luego avanzar en el grado de especificaci&oacute;n. Por ejemplo 1ï¿½ UDELAR - 2ï¿½ Facultad de Ciencias Sociales - 3ï¿½ Departamento de Econom&iacute;a.';
 $lang['instituciones_formulario_info_text_4']='-	Si su Instituci&oacute;n no tiene constituido un CEUA, deber&aacute; crearla. Su integraci&oacute;n esta especificada en el Art&iacute;culo 10 de la Ley N&deg; 18.611- "La Comisi&oacute;n de &Eacute;tica en el Uso de Animales estar&aacute; integrada al menos por: un m&eacute;dico veterinario, un docente o investigador, un representante de la comunidad local..."';
 $lang['instituciones_formulario_info_text_5']='Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada*';
 
@@ -111,3 +111,5 @@ $lang['instituciones_formulario_responsable_institucional_descargar']='descargar
 $lang['instituciones_formulario_consultas']='Por Consultas: <a href="mailto:secretaria@cnea.org.uy">secretaria@cnea.org.uy</a>';
 
 $lang['instituciones_formulario_enviado']= '<p>La solicitud se ha enviado correctamente, la CNEA se pondr&aacute; con contacto con usted.</p>';
+
+$lang['instituciones_formulario_descarga_texto']= 'Si desea puede descargar el formulario para completarlo y enviarlo vÃ­a mail o en persona en la sede de la CNEA';
