@@ -69,8 +69,8 @@ class acreditaciones extends MY_Controller {
     function descargarFormularioEmpresa()
     {
       $this->load->helper('download');
-      $name = "Registro_Intsituciones.docx";
-      $path = base_url()."assets/docs/Registro_Intsituciones.docx";
+      $name = "HojaFirmas.doc";
+      $path = base_url()."assets/docs/HOJA_DE_FIRMAS.doc";
       $data = file_get_contents($path); // Read the file's contents
       force_download($name, $data);
     }
