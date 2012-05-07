@@ -48,7 +48,7 @@ if ( ! function_exists('lang'))
 			$line = '<label for="'.$id.'">'.$line."</label>";
 		}
 
-		return $line;
+		return stripcslashes($line);
 	}
 }
 

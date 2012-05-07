@@ -21,7 +21,7 @@ function startTinyMCE(){
 
       // Theme options
       theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect,|",
-      theme_advanced_buttons2 : "bullist,numlist,|link,unlink,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|fullscreen,|,cut,copy,paste,pastetext,pasteword,|",
+      theme_advanced_buttons2 : "bullist,numlist,|,link,unlink,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|fullscreen,|,cut,copy,paste,pastetext,pasteword,|",
       theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid",
 
       theme_advanced_toolbar_location : "top",
