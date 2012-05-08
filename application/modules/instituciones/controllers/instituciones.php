@@ -290,8 +290,8 @@ class instituciones extends MY_Controller{
     function descargarFormularioInstitucion()
     {
       $this->load->helper('download');
-      $name = "Registro_Intsituciones.docx";
-      $path = base_url()."assets/docs/Registro_Intsituciones.docx";
+      $name = "Hoja Firmas.doc";
+      $path = base_url()."assets/docs/HojaFirmas_Insitituciones.doc";
       $data = file_get_contents($path); // Read the file's contents
       force_download($name, $data);      
     }
