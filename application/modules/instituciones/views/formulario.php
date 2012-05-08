@@ -21,8 +21,8 @@
                 <label for="RUT"><?php echo lang("instituciones_formulario_rut"); ?></label>
                 <input class="<?php echo (form_error('RUT') != "")? "input_error" : "";?>" id="RUT" type="text" name="RUT"  value="<?php echo set_value('RUT'); ?>"  />
         </p>
-        <div class="select" style="margin-bottom:3px">
-            <select name="Naturaleza" class="<?php echo (form_error('Naturaleza') != "")? "input_error" : "";?>">
+        <div class="select" style="-bottom:3px">
+            <select name="Naturaleza" class="<?php echo (form_error('Naturaleza') != "")? "select_error" : "";?>">
                 <option value="" <?php echo (set_value('Naturaleza') == "")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_naturaleza"); ?></option>
                 <option value="publica" <?php echo (set_value('Naturaleza') == "publica")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_publica"); ?></option>
                 <option value="privada" <?php echo (set_value('Naturaleza') == "privada")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_privada"); ?></option>
@@ -100,9 +100,11 @@
                         </p>
                         <div class="float_right">
                                 <label style="margin:5px;"><?php echo lang("instituciones_formulario_uso"); ?></label>
-                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" <?php echo (set_value('TipoEspecie_'.$i) == "uso" || set_value('TipoEspecie_'.$i) == "")? "checked=\"checked\"" : "";?> />
+                                <!--<input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="uso" <?php echo (set_value('TipoEspecie_'.$i) == "uso" || set_value('TipoEspecie_'.$i) == "")? "checked=\"checked\"" : "";?> />-->
+                                <input type="checkbox" class="input_checkbox" name="TipoEspecie_1_<?php echo $i; ?>" value="uso" <?php echo (set_value('TipoEspecie_1_'.$i) == "uso")? "checked=\"checked\"" : "";?> />
                                 <label style="margin:5px 5px 5px 15px;"><?php echo lang("instituciones_formulario_cria"); ?></label>
-                                <input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="cria" <?php echo (set_value('TipoEspecie_'.$i) == "cria")? "checked=\"checked\"" : "";?> />
+                                <!--<input type="radio" class="radiobuttom" name="TipoEspecie_<?php echo $i; ?>" value="cria" <?php echo (set_value('TipoEspecie_'.$i) == "cria")? "checked=\"checked\"" : "";?> />-->
+                                <input type="checkbox" class="input_checkbox" name="TipoEspecie_2_<?php echo $i; ?>" value="cria" <?php echo (set_value('TipoEspecie_2_'.$i) == "cria")? "checked=\"checked\"" : "";?> />
                         </div>
                         <div class="clear"></div>
                         <p>

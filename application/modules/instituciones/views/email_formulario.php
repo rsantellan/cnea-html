@@ -98,7 +98,7 @@
         ?>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">
-              <?php echo lang("instituciones_formulario_nombre_especie"); ?> <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Especie[$i]['nombre'];?> (<?php echo $Especie[$i]['tipo_especie'];?>)</span></td>
+              <?php echo lang("instituciones_formulario_nombre_especie"); ?> <?php echo ($i+1); ?>:<span style="font-size:12px; padding:5px 0 5px 10px; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; text-align:left; font-weight:normal;"><?php echo $Especie[$i]['nombre'];?> (<?php if(!empty($Especie[$i]['tipo_especie_1'])) echo $Especie[$i]['tipo_especie_1'];?><?php if(!empty($Especie[$i]['tipo_especie_1']) && !empty($Especie[$i]['tipo_especie_2'])) echo ' , ';?><?php if(!empty($Especie[$i]['tipo_especie_2'])) echo $Especie[$i]['tipo_especie_2'];?>)</span></td>
         </tr>
         <tr>
                 <td style="font-size:12px; padding:5px 0 5px 0; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#353535; font-weight:bold; text-align:left">

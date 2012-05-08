@@ -88,7 +88,7 @@ class instituciones extends MY_Controller{
         $this -> form_validation -> set_rules('UnidadesDependientes3', 'UnidadesDependientes3', 'max_length[255]');
         $this -> form_validation -> set_rules('UnidadesDependientes4', 'UnidadesDependientes4', 'max_length[255]');
         $this -> form_validation -> set_rules('TipoEstablecimiento', 'TipoEstablecimiento', 'required|max_length[255]');
-        $this -> form_validation -> set_rules('ObservacionesComite', 'ObservacionesComite', 'required|max_length[255]');
+        $this -> form_validation -> set_rules('ObservacionesComite', 'ObservacionesComite', 'max_length[255]');
         $this -> form_validation -> set_rules('NombreContacto', 'NombreContacto', 'required|max_length[255]');
         $this -> form_validation -> set_rules('MailContacto', 'MailContacto', 'required|valid_email|max_length[255]');
         $this -> form_validation -> set_rules('TelContacto', 'TelContacto', 'required|max_length[255]');
@@ -99,9 +99,10 @@ class instituciones extends MY_Controller{
         foreach($post as $k=>$v){
             if(substr_count($k, "NombreEspecie_")>0){
                 $i++;
-                $this -> form_validation -> set_rules('NombreEspecie_'.$i, 'NombreEspecie_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('NombreEspecie_'.$i, 'NombreEspecie_'.$i, 'required|max_length[255]');
                 $this -> form_validation -> set_rules('ObservacionesEspecie_'.$i, 'ObservacionesEspecie_'.$i, 'max_length[255]');
-                $this -> form_validation -> set_rules('TipoEspecie_'.$i, 'TipoEspecie_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('TipoEspecie_1_'.$i, 'TipoEspecie_1_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('TipoEspecie_2_'.$i, 'TipoEspecie_2_'.$i, 'max_length[255]');
             }
         }
         
@@ -111,9 +112,9 @@ class instituciones extends MY_Controller{
         foreach($post as $k=>$v){
             if(substr_count($k, "DocenteNombreApellido_")>0){
                 $i++;
-                $this -> form_validation -> set_rules('DocenteNombreApellido_'.$i, 'DocenteNombreApellido_'.$i, 'max_length[255]');
-                $this -> form_validation -> set_rules('DocenteProfesion_'.$i, 'DocenteProfesion_'.$i, 'max_length[255]');
-                $this -> form_validation -> set_rules('DocenteOcupacion_'.$i, 'DocenteOcupacion_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('DocenteNombreApellido_'.$i, 'DocenteNombreApellido_'.$i, 'required|max_length[255]');
+                $this -> form_validation -> set_rules('DocenteProfesion_'.$i, 'DocenteProfesion_'.$i, 'required|max_length[255]');
+                $this -> form_validation -> set_rules('DocenteOcupacion_'.$i, 'DocenteOcupacion_'.$i, 'required|max_length[255]');
             }
         }
         
@@ -123,9 +124,9 @@ class instituciones extends MY_Controller{
         foreach($post as $k=>$v){
             if(substr_count($k, "VeterinarioNombreApellido_")>0){
                 $i++;
-                $this -> form_validation -> set_rules('VeterinarioNombreApellido_'.$i, 'VeterinarioNombreApellido_'.$i, 'max_length[255]');
-                $this -> form_validation -> set_rules('VeterinarioProfesion_'.$i, 'VeterinarioProfesion_'.$i, 'max_length[255]');
-                $this -> form_validation -> set_rules('VeterinarioOcupacion_'.$i, 'VeterinarioOcupacion_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('VeterinarioNombreApellido_'.$i, 'VeterinarioNombreApellido_'.$i, 'required|max_length[255]');
+                $this -> form_validation -> set_rules('VeterinarioProfesion_'.$i, 'VeterinarioProfesion_'.$i, 'required|max_length[255]');
+                $this -> form_validation -> set_rules('VeterinarioOcupacion_'.$i, 'VeterinarioOcupacion_'.$i, 'required|max_length[255]');
             }
         }
         
@@ -135,9 +136,9 @@ class instituciones extends MY_Controller{
         foreach($post as $k=>$v){
             if(substr_count($k, "SociedadNombreApellido_")>0){
                 $i++;
-                $this -> form_validation -> set_rules('SociedadNombreApellido_'.$i, 'SociedadNombreApellido_'.$i, 'max_length[255]');
-                $this -> form_validation -> set_rules('SociedadProfesion_'.$i, 'SociedadProfesion_'.$i, 'max_length[255]');
-                $this -> form_validation -> set_rules('SociedadOcupacion_'.$i, 'SociedadOcupacion_'.$i, 'max_length[255]');
+                $this -> form_validation -> set_rules('SociedadNombreApellido_'.$i, 'SociedadNombreApellido_'.$i, 'required|max_length[255]');
+                $this -> form_validation -> set_rules('SociedadProfesion_'.$i, 'SociedadProfesion_'.$i, 'required|max_length[255]');
+                $this -> form_validation -> set_rules('SociedadOcupacion_'.$i, 'SociedadOcupacion_'.$i, 'required|max_length[255]');
             }
         }
         
@@ -189,7 +190,15 @@ class instituciones extends MY_Controller{
             foreach($post as $k=>$v){
                 if(substr_count($k, "NombreEspecie_")>0){
                     $i = (int)str_replace("NombreEspecie_","",$k);
-                    $arr_especies[] = array('nombre' => $v, 'observaciones' => $_POST['ObservacionesEspecie_'.$i], 'tipo_especie' => $_POST['TipoEspecie_'.$i]);
+                    $tipo_especie_1 = "";
+                    if(isset($_POST['TipoEspecie_1_'.$i])){
+                        $tipo_especie_1 = $_POST['TipoEspecie_1_'.$i];
+                    }
+                    $tipo_especie_2 = "";
+                    if(isset($_POST['TipoEspecie_2_'.$i])){
+                        $tipo_especie_2 = $_POST['TipoEspecie_2_'.$i];
+                    }
+                    $arr_especies[] = array('nombre' => $v, 'observaciones' => $_POST['ObservacionesEspecie_'.$i], 'tipo_especie_1' => $tipo_especie_1, 'tipo_especie_2' => $tipo_especie_2);
                 }
             }
             
