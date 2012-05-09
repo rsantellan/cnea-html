@@ -68,7 +68,7 @@ class registro_persona extends MY_Model{
 	  return $query->result();
 	}
 	
-	function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)
+    function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE, $addGroupByName = FALSE)
     {
       $this->db->order_by("ordinal", "desc");
       $query = null;
@@ -100,13 +100,28 @@ class registro_persona extends MY_Model{
       }
     }
 
+    function retriveRegistrosInstitucionesForSort()
+    {
+      $query = $this->db->query("SELECT distinct(name) FROM registro_persona order by ordenInstitucion desc");
+      return $query->result();
+    }
+    
     function retrieveRegistrosForSort()
     {
-      $this->db->select(array('id', 'name', 'ordinal'));
+      $this->db->select(array('id', 'name', 'code','ordinal'));
       $this->db->order_by("ordinal", "desc");
       $query = $this->db->get($this->getTablename());
       
       return $query->result();
+    }
+    
+    function updateOrderInstitucion($name, $orderInstitucion)
+    {
+      $data = array(
+                'ordenInstitucion' => $orderInstitucion
+             );
+      $this->db->where('name', $name);
+      $this->db->update($this->getTablename(), $data);
     }
     
     function updateOrder($acta_id, $order)
@@ -125,6 +140,29 @@ class registro_persona extends MY_Model{
       $query = $this->db->get($this->getTablename());
       $result = $query->result('array');
       return ((int)$result[0]['ordinal'] + 1);
+    }
+    
+    public function retrieveLastOrderInstitucion()
+    {
+      $this->db->select_max('ordenInstitucion');
+      $query = $this->db->get($this->getTablename());
+      $result = $query->result('array');
+      return ((int)$result[0]['ordenInstitucion'] + 1);
+    }
+    
+    public function retrieveOrderInstitucion($nombre)
+    {
+      
+      $this->db->select('ordenInstitucion');
+      $this->db->where('name', $nombre);
+      $query = $this->db->get($this->getTablename(), 1, 0);
+      $result = $query->result('array');
+      if(count($result) == 0)
+      {
+        return $this->retrieveLastOrderInstitucion();
+      }
+      
+      return ((int) $result[0]['ordenInstitucion']);
     }
     
     public function isNew(){
@@ -153,6 +191,7 @@ class registro_persona extends MY_Model{
       $data["ordinal"] = $this->retrieveLastOrder();
 	  $data["code"] = $this->getCode();
 	  $data["email"] = $this->getEmail();
+      $data['ordenInstitucion'] = $this->retrieveOrderInstitucion($this->getNombre());
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       return $id;
@@ -160,7 +199,9 @@ class registro_persona extends MY_Model{
     
     private function edit()
     {
-	  $data = array();
+      $data = array();
+      //Tengo que chequear si el es igual al de antes, en caso contrario actualizar.
+      $data['ordenInstitucion'] = $this->retrieveOrderInstitucion($this->getNombre());
       $data["name"] = $this->getNombre();
       $data["code"] = $this->getCode();
 	  $data["email"] = $this->getEmail();

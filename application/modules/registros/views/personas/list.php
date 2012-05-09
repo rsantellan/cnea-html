@@ -3,10 +3,10 @@
   <thead>
     <tr>
       <th>
-        Nombre
+        Nombre Institución
       </th>
 	  <th>
-        Codigo
+        Nombre Persona
       </th>
 	  <th>
         Email
@@ -48,5 +48,8 @@
 </a>
 
 <a class="fancy_link iframe" href="<?php echo site_url("registros/sortPersonas");?>" >
-  Ordenar
+  Ordenar Instituciones
+</a>
+<a class="fancy_link iframe" href="<?php echo site_url("registros/sortPersonasEnInstitucion");?>" >
+  Ordenar Personas
 </a>

@@ -9,8 +9,8 @@ echo form_open('registros/savePersona', $attributes); ?>
 
 <div class="grid_5">
   <p>
-    <label for="name">Nombre Institución <small>Requerido</small></label>
-    <input id="institucion" type="text" name="name" maxlength="255" value="<?php echo $object->getNombre() ?>" />
+      <label for="name">Nombre Institución <small>Requerido</small></label>
+      <input style="width: 280px;" id="institucion" type="text" name="name" maxlength="255" value="<?php echo $object->getNombre() ?>" />
   </p>
 </div>
 <div class="grid_5">
@@ -49,6 +49,10 @@ foreach ($list as $name){
 	$counter++;
 }
 
+if($counter == 0)
+{
+  $script .= ");\n";
+}
 $script .= "</script>";
 echo $script;
 ?>

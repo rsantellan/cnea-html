@@ -31,12 +31,12 @@
     <ul id="sortable">
       
       <?php foreach($list as $registro): ?>
-        <li id="listItem_<?php echo $registro->id;?>" class="ui-state-default">
+        <li id="listItem_<?php echo $registro->name;?>" class="ui-state-default">
           <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $registro->name;?> <?php //echo $registro->ordinal; ?>
         </li>
       <?php endforeach; ?>
     </ul>
     
-    <input type="hidden" id="sort_ajax" value="<?php echo site_url("registros/applySortPersona");?>" />
+    <input type="hidden" id="sort_ajax" value="<?php echo site_url("registros/applySortPersonaInstitucion");?>" />
   </body>
 </html>

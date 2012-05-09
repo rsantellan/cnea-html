@@ -45,7 +45,8 @@ class acreditaciones extends MY_Controller {
 		$config['num_tag_close'] = ' - ';
 
 		$this -> pagination -> initialize($config);
-
+        //Lo que tendria que ordenar es la cantidad de instituciones y a partir de eso la cantidad de usuarios.
+        
 		$this -> data['list'] = $this -> registro_persona -> retrieveRegistros($quantity, $page, true);
 		$this -> data['page'] = $page;
 		$this -> data['content'] = 'registro';

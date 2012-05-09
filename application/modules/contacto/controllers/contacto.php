@@ -23,7 +23,7 @@ class contacto extends MY_Controller{
       $this->addJavascript("jquery-1.7.1.min.js");
       $this->addJavascript("jquery.infieldlabel.min.js");
       $this->addJavascript("basicInfieldForm.js");
-      $this->addStyleSheet("infieldlabel.css");
+      //$this->addStyleSheet("infieldlabel.css");
       $this->addJavascript("busqueda.js");
       $this->addStyleSheet("busqueda.css");  
     }
@@ -95,8 +95,8 @@ class contacto extends MY_Controller{
     function descargarFormulario()
     {
       $this->load->helper('download');
-      $name = "Formulario_Denuncias.docx";
-      $path = base_url()."assets/docs/Formulario_Denuncias.docx";
+      $name = "Formulario Denuncias.doc";
+      $path = base_url()."assets/docs/Formulario_Denuncias.doc";
       $data = file_get_contents($path); // Read the file's contents
       force_download($name, $data);      
     }

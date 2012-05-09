@@ -52,7 +52,14 @@ class registros extends MY_Controller{
     
     function sortPersonas(){
       $this->load->model('registros/registro_persona');
-      $this->data['list'] = $this->registro_persona->retrieveRegistrosForSort();
+      $this->data['list'] = $this->registro_persona->retriveRegistrosInstitucionesForSort();
+      
+      $this->load->view('registros/personas/sortable', $this->data);
+    }
+    
+    function sortPersonasEnInstituciones(){
+      $this->load->model('registros/registro_persona');
+      $this->data['list'] = $this->registro_persona->retriveRegistrosInstitucionesForSort();
       
       $this->load->view('registros/personas/sortable', $this->data);
     }
@@ -64,6 +71,26 @@ class registros extends MY_Controller{
       $this->data['list'] = $this->registro_institucion->retrieveRegistrosForSort();
       
       $this->load->view('registros/instituciones/sortable', $this->data);
+    }
+    
+    function applySortPersonaInstitucion()
+    {
+      $lista = $this->input->post('listItem');
+      $this->load->model('registros/registro_persona');
+      
+      
+      $maximo = count($lista) - 1;
+      $cantidad = 0;
+      while($cantidad <= $maximo)
+      {
+        $this->registro_persona->updateOrderInstitucion($lista[$maximo - $cantidad], $cantidad);
+        $cantidad ++;
+      }
+      $salida = array();
+      $salida['response'] = "OK";
+      
+      echo json_encode($salida);
+      die;
     }
     
     function applySortPersona()
@@ -79,15 +106,6 @@ class registros extends MY_Controller{
         $this->registro_persona->updateOrder($lista[$maximo - $cantidad], $cantidad);
         $cantidad ++;
       }
-      /*
-      $cantidad = count($lista) - 1;
-      while($cantidad >= 0)
-      {
-        //echo $lista[$cantidad] . " - ".$cantidad;
-        $this->registro_persona->updateOrder($lista[$cantidad], $cantidad);
-        $cantidad --;
-      }
-      */
       $salida = array();
       $salida['response'] = "OK";
       
@@ -131,10 +149,10 @@ class registros extends MY_Controller{
 	  //$this->output->enable_profiler(TRUE);
       $this->load->model('registros/registro_persona');
       $this->data['use_grid_16'] = false;
-	  $this->addJqueryUI();
-	  $this->addModuleJavascript("registros", "registroPersona.js");
-	  $this->data['list'] = $this->registro_persona->retrieveInstitucionesForAdmin();
-	  $this->data['content'] = "registros/personas/add";
+      $this->addJqueryUI();
+      $this->addModuleJavascript("registros", "registroPersona.js");
+      $this->data['list'] = $this->registro_persona->retrieveInstitucionesForAdmin();
+      $this->data['content'] = "registros/personas/add";
       $this->data['object'] = new $this->registro_persona;
       $this->load->view("admin/layout", $this->data);
     }
@@ -154,6 +172,9 @@ class registros extends MY_Controller{
     {
       $this->load->model('registros/registro_persona');
       $this->data['use_grid_16'] = false;
+      $this->addJqueryUI();
+      $this->addModuleJavascript("registros", "registroPersona.js");
+      $this->data['list'] = $this->registro_persona->retrieveInstitucionesForAdmin();
       $this->data['content'] = "registros/personas/edit";
       $this->data['object'] = $this->registro_persona->getById($id);
       $this->load->view("admin/layout", $this->data);
