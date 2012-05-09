@@ -22,7 +22,7 @@
                 <input class="<?php echo (form_error('RUT') != "")? "input_error" : "";?>" id="RUT" type="text" name="RUT"  value="<?php echo set_value('RUT'); ?>"  />
         </p>
         <div class="select" style="-bottom:3px">
-            <select name="Naturaleza" class="<?php echo (form_error('Naturaleza') != "")? "select_error" : "";?>">
+            <select name="Naturaleza" class="<?php echo (form_error('Naturaleza') != "")? "input_error" : "";?>">
                 <option value="" <?php echo (set_value('Naturaleza') == "")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_naturaleza"); ?></option>
                 <option value="publica" <?php echo (set_value('Naturaleza') == "publica")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_publica"); ?></option>
                 <option value="privada" <?php echo (set_value('Naturaleza') == "privada")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_privada"); ?></option>
@@ -225,6 +225,7 @@
         <!--<input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
         <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
         <div class="clear"></div>-->
+        <span class="msg_error"><?php echo $errores["copia_resolucion_institucion"]; ?></span>
         <input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
         <button class="adjuntar"><?php echo lang("instituciones_formulario_copia_resolucion_institucion_adjuntar"); ?></button>
         <div class="clear"></div>
@@ -247,6 +248,7 @@
         <!--<input type="file" name="responsable_institucional" class="file">
         <button>Adjuntar</button>
         <div class="clear"></div>-->
+        <span class="msg_error"><?php echo $errores["copia_resolucion_institucion"]; ?></span>
         <input type="file" name="responsable_institucional" id="responsable_institucional" class="file" />
         <button class="adjuntar"><?php echo lang("instituciones_formulario_responsable_institucional_adjuntar"); ?></button>
         <a href="<?php echo site_url("instituciones/descargarFormularioInstitucion");?>" class="descargar descargar_forms"><?php echo lang("instituciones_formulario_responsable_institucional_descargar"); ?></a>
