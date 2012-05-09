@@ -1,10 +1,7 @@
 <div class="content_right img_instituciones">
     <h1><?php echo lang("instituciones_formulario_titulo"); ?></h1>
     <h5><?php echo lang("instituciones_formulario_strong_text_1"); ?></h5>
-    <?php if(strlen(validation_errors()) > 0): ?>
-    <span class="msg_error"><?php echo lang("instituciones_formulario_info_text_1"); ?></span>
-    <?php endif; ?>
-    <?php if(isset($errores)): ?>
+    <?php if(strlen(validation_errors()) > 0 || isset($errores)): ?>
     <span class="msg_error"><?php echo lang("instituciones_formulario_info_text_1"); ?></span>
     <?php endif; ?>
     <?php
