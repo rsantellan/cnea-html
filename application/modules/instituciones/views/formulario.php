@@ -225,7 +225,9 @@
         <!--<input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
         <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
         <div class="clear"></div>-->
+        <?php if(isset($errores["copia_resolucion_institucion"])): ?>
         <span class="msg_error"><?php echo $errores["copia_resolucion_institucion"]; ?></span>
+        <?php endif; ?>
         <input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
         <button class="adjuntar"><?php echo lang("instituciones_formulario_copia_resolucion_institucion_adjuntar"); ?></button>
         <div class="clear"></div>
@@ -248,7 +250,9 @@
         <!--<input type="file" name="responsable_institucional" class="file">
         <button>Adjuntar</button>
         <div class="clear"></div>-->
-        <span class="msg_error"><?php echo $errores["copia_resolucion_institucion"]; ?></span>
+        <?php if(isset($errores["responsable_institucional"])): ?>
+        <span class="msg_error"><?php echo $errores["responsable_institucional"]; ?></span>
+        <?php endif; ?>
         <input type="file" name="responsable_institucional" id="responsable_institucional" class="file" />
         <button class="adjuntar"><?php echo lang("instituciones_formulario_responsable_institucional_adjuntar"); ?></button>
         <a href="<?php echo site_url("instituciones/descargarFormularioInstitucion");?>" class="descargar descargar_forms"><?php echo lang("instituciones_formulario_responsable_institucional_descargar"); ?></a>
