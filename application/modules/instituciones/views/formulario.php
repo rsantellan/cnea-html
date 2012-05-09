@@ -4,6 +4,9 @@
     <?php if(strlen(validation_errors()) > 0): ?>
     <span class="msg_error"><?php echo lang("instituciones_formulario_info_text_1"); ?></span>
     <?php endif; ?>
+    <?php if(isset($errores)): ?>
+    <span class="msg_error"><?php echo lang("instituciones_formulario_info_text_1"); ?></span>
+    <?php endif; ?>
     <?php
         $attributes = array('class' => 'infield_form', 'id' => '');
         echo form_open_multipart('instituciones/formulario', $attributes); ?>
