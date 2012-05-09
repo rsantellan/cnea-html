@@ -17,4 +17,9 @@ $lang['contacto_titulo']='Contacto';
 $lang['contacto_mensaje_enviado']='<p>Gracias por ponerse con contacto con la CNEA, a la brevedad nos comunicaremos con usted.</p>';
 $lang['faq_titulo']='preguntas frecuentes <br />';
 $lang['faq_contenido']='<p>Asi se crea un <a href=\"http://www.google.com\" target=\"_blank\">link</a></p>';
+$lang['buscador_titulo']='Buscador';
+$lang['buscador_palabra_buscada']='Resultados de busqueda para la palabra';
+$lang['buscador_titulo_novedad']='Novedades';
+$lang['buscador_titulo_actas']='Actas';
+$lang['buscador_sin_resultados']='Sin resultados';
 /* End of file sitio_lang.php */

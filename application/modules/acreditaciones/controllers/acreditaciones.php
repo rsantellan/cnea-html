@@ -107,7 +107,8 @@ class acreditaciones extends MY_Controller {
 		$this -> form_validation -> set_rules('categoria_b', 'categoria_b', 'max_length[255]');
 		$this -> form_validation -> set_rules('categoria_c1', 'categoria_c1', 'max_length[255]');
 		$this -> form_validation -> set_rules('categoria_c2', 'categoria_c2', 'max_length[255]');
-
+		$this -> form_validation -> set_rules('observaciones_institucion_field', 'observaciones_institucion_field', 'max_length[1000]');
+		
 		$this -> form_validation -> set_error_delimiters('<br /><span class="error">', '</span>');
 		if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
 		{
@@ -187,7 +188,8 @@ class acreditaciones extends MY_Controller {
 					'categoria_a' => set_value('categoria_a'), 
 					'categoria_b' => set_value('categoria_b'), 
 					'categoria_c1' => set_value('categoria_c1'), 
-					'categoria_c2' => set_value('categoria_c2')
+					'categoria_c2' => set_value('categoria_c2'),
+					'observaciones_institucion_field' => set_value('observaciones_institucion_field')
 					);
 				$message = $this -> load -> view('acreditaciones/email_formulario', $form_data, TRUE);
 				$this->load->model('contacto/mail_db');

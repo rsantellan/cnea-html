@@ -76,6 +76,12 @@
       <input class="<?php echo (form_error('cargo') != "")? "input_error" : "";?>" id="cargo" type="text" name="cargo" maxlength="255" value="<?php echo set_value('cargo'); ?>"  />
     </p>
     
+	<p class="observaciones_institucion_field">
+	  <label for="observaciones_institucion_field"><?php echo lang("personal_formulario_institucion_observaciones"); ?></label>
+      <?php echo form_textarea( array('class' => '', 'id' => 'observaciones_institucion_field', 'name' => 'observaciones_institucion_field', 'rows' => '5', 'cols' => '80', 'value' => set_value('observaciones_institucion_field') ) )?>
+      
+    </p>
+	
     <label for="realizacion"><?php echo lang("personal_formulario_subtitulo_realizacion"); ?></label>
     <?php 
       $rdata = array(

@@ -41,6 +41,7 @@ class sitio extends MY_Controller {
   public function leftBar()
   {
     $this->load->model('novedadesadmin/novedad');
+	$this->load->helper('text');
     $this->loadI18n("novedades", "", FALSE, TRUE, "", "sitio");
     $novedades = $this->novedad->retrieveNovedades(3, 0, true);
     //$novedades = array();
@@ -136,6 +137,7 @@ class sitio extends MY_Controller {
     $this->data['novedades'] = $novedades_list;
     $this->data['content'] = 'busqueda';
     $this->data['menu_id'] = '';
+	$this->data['word'] = $data;
     $this->load->view('layout', $this->data);
   }
 }

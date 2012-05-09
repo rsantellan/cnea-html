@@ -9,13 +9,13 @@ echo form_open('registros/savePersona', $attributes); ?>
 
 <div class="grid_5">
   <p>
-    <label for="name">Nombre <small>Requerido</small></label>
-    <input type="text" name="name" maxlength="255" value="<?php echo $object->getNombre() ?>" />
+    <label for="name">Nombre Institución <small>Requerido</small></label>
+    <input id="institucion" type="text" name="name" maxlength="255" value="<?php echo $object->getNombre() ?>" />
   </p>
 </div>
 <div class="grid_5">
   <p>
-    <label for="code">Codigo <small>Requerido</small></label>
+    <label for="code">Nombre Persona<small>Requerido</small></label>
     <input type="text" name="code" maxlength="255" value="<?php echo $object->getCode() ?>" />
   </p>
 </div>
@@ -32,3 +32,24 @@ echo form_open('registros/savePersona', $attributes); ?>
   </p>
 </div>
 <?php echo form_close(); ?>
+
+
+<?php 
+$script = "";
+// create script string to append to content. First create the value array in JavaScript.
+$script = $script . "\n" . '<script type="text/javascript"> '. "\nvar lcValues = new Array(";
+$counter = 0;
+foreach ($list as $name){
+	if ($counter < (count($list)-1)){
+		$script = $script . "'".$name->name. "'" . ',';
+	}
+	else {
+		$script = $script. "'" . $name->name. "'" . ");\n";
+	}
+	$counter++;
+}
+
+$script .= "</script>";
+echo $script;
+?>
+

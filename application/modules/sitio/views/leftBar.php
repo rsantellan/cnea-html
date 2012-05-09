@@ -13,7 +13,7 @@
   <h3>&uacute;ltimas novedades</h3>
   <div class="ultimas_novedades">
       <?php foreach($last_novedades as $novedad): ?>
-          <?php echo $novedad->getNombre();?>
+		  <?php echo character_limiter($novedad->getNombre(), 32);?>
           <a href="<?php echo site_url("novedades/detalle/".$novedad->getId());?>"><?php echo lang("novedades_ver_mas"); ?></a>
           <div class="clear"></div>
           <hr />

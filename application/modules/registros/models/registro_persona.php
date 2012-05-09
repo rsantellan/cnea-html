@@ -59,6 +59,15 @@ class registro_persona extends MY_Model{
 	  $this->email = $email;
 	}
 
+	function retrieveInstitucionesForAdmin()
+	{
+	  $this->db->select("name");
+	  $this->db->order_by("ordinal", "desc");
+	  $this->db->distinct();
+	  $query = $this->db->get($this->getTablename());
+	  return $query->result();
+	}
+	
 	function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)
     {
       $this->db->order_by("ordinal", "desc");

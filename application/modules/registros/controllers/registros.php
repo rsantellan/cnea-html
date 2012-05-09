@@ -128,9 +128,13 @@ class registros extends MY_Controller{
     
     function addPersona()
     {
+	  //$this->output->enable_profiler(TRUE);
       $this->load->model('registros/registro_persona');
       $this->data['use_grid_16'] = false;
-      $this->data['content'] = "registros/personas/add";
+	  $this->addJqueryUI();
+	  $this->addModuleJavascript("registros", "registroPersona.js");
+	  $this->data['list'] = $this->registro_persona->retrieveInstitucionesForAdmin();
+	  $this->data['content'] = "registros/personas/add";
       $this->data['object'] = new $this->registro_persona;
       $this->load->view("admin/layout", $this->data);
     }

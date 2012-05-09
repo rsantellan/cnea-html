@@ -461,7 +461,7 @@ table{
 	}
 	.bottom p{
 		text-align:center;
-		font-size:13px;
+		font-size:14px;
 		line-height:22px;
 		color:#FFFFFF;
 		width:auto;
@@ -472,7 +472,7 @@ table{
 			}
 		.bottom p a.current,
 		.bottom p a:hover{
-			color:#CCCCCC;
+			color:#748FC9;
 			text-decoration:none;
 			}
 /*FORMUALRIOS*/
