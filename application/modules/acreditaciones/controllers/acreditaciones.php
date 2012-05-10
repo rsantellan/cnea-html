@@ -36,7 +36,7 @@ class acreditaciones extends MY_Controller {
 		$this -> load -> helper('text');
 		$quantity = 10;
 		$config['base_url'] = base_url() . 'index.php/acreditaciones/registro/';
-		$config['total_rows'] = $this -> registro_persona -> countAllRecords();
+		$config['total_rows'] = $this -> registro_persona -> retrieveCountForPager();
 		$config['per_page'] = $quantity;
 		$config['cur_tag_open'] = '<a href="javascript:void(0)" class="current">';
 		$config['cur_tag_close'] = '</a> -';
@@ -46,8 +46,9 @@ class acreditaciones extends MY_Controller {
 
 		$this -> pagination -> initialize($config);
         //Lo que tendria que ordenar es la cantidad de instituciones y a partir de eso la cantidad de usuarios.
+        $this->data['listado'] = $this->registro_persona ->retrieveRegistrosEncadenados($quantity, $page, true);
         
-		$this -> data['list'] = $this -> registro_persona -> retrieveRegistros($quantity, $page, true);
+        //$this -> data['list'] = $this -> registro_persona -> retrieveRegistros($quantity, $page, true);
 		$this -> data['page'] = $page;
 		$this -> data['content'] = 'registro';
 		$this -> load -> view('layout', $this -> data);

@@ -59,15 +59,87 @@ class registro_persona extends MY_Model{
 	  $this->email = $email;
 	}
 
-	function retrieveInstitucionesForAdmin()
+	function retrieveInstitucionesForAdmin($number = NULL, $offset = NULL)
 	{
 	  $this->db->select("name");
 	  $this->db->order_by("ordinal", "desc");
 	  $this->db->distinct();
-	  $query = $this->db->get($this->getTablename());
+	  //$query = $this->db->get($this->getTablename());
+      if(is_null($number))
+      {
+        $query = $this->db->get($this->getTablename());
+      }
+      else
+      {
+        $query = $this->db->get($this->getTablename(), $number, $offset);
+      }
 	  return $query->result();
 	}
 	
+    function retrieveCountForPager()
+    {
+      $this->db->select("name");
+	  $this->db->order_by("ordinal", "desc");
+	  $this->db->distinct();
+      $query = $this->db->get($this->getTablename());
+      return $query->num_rows();
+      
+    }
+    
+    function retrievePersonasInstitucion($name)
+    {
+      $this->db->where("name", $name);
+      $this->db->order_by("ordinal", "desc");
+	  $query = $this->db->get($this->getTablename());
+	  return $query->result();
+    }
+    
+    function retrieveRegistrosEncadenados($number = NULL, $offset = NULL, $returnObjects = FALSE)
+    {
+      $listInstituciones = $this->retrieveInstitucionesForAdmin($number, $offset);
+      $salida = array();
+      foreach($listInstituciones as $institucion)
+      {
+        $auxiliar = array();
+        $personas = $this->retrievePersonasInstitucion($institucion->name);
+        foreach($personas as $persona)
+        {
+          $auxiliar[] = $persona;
+        }
+        $salida[$institucion->name] = $auxiliar;
+      }
+      return $salida;
+      
+      $this->db->order_by("ordinal", "desc");
+      $query = null;
+      if(is_null($number))
+      {
+        $query = $this->db->get($this->getTablename());
+      }
+      else
+      {
+        $query = $this->db->get($this->getTablename(), $number, $offset);
+      }
+      if(!$returnObjects)
+      {
+        return $query->result();
+      }
+      else
+      {
+        $salida = array();
+        foreach($query->result() as $obj)
+        {
+          $aux = new registro_persona();
+          $aux->setId($obj->id);
+          $aux->setNombre($obj->name);
+          $aux->setCode($obj->code);
+		  $aux->setEmail($obj->email);
+          $salida[] = $aux;
+        }
+        return $salida;
+      }
+    }
+    
     function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE, $addGroupByName = FALSE)
     {
       $this->db->order_by("ordinal", "desc");

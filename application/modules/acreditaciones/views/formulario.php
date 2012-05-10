@@ -196,7 +196,8 @@
     </p>
     <span class="acreditacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_adjuntar_acreditacion"); ?></span>
     <?php if(isset($errores['acreditacion_upload'])): ?>
-		<?php echo $errores['acreditacion_upload'];?>
+        <span class="upload_error"><?php echo $errores['acreditacion_upload'];?></span>
+		<?php //echo $errores['acreditacion_upload'];?>
 	<?php endif;?>
     <input type="file" name="acreditacion_upload" id="acreditacion_upload" class="file" />
     <input type="button" class="button button_short acreditacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
@@ -237,7 +238,7 @@
     <?php echo lang("personal_formulario_texto_firma_institucion"); ?>
 <!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_institucion_upload'])): ?>
-		<?php echo $errores['firma_institucion_upload'];?>
+		<span class="upload_error"><?php echo $errores['firma_institucion_upload'];?></span>
 	<?php endif;?>
     <input type="file" name="firma_institucion_upload" id="firma_institucion_upload" class="file"/>
 <!--    <input type="button" class="button button_short" value="adjuntar" />-->

@@ -33,6 +33,7 @@ echo form_open('registros/savePersona', $attributes); ?>
 </div>
 <?php echo form_close(); ?>
 
+<div id="autocomplete_container"></div>
 
 <?php 
 $script = "";

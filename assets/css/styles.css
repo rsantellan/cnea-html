@@ -712,3 +712,8 @@ form{
 	position:absolute;
 	width:0;			
 }
+
+
+.upload_error p{
+  color: red !important;
+}

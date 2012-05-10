@@ -50,6 +50,6 @@
 <a class="fancy_link iframe" href="<?php echo site_url("registros/sortPersonas");?>" >
   Ordenar Instituciones
 </a>
-<a class="fancy_link iframe" href="<?php echo site_url("registros/sortPersonasEnInstitucion");?>" >
+<a class="fancy_link iframe" href="<?php echo site_url("registros/sortPersonasEnInstituciones");?>" >
   Ordenar Personas
 </a>

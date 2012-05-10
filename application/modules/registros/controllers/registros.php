@@ -59,9 +59,23 @@ class registros extends MY_Controller{
     
     function sortPersonasEnInstituciones(){
       $this->load->model('registros/registro_persona');
-      $this->data['list'] = $this->registro_persona->retriveRegistrosInstitucionesForSort();
+      $this->data['instituciones'] = $this->registro_persona->retriveRegistrosInstitucionesForSort();
       
-      $this->load->view('registros/personas/sortable', $this->data);
+      $this->load->view('registros/personas/sortableEnInstituciones', $this->data);
+    }
+    
+    function bringPersonaInstitucion()
+    {
+      $name = $this->input->post('name');
+      $this->load->model('registros/registro_persona');
+      $data = array();
+      $data['list'] = $this->registro_persona->retrievePersonasInstitucion($name);
+      $html = $this->load->view('registros/personas/personasLi', $data, true);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['html'] = $html;
+      echo json_encode($salida);
+      die;
     }
     
     function sortInstituciones(){

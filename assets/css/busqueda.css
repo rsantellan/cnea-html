@@ -3,3 +3,11 @@ form.buscador_form p{
   margin-bottom: 0px !important;
   color: #B8B7B7 !important; 
 } 
+
+form.contacto_form label.infield
+{
+  margin-top: 5px !important;
+  margin-right: 5px !important;
+  margin-left: 10px !important;
+} 
+
