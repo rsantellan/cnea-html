@@ -11,3 +11,6 @@ form.contacto_form label.infield
   margin-left: 10px !important;
 } 
 
+.upload_error p{
+  color: red !important;
+}

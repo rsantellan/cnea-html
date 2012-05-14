@@ -304,4 +304,13 @@ class instituciones extends MY_Controller{
       $data = file_get_contents($path); // Read the file's contents
       force_download($name, $data);      
     }
+
+    function descargarFormularioFirmasInstitucion()
+    {
+      $this->load->helper('download');
+      $name = "Registro Instituciones.doc";
+      $path = base_url()."assets/docs/Registro_Intsituciones.doc";
+      $data = file_get_contents($path); // Read the file's contents
+      force_download($name, $data);      
+    }
 }

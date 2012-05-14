@@ -617,8 +617,18 @@ form{
 				margin:10px 0 10px 10px;
 				line-height:28px;
             	}
-				.file{
-					display:none;
+				input.file{
+					/*display:none;*/
+					height:22px;
+					border:1px solid #B4B4B4;
+					-webkit-border-radius:15px;	
+					-moz-border-radius:15px;
+					border-radius:15px;
+					margin:13px 80px 10px 10px;
+					font-size:12px;
+					padding:0 10px;
+					width:150px !important;
+					float:right;
 					}
 				
 				
@@ -711,9 +721,4 @@ form{
 	left:60px;
 	position:absolute;
 	width:0;			
-}
-
-
-.upload_error p{
-  color: red !important;
 }

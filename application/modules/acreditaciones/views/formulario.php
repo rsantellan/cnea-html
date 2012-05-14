@@ -144,7 +144,7 @@
 		<?php echo $errores['cursos_upload'];?>
 	<?php endif;?>
     <input type="file" name="cursos_upload" id="cursos_upload" class="file" />
-    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
+<!--    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />-->
     <div class="clear"></div>
     
     <label><?php echo lang("personal_formulario_subtitulo_acreditacion"); ?></label>
@@ -200,7 +200,7 @@
 		<?php //echo $errores['acreditacion_upload'];?>
 	<?php endif;?>
     <input type="file" name="acreditacion_upload" id="acreditacion_upload" class="file" />
-    <input type="button" class="button button_short acreditacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
+<!--    <input type="button" class="button button_short acreditacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />-->
     <div class="clear"></div>
     
     <h5><?php echo lang("personal_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("personal_formulario_subtitulo_ver_bases"); ?></a></h5>
@@ -242,7 +242,7 @@
 	<?php endif;?>
     <input type="file" name="firma_institucion_upload" id="firma_institucion_upload" class="file"/>
 <!--    <input type="button" class="button button_short" value="adjuntar" />-->
-    <button class="adjuntar">Adjuntar</button>
+<!--    <button class="adjuntar">Adjuntar</button>-->
     <a href="<?php echo site_url("acreditaciones/descargarFormularioEmpresa");?>" class="descargar descargar_forms">descargar</a>
     <div class="clear"></div>
     <input type="submit" class="button button_large" value="enviar formulario" />
