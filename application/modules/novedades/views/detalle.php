@@ -5,7 +5,7 @@
       <?php foreach($images as $image): ?>
       <?php
         $width = 435;
-        $height = 104;
+        $height = 435;
       ?>
         <img alt="<?php echo $image->name;?>" src="<?php echo base_url().thumbnail_image($image->path , $width, $height, 1); ?>" />
 <!--        <img alt="<?php //echo $image->name;?>" src="<?php //echo base_url().thumbnail_image($image->path , $width, $height, 2); ?>" />
