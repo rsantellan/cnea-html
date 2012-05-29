@@ -63,7 +63,7 @@ class acreditaciones extends MY_Controller {
     {
       $this->load->helper('download');
       $name = "Acreditaciones_Personales.doc";
-      $path = base_url()."assets/docs/Acreditaciones_Personales.docx";
+      $path = base_url()."assets/docs/Acreditaciones_Personales.doc";
       $data = file_get_contents($path); // Read the file's contents
       force_download($name, $data);      
     }
