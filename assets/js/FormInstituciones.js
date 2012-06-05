@@ -77,3 +77,33 @@ function agregarSociedad(){
   $('#sociedades_'+(counter+1)).html(str);
   $(".infield_form p label").inFieldLabels();
 }
+
+var counterConstitucion = 0;
+
+function agregarFileInputConstitucion()
+{
+ var cloned = $("#copia_resolucion_institucion").clone();
+ //var ultimoId = $('.copia_resolucion_institucion').last().attr('id');
+ var ultimo = $('.container').last();
+ var auxId = cloned.attr("id");
+ var auxName = cloned.attr("name");
+ //var clonedSacar = $("#a_href_remove_resolucion").clone();
+ //clonedSacar.css('display', '');
+ cloned.attr("id","sacar_"+ counterConstitucion);
+ cloned.attr("id",auxId + "_"+ counterConstitucion);
+ cloned.attr("name",auxName + "_"+ counterConstitucion);
+ var container = $('<div class="container"></div>');
+ container.append(cloned);
+ container.append($('<a style="float: right;" onclick="return eliminarFileInputConstitucion(this);" href="javascript:void(0)">Sacar</a><div class="clear"></div>'));
+ container.insertAfter(ultimo);
+ $('<div class="clear"></div>').insertAfter(ultimo);
+ counterConstitucion++;
+ 
+ 
+}
+
+function eliminarFileInputConstitucion(element)
+{
+  $(element).parent('div').remove();
+}
+

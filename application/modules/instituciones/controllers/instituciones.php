@@ -165,6 +165,27 @@ class instituciones extends MY_Controller{
             }else{
                 $upload_data['copia_resolucion_institucion'] = $this->upload->data();
             }
+            $finish = false;
+            $counter = 0;
+            while(!$finish)
+            {
+              if(isset($_FILES["copia_resolucion_institucion_".$counter]))
+              {
+                if (!$this -> upload -> do_upload('copia_resolucion_institucion_'.$counter)) {
+                $errores['copia_resolucion_institucion_'.$counter] = $this -> upload -> display_errors();
+                $this->upload->clean_errors();
+                $send_email = false;
+              }else{
+                  $upload_data['copia_resolucion_institucion_'.$counter] = $this->upload->data();
+              }
+              }
+              else
+              {
+                $finish = true;
+              }
+              $counter++;
+            }
+            
             
             if (!$this -> upload -> do_upload('responsable_institucional')) {
                 $errores['responsable_institucional'] = $this -> upload -> display_errors();

@@ -83,7 +83,7 @@ class acreditaciones extends MY_Controller {
 		$this -> addStyleSheet("skin1.css");
 		$this -> addJavascript("jquery.infieldlabel.min.js");
 		$this -> addJavascript("basicInfieldFormPersonas.js");
-		//$this->addJavascript("acreditacion.js");
+		$this->addJavascript("FormAcreditaciones.js");
 		$this -> addStyleSheet("infieldlabelPersonas.css");
 		$this -> load -> library('form_validation');
 		$this -> load -> helper('form');
@@ -135,6 +135,28 @@ class acreditaciones extends MY_Controller {
 				}else{
 					$upload_data['cursos_upload'] = $this->upload->data();
 				}
+        
+        $finish = false;
+        $counter = 0;
+        while(!$finish)
+        {
+          if(isset($_FILES["cursos_upload_".$counter]))
+          {
+            if (!$this -> upload -> do_upload('cursos_upload_'.$counter)) {
+            $errores['cursos_upload_'.$counter] = $this -> upload -> display_errors();
+            $this->upload->clean_errors();
+            $send_email = false;
+          }else{
+              $upload_data['cursos_upload_'.$counter] = $this->upload->data();
+          }
+          }
+          else
+          {
+            $finish = true;
+          }
+          $counter++;
+        }
+        
 			}
 			if(set_value('acreditacion') == "si"){
 				//acreditacion_upload
@@ -145,18 +167,31 @@ class acreditaciones extends MY_Controller {
 				}else{
 					$upload_data['acreditacion_upload'] = $this->upload->data();
 				}
+        
+        
+        $finish = false;
+        $counter = 0;
+        while(!$finish)
+        {
+          if(isset($_FILES["acreditacion_upload_".$counter]))
+          {
+            if (!$this -> upload -> do_upload('acreditacion_upload_'.$counter)) {
+            $errores['acreditacion_upload_'.$counter] = $this -> upload -> display_errors();
+            $this->upload->clean_errors();
+            $send_email = false;
+          }else{
+              $upload_data['acreditacion_upload_'.$counter] = $this->upload->data();
+          }
+          }
+          else
+          {
+            $finish = true;
+          }
+          $counter++;
+        }
+        
 			}
-			
-			//firma_persona_upload
-			/*
-            if (!$this -> upload -> do_upload('firma_persona_upload')) {
-				$errores['firma_persona_upload'] = $this -> upload -> display_errors();
-				$this->upload->clean_errors();
-				$send_email = false;
-			}else{
-				$upload_data['firma_persona_upload'] = $this->upload->data();
-			}
-            */
+
             
 			//firma_institucion_upload
 			if (!$this -> upload -> do_upload('firma_institucion_upload')) {

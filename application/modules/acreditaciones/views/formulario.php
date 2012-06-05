@@ -1,5 +1,13 @@
 <div class="content_right img_instituciones">
   <h1><?php echo lang("personal_formulario_titulo"); ?></h1>
+  
+  <?php echo lang("personal_formulario_titulo_descarga");?>
+  <div style="width:515px">
+    <span><strong><?php echo lang("personal_formulario_texto_descarga"); ?></strong></span>
+
+    <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
+  </div>
+  <div class="clear"></div>
   <h5><?php echo lang("personal_formulario_subtitulo"); ?></h5>
   <?php if(strlen(validation_errors()) > 0): ?>
   <span class="msg_error"><?php echo lang("personal_formulario_subtitulo_errores"); ?></span>
@@ -140,13 +148,43 @@
       
     </p>
     <span class="realizacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_subtitulo_adjuntar_cursos"); ?></span>
-    <?php if(isset($errores['cursos_upload'])): ?>
-		<?php echo $errores['cursos_upload'];?>
-	<?php endif;?>
-    <input type="file" name="cursos_upload" id="cursos_upload" class="file" />
-<!--    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />-->
+    <?php //if(isset($errores['cursos_upload'])): ?>
+		<?php //echo $errores['cursos_upload'];?>
+	<?php //endif;?>
+    <div class="container_cursos realizacion_field">
+      <?php if(isset($errores["cursos_upload"])): ?>
+      <span class="msg_error"><?php echo $errores["cursos_upload"]; ?></span>
+      <?php endif; ?>          
+      <input type="file" name="cursos_upload" id="cursos_upload" class="file cursos_upload_personal" />
+    </div>
     <div class="clear"></div>
     
+        <?php
+        $finish = false;
+        $counter = 0;
+        while(!$finish):
+          if(isset($errores) && isset($errores['cursos_upload_'.$counter])):
+?>
+        <div class="container_cursos realizacion_field">
+            <span class="msg_error"><?php echo $errores['cursos_upload_'.$counter]; ?></span>
+            <input type="file" name="cursos_upload_<?php echo $counter;?>" id="cursos_upload_<?php echo $counter;?>" class="file cursos_upload_personal" />
+            <div class="clear"></div>
+            <a href="javascript:void(0)" onclick="return eliminarFileInput(this);" style="float:right">Sacar</a><div class="clear"></div>
+        </div>
+<?php        
+              
+          else:
+            $finish = true;
+            
+          endif;
+          $counter++;
+        endwhile;
+        ?>    
+    <!--<input type="file" name="cursos_upload" id="cursos_upload" class="file" />-->
+<!--    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />-->
+    <div class="clear"></div>
+    <a class="realizacion_field" href="javascript:void(0)" onclick="return agregarFileInputCursos();" style="float:right"><?php echo lang("personal_formulario_agregar_mas"); ?></a>
+    <div class="clear"></div>
     <label><?php echo lang("personal_formulario_subtitulo_acreditacion"); ?></label>
 	  <?php 
       $adata = array(
@@ -195,13 +233,50 @@
         <input class="<?php echo (form_error('acreditacion_fecha') != "")? "input_error" : "";?>" id="acreditacion_fecha" type="date" name="acreditacion_fecha" maxlength="255" value="<?php echo set_value('acreditacion_fecha'); ?>"  />
     </p>
     <span class="acreditacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_adjuntar_acreditacion"); ?></span>
-    <?php if(isset($errores['acreditacion_upload'])): ?>
-        <span class="upload_error"><?php echo $errores['acreditacion_upload'];?></span>
-		<?php //echo $errores['acreditacion_upload'];?>
-	<?php endif;?>
-    <input type="file" name="acreditacion_upload" id="acreditacion_upload" class="file" />
+  
+    <div class="container_acreditaciones acreditacion_field">
+      <?php if(isset($errores["acreditacion_upload"])): ?>
+      <span class="msg_error"><?php echo $errores["acreditacion_upload"]; ?></span>
+      <?php endif; ?>          
+      <input type="file" name="acreditacion_upload" id="acreditacion_upload" class="file acreditacion_upload_personal" />
+    </div>
+    <div class="clear"></div>
+    
+        <?php
+        $finish = false;
+        $counter = 0;
+        while(!$finish):
+          if(isset($errores) && isset($errores['acreditacion_upload_'.$counter])):
+?>
+        <div class="container_acreditaciones acreditacion_field">
+            <span class="msg_error"><?php echo $errores['acreditacion_upload_'.$counter]; ?></span>
+            <input type="file" name="acreditacion_upload_<?php echo $counter;?>" id="acreditacion_upload_<?php echo $counter;?>" class="file cursos_upload_personal" />
+            <div class="clear"></div>
+            <a href="javascript:void(0)" onclick="return eliminarFileInput(this);" style="float:right">Sacar</a><div class="clear"></div>
+        </div>
+<?php        
+              
+          else:
+            $finish = true;
+            
+          endif;
+          $counter++;
+        endwhile;
+        ?>    
+    <!--<input type="file" name="cursos_upload" id="cursos_upload" class="file" />-->
+<!--    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />-->
+    <div class="clear"></div>
+    <a class="acreditacion_field" href="javascript:void(0)" onclick="return agregarFileInputAcreditaciones();" style="float:right"><?php echo lang("personal_formulario_agregar_mas"); ?></a>
+    <div class="clear"></div>
+      
+  
+  
+<!--    <input type="file" name="acreditacion_upload" id="acreditacion_upload" class="file" /> -->
 <!--    <input type="button" class="button button_short acreditacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />-->
     <div class="clear"></div>
+    
+    
+    
     
     <h5><?php echo lang("personal_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("personal_formulario_subtitulo_ver_bases"); ?></a></h5>
     <p>
@@ -249,13 +324,10 @@
   <?php echo form_close(); ?>
   
   <div class="clear"></div>
+<!--
   <div style="width:515px">
-    <span>
-      <?php echo lang("personal_formulario_texto_descarga"); ?>
-    </span>
-    <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
   </div>  
-    
+-->    
   <div class="clear"></div>
   <?php echo lang("personal_formulario_texto_consultas"); ?>
 </div><!--CONTENT RIGHT-->

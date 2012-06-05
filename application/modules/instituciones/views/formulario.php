@@ -1,7 +1,17 @@
 <div class="content_right img_instituciones">
     <h1><?php echo lang("instituciones_formulario_titulo"); ?></h1>
+    <?php echo lang("instituciones_formulario_titulo_descarga"); ?>
+    <div style="width:515px">
+      <span>
+        <strong> 
+        <?php echo lang('instituciones_formulario_descarga_texto'); ?>
+        </strong>
+      </span>
+      <a href="<?php echo site_url("instituciones/descargarFormularioFirmasInstitucion");?>" class="descargar descargar_forms">descargar</a>
+    </div>
+    <div class="clear"></div>
     <h5><?php echo lang("instituciones_formulario_strong_text_1"); ?></h5>
-    <?php if(strlen(validation_errors()) > 0 || isset($errores)): ?>
+    <?php if(strlen(validation_errors()) > 0 || (isset($errores) && count($errores) > 0)): ?>
     <span class="msg_error"><?php echo lang("instituciones_formulario_info_text_1"); ?></span>
     <?php endif; ?>
     <?php
@@ -225,10 +235,36 @@
         <!--<input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
         <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
         <div class="clear"></div>-->
-        <?php if(isset($errores["copia_resolucion_institucion"])): ?>
-        <span class="msg_error"><?php echo $errores["copia_resolucion_institucion"]; ?></span>
-        <?php endif; ?>
-        <input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file" />
+        <div class="container">
+          <?php if(isset($errores["copia_resolucion_institucion"])): ?>
+          <span class="msg_error"><?php echo $errores["copia_resolucion_institucion"]; ?></span>
+          <?php endif; ?>          
+          <input type="file" name="copia_resolucion_institucion" id="copia_resolucion_institucion" class="file copia_resolucion_institucion" />
+        </div>
+        <div class="clear"></div>
+        <?php
+        $finish = false;
+        $counter = 0;
+        while(!$finish):
+          if(isset($errores) && isset($errores['copia_resolucion_institucion_'.$counter])):
+?>
+        <div class="container">
+            <span class="msg_error"><?php echo $errores['copia_resolucion_institucion_'.$counter]; ?></span>
+            <input type="file" name="copia_resolucion_institucion_<?php echo $counter;?>" id="copia_resolucion_institucion_<?php echo $counter;?>" class="file copia_resolucion_institucion" />
+            <div class="clear"></div>
+            <a href="javascript:void(0)" onclick="return eliminarFileInputConstitucion(this);" style="float:right">Sacar</a><div class="clear"></div>
+        </div>
+<?php        
+              
+          else:
+            $finish = true;
+            
+          endif;
+          $counter++;
+        endwhile;
+        ?>
+        
+        <a href="javascript:void(0)" onclick="return agregarFileInputConstitucion();" style="float:right"><?php echo lang("instituciones_formulario_especies_mas"); ?></a><div class="clear"></div>
 <!--        <button class="adjuntar"><?php echo lang("instituciones_formulario_copia_resolucion_institucion_adjuntar"); ?></button>-->
         <div class="clear"></div>
             
@@ -257,12 +293,6 @@
         <input type="submit" class="button button_large" value="enviar formulario" />
     <?php echo form_close(); ?>
     <div class="clear"></div>
-      <div style="width:515px">
-        <span>
-          <?php echo lang('instituciones_formulario_descarga_texto'); ?>
-        </span>
-        <a href="<?php echo site_url("instituciones/descargarFormularioFirmasInstitucion");?>" class="descargar descargar_forms">descargar</a>
-      </div>
     <div class="clear"></div>
     <p><?php echo lang("instituciones_formulario_consultas"); ?></p>
 </div><!--CONTENT RIGHT-->
