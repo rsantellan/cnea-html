@@ -24,6 +24,11 @@
             <img src="<?php echo base_url().'assets/upload/images/delete.png'?>" />
           </a>
         </div>
+        <div class="img_name">
+          <label>
+            <?php echo $image->name;?>
+          </label>
+        </div>
       </div>
     </li>
     <?php $firstImage = false; ?>  
