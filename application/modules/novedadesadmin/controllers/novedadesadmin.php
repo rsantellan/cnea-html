@@ -31,7 +31,7 @@ class novedadesadmin extends MY_Controller{
       $this->data['list'] = $this->novedad->retrieveNovedades();
       $this->data['content'] = "novedadesadmin/list";
       $this->load->helper('text');
-      
+      $this->load->helper('htmlpurifier');
       $this->addJquery();
       $this->addFancyBox();
       $this->addModuleJavascript("novedadesadmin", "list.js");

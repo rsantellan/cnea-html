@@ -19,7 +19,9 @@
         <?php echo ($acta->nombre); ?>
       </td>
       <td>
-        <?php echo character_limiter($acta->descripcion, 100); ?>
+        <?php $aux = html_purify(html_entity_decode($acta->descripcion));
+        ?>
+        <?php echo character_limiter($aux, 100); ?>
       </td>
       <td>
         <a href="<?php echo site_url("novedadesadmin/edit/".$acta->id);?>">
