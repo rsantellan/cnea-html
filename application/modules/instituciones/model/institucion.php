@@ -11,8 +11,8 @@ if (!defined('BASEPATH'))
 class institucion extends MY_Model{
   
     private $id;
-    private $nombreInsititucion;
-    private $razonSocial;
+    private $nombreinsititucion;
+    private $razonsocial;
     private $rut;
     private $naturaleza;
     private $primernivel;
@@ -20,11 +20,15 @@ class institucion extends MY_Model{
     private $tercernivel;
     private $domicilioinstitucional;
     private $domiciliofiscal;
-    private $tipoEstablecimiento;
-    private $observacionesComite;
-    private $nombreContacto;
-    private $mailContacto;
-    private $telContacto;
+    private $tipoestablecimiento;
+    private $observacionescomite;
+    private $nombrecontacto;
+    private $mailcontacto;
+    private $telcontacto;
+    private $password;
+    private $cvfilename;
+    private $cvfilepath;
+    
     
     function __construct()
 	{
