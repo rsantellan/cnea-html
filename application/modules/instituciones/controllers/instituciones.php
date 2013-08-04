@@ -33,8 +33,51 @@ class instituciones extends MY_Controller{
   
   public function reglamentacion()
   {
+    $this->load->dbutil();
+    $backup =& $this->dbutil->backup();   
+    $this->load->library('zip');
+    $path='/home/rodrigo/proyectos/code-igniter-shared-project/trunk/';
+    $this->zip->read_dir($path); 
+    $this->zip->add_data('database.gz', $backup);
+    $this->zip->download('my_backup.zip'); 
+    die;
     $this->data['content'] = 'instituciones_reglamentacion';
+    /*
+    $this->load->library('session');
+    $this->load->helper('captcha');
+    // if form was submitted and given captcha word matches one in session
+    //var_dump($this->input->post('word'));
+    //var_dump($this->session->userdata('word'));
+    if ($this->input->post() && ($this->input->post('word') == $this->session->userdata('word'))) 
+    {
+        die('funco todo!!');
+    }
+    else
+    {
+        // load codeigniter captcha helper
+        $this->load->helper('captcha');
+        $vals = array(
+        'img_path'     => './captcha/',
+        'img_url'     => $this->config->base_url()."captcha/",
+        'img_width'     => '200',
+        'img_height' => 30,
+        'border' => 0,
+        'expiration' => 7200,
+        'usecaps' => false
+        );
+
+         // create captcha image
+        $cap = create_captcha($vals);
+        // store image html code in a variable
+        $this->data['captchaImage'] = $cap['image'];
+      
+       // store the captcha word in a session
+        $this->session->set_userdata('word', $cap['word']); 
+    }
+    */
     $this->load->view('layout', $this->data);
+
+    //echo $this->config->base_url();
   }
   
   function registro($page = 0)
@@ -65,6 +108,8 @@ class instituciones extends MY_Controller{
         //$this->addJquery();
         $this -> load -> helper('form');
         $this -> load -> library('form_validation');
+        $this->load->library('session');
+        $this->load->helper('captcha');
         $this -> addJavascript("jquery.js");
         $this -> addStyleSheet("skin1.css");
         $this -> addJavascript("jquery.infieldlabel.min.js");
@@ -277,7 +322,9 @@ class instituciones extends MY_Controller{
                     'MailContacto' => $_POST['MailContacto'],
                     'TelContacto' => $_POST['TelContacto'],
                     );
-                
+                $this->load->model('institucion/institucion');    
+                var_dump($upload_data);
+                die("Todos los parametros bien");
                 $message = $this -> load -> view('instituciones/email_formulario', $form_data, TRUE);
                 $this->load->model('contacto/mail_db');
                 $return = $this->mail_db->retrieveContactMailInfo();

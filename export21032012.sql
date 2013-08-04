@@ -13,8 +13,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `ci_lang_test`
 --
-CREATE DATABASE `ci_lang_test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ci_lang_test`;
+CREATE DATABASE `cnea` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `cnea`;
 
 -- --------------------------------------------------------
 

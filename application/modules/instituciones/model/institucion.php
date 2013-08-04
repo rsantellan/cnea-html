@@ -187,6 +187,60 @@ class institucion extends MY_Model{
     public function setIsActive($isActive) {
       $this->isActive = $isActive;
     }
+    
+    public function isNew(){
+      if($this->getId() == "" || is_null($this->getId()))
+      {
+        return true;
+      }
+    }
+    
+    public function save()
+    {
+      if($this->isNew())
+      {
+        return $this->saveNew();
+      }
+      else
+      {
+        return $this->edit();
+      }
+    }
+    
+    private function saveNew()
+    {
+      $data = array();
+      $data["nombreinsititucion"] = $this->getNombreinsititucion();
+      $data["razonsocial"] = $this->getRazonsocial();
+      $data["rut"] = $this->getRut();
+      $data["naturaleza"] = $this->getNaturaleza();
+      $data["primernivel"] = $this->getPrimernivel();
+      $data["segundonivel"] = $this->getSegundonivel();
+      $data["tercernivel"] = $this->getTercernivel();
+      $data["domicilioinstitucional"] = $this->getDomicilioinstitucional();
+      $data["domiciliofiscal"] = $this->getDomiciliofiscal();
+      $data["tipoestablecimiento"] = $this->getTipoestablecimiento();
+      $data["observacionescomite"] = $this->getObservacionescomite();
+      $data["mailcontacto"] = $this->getMailcontacto();
+      $data["telcontacto"] = $this->getTelcontacto();
+      $data["cvfilename"] = $this->getCvfilename();
+      $data["cvfilepath"] = $this->getCvfilepath();
+      $this->db->insert($this->getTablename(), $data);
+      $id = $this->db->insert_id(); 
+      
+      return $id;
+    }
+    
+    private function edit()
+    {
+      $data = array(
+          'nombre' => $this->getNombre()
+       );
+      $this->db->where('id', $this->getId());
+      $this->db->update($this->getTablename(), $data);
+      
+      return $this->getId();
+    }
 
 }
 

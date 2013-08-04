@@ -41,7 +41,7 @@ if ( ! function_exists('create_captcha'))
 {
 	function create_captcha($data = '', $img_path = '', $img_url = '', $font_path = '')
 	{
-		$defaults = array('word' => '', 'img_path' => '', 'img_url' => '', 'img_width' => '150', 'img_height' => '30', 'font_path' => '', 'expiration' => 7200);
+		$defaults = array('word' => '', 'img_path' => '', 'img_url' => '', 'img_width' => '150', 'img_height' => '30', 'font_path' => '', 'expiration' => 7200, 'usecaps' => true);
 
 		foreach ($defaults as $key => $val)
 		{
@@ -117,6 +117,11 @@ if ( ! function_exists('create_captcha'))
 			}
 
 			$word = $str;
+	   }
+	   //var_dump($usecaps);
+	   if(!$usecaps)
+	   {
+		   $word = strtolower($word);
 	   }
 
 		// -----------------------------------
