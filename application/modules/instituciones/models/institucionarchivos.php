@@ -53,6 +53,36 @@ class institucionarchivos extends MY_Model{
     public function setFilepath($filepath) {
       $this->filepath = $filepath;
     }
+    
+    public function isNew(){
+      if($this->getId() == "" || is_null($this->getId()))
+      {
+        return true;
+      }
+    }
+    
+    public function save()
+    {
+      if($this->isNew())
+      {
+        return $this->saveNew();
+      }
+      else
+      {
+        return $this->edit();
+      }
+    }
+    
+    private function saveNew()
+    {
+      $data = array();
+      $data['institucion_id'] = $this->getIntitucion_id();
+      $data['filename'] = $this->getFilename();
+      $data['filepath'] = $this->getFilepath();
+      $this->db->insert($this->getTablename(), $data);
+      $id = $this->db->insert_id(); 
+      return $id;
+    }
 
 
 }

@@ -180,6 +180,15 @@ class institucion extends MY_Model{
       $this->responsablefilepath = $cvfilepath;
     }
 
+    public function getCvfilepath() {
+      return $this->responsablefilepath;
+    }
+
+    public function setCvfilepath($cvfilepath) {
+      $this->responsablefilepath = $cvfilepath;
+    }
+
+    
     public function getIsActive() {
       return $this->isActive;
     }
@@ -225,8 +234,8 @@ class institucion extends MY_Model{
       $data["mailcontacto"] = $this->getMailcontacto();
       $data["telcontacto"] = $this->getTelcontacto();
       $data["isactive"] = 0;
-      $data["cvfilename"] = $this->getCvfilename();
-      $data["cvfilepath"] = $this->getCvfilepath();
+      $data["responsablefilename"] = $this->getCvfilename();
+      $data["responsablefilepath"] = $this->getCvfilepath();
               
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 

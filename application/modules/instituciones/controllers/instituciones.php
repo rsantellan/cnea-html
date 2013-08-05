@@ -137,7 +137,12 @@ class instituciones extends MY_Controller{
         $this -> form_validation -> set_rules('NombreContacto', 'NombreContacto', 'required|max_length[255]');
         $this -> form_validation -> set_rules('MailContacto', 'MailContacto', 'required|valid_email|max_length[255]');
         $this -> form_validation -> set_rules('TelContacto', 'TelContacto', 'required|max_length[255]');
-        
+        var_dump(FCPATH);
+        var_dump(BASEPATH);
+        var_dump(APPPATH);
+        var_dump(FCPATH.APPPATH);
+        var_dump(sys_get_temp_dir());
+        die;
         //especies
         $post = $_POST;
         $i = 0;
@@ -197,7 +202,8 @@ class instituciones extends MY_Controller{
             $send_email = true;
 
             //Chequeo los archivos a subir.
-            $config['upload_path'] = sys_get_temp_dir();
+            //$config['upload_path'] = sys_get_temp_dir();
+            $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
             $config['allowed_types'] = 'pdf|doc|docx';
             $this -> load -> library('upload', $config);
             $errores = array();
@@ -300,11 +306,11 @@ class instituciones extends MY_Controller{
             
             //Esta todo bien, entonces mando el mail
             if ($send_email) {
-                var_dump(FCPATH);
+                //var_dump(FCPATH);
                 //var_dump(BASEPATH);
-                var_dump(APPPATH);
+                //var_dump(APPPATH);
                 //var_dump($upload_data['responsable_institucional']);
-                die;
+                //die;
                 $form_data = array(
                     'NombreInsititucion' => $_POST['NombreInsititucion'], 
                     'RazonSocial' => $_POST['RazonSocial'],
@@ -327,26 +333,110 @@ class instituciones extends MY_Controller{
                     'MailContacto' => $_POST['MailContacto'],
                     'TelContacto' => $_POST['TelContacto'],
                     );
-                $this->load->model('institucion/institucion');    
-                var_dump($upload_data);
-                die("Todos los parametros bien");
-                $this->load->model('instituciones/institucion');
-                $intitucion = new $this->institucion;
-                $intitucion->setNombreinsititucion($form_data['NombreInsititucion']);
-                $intitucion->setRazonsocial($form_data['RazonSocial']);
-                $intitucion->setRut($form_data['RUT']);
-                $intitucion->setNaturaleza($form_data['Naturaleza']);
-                $intitucion->setPrimernivel($form_data['PrimerNivel']);
-                $intitucion->setSegundonivel($form_data['SegundoNivel']);
-                $intitucion->setTercernivel($form_data['TercerNivel']);
-                $intitucion->setDomicilioinstitucional($form_data['DomicilioInstitucional']);
-                $intitucion->setDomiciliofiscal($form_data['DomicilioFiscal']);
-                $intitucion->setTipoestablecimiento($form_data['TipoEstablecimiento']);
-                $intitucion->setObservacionescomite($form_data['ObservacionesComite']);
-                $intitucion->setNombrecontacto($form_data['NombreContacto']);
-                $intitucion->setMailcontacto($form_data['MailContacto']);
-                $intitucion->setTelcontacto($form_data['TelContacto']);
-                $intitucionId = $intitucion->save();
+                $this->load->model('instituciones/institucion');    
+                $this->load->model('instituciones/institucionespecie');    
+                $this->load->model('instituciones/instituciondocenteinvestigador');
+                $this->load->model('instituciones/institucionveterinario');
+                $this->load->model('instituciones/institucionsociedadcivil');
+                $this->load->model('instituciones/institucionunidadesdependientes');
+                $this->load->model('instituciones/institucionarchivos');
+                
+                $institucion = new $this->institucion;
+                $institucion->setNombreinsititucion($form_data['NombreInsititucion']);
+                $institucion->setRazonsocial($form_data['RazonSocial']);
+                $institucion->setRut($form_data['RUT']);
+                $institucion->setNaturaleza($form_data['Naturaleza']);
+                $institucion->setPrimernivel($form_data['PrimerNivel']);
+                $institucion->setSegundonivel($form_data['SegundoNivel']);
+                $institucion->setTercernivel($form_data['TercerNivel']);
+                $institucion->setDomicilioinstitucional($form_data['DomicilioInstitucional']);
+                $institucion->setDomiciliofiscal($form_data['DomicilioFiscal']);
+                $institucion->setTipoestablecimiento($form_data['TipoEstablecimiento']);
+                $institucion->setObservacionescomite($form_data['ObservacionesComite']);
+                $institucion->setNombrecontacto($form_data['NombreContacto']);
+                $institucion->setMailcontacto($form_data['MailContacto']);
+                $institucion->setTelcontacto($form_data['TelContacto']);
+                $institucion->setCvfilename($upload_data['responsable_institucional']['file_name']);
+                $institucion->setCvfilepath($upload_data['responsable_institucional']['file_path']);
+                $institucionId = $institucion->save();
+                
+                foreach($arr_especies as $auxEspecie)
+                {
+                  $especie = new $this->institucionespecie;
+                  $especie->setIntitucion_id($institucionId);
+                  $especie->setNombre($auxEspecie['nombre']);
+                  $especie->setObservacion($auxEspecie['observaciones']);
+                  if($auxEspecie['tipo_especie_1'] == 'uso')
+                  {
+                    $especie->setEsUso(true);
+                  }
+                  else
+                  {
+                    $especie->setEsUso(false);
+                  }
+                  if($auxEspecie['tipo_especie_2'] == 'cria')
+                  {
+                    $especie->setEsCria(true);
+                  }
+                  else
+                  {
+                    $especie->setEsCria(false);
+                  }
+                  $especie->save();
+                }
+                
+                foreach($arr_comite_docente as $auxDocente)
+                {
+                  $docente = new $this->instituciondocenteinvestigador;
+                  $docente->setIntitucion_id($institucionId);
+                  $docente->setNombre($auxDocente['nombre']);
+                  $docente->setProfesion($auxDocente['profesion']);
+                  $docente->setOcupacion($auxDocente['ocupacion']);
+                  $docente->save();
+                }
+                
+                foreach($arr_comite_veterinario as $auxVeterinario)
+                {
+                  $veterinario = new $this->institucionveterinario;
+                  $veterinario->setIntitucion_id($institucionId);
+                  $veterinario->setNombre($auxVeterinario['nombre']);
+                  $veterinario->setProfesion($auxVeterinario['profesion']);
+                  $veterinario->setOcupacion($auxVeterinario['ocupacion']);
+                  $veterinario->save();
+                }
+                
+                foreach($arr_comite_sociedad as $auxSociedad)
+                {
+                  $sociedad = new $this->institucionsociedadcivil;
+                  $sociedad->setIntitucion_id($institucionId);
+                  $sociedad->setNombre($auxSociedad['nombre']);
+                  $sociedad->setProfesion($auxSociedad['profesion']);
+                  $sociedad->setOcupacion($auxSociedad['ocupacion']);
+                  $sociedad->save();
+                }
+                
+                foreach($arr_unidep as $auxUnidep)
+                {
+                  $unidadDependiente = new $this->institucionunidadesdependientes;
+                  $unidadDependiente->setIntitucion_id($institucionId);
+                  $unidadDependiente->setNombre($auxUnidep);
+                  $unidadDependiente->save();
+                }
+                
+                foreach($upload_data as $keyUpload => $valueUpload)
+                {
+                  if($keyUpload !== "responsable_institucional")
+                  {
+                    $archivo = new $this->institucionarchivos;
+                    $archivo->setIntitucion_id($institucionId);
+                    $archivo->setFilename($valueUpload['file_name']);
+                    $archivo->setFilepath($valueUpload['file_path']);
+                    $archivo->save();
+                  }
+                }
+                //var_dump($arr_unidep);
+                //var_dump($upload_data);
+                //die("Todos los parametros bien");
                 
                 $message = $this -> load -> view('instituciones/email_formulario', $form_data, TRUE);
                 $this->load->model('contacto/mail_db');

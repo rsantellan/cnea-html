@@ -44,6 +44,35 @@ class institucionunidadesdependientes extends MY_Model{
     public function setNombre($nombre) {
       $this->nombre = $nombre;
     }
+    
+    public function isNew(){
+      if($this->getId() == "" || is_null($this->getId()))
+      {
+        return true;
+      }
+    }
+    
+    public function save()
+    {
+      if($this->isNew())
+      {
+        return $this->saveNew();
+      }
+      else
+      {
+        return $this->edit();
+      }
+    }
+    
+    private function saveNew()
+    {
+      $data = array();
+      $data['institucion_id'] = $this->getIntitucion_id();
+      $data['nombre'] = $this->getNombre();
+      $this->db->insert($this->getTablename(), $data);
+      $id = $this->db->insert_id(); 
+      return $id;
+    }
 
 
 }
