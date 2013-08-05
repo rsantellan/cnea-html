@@ -137,12 +137,14 @@ class instituciones extends MY_Controller{
         $this -> form_validation -> set_rules('NombreContacto', 'NombreContacto', 'required|max_length[255]');
         $this -> form_validation -> set_rules('MailContacto', 'MailContacto', 'required|valid_email|max_length[255]');
         $this -> form_validation -> set_rules('TelContacto', 'TelContacto', 'required|max_length[255]');
+        /*
         var_dump(FCPATH);
         var_dump(BASEPATH);
         var_dump(APPPATH);
         var_dump(FCPATH.APPPATH);
         var_dump(sys_get_temp_dir());
         die;
+        */
         //especies
         $post = $_POST;
         $i = 0;
