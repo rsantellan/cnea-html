@@ -112,3 +112,6 @@ CREATE TABLE IF NOT EXISTS `institucionarchivos` (
 
 ALTER TABLE `institucionarchivos`
   ADD CONSTRAINT `institucionarchivos_ibfk_1` FOREIGN KEY (`institucion_id`) REFERENCES `institucion` (`id`);
+
+ALTER TABLE `institucion` CHANGE `cvfilename` `responsablefilename` VARCHAR( 255 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+CHANGE `cvfilepath` `responsablefilepath` VARCHAR( 255 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL 

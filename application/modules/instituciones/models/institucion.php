@@ -26,8 +26,8 @@ class institucion extends MY_Model{
     private $mailcontacto;
     private $telcontacto;
     private $password;
-    private $cvfilename;
-    private $cvfilepath;
+    private $responsablefilename;
+    private $responsablefilepath;
     private $isActive;
     
     function __construct()
@@ -165,19 +165,19 @@ class institucion extends MY_Model{
     }
 
     public function getCvfilename() {
-      return $this->cvfilename;
+      return $this->responsablefilename;
     }
 
     public function setCvfilename($cvfilename) {
-      $this->cvfilename = $cvfilename;
+      $this->responsablefilename = $cvfilename;
     }
 
-    public function getCvfilepath() {
-      return $this->cvfilepath;
+    public function getResonsablefilepath() {
+      return $this->responsablefilepath;
     }
 
-    public function setCvfilepath($cvfilepath) {
-      $this->cvfilepath = $cvfilepath;
+    public function setResonsablefilepath($cvfilepath) {
+      $this->responsablefilepath = $cvfilepath;
     }
 
     public function getIsActive() {
@@ -187,7 +187,7 @@ class institucion extends MY_Model{
     public function setIsActive($isActive) {
       $this->isActive = $isActive;
     }
-    
+
     public function isNew(){
       if($this->getId() == "" || is_null($this->getId()))
       {
@@ -216,32 +216,23 @@ class institucion extends MY_Model{
       $data["naturaleza"] = $this->getNaturaleza();
       $data["primernivel"] = $this->getPrimernivel();
       $data["segundonivel"] = $this->getSegundonivel();
-      $data["tercernivel"] = $this->getTercernivel();
+      $data["tercernivel"] = $this->getSegundonivel();
       $data["domicilioinstitucional"] = $this->getDomicilioinstitucional();
       $data["domiciliofiscal"] = $this->getDomiciliofiscal();
       $data["tipoestablecimiento"] = $this->getTipoestablecimiento();
       $data["observacionescomite"] = $this->getObservacionescomite();
+      $data["nombrecontacto"] = $this->getNombrecontacto();
       $data["mailcontacto"] = $this->getMailcontacto();
       $data["telcontacto"] = $this->getTelcontacto();
+      $data["isactive"] = 0;
       $data["cvfilename"] = $this->getCvfilename();
       $data["cvfilepath"] = $this->getCvfilepath();
+              
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       
       return $id;
     }
-    
-    private function edit()
-    {
-      $data = array(
-          'nombre' => $this->getNombre()
-       );
-      $this->db->where('id', $this->getId());
-      $this->db->update($this->getTablename(), $data);
-      
-      return $this->getId();
-    }
-
 }
 
 

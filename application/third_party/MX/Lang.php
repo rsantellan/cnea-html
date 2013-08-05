@@ -35,17 +35,22 @@
  **/
 class MX_Lang extends CI_Lang
 {
-	public function load($langfile, $lang = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $_module = '')	{
+	public function load($langfile = array(), $lang = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $_module = '')	{
+		
 		if (is_array($langfile)) {
-			foreach($langfile as $_lang) $this->load($_lang);
+			foreach($langfile as $_lang) $this->load($_lang, $lang, $return, $add_suffix, $alt_path, $_module);
 			return $this->language;
 		}
+			
 		$deft_lang = CI::$APP->config->item('language');
 		$idiom = ($lang == '') ? $deft_lang : $lang;
+	
 		if (in_array($langfile.'_lang'.EXT, $this->is_loaded, TRUE))
 			return $this->language;
+
 		$_module OR $_module = CI::$APP->router->fetch_module();
 		list($path, $_langfile) = Modules::find($langfile.'_lang', $_module, 'language/'.$idiom.'/');
+
 		if ($path === FALSE) {
 			
 			if ($lang = parent::load($langfile, $lang, $return, $add_suffix, $alt_path)) return $lang;

@@ -300,6 +300,11 @@ class instituciones extends MY_Controller{
             
             //Esta todo bien, entonces mando el mail
             if ($send_email) {
+                var_dump(FCPATH);
+                //var_dump(BASEPATH);
+                var_dump(APPPATH);
+                //var_dump($upload_data['responsable_institucional']);
+                die;
                 $form_data = array(
                     'NombreInsititucion' => $_POST['NombreInsititucion'], 
                     'RazonSocial' => $_POST['RazonSocial'],
@@ -325,6 +330,24 @@ class instituciones extends MY_Controller{
                 $this->load->model('institucion/institucion');    
                 var_dump($upload_data);
                 die("Todos los parametros bien");
+                $this->load->model('instituciones/institucion');
+                $intitucion = new $this->institucion;
+                $intitucion->setNombreinsititucion($form_data['NombreInsititucion']);
+                $intitucion->setRazonsocial($form_data['RazonSocial']);
+                $intitucion->setRut($form_data['RUT']);
+                $intitucion->setNaturaleza($form_data['Naturaleza']);
+                $intitucion->setPrimernivel($form_data['PrimerNivel']);
+                $intitucion->setSegundonivel($form_data['SegundoNivel']);
+                $intitucion->setTercernivel($form_data['TercerNivel']);
+                $intitucion->setDomicilioinstitucional($form_data['DomicilioInstitucional']);
+                $intitucion->setDomiciliofiscal($form_data['DomicilioFiscal']);
+                $intitucion->setTipoestablecimiento($form_data['TipoEstablecimiento']);
+                $intitucion->setObservacionescomite($form_data['ObservacionesComite']);
+                $intitucion->setNombrecontacto($form_data['NombreContacto']);
+                $intitucion->setMailcontacto($form_data['MailContacto']);
+                $intitucion->setTelcontacto($form_data['TelContacto']);
+                $intitucionId = $intitucion->save();
+                
                 $message = $this -> load -> view('instituciones/email_formulario', $form_data, TRUE);
                 $this->load->model('contacto/mail_db');
                 $return = $this->mail_db->retrieveContactMailInfo();
@@ -349,7 +372,7 @@ class instituciones extends MY_Controller{
                     $this->email->attach($uploaded["full_path"]);
                 }
                  
-                $this->email->send();
+                //$this->email->send();
                 
                 $this -> data['content'] = 'formulario_ok';
                 $this -> load -> view('layout', $this -> data);

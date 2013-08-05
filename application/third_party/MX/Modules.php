@@ -138,7 +138,7 @@ class Modules
 		
 		$file = str_replace(EXT, '', $file);		
 		$location = $path.$file.EXT;
-		//var_dump($location);
+		
 		if ($type === 'other') {			
 			if (class_exists($file, FALSE))	{
 				log_message('debug', "File already loaded: {$location}");				
@@ -170,11 +170,10 @@ class Modules
 		$segments = explode('/', $file);
 
 		$file = array_pop($segments);
-		$file_ext = strpos($file, '.') ? $file : $file.EXT;
+		$file_ext = (pathinfo($file, PATHINFO_EXTENSION)) ? $file : $file.EXT;
 		
 		$path = ltrim(implode('/', $segments).'/', '/');	
 		$module ? $modules[$module] = $path : $modules = array();
-		
 		if ( ! empty($segments)) {
 			$modules[array_shift($segments)] = ltrim(implode('/', $segments).'/','/');
 		}	
