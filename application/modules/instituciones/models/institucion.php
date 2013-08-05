@@ -225,7 +225,7 @@ class institucion extends MY_Model{
       $data["naturaleza"] = $this->getNaturaleza();
       $data["primernivel"] = $this->getPrimernivel();
       $data["segundonivel"] = $this->getSegundonivel();
-      $data["tercernivel"] = $this->getSegundonivel();
+      $data["tercernivel"] = $this->getTercernivel();
       $data["domicilioinstitucional"] = $this->getDomicilioinstitucional();
       $data["domiciliofiscal"] = $this->getDomiciliofiscal();
       $data["tipoestablecimiento"] = $this->getTipoestablecimiento();
@@ -241,6 +241,79 @@ class institucion extends MY_Model{
       $id = $this->db->insert_id(); 
       
       return $id;
+    }
+    
+    function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)
+    {
+      //$this->db->order_by("ordinal", "desc");
+      $this->db->order_by("id", "desc");
+      $query = null;
+      if(is_null($number))
+      {
+        $query = $this->db->get($this->getTablename());
+      }
+      else
+      {
+        $query = $this->db->get($this->getTablename(), $number, $offset);
+      }
+      if(!$returnObjects)
+      {
+        return $query->result();
+      }
+      else
+      {
+        $salida = array();
+        foreach($query->result() as $obj)
+        {
+          
+          $salida[] = $this->createStdObjectFromRow($obj);
+        }
+        return $salida;
+      }
+    }
+    
+    public function getById($id, $return_obj = true)
+    {
+      $this->db->where('id', $id);
+      $this->db->limit('1');
+      $query = $this->db->get($this->getTablename());
+      if( $query->num_rows() == 1 ){
+        // One row, match!
+        $obj = $query->row();        
+        if($return_obj)
+        {
+          return $this->createStdObjectFromRow($obj);
+        }
+        return $obj;
+      } else {
+        // None
+        return NULL;
+      }
+    }
+    
+    private function createStdObjectFromRow($obj)
+    {
+      $aux = new institucion();
+      $aux->setId($obj->id);
+      $aux->setNombreinsititucion($obj->nombreinsititucion);
+      $aux->setRazonsocial($obj->razonsocial);
+      $aux->setRut($obj->rut);
+      $aux->setNaturaleza($obj->naturaleza);
+      $aux->setPrimernivel($obj->primernivel);
+      $aux->setSegundonivel($obj->segundonivel);
+      $aux->setTercernivel($obj->tercernivel);
+      $aux->setDomicilioinstitucional($obj->domicilioinstitucional);
+      $aux->setDomiciliofiscal($obj->domiciliofiscal);
+      $aux->setTipoestablecimiento($obj->tipoestablecimiento);
+      $aux->setObservacionescomite($obj->observacionescomite);
+      $aux->setNombrecontacto($obj->nombrecontacto);
+      $aux->setMailcontacto($obj->mailcontacto);
+      $aux->setTelcontacto($obj->telcontacto);
+      $aux->setPassword($obj->password);
+      $aux->setIsActive($obj->isactive);
+      $aux->setCvfilename($obj->responsablefilename);
+      $aux->setCvfilepath($obj->responsablefilepath);
+      return $aux;
     }
 }
 

@@ -93,6 +93,12 @@ class institucionveterinario extends MY_Model{
       return $id;
     }
 
+    public function getByInstitucionId($id)
+    {
+      $this->db->where('institucion_id', $id);
+      $query = $this->db->get($this->getTablename());
+      return $query->result();
+    }
 }
 
 

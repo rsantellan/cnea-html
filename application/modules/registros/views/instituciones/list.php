@@ -6,10 +6,13 @@
         Nombre
       </th>
 	  <th>
-        Codigo
+        Naturaleza
       </th>
 	  <th>
-        Url
+        Nombre del contacto
+      </th>
+      <th>
+        Mail del contacto
       </th>
       <th>
         Acciones
@@ -20,17 +23,20 @@
     <?php foreach($list as $registro): ?>
     <tr id="registro_row_<?php echo $registro->id;?>">
       <td>
-        <?php echo ($registro->name); ?>
+        <?php echo ($registro->nombreinsititucion); ?>
       </td>
 	  <td>
-        <?php echo ($registro->code); ?>
+        <?php echo ($registro->naturaleza); ?>
       </td>
 	  <td>
-        <?php echo ($registro->url); ?>
+        <?php echo ($registro->nombrecontacto); ?>
       </td>
       <td>
-        <a href="<?php echo site_url("registros/editInstitucion/".$registro->id);?>">
-          Editar
+        <?php echo ($registro->mailcontacto); ?>
+      </td>
+      <td>
+        <a href="<?php echo site_url("registros/showInstitucion/".$registro->id);?>">
+          Mostrar
         </a>
         <a href="javascript:void(0)" onclick="return deleteItem(<?php echo $registro->id;?>, 'Esta seguro de querer eliminar el registro?', '<?php echo site_url("registros/deleteInstitucion/".$registro->id);?>');">
           Eliminar

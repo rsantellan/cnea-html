@@ -40,8 +40,8 @@ class registros extends MY_Controller{
     function instituciones(){
       $this->data['menu_id'] = 'registros_instituciones';
       
-      $this->load->model('registros/registro_institucion');
-      $this->data['list'] = $this->registro_institucion->retrieveRegistros();
+      $this->load->model('instituciones/institucion');
+      $this->data['list'] = $this->institucion->retrieveRegistros();
       $this->data['content'] = "registros/instituciones/list";
       
       $this->addJquery();
@@ -168,6 +168,30 @@ class registros extends MY_Controller{
       $this->data['list'] = $this->registro_persona->retrieveInstitucionesForAdmin();
       $this->data['content'] = "registros/personas/add";
       $this->data['object'] = new $this->registro_persona;
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+    function showInstitucion($id)
+    {
+      //$this->output->enable_profiler(TRUE);
+      $this->data['menu_id'] = 'registros_instituciones';
+      $this->load->model('instituciones/institucion');
+      $this->load->model('instituciones/institucionespecie');    
+      $this->load->model('instituciones/instituciondocenteinvestigador');
+      $this->load->model('instituciones/institucionveterinario');
+      $this->load->model('instituciones/institucionsociedadcivil');
+      $this->load->model('instituciones/institucionunidadesdependientes');
+      $this->load->model('instituciones/institucionarchivos');
+      $this->data['institucion'] = $this->institucion->getById($id);
+      $this->data['especies'] = $this->institucionespecie->getByInstitucionId($id);
+      $this->data['docentesinvestigadores'] = $this->instituciondocenteinvestigador->getByInstitucionId($id);
+      $this->data['veterinarios'] = $this->institucionveterinario->getByInstitucionId($id);
+      $this->data['sociedadesciviles'] = $this->institucionsociedadcivil->getByInstitucionId($id);
+      $this->data['unidadesdependientes'] = $this->institucionunidadesdependientes->getByInstitucionId($id);
+      $this->data['archivos'] = $this->institucionarchivos->getByInstitucionId($id);
+      
+      $this->data['content'] = "registros/instituciones/show";
+      
       $this->load->view("admin/layout", $this->data);
     }
     

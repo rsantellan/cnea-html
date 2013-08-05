@@ -83,6 +83,13 @@ class institucionarchivos extends MY_Model{
       $id = $this->db->insert_id(); 
       return $id;
     }
+    
+    public function getByInstitucionId($id)
+    {
+      $this->db->where('institucion_id', $id);
+      $query = $this->db->get($this->getTablename());
+      return $query->result();
+    }
 
 
 }
