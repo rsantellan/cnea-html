@@ -464,7 +464,7 @@ class instituciones extends MY_Controller{
                     $this->email->attach($uploaded["full_path"]);
                 }
                  
-                //$this->email->send();
+                $this->email->send();
                 
                 $this -> data['content'] = 'formulario_ok';
                 $this -> load -> view('layout', $this -> data);
