@@ -26,16 +26,11 @@ class registros extends MY_Controller{
 	  $this->addJquery();
     }
     
-    function index(){
-      $this->load->model('registros/registro_persona');
-      $this->data['list'] = $this->registro_persona->retrieveRegistros();
-      $this->data['content'] = "registros/personas/list";
-      
-      $this->addJquery();
-      $this->addFancyBox();
-      $this->addModuleJavascript("registros", "list.js");
-      $this->load->view("admin/layout", $this->data);
-    }
+    /**
+     * 
+     * Nuevo cambios dado que se utilizan los formularios completos
+     * 
+     */
     
     function instituciones(){
       $this->data['menu_id'] = 'registros_instituciones';
@@ -43,6 +38,92 @@ class registros extends MY_Controller{
       $this->load->model('instituciones/institucion');
       $this->data['list'] = $this->institucion->retrieveRegistros();
       $this->data['content'] = "registros/instituciones/list";
+      
+      $this->addJquery();
+      $this->addFancyBox();
+      $this->addModuleJavascript("registros", "list.js");
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+    function showInstitucion($id)
+    {
+      //$this->output->enable_profiler(TRUE);
+      $this->data['menu_id'] = 'registros_instituciones';
+      $this->load->model('instituciones/institucion');
+      $this->load->model('instituciones/institucionespecie');    
+      $this->load->model('instituciones/instituciondocenteinvestigador');
+      $this->load->model('instituciones/institucionveterinario');
+      $this->load->model('instituciones/institucionsociedadcivil');
+      $this->load->model('instituciones/institucionunidadesdependientes');
+      $this->load->model('instituciones/institucionarchivos');
+      $this->addFancyBox();
+      $this->addModuleJavascript("registros", "showInstitucion.js");
+      $this->data['institucion'] = $this->institucion->getById($id);
+      $this->data['especies'] = $this->institucionespecie->getByInstitucionId($id);
+      $this->data['docentesinvestigadores'] = $this->instituciondocenteinvestigador->getByInstitucionId($id);
+      $this->data['veterinarios'] = $this->institucionveterinario->getByInstitucionId($id);
+      $this->data['sociedadesciviles'] = $this->institucionsociedadcivil->getByInstitucionId($id);
+      $this->data['unidadesdependientes'] = $this->institucionunidadesdependientes->getByInstitucionId($id);
+      $this->data['archivos'] = $this->institucionarchivos->getByInstitucionId($id);
+      
+      $this->data['content'] = "registros/instituciones/show";
+      
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+    
+    function editDocenteInvestigador($id)
+    {
+      $this->load->model('instituciones/instituciondocenteinvestigador');
+      $obj = $this->instituciondocenteinvestigador->getById($id);
+      $this->load->view("registros/instituciones/formdocenteinvestigador", array('obj' => $obj));
+    }
+    
+    function saveDocenteInvestigador()
+    {
+      $this->load->library('form_validation');
+      $this->load->model('instituciones/instituciondocenteinvestigador');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $is_new = true;
+      if ($id !== "")
+      {
+        $is_new = false;
+      }
+      $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');			
+      $this->form_validation->set_rules('profesion', 'profesion', 'required|max_length[255]');			
+      $this->form_validation->set_rules('ocupacion', 'ocupacion', 'required|max_length[255]');
+      $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+      $errores = false;
+      $return_data = "";
+      if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+      {
+         $errores = true;
+         $return_data = $this->form_validation->error_string();
+      }
+      else
+      {
+        //Salvo
+
+      }
+      $salida['response'] = ($errores)? "ERROR" :"OK";
+      $salida['options'] = array('id' => $id, 'content' => $return_data);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+      //var_dump($return_data);
+    }
+    
+    /***
+     * 
+     * De aca para abajo es Viejo
+     * 
+     */
+    
+    function index(){
+      $this->load->model('registros/registro_persona');
+      $this->data['list'] = $this->registro_persona->retrieveRegistros();
+      $this->data['content'] = "registros/personas/list";
       
       $this->addJquery();
       $this->addFancyBox();
@@ -168,30 +249,6 @@ class registros extends MY_Controller{
       $this->data['list'] = $this->registro_persona->retrieveInstitucionesForAdmin();
       $this->data['content'] = "registros/personas/add";
       $this->data['object'] = new $this->registro_persona;
-      $this->load->view("admin/layout", $this->data);
-    }
-    
-    function showInstitucion($id)
-    {
-      //$this->output->enable_profiler(TRUE);
-      $this->data['menu_id'] = 'registros_instituciones';
-      $this->load->model('instituciones/institucion');
-      $this->load->model('instituciones/institucionespecie');    
-      $this->load->model('instituciones/instituciondocenteinvestigador');
-      $this->load->model('instituciones/institucionveterinario');
-      $this->load->model('instituciones/institucionsociedadcivil');
-      $this->load->model('instituciones/institucionunidadesdependientes');
-      $this->load->model('instituciones/institucionarchivos');
-      $this->data['institucion'] = $this->institucion->getById($id);
-      $this->data['especies'] = $this->institucionespecie->getByInstitucionId($id);
-      $this->data['docentesinvestigadores'] = $this->instituciondocenteinvestigador->getByInstitucionId($id);
-      $this->data['veterinarios'] = $this->institucionveterinario->getByInstitucionId($id);
-      $this->data['sociedadesciviles'] = $this->institucionsociedadcivil->getByInstitucionId($id);
-      $this->data['unidadesdependientes'] = $this->institucionunidadesdependientes->getByInstitucionId($id);
-      $this->data['archivos'] = $this->institucionarchivos->getByInstitucionId($id);
-      
-      $this->data['content'] = "registros/instituciones/show";
-      
       $this->load->view("admin/layout", $this->data);
     }
     

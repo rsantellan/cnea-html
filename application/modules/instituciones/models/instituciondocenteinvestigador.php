@@ -94,11 +94,37 @@ class instituciondocenteinvestigador extends MY_Model{
    }
 
    public function getByInstitucionId($id)
-  {
-    $this->db->where('institucion_id', $id);
-    $query = $this->db->get($this->getTablename());
-    return $query->result();
-  }
+   {
+      $this->db->where('institucion_id', $id);
+      $query = $this->db->get($this->getTablename());
+      return $query->result();
+   }
+   
+   public function getById($id, $return_obj = true)
+    {
+      $this->db->where('id', $id);
+      $this->db->limit('1');
+      $query = $this->db->get($this->getTablename());
+      if( $query->num_rows() == 1 ){
+        // One row, match!
+        $obj = $query->row();        
+        if($return_obj)
+        {
+          //return $this->createStdObjectFromRow($obj);
+          $aux = new instituciondocenteinvestigador();
+          $aux->setId($obj->id);
+          $aux->setIntitucion_id($obj->institucion_id);
+          $aux->setNombre($obj->nombre);
+          $aux->setOcupacion($obj->ocupacion);
+          $aux->setProfesion($obj->profesion);
+          return $aux;
+        }
+        return $obj;
+      } else {
+        // None
+        return NULL;
+      }
+    }
 
 }
 

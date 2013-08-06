@@ -142,19 +142,13 @@
         <th>acciones</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="listado_docentes_investigadores">
       <?php 
         foreach($docentesinvestigadores as $doceinve):
-        ?>  
-      <tr id="doceinve_<?php echo $doceinve->id;?>">
-        <td><?php echo $doceinve->nombre; ?></td>
-        <td><?php echo $doceinve->profesion; ?></td>
-        <td><?php echo $doceinve->ocupacion; ?></td>
-        <td>
-          <a href="javascript:void(0)">Editar</a>
-          <a href="javascript:void(0)">Borrar</a>
-        </td>
-      </tr>
+        ?>
+        <?php 
+        $this->load->view('registros/instituciones/showdocenteinvestigador', array('doceinve' => $doceinve));
+        ?>
         <?php 
         endforeach;
         ?>
