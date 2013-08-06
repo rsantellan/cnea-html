@@ -154,7 +154,7 @@
         ?>
     </tbody>
   </table>
-  <a href="javascript:void(0)">Agregar</a>
+  <a href="<?php echo site_url('registros/addDocenteInvestigador/'.$institucion->getId()); ?>" class="fancy_link" title="Agregar">Agregar</a>
   <hr/>
   <h6>Veterinario</h6>
   <table>

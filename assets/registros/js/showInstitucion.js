@@ -17,6 +17,15 @@ function saveBasicForm(form, errores_div, row_pre_id, table_id)
         if(json.response == "OK")
         {
           
+          if(json.options.is_new == 'true' || json.options.is_new == true)
+          {
+            $("#"+table_id).append(json.options.content);
+          }
+          else
+          {
+            $("#"+row_pre_id+json.options.id).replaceWith(json.options.content);
+          }
+          $.fancybox.close();
         }
         else
         {

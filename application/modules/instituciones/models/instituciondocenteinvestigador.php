@@ -81,6 +81,18 @@ class instituciondocenteinvestigador extends MY_Model{
       }
     }
     
+    private function edit()
+    {
+      $data = array();
+      $data['institucion_id'] = $this->getIntitucion_id();
+      $data['nombre'] = $this->getNombre();
+      $data['profesion'] = $this->getProfesion();
+      $data['ocupacion'] = $this->getOcupacion();
+      $this->db->where('id', $this->getId());
+      $this->db->update($this->getTablename(), $data);
+      return $this->getId();
+    }
+    
     private function saveNew()
     {
       $data = array();

@@ -72,6 +72,14 @@ class registros extends MY_Controller{
     }
     
     
+    function addDocenteInvestigador($id_institucion)
+    {
+      $this->load->model('instituciones/instituciondocenteinvestigador');
+      $obj = new $this->instituciondocenteinvestigador;
+      $obj->setIntitucion_id($id_institucion);
+      $this->load->view("registros/instituciones/formdocenteinvestigador", array('obj' => $obj));
+    }
+    
     function editDocenteInvestigador($id)
     {
       $this->load->model('instituciones/instituciondocenteinvestigador');
@@ -104,14 +112,38 @@ class registros extends MY_Controller{
       else
       {
         //Salvo
-
+        $obj = null;
+        if(!$is_new)
+        {
+          $obj = $this->instituciondocenteinvestigador->getById($id);
+        }
+        else
+        {
+          //var_dump('aca');
+          $obj = new $this->instituciondocenteinvestigador;
+          $obj->setIntitucion_id($this->input->post('institucion_id', true));
+          
+        }
+        //var_dump($is_new);
+        //var_dump($obj);
+        //die;
+        $obj->setNombre(set_value('nombre'));
+        $obj->setProfesion(set_value('profesion'));
+        $obj->setOcupacion(set_value('ocupacion'));
+        $id = $obj->save();
+        $obj->setId($id);
+        $std = new stdClass();
+        $std->id = $obj->getId();
+        $std->nombre = $obj->getNombre();
+        $std->profesion = $obj->getProfesion();
+        $std->ocupacion = $obj->getOcupacion();
+        $return_data = $this->load->view('registros/instituciones/showdocenteinvestigador', array('doceinve' => $std), true);
       }
       $salida['response'] = ($errores)? "ERROR" :"OK";
-      $salida['options'] = array('id' => $id, 'content' => $return_data);
+      $salida['options'] = array('id' => $id, 'content' => $return_data, 'is_new' => $is_new);
       $this->output
        ->set_content_type('application/json')
        ->set_output(json_encode($salida));
-      //var_dump($return_data);
     }
     
     /***
