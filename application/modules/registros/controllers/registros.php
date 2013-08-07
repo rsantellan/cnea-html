@@ -146,6 +146,262 @@ class registros extends MY_Controller{
        ->set_output(json_encode($salida));
     }
     
+    
+    function removeDocenteInvestigador()
+    {
+      $this->load->model('instituciones/instituciondocenteinvestigador');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $this->instituciondocenteinvestigador->simpleDeleteById($id);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['options'] = array('id' => $id);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    /**
+     * 
+     * Veterinarios
+     * 
+     */
+    
+    function addVeterinario($id_institucion)
+    {
+      $this->load->model('instituciones/institucionveterinario');
+      $obj = new $this->institucionveterinario;
+      $obj->setIntitucion_id($id_institucion);
+      $this->load->view("registros/instituciones/formveterinario", array('obj' => $obj));
+    }
+    
+    function editVeterinario($id)
+    {
+      $this->load->model('instituciones/institucionveterinario');
+      $obj = $this->institucionveterinario->getById($id);
+      $this->load->view("registros/instituciones/formveterinario", array('obj' => $obj));
+    }
+    
+    function saveVeterinario()
+    {
+      $this->load->library('form_validation');
+      $this->load->model('instituciones/institucionveterinario');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $is_new = true;
+      if ($id !== "")
+      {
+        $is_new = false;
+      }
+      $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');			
+      $this->form_validation->set_rules('profesion', 'profesion', 'required|max_length[255]');			
+      $this->form_validation->set_rules('ocupacion', 'ocupacion', 'required|max_length[255]');
+      $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+      $errores = false;
+      $return_data = "";
+      if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+      {
+         $errores = true;
+         $return_data = $this->form_validation->error_string();
+      }
+      else
+      {
+        //Salvo
+        $obj = null;
+        if(!$is_new)
+        {
+          $obj = $this->institucionveterinario->getById($id);
+        }
+        else
+        {
+          //var_dump('aca');
+          $obj = new $this->institucionveterinario;
+          $obj->setIntitucion_id($this->input->post('institucion_id', true));
+          
+        }
+        //var_dump($is_new);
+        //var_dump($obj);
+        //die;
+        $obj->setNombre(set_value('nombre'));
+        $obj->setProfesion(set_value('profesion'));
+        $obj->setOcupacion(set_value('ocupacion'));
+        $id = $obj->save();
+        $obj->setId($id);
+        $std = new stdClass();
+        $std->id = $obj->getId();
+        $std->nombre = $obj->getNombre();
+        $std->profesion = $obj->getProfesion();
+        $std->ocupacion = $obj->getOcupacion();
+        $return_data = $this->load->view('registros/instituciones/showveterinario', array('veterinario' => $std), true);
+      }
+      $salida['response'] = ($errores)? "ERROR" :"OK";
+      $salida['options'] = array('id' => $id, 'content' => $return_data, 'is_new' => $is_new);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    
+    function removeVeterinario()
+    {
+      $this->load->model('instituciones/institucionveterinario');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $this->institucionveterinario->simpleDeleteById($id);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['options'] = array('id' => $id);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    /**
+     * 
+     * Sociedades Civiles
+     * 
+     */
+    
+    function addSociedad($id_institucion)
+    {
+      $this->load->model('instituciones/institucionsociedadcivil');
+      $obj = new $this->institucionsociedadcivil;
+      $obj->setIntitucion_id($id_institucion);
+      $this->load->view("registros/instituciones/formsociedad", array('obj' => $obj));
+    }
+    
+    function editSociedad($id)
+    {
+      $this->load->model('instituciones/institucionsociedadcivil');
+      $obj = $this->institucionsociedadcivil->getById($id);
+      $this->load->view("registros/instituciones/formsociedad", array('obj' => $obj));
+    }
+    
+    function saveSociedad()
+    {
+      $this->load->library('form_validation');
+      $this->load->model('instituciones/institucionsociedadcivil');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $is_new = true;
+      if ($id !== "")
+      {
+        $is_new = false;
+      }
+      $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');			
+      $this->form_validation->set_rules('profesion', 'profesion', 'required|max_length[255]');			
+      $this->form_validation->set_rules('ocupacion', 'ocupacion', 'required|max_length[255]');
+      $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+      $errores = false;
+      $return_data = "";
+      if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+      {
+         $errores = true;
+         $return_data = $this->form_validation->error_string();
+      }
+      else
+      {
+        //Salvo
+        $obj = null;
+        if(!$is_new)
+        {
+          $obj = $this->institucionsociedadcivil->getById($id);
+        }
+        else
+        {
+          //var_dump('aca');
+          $obj = new $this->institucionsociedadcivil;
+          $obj->setIntitucion_id($this->input->post('institucion_id', true));
+          
+        }
+        //var_dump($is_new);
+        //var_dump($obj);
+        //die;
+        $obj->setNombre(set_value('nombre'));
+        $obj->setProfesion(set_value('profesion'));
+        $obj->setOcupacion(set_value('ocupacion'));
+        $id = $obj->save();
+        $obj->setId($id);
+        $std = new stdClass();
+        $std->id = $obj->getId();
+        $std->nombre = $obj->getNombre();
+        $std->profesion = $obj->getProfesion();
+        $std->ocupacion = $obj->getOcupacion();
+        $return_data = $this->load->view('registros/instituciones/showsociedad', array('sociedadcivil' => $std), true);
+      }
+      $salida['response'] = ($errores)? "ERROR" :"OK";
+      $salida['options'] = array('id' => $id, 'content' => $return_data, 'is_new' => $is_new);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    
+    function removeSociedad()
+    {
+      $this->load->model('instituciones/institucionsociedadcivil');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $this->institucionsociedadcivil->simpleDeleteById($id);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['options'] = array('id' => $id);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    /**
+     * 
+     * 
+     * Unidad dependiente
+     * 
+     * 
+     */
+    
+    function editUnidadDependiente($id)
+    {
+      $this->load->model('instituciones/institucionunidadesdependientes');
+      $obj = $this->institucionunidadesdependientes->getById($id);
+      $this->load->view("registros/instituciones/formunidaddependiente", array('obj' => $obj));
+    }
+    
+    function saveUnidadDependiente()
+    {
+      $this->load->library('form_validation');
+      $this->load->model('instituciones/institucionunidadesdependientes');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $this->form_validation->set_rules('nombre', 'nombre', 'max_length[255]');			
+      $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+      $errores = false;
+      $return_data = "";
+      if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+      {
+         $errores = true;
+         $return_data = $this->form_validation->error_string();
+      }
+      else
+      {
+        //Salvo
+        $obj = $this->institucionunidadesdependientes->getById($id);
+        $obj->setNombre(set_value('nombre'));
+        $id = $obj->save();
+        $obj->setId($id);
+        $std = new stdClass();
+        $std->id = $obj->getId();
+        $std->nombre = $obj->getNombre();
+        $return_data = $this->load->view('registros/instituciones/showunidaddependiente', array('unidaddependiente' => $std), true);
+      }
+      $salida['response'] = ($errores)? "ERROR" :"OK";
+      $is_new = false;
+      $salida['options'] = array('id' => $id, 'content' => $return_data, 'is_new' => $is_new);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    
     /***
      * 
      * De aca para abajo es Viejo

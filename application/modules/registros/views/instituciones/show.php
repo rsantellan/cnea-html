@@ -166,25 +166,19 @@
         <th>acciones</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="listado_veterinarios">
       <?php 
         foreach($veterinarios as $veterinario):
-        ?>  
-      <tr id="veterinario_<?php echo $veterinario->id;?>">
-        <td><?php echo $veterinario->nombre; ?></td>
-        <td><?php echo $veterinario->profesion; ?></td>
-        <td><?php echo $veterinario->ocupacion; ?></td>
-        <td>
-          <a href="javascript:void(0)">Editar</a>
-          <a href="javascript:void(0)">Borrar</a>
-        </td>
-      </tr>
+        ?>
+        <?php 
+        $this->load->view('registros/instituciones/showveterinario', array('veterinario' => $veterinario));
+        ?>
         <?php 
         endforeach;
         ?>
     </tbody>
   </table>
-  <a href="javascript:void(0)">Agregar</a>
+  <a href="<?php echo site_url('registros/addVeterinario/'.$institucion->getId()); ?>" class="fancy_link" title="Agregar">Agregar</a>
   <hr/>
   <h6>Sociedad Civil</h6>
   <table>
@@ -196,25 +190,19 @@
         <th>acciones</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="listado_sociedades">
       <?php 
         foreach($sociedadesciviles as $sociedadcivil):
-        ?>  
-      <tr id="sociedadcivil_<?php echo $sociedadcivil->id;?>">
-        <td><?php echo $veterinario->nombre; ?></td>
-        <td><?php echo $veterinario->profesion; ?></td>
-        <td><?php echo $veterinario->ocupacion; ?></td>
-        <td>
-          <a href="javascript:void(0)">Editar</a>
-          <a href="javascript:void(0)">Borrar</a>
-        </td>
-      </tr>
+        ?>
+        <?php 
+        $this->load->view('registros/instituciones/showsociedad', array('sociedadcivil' => $sociedadcivil));
+        ?>
         <?php 
         endforeach;
         ?>
     </tbody>
   </table>
-  <a href="javascript:void(0)">Agregar</a>
+  <a href="<?php echo site_url('registros/addSociedad/'.$institucion->getId()); ?>" class="fancy_link" title="Agregar">Agregar</a>
   <hr/>
   <h6>Unidades dependientes</h6>
   <table>
@@ -228,12 +216,9 @@
       <?php 
         foreach($unidadesdependientes as $unidaddependiente):
         ?>  
-      <tr id="unidaddependiente_<?php echo $unidaddependiente->id;?>">
-        <td><?php echo $unidaddependiente->nombre; ?></td>
-        <td>
-          <a href="javascript:void(0)">Editar</a>
-        </td>
-      </tr>
+        <?php 
+        $this->load->view('registros/instituciones/showunidaddependiente', array('unidaddependiente' => $unidaddependiente));
+        ?>
         <?php 
         endforeach;
         ?>

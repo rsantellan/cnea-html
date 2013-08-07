@@ -5,6 +5,26 @@ $(document).ready(function() {
 	});
 });
 
+function basicDelete(id, element_id, text, url)
+{
+  if(confirm(text))
+  {
+    $.ajax({
+        url: url,
+        data: {'id': id},
+        type: 'post',
+        dataType: 'json',
+        success: function(json){
+            if(json.response == "OK")
+            {
+              $('#'+element_id).remove();
+            }
+        }
+    });
+  }
+  return false;
+}
+
 function saveBasicForm(form, errores_div, row_pre_id, table_id)
 {
   $.fancybox.showActivity();
@@ -25,6 +45,7 @@ function saveBasicForm(form, errores_div, row_pre_id, table_id)
           {
             $("#"+row_pre_id+json.options.id).replaceWith(json.options.content);
           }
+          //$("#"+table_id).effect("highlight", {}, 300);
           $.fancybox.close();
         }
         else
