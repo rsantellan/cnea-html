@@ -48,6 +48,11 @@ class registros extends MY_Controller{
     function showInstitucion($id)
     {
       //$this->output->enable_profiler(TRUE);
+      $this->loadShowInstitucion($id);
+    }
+    
+    private function loadShowInstitucion($id)
+    {
       $this->data['menu_id'] = 'registros_instituciones';
       $this->load->model('instituciones/institucion');
       $this->load->model('instituciones/institucionespecie');    
@@ -70,7 +75,6 @@ class registros extends MY_Controller{
       
       $this->load->view("admin/layout", $this->data);
     }
-    
     
     function addDocenteInvestigador($id_institucion)
     {
@@ -401,6 +405,31 @@ class registros extends MY_Controller{
        ->set_output(json_encode($salida));
     }
     
+    function institucionesSubirResolucion()
+    {
+      $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+      $config['allowed_types'] = 'pdf|doc|docx';
+      $this -> load -> library('upload', $config);
+      $errores = array();
+      $upload_data = array();
+      $id = $this->input->post('id', true);
+      if (!$this -> upload -> do_upload('archivo')) {
+          $errores['archivo'] = $this -> upload -> display_errors();
+          $this->upload->clean_errors();
+      }else{
+          $upload_data['archivo'] = $this->upload->data();
+          $this->load->model('instituciones/institucionarchivos');
+          $archivo = new $this->institucionarchivos;
+          $archivo->setIntitucion_id($id);
+          $archivo->setFilename($upload_data['archivo']['file_name']);
+          $archivo->setFilepath($upload_data['archivo']['file_path']);
+          $archivo->save();
+          redirect('registros/showInstitucion/'.$id);
+      }
+      $this->data['errores'] = $errores;
+      $this->loadShowInstitucion($id);
+      
+    }
     
     /***
      * 

@@ -250,7 +250,36 @@
         ?>
     </tbody>
   </table>
-  <a href="javascript:void(0)">Agregar</a>
+  
+  <div id="add_archivo_form" style="<?php if(!isset($errores) && !isset($errores['archivo'])):?>display:none<?php endif;?>">
+    <div class="grid_5">
+      <span>
+        <label>Subir resolucion</label>
+        <form action="<?php echo site_url('registros/institucionesSubirResolucion'); ?>" method="POST" enctype="multipart/form-data">
+          <input type="file" name="archivo" size="20" />
+          <input type="submit" value="upload" />
+          <input type="hidden" value="<?php echo $institucion->getId();?>" name="id"/>
+        </form>
+      </span>
+    </div>
+    
+  </div>
+  
+  <?php if(isset($errores) && isset($errores['archivo'])):?>
+    
+  <div class="clear"></div>
+  <div class="grid_5">
+    <div class="error">
+      <?php echo $errores['archivo'];?>
+    </div>
+  </div>  
+  <?php endif; ?>
+    
+    
+    
+  
+  <div class="clear"></div>
+  <a href="javascript:void(0)" onclick="$('#add_archivo_form').slideToggle('slow');">Agregar</a>
   <hr/>
   
   <h6>Responsable Institucional</h6>
