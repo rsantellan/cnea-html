@@ -6,7 +6,7 @@
     ?>
   </div>
   <div class="clear"></div>
-  <a href="javascript:void(0)">Editar</a>
+  <a href="<?php echo site_url('registros/editMinInstitucion/'.$institucion->getId()); ?>" class="fancy_link" title="Editar">Editar</a>
   <hr/>
   <h6>ESPECIES CRIADAS Y/O UTILIZADAS</h6>
   <table>

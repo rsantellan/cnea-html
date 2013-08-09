@@ -584,6 +584,40 @@ class registros extends MY_Controller{
        ->set_output(json_encode($salida));
     }
     
+    function editMinInstitucion($id)
+    {
+      $this->loadI18n("instituciones", "", FALSE, TRUE, "", "sitio");
+      $this->load->model('instituciones/institucion');
+      $institucion = $this->institucion->getById($id);
+      $this->load->view("registros/instituciones/forminstitucion", array('obj' => $institucion));
+    }
+    
+    
+    function saveMinEdit()
+    {
+      
+        $this->form_validation->set_rules('nombreinsititucion', 'nombreinsititucion', 'required|max_length[255]');			
+		$this->form_validation->set_rules('razonsocial', 'razonsocial', 'required|max_length[255]');			
+		$this->form_validation->set_rules('rut', 'rut', 'max_length[255]');			
+		$this->form_validation->set_rules('naturaleza', 'naturaleza', 'max_length[255]');			
+		$this->form_validation->set_rules('primernivel', 'primernivel', 'required|max_length[255]');			
+		$this->form_validation->set_rules('segundonivel', 'segundonivel', 'required|max_length[255]');			
+		$this->form_validation->set_rules('tercernivel', 'tercernivel', 'required|max_length[255]');			
+		$this->form_validation->set_rules('domicilioinstitucional', 'domicilioinstitucional', 'required|max_length[255]');			
+		$this->form_validation->set_rules('domiciliofiscal', 'domiciliofiscal', 'max_length[255]');			
+		$this->form_validation->set_rules('tipoestablecimiento', 'tipoestablecimiento', 'required|max_length[255]');			
+		$this->form_validation->set_rules('observacionescomite', 'observacionescomite', '');			
+		$this->form_validation->set_rules('nombrecontacto', 'nombrecontacto', 'required|max_length[255]');			
+		$this->form_validation->set_rules('mailcontacto', 'mailcontacto', 'valid_email|max_length[255]');			
+		$this->form_validation->set_rules('telcontacto', 'telcontacto', 'max_length[255]');
+			
+		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+	
+		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+		{
+			
+		}
+    }
     /***
      * 
      * De aca para abajo es Viejo
