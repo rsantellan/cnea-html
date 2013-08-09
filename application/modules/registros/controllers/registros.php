@@ -431,6 +431,159 @@ class registros extends MY_Controller{
       
     }
     
+    function removeArchivo()
+    {
+      $this->load->model('instituciones/institucionarchivos');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $this->institucionarchivos->deleteAllById($id);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['options'] = array('id' => $id);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    function downloadArchivo($id)
+    {
+      $this->load->helper('download');
+      $this->load->model('instituciones/institucionarchivos');
+      $archivo = $this->institucionarchivos->simpleGetById($id);
+      
+      force_download($archivo->filename, file_get_contents($archivo->filepath.$archivo->filename));
+      die;
+    }
+    
+    
+    function institucionesCambiarResponsable()
+    {
+      $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+      $config['allowed_types'] = 'pdf|doc|docx';
+      $this -> load -> library('upload', $config);
+      $errores = array();
+      $upload_data = array();
+      $id = $this->input->post('id', true);
+      if (!$this -> upload -> do_upload('archivo')) {
+          $errores['responsable'] = $this -> upload -> display_errors();
+          $this->upload->clean_errors();
+      }else{
+          $upload_data['responsable'] = $this->upload->data();
+          $this->load->model('instituciones/institucion');
+          $institucion = $this->institucion->getById($id);
+          unlink($institucion->getCvfilepath().$institucion->getCvfilename());
+          $institucion->setCvfilename($upload_data['responsable']['file_name']);
+          $institucion->setCvfilepath($upload_data['responsable']['file_path']);
+          $institucion->save();
+          redirect('registros/showInstitucion/'.$id);
+      }
+      $this->data['errores'] = $errores;
+      $this->loadShowInstitucion($id);
+    }
+    
+    function cambiarPass()
+    {
+      $id = $this->input->post('id', true);
+      $this->load->model('instituciones/institucion');
+      $institucion = $this->institucion->getById($id);
+      $institucion->setPassword($this->institucion->generatePassword());
+      $institucion->save();
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['options'] = array('id' => $id, 'content' => $institucion->getPassword());
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    function editEspecie($id)
+    {
+      $this->load->model('instituciones/institucionespecie');
+      $obj = $this->institucionespecie->getById($id);
+      $this->load->view("registros/instituciones/formespecie", array('obj' => $obj));
+    }
+    
+    
+    function addEspecie($id_institucion)
+    {
+      $this->load->model('instituciones/institucionespecie');
+      $obj = new $this->institucionespecie;
+      $obj->setIntitucion_id($id_institucion);
+      $this->load->view("registros/instituciones/formespecie", array('obj' => $obj));
+    }
+
+    function saveEspecie()
+    {
+      $this->load->library('form_validation');
+      $this->load->model('instituciones/institucionespecie');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $is_new = true;
+      if ($id !== "")
+      {
+        $is_new = false;
+      }
+      $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');
+      $this -> form_validation -> set_rules('observacion', 'observacion', 'max_length[255]');
+      $this -> form_validation -> set_rules('uso', 'uso', 'max_length[255]');
+      $this -> form_validation -> set_rules('cria', 'cria', 'max_length[255]');
+      $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+      $errores = false;
+      $return_data = "";
+      if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+      {
+         $errores = true;
+         $return_data = $this->form_validation->error_string();
+      }
+      else
+      {
+        //Salvo
+        $obj = null;
+        if(!$is_new)
+        {
+          $obj = $this->institucionespecie->getById($id);
+        }
+        else
+        {
+          $obj = new $this->institucionespecie;
+          $obj->setIntitucion_id($this->input->post('institucion_id', true));
+          
+        }
+        $obj->setEsCria(set_value('cria'));
+        $obj->setEsUso(set_value('uso'));
+        $obj->setNombre(set_value('nombre'));
+        $obj->setObservacion(set_value('observacion'));
+        $id = $obj->save();
+        $obj->setId($id);
+        $std = new stdClass();
+        $std->id = $obj->getId();
+        $std->nombre = $obj->getNombre();
+        $std->observacion = $obj->getObservacion();
+        $std->escria = $obj->getEsCria();
+        $std->esuso = $obj->getEsUso();
+        $return_data = $this->load->view('registros/instituciones/showespecie', array('especie' => $std), true);
+      }
+      $salida['response'] = ($errores)? "ERROR" :"OK";
+      $salida['options'] = array('id' => $id, 'content' => $return_data, 'is_new' => $is_new);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
+    function removeEspecie()
+    {
+      $this->load->model('instituciones/institucionespecie');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $this->institucionespecie->simpleDeleteById($id);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['options'] = array('id' => $id);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+    }
+    
     /***
      * 
      * De aca para abajo es Viejo

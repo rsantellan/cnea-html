@@ -216,6 +216,32 @@ class institucion extends MY_Model{
       }
     }
     
+    private function edit()
+    {
+      $data = array();
+      $data["nombreinsititucion"] = $this->getNombreinsititucion();
+      $data["razonsocial"] = $this->getRazonsocial();
+      $data["rut"] = $this->getRut();
+      $data["naturaleza"] = $this->getNaturaleza();
+      $data["primernivel"] = $this->getPrimernivel();
+      $data["segundonivel"] = $this->getSegundonivel();
+      $data["tercernivel"] = $this->getTercernivel();
+      $data["domicilioinstitucional"] = $this->getDomicilioinstitucional();
+      $data["domiciliofiscal"] = $this->getDomiciliofiscal();
+      $data["tipoestablecimiento"] = $this->getTipoestablecimiento();
+      $data["observacionescomite"] = $this->getObservacionescomite();
+      $data["nombrecontacto"] = $this->getNombrecontacto();
+      $data["mailcontacto"] = $this->getMailcontacto();
+      $data["telcontacto"] = $this->getTelcontacto();
+      $data["isactive"] = $this->getIsActive();
+      $data["responsablefilename"] = $this->getCvfilename();
+      $data["responsablefilepath"] = $this->getCvfilepath();
+      $data["password"] = $this->getPassword();
+      $this->db->where('id', $this->getId());
+      $this->db->update($this->getTablename(), $data);
+      return $this->getId();
+    }
+    
     private function saveNew()
     {
       $data = array();
@@ -242,6 +268,16 @@ class institucion extends MY_Model{
       $id = $this->db->insert_id(); 
       
       return $id;
+    }
+    
+    function editUploadedFile()
+    {
+      $data = array();
+      $data["responsablefilename"] = $this->getCvfilename();
+      $data["responsablefilepath"] = $this->getCvfilepath();
+      $this->db->where('id', $this->getId());
+      $this->db->update($this->getTablename(), $data);
+      return $this->getId();
     }
     
     function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)

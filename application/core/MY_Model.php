@@ -50,4 +50,15 @@ class MY_Model extends CI_Model{
     return $this->db->count_all($this->getTablename());
   }
 
+  public function simpleGetById($id)
+    {
+      $this->db->where('id', $id);
+      $this->db->limit('1');
+      $query = $this->db->get($this->getTablename());
+      if( $query->num_rows() == 1 ){
+        return $query->row();
+      } else {
+        return NULL;
+      }
+    }
 }

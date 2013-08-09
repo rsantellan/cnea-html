@@ -1,95 +1,11 @@
 <div class="grid_16">
   <h4>Institución</h4>
-  <div class="grid_5">
-    <span>
-      <label>nombreinsititucion</label>
-      <?php echo $institucion->getNombreinsititucion(); ?>
-    </span>
+  <div id="institucion_data">
+    <?php 
+        $this->load->view('registros/instituciones/showinstitucion', array('institucion' => $institucion));
+    ?>
   </div>
-  <div class="grid_5">
-    <span>
-      <label>razonsocial</label>
-      <?php echo $institucion->getRazonsocial(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>rut</label>
-      <?php echo $institucion->getRut(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>naturaleza</label>
-      <?php echo $institucion->getNaturaleza(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>primernivel</label>
-      <?php echo $institucion->getPrimernivel(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>segundonivel</label>
-      <?php echo $institucion->getSegundonivel(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>tercernivel</label>
-      <?php echo $institucion->getTercernivel(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>domicilioinstitucional</label>
-      <?php echo $institucion->getDomicilioinstitucional(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>domiciliofiscal</label>
-      <?php echo $institucion->getDomiciliofiscal(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>domicilioinstitucional</label>
-      <?php echo $institucion->getDomicilioinstitucional(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>tipoestablecimiento</label>
-      <?php echo $institucion->getTipoestablecimiento(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>observacionescomite</label>
-      <?php echo $institucion->getObservacionescomite(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>nombrecontacto</label>
-      <?php echo $institucion->getNombrecontacto(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>mailcontacto</label>
-      <?php echo $institucion->getMailcontacto(); ?>
-    </span>
-  </div>
-  <div class="grid_5">
-    <span>
-      <label>telcontacto</label>
-      <?php echo $institucion->getTelcontacto(); ?>
-    </span>
-  </div>
+  <div class="clear"></div>
   <a href="javascript:void(0)">Editar</a>
   <hr/>
   <h6>ESPECIES CRIADAS Y/O UTILIZADAS</h6>
@@ -103,34 +19,19 @@
         <th>acciones</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="listado_especies">
       <?php 
       foreach($especies as $especie):
       ?> 
-      <tr>
-        <td>
-          <?php echo $especie->nombre; ?>
-        </td>
-        <td>
-          <?php echo $especie->observacion; ?>
-        </td>
-        <td>
-          <?php echo ($especie->escria == 1)? "Si" : "No"; ?>
-        </td>
-        <td>
-          <?php echo ($especie->esuso == 1)? "Si" : "No"; ?>
-        </td>
-        <td>
-          <a href="javascript:void(0)">Editar</a>
-          <a href="javascript:void(0)">Borrar</a>
-        </td>
-      </tr>
+        <?php 
+        $this->load->view('registros/instituciones/showespecie', array('especie' => $especie));
+        ?>
       <?php 
       endforeach;
       ?>
     </tbody>
   </table>
-    <a href="javascript:void(0)">Agregar</a>
+    <a href="<?php echo site_url('registros/addEspecie/'.$institucion->getId()); ?>" class="fancy_link" title="Agregar">Agregar</a>
   <hr/>
   <h6>Docente / Investigador</h6>
   <table>
@@ -241,8 +142,9 @@
       <tr id="archivo_<?php echo $archivo->id;?>">
         <td><?php echo $archivo->filename; ?></td>
         <td>
-          <a href="javascript:void(0)">Descargar</a>
-          <a href="javascript:void(0)">Eliminar</a>
+          
+          <a href="<?php echo site_url("registros/downloadArchivo/".$archivo->id);?>">Descargar</a>
+          <a href="javascript:void(0)" onclick="return basicDelete(<?php echo $archivo->id?>, 'archivo_<?php echo $archivo->id;?>', 'Esta seguro de querer eliminar?', '<?php echo site_url("registros/removeArchivo");?>')">Borrar</a>
         </td>
       </tr>
         <?php 
@@ -251,6 +153,8 @@
     </tbody>
   </table>
   
+  
+  <div class="clear"></div>
   <div id="add_archivo_form" style="<?php if(!isset($errores) && !isset($errores['archivo'])):?>display:none<?php endif;?>">
     <div class="grid_5">
       <span>
@@ -262,7 +166,6 @@
         </form>
       </span>
     </div>
-    
   </div>
   
   <?php if(isset($errores) && isset($errores['archivo'])):?>
@@ -281,7 +184,7 @@
   <div class="clear"></div>
   <a href="javascript:void(0)" onclick="$('#add_archivo_form').slideToggle('slow');">Agregar</a>
   <hr/>
-  
+  <div class="clear"></div>
   <h6>Responsable Institucional</h6>
   <div class="grid_5">
     <span>
@@ -290,18 +193,55 @@
       
     </span>
   </div>
+  <div class="clear"></div>
+  <div id="edit_responsable_form" style="<?php if(!isset($errores) && !isset($errores['responsable'])):?>display:none<?php endif;?>">
+      <div class="grid_5">
+        <span>
+          <label>Cambiar responsable</label>
+          <form action="<?php echo site_url('registros/institucionesCambiarResponsable'); ?>" method="POST" enctype="multipart/form-data">
+            <input type="file" name="archivo" size="20" />
+            <input type="submit" value="upload" />
+            <input type="hidden" value="<?php echo $institucion->getId();?>" name="id"/>
+          </form>
+        </span>
+      </div>
+    </div>
+
+    <?php if(isset($errores) && isset($errores['responsable'])):?>
+
+    <div class="clear"></div>
+    <div class="grid_5">
+      <div class="error">
+        <?php echo $errores['responsable'];?>
+      </div>
+    </div>  
+    <?php endif; ?>
+
+
+
+
+    <div class="clear"></div>
+    <a href="javascript:void(0)" onclick="$('#edit_responsable_form').slideToggle('slow');">Cambiar</a>
+  
+
   <hr/>
   <h5>Contraseña</h5>
   <div class="grid_10">
     <span>
       <label>Contraseña para ver las personas acreditadas</label>
-      <?php echo $institucion->getPassword();?>
+      <span id="pass_field">
+        <?php echo $institucion->getPassword();?>
+      </span>
+      
     </span>
+    <a href="javascript:void(0)" onclick="return changePassword(<?php echo $institucion->getId()?>, 'pass_field', 'Esta seguro de querer cambiar?', '<?php echo site_url("registros/cambiarPass");?>')">Cambiar</a>
   </div>
   <hr/>
+  
   <?php //var_dump($institucion); ?>
 </div>
 
-<hr/>
+
+
 
 <a href="<?php echo site_url('registros/instituciones'); ?>"> Volver al indice </a>

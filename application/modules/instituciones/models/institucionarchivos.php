@@ -91,6 +91,13 @@ class institucionarchivos extends MY_Model{
       return $query->result();
     }
 
+    public function deleteAllById($id)
+    {
+      $archivo = $this->simpleGetById($id);
+      @unlink($archivo->filepath.$archivo->filename);
+      $this->db->where('id', $id);
+      return $this->db->delete($this->getTablename());
+    }
 
 }
 

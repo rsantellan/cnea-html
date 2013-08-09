@@ -90,6 +90,19 @@ class institucionespecie extends MY_Model{
       }
     }
     
+    private function edit()
+    {
+      $data = array();
+      $data['institucion_id'] = $this->getIntitucion_id();
+      $data['nombre'] = $this->getNombre();
+      $data['observacion'] = $this->getObservacion();
+      $data['escria'] = $this->getEsCria();
+      $data['esuso'] = $this->getEsUso();
+      $this->db->where('id', $this->getId());
+      $this->db->update($this->getTablename(), $data);
+      return $this->getId();
+    }
+    
     private function saveNew()
     {
       $data = array();
@@ -108,6 +121,32 @@ class institucionespecie extends MY_Model{
       $this->db->where('institucion_id', $id);
       $query = $this->db->get($this->getTablename());
       return $query->result();
+    }
+    
+    public function getById($id, $return_obj = true)
+    {
+      $this->db->where('id', $id);
+      $this->db->limit('1');
+      $query = $this->db->get($this->getTablename());
+      if( $query->num_rows() == 1 ){
+        // One row, match!
+        $obj = $query->row();        
+        if($return_obj)
+        {
+          $aux = new institucionespecie();
+          $aux->setId($obj->id);
+          $aux->setIntitucion_id($obj->institucion_id);
+          $aux->setObservacion($obj->observacion);
+          $aux->setNombre($obj->nombre);
+          $aux->setEsCria($obj->escria);
+          $aux->setEsUso($obj->esuso);
+          return $aux;
+        }
+        return $obj;
+      } else {
+        // None
+        return NULL;
+      }
     }
 
 }
