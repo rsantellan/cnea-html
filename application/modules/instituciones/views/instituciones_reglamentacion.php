@@ -1,4 +1,5 @@
-<!-- <div class="content_right img_instituciones">
+<div class="content_right img_instituciones">
+<!--     
 <?php //echo $captchaImage;  // this will show the captcha image?>
 <form action="" method="post">
 <input type="text" name="word"  />

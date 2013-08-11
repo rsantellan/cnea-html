@@ -618,6 +618,88 @@ class registros extends MY_Controller{
 			
 		}
     }
+    
+    
+    function createinstitucion()
+    {
+        $this -> load -> helper('form');
+        $this -> load -> library('form_validation');
+        $this->form_validation->set_rules('nombreinsititucion', 'nombreinsititucion', 'required|max_length[255]');			
+		$this->form_validation->set_rules('razonsocial', 'razonsocial', 'required|max_length[255]');			
+		$this->form_validation->set_rules('rut', 'rut', 'max_length[255]');			
+		$this->form_validation->set_rules('naturaleza', 'naturaleza', 'max_length[255]');			
+		$this->form_validation->set_rules('primernivel', 'primernivel', 'required|max_length[255]');			
+		$this->form_validation->set_rules('segundonivel', 'segundonivel', 'required|max_length[255]');			
+		$this->form_validation->set_rules('tercernivel', 'tercernivel', 'required|max_length[255]');			
+		$this->form_validation->set_rules('domicilioinstitucional', 'domicilioinstitucional', 'required|max_length[255]');			
+		$this->form_validation->set_rules('domiciliofiscal', 'domiciliofiscal', 'max_length[255]');			
+		$this->form_validation->set_rules('tipoestablecimiento', 'tipoestablecimiento', 'required|max_length[255]');			
+		$this->form_validation->set_rules('observacionescomite', 'observacionescomite', '');			
+		$this->form_validation->set_rules('nombrecontacto', 'nombrecontacto', 'required|max_length[255]');			
+		$this->form_validation->set_rules('mailcontacto', 'mailcontacto', 'valid_email|max_length[255]');			
+		$this->form_validation->set_rules('telcontacto', 'telcontacto', 'max_length[255]');
+			
+		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+        $this->load->model('instituciones/institucion');
+        $obj = new $this->institucion;
+        
+        $errores = array();
+        $save = false;
+		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+		{
+			$this -> data['errores'] = $errores;
+            //$this -> data['content'] = 'formulario';
+            //$this -> load -> view('layout', $this -> data);
+		}
+        else
+        {
+            $save = true;    
+            $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+            $config['allowed_types'] = 'pdf|doc|docx';
+            $this -> load -> library('upload', $config);
+            $errores = array();
+            $upload_data = array();
+            
+            if (!$this -> upload -> do_upload('responsable_institucional')) {
+                $errores['responsable_institucional'] = $this -> upload -> display_errors();
+                $this->upload->clean_errors();
+                $save = false;
+            }else{
+                $upload_data['responsable_institucional'] = $this->upload->data();
+            }
+        }
+        $obj->setNombreinsititucion(set_value('nombreinsititucion'));
+        $obj->setRazonsocial(set_value('razonsocial'));
+        $obj->setRut(set_value('rut'));
+        $obj->setNaturaleza(set_value('naturaleza'));
+        $obj->setPrimernivel(set_value('primernivel'));
+        $obj->setSegundonivel(set_value('segundonivel'));
+        $obj->setTercernivel(set_value('tercernivel'));
+        $obj->setDomicilioinstitucional(set_value('domicilioinstitucional'));
+        $obj->setDomiciliofiscal(set_value('domiciliofiscal'));
+        $obj->setTipoestablecimiento(set_value('tipoestablecimiento'));
+        $obj->setObservacionescomite(set_value('observacionescomite'));
+        $obj->setNombrecontacto(set_value('nombrecontacto'));
+        $obj->setMailcontacto(set_value('mailcontacto'));
+        $obj->setTelcontacto(set_value('telcontacto'));
+        if($save)
+        {
+            $obj->setCvfilename($upload_data['responsable_institucional']['file_name']);
+            $obj->setCvfilepath($upload_data['responsable_institucional']['file_path']);
+            $institucionId = $obj->save();
+            redirect('registros/showInstitucion/'.$institucionId);
+            
+        }
+        $this->loadI18n("instituciones", "", FALSE, TRUE, "", "sitio");
+        $this->data['menu_id'] = 'registros_instituciones';
+        $this -> data['errores'] = $errores;
+        //var_dump($obj);
+        $this->data['obj'] = $obj;
+        $this->data['content'] = "registros/instituciones/createforminstitucion";
+      
+        $this->load->view("admin/layout", $this->data);
+        
+    }
     /***
      * 
      * De aca para abajo es Viejo

@@ -49,7 +49,7 @@
 </table>
 
 
-<a href="<?php echo site_url("registros/addInstitucion");?>">
+<a href="<?php echo site_url("registros/createinstitucion");?>">
   Agregar
 </a>
 
