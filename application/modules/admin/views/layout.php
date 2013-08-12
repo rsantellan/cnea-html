@@ -40,12 +40,13 @@
       </div>
       
       <ul id="navigation">
+      <!--
       <?php if($menu_id == 'dashboard'): ?>
         <li><span class="active">Dashboard</span></li>
       <?php else: ?>
         <li><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
       <?php endif; ?>
-      
+      -->
         <li><a href="<?php echo site_url('language/index');?>">Textos</a></li>
       <!--      
       <?php if($menu_id == 'users'): ?>
@@ -84,6 +85,7 @@
       <?php else: ?>
         <li><a href="<?php echo site_url('contacto/contactoadmin');?>">Contacto</a></li>
       <?php endif; ?>        
+        <li><a href="<?php echo site_url('admin/backup');?>" onclick="return confirm('Esta seguro de querer generar el respaldo?')">Generar Respaldo</a></li>
         <li style="float: right;"><a href="<?php echo site_url('auth/logout');?>">Salir</a></li>	
 		</ul>
 		

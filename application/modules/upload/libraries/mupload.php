@@ -73,6 +73,9 @@ class mupload {
     
     public function returnWebCacheImage($path, $width, $height, $type = 1)
     {
+      $aux = $this->retrieveDocumentsFilesPath($path);
+      //if($aux != $path)
+      //  return str_replace(FCPATH, "", $aux);
       $cachePath = $this->returnCacheImage($path, $width, $height, $type);
       $mPath = str_replace(FCPATH, "", $cachePath);
       return $mPath;
@@ -80,7 +83,7 @@ class mupload {
     }
     public function returnImageCachePath($path, $width, $height, $type = 1)
     {
-      //log_message("INFO", " El supuesto path es: ". $path);
+      log_message("INFO", " El supuesto path es: ". $path);
       $path = $this->retrieveDocumentsFilesPath($path);
       $aux = $width."x".$height."_".$type;
       $file_path = $this->returnBasicCachePath($path);// $this->get_path_of_file($mPath);
@@ -88,7 +91,7 @@ class mupload {
       $mPath = $file_path.DIRECTORY_SEPARATOR.$aux.DIRECTORY_SEPARATOR.$file_name;
       
       
-      //log_message("INFO", " El path final es: ". $mPath);
+      log_message("INFO", " El path final es: ". $mPath);
       return $mPath;
     }
     
@@ -133,26 +136,29 @@ class mupload {
     {
       $extension = $this->get_file_extension($path);
       $basic_path = FCPATH. 'assets'.DIRECTORY_SEPARATOR."upload".DIRECTORY_SEPARATOR."images".DIRECTORY_SEPARATOR;
+      $return = $path;
       switch ($extension) {
         case "pdf":
-            return $basic_path."adobe_acrobat_pdf_icon.jpg";
+            $return = $basic_path."adobe_acrobat_pdf_icon.jpg";
           break;
         case "doc":
         case "docx":
-            return $basic_path."office_word_icon.png";
+            $return = $basic_path."office_word_icon.png";
           break;
         case "xls":
         case "xlsx":
-            return $basic_path."office_excel_icon.png";
+            $return = $basic_path."office_excel_icon.png";
           break;
         case "ppt":
         case "pptx":
-            return $basic_path."office_powerpoint_icon.png";
+            $return = $basic_path."office_powerpoint_icon.png";
           break;        
         default:
-          return $path;
+          $return = $path;
         break;
       }
+      //log_message('info', $return);
+      return $return;
     }
     
     public function get_path_of_file($path)

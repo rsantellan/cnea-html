@@ -33,14 +33,6 @@ class instituciones extends MY_Controller{
   
   public function reglamentacion()
   {
-    $this->load->dbutil();
-    $backup =& $this->dbutil->backup();   
-    $this->load->library('zip');
-    $path='/home/rodrigo/proyectos/code-igniter-shared-project/trunk/';
-    $this->zip->read_dir($path); 
-    $this->zip->add_data('database.gz', $backup);
-    $this->zip->download('my_backup.zip'); 
-    die;
     $this->data['content'] = 'instituciones_reglamentacion';
     /*
     $this->load->library('session');

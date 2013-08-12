@@ -37,5 +37,18 @@ class admin extends MY_Controller{
     
     $this->load->view("admin_login");
   }
+  
+  public function backup()
+  {
+    //var_dump(FCPATH);die;
+    $this->load->dbutil();
+    $backup =& $this->dbutil->backup();   
+    $this->load->library('zip');
+    $path=FCPATH;//'/home/rodrigo/proyectos/code-igniter-shared-project/trunk/';
+    $this->zip->read_dir($path); 
+    $this->zip->add_data('database.gz', $backup);
+    $this->zip->download('my_backup.zip'); 
+    die;
+  }
 }
 

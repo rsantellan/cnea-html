@@ -67,4 +67,15 @@ class novedades extends MY_Controller{
     $this->load->view('layout', $this->data);
   }
   
+  public function archivo($fileId)
+  {
+    $this->load->model('upload/images');
+    $file = $this->images->getFile($fileId);
+    $aux = $file[0];
+    $this->load->helper('download');
+    $data = file_get_contents($aux->path); // Read the file's contents
+    $name = $aux->name;
+    force_download($name, $data);
+  }
+  
 }
