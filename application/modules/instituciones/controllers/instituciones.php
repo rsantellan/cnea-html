@@ -82,12 +82,13 @@ class instituciones extends MY_Controller{
   
   function registro($page = 0)
   {
-    $this->load->model('registros/registro_institucion');
+    //$this->load->model('registros/registro_institucion');
+    $this->load->model('instituciones/institucion');
     $this->load->library('pagination');
     $this->load->helper('text');
     $quantity = 10;
     $config['base_url'] = base_url().'index.php/instituciones/registro/';
-    $config['total_rows'] = $this->registro_institucion->countAllRecords();
+    $config['total_rows'] = $this->institucion->countAllRecords();
     $config['per_page'] = $quantity;
     $config['cur_tag_open'] = '<a href="javascript:void(0)" class="current">';
     $config['cur_tag_close'] = '</a> -';
@@ -98,7 +99,7 @@ class instituciones extends MY_Controller{
     $this->pagination->initialize($config);
     
     
-    $this->data['list'] = $this->registro_institucion->retrieveRegistros($quantity, $page, true);
+    $this->data['list'] = $this->institucion->retrieveRegistros($quantity, $page, true);
     $this->data['page'] = $page;
     $this->data['content'] = 'registro';
     $this->load->view('layout', $this->data);

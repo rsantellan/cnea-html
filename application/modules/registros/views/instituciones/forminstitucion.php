@@ -1,4 +1,4 @@
-<form method="POST" action="<?php echo site_url("registros/saveEspecie");?>" onsubmit="return saveBasicForm(this, 'form_errores_especies', 'especie_', 'listado_especies');">
+<form method="POST" action="<?php echo site_url("registros/saveMinEdit");?>" onsubmit="return saveBasicForm(this, 'form_errores_institucion', '_', 'institucion_data_');">
   <input type="hidden" name="id" value="<?php echo $obj->getId();?>" />
   <p>
     <label for="nombreinsititucion">nombre insititucion <span class="required">*</span></label>
@@ -18,7 +18,7 @@
   <p>
     <label for="naturaleza">naturaleza</label>
     <?php echo form_error('naturaleza'); ?>
-    <select name="Naturaleza" class="<?php echo (form_error('Naturaleza') != "")? "input_error" : "";?>">
+    <select name="naturaleza" class="<?php echo (form_error('naturaleza') != "")? "input_error" : "";?>">
         <option value="publica" <?php echo ($obj->getNaturaleza() == "publica")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_publica"); ?></option>
         <option value="privada" <?php echo ($obj->getNaturaleza() == "privada")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_privada"); ?></option>
         <option value="mixta" <?php echo ($obj->getNaturaleza() == "mixta")? "selected=\"selected\"" : "";?>><?php echo lang("instituciones_formulario_mixta"); ?></option>
@@ -55,15 +55,15 @@
     <?php echo form_error('tipoestablecimiento'); ?>  
     <div style="width: 30%; float: left;">
       <label>Cria</label>
-      <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="cria" <?php echo ($obj->getTipoestablecimiento() == "cria" || $obj->getTipoestablecimiento() == "")? "checked=\"checked\"" : "";?> />
+      <input type="radio" class="radiobuttom" name="tipoestablecimiento" value="cria" <?php echo ($obj->getTipoestablecimiento() == "cria" || $obj->getTipoestablecimiento() == "")? "checked=\"checked\"" : "";?> />
     </div>
     <div style="width: 30%; float: left;">
       <label><?php echo lang("instituciones_formulario_experimentacion"); ?></label>
-      <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="experimentación" <?php echo ($obj->getTipoestablecimiento() == "experimentación")? "checked=\"checked\"" : "";?> />
+      <input type="radio" class="radiobuttom" name="tipoestablecimiento" value="experimentación" <?php echo ($obj->getTipoestablecimiento() == "experimentación")? "checked=\"checked\"" : "";?> />
     </div>
     <div style="width: 30%; float: left;">
       <label><?php echo lang("instituciones_formulario_mixto"); ?></label>
-      <input type="radio" class="radiobuttom" name="TipoEstablecimiento" value="mixto" <?php echo ($obj->getTipoestablecimiento() == "mixto")? "checked=\"checked\"" : "";?> />
+      <input type="radio" class="radiobuttom" name="tipoestablecimiento" value="mixto" <?php echo ($obj->getTipoestablecimiento() == "mixto")? "checked=\"checked\"" : "";?> />
     </div>
   </p>
   <p>

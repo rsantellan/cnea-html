@@ -116,10 +116,20 @@ class institucionespecie extends MY_Model{
       return $id;
     }
     
-    public function getByInstitucionId($id)
+    public function getByInstitucionId($id, $return_objects = false)
     {
       $this->db->where('institucion_id', $id);
       $query = $this->db->get($this->getTablename());
+      if($return_objects)
+      {
+        $salida = array();
+        foreach($query->result() as $obj)
+        {
+          $salida[] = $this->populateObject($obj);
+        }
+        return $salida;
+        
+      }
       return $query->result();
     }
     
@@ -133,20 +143,26 @@ class institucionespecie extends MY_Model{
         $obj = $query->row();        
         if($return_obj)
         {
-          $aux = new institucionespecie();
-          $aux->setId($obj->id);
-          $aux->setIntitucion_id($obj->institucion_id);
-          $aux->setObservacion($obj->observacion);
-          $aux->setNombre($obj->nombre);
-          $aux->setEsCria($obj->escria);
-          $aux->setEsUso($obj->esuso);
-          return $aux;
+          return $this->populateObject($obj);
         }
         return $obj;
       } else {
         // None
         return NULL;
       }
+    }
+    
+    
+    private function populateObject($obj)
+    {
+      $aux = new institucionespecie();
+      $aux->setId($obj->id);
+      $aux->setIntitucion_id($obj->institucion_id);
+      $aux->setObservacion($obj->observacion);
+      $aux->setNombre($obj->nombre);
+      $aux->setEsCria($obj->escria);
+      $aux->setEsUso($obj->esuso);
+      return $aux;
     }
 
 }

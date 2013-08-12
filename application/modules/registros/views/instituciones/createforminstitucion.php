@@ -1,4 +1,4 @@
-<form method="POST" action="<?php echo site_url("registros/createInstitucion");?>">
+<form method="POST" action="<?php echo site_url("registros/createInstitucion");?>" enctype="multipart/form-data">
   <input type="hidden" name="id" value="<?php echo $obj->getId();?>" />
   <p>
     <label for="nombreinsititucion">nombre insititucion <span class="required">*</span></label>

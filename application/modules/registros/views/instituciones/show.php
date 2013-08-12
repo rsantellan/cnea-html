@@ -1,6 +1,6 @@
 <div class="grid_16">
   <h4>Institución</h4>
-  <div id="institucion_data">
+  <div id="institucion_data_<?php echo $institucion->getId();?>">
     <?php 
         $this->load->view('registros/instituciones/showinstitucion', array('institucion' => $institucion));
     ?>

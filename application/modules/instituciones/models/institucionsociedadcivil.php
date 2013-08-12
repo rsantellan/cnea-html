@@ -105,10 +105,20 @@ class institucionsociedadcivil extends MY_Model{
       return $id;
    }
 
-   public function getByInstitucionId($id)
+   public function getByInstitucionId($id, $return_objects = false)
    {
       $this->db->where('institucion_id', $id);
       $query = $this->db->get($this->getTablename());
+      if($return_objects)
+      {
+        $salida = array();
+        foreach($query->result() as $obj)
+        {
+          $salida[] = $this->populateObject($obj);
+        }
+        return $salida;
+        
+      }
       return $query->result();
    }
    
@@ -123,13 +133,7 @@ class institucionsociedadcivil extends MY_Model{
         if($return_obj)
         {
           //return $this->createStdObjectFromRow($obj);
-          $aux = new institucionsociedadcivil();
-          $aux->setId($obj->id);
-          $aux->setIntitucion_id($obj->institucion_id);
-          $aux->setNombre($obj->nombre);
-          $aux->setOcupacion($obj->ocupacion);
-          $aux->setProfesion($obj->profesion);
-          return $aux;
+          return $this->populateObject($obj);
         }
         return $obj;
       } else {
@@ -138,6 +142,16 @@ class institucionsociedadcivil extends MY_Model{
       }
     }
 
+    private function populateObject($obj)
+    {
+      $aux = new institucionsociedadcivil();
+      $aux->setId($obj->id);
+      $aux->setIntitucion_id($obj->institucion_id);
+      $aux->setNombre($obj->nombre);
+      $aux->setOcupacion($obj->ocupacion);
+      $aux->setProfesion($obj->profesion);
+      return $aux;
+    }
 }
 
 

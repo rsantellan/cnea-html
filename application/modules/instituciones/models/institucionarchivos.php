@@ -98,6 +98,7 @@ class institucionarchivos extends MY_Model{
       $this->db->where('id', $id);
       return $this->db->delete($this->getTablename());
     }
+    
 
 }
 

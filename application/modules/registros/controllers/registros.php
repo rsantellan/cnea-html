@@ -42,6 +42,9 @@ class registros extends MY_Controller{
       $this->addJquery();
       $this->addFancyBox();
       $this->addModuleJavascript("registros", "list.js");
+      $this->addModuleJavascript("datatable", "jquery.dataTables.js");
+      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
+      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
       $this->load->view("admin/layout", $this->data);
     }
     
@@ -595,28 +598,63 @@ class registros extends MY_Controller{
     
     function saveMinEdit()
     {
+      $this -> load -> helper('form');
+      $this -> load -> library('form_validation');
       
-        $this->form_validation->set_rules('nombreinsititucion', 'nombreinsititucion', 'required|max_length[255]');			
-		$this->form_validation->set_rules('razonsocial', 'razonsocial', 'required|max_length[255]');			
-		$this->form_validation->set_rules('rut', 'rut', 'max_length[255]');			
-		$this->form_validation->set_rules('naturaleza', 'naturaleza', 'max_length[255]');			
-		$this->form_validation->set_rules('primernivel', 'primernivel', 'required|max_length[255]');			
-		$this->form_validation->set_rules('segundonivel', 'segundonivel', 'required|max_length[255]');			
-		$this->form_validation->set_rules('tercernivel', 'tercernivel', 'required|max_length[255]');			
-		$this->form_validation->set_rules('domicilioinstitucional', 'domicilioinstitucional', 'required|max_length[255]');			
-		$this->form_validation->set_rules('domiciliofiscal', 'domiciliofiscal', 'max_length[255]');			
-		$this->form_validation->set_rules('tipoestablecimiento', 'tipoestablecimiento', 'required|max_length[255]');			
-		$this->form_validation->set_rules('observacionescomite', 'observacionescomite', '');			
-		$this->form_validation->set_rules('nombrecontacto', 'nombrecontacto', 'required|max_length[255]');			
-		$this->form_validation->set_rules('mailcontacto', 'mailcontacto', 'valid_email|max_length[255]');			
-		$this->form_validation->set_rules('telcontacto', 'telcontacto', 'max_length[255]');
-			
-		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
-	
+      $this->form_validation->set_rules('nombreinsititucion', 'nombreinsititucion', 'required|max_length[255]');			
+      $this->form_validation->set_rules('razonsocial', 'razonsocial', 'required|max_length[255]');			
+      $this->form_validation->set_rules('rut', 'rut', 'max_length[255]');			
+      $this->form_validation->set_rules('naturaleza', 'naturaleza', 'max_length[255]');			
+      $this->form_validation->set_rules('primernivel', 'primernivel', 'required|max_length[255]');			
+      $this->form_validation->set_rules('segundonivel', 'segundonivel', 'required|max_length[255]');			
+      $this->form_validation->set_rules('tercernivel', 'tercernivel', 'required|max_length[255]');			
+      $this->form_validation->set_rules('domicilioinstitucional', 'domicilioinstitucional', 'required|max_length[255]');			
+      $this->form_validation->set_rules('domiciliofiscal', 'domiciliofiscal', 'max_length[255]');			
+      $this->form_validation->set_rules('tipoestablecimiento', 'tipoestablecimiento', 'required|max_length[255]');			
+      $this->form_validation->set_rules('observacionescomite', 'observacionescomite', '');			
+      $this->form_validation->set_rules('nombrecontacto', 'nombrecontacto', 'required|max_length[255]');			
+      $this->form_validation->set_rules('mailcontacto', 'mailcontacto', 'valid_email|max_length[255]');			
+      $this->form_validation->set_rules('telcontacto', 'telcontacto', 'max_length[255]');
+
+      $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+        
+      $id = $this->input->post('id', true);
+      $this->load->model('instituciones/institucion');
+      $obj = $this->institucion->getById($id);
+      
+      $is_new = false;
+      $errores = false;
+      $return_data = "";
+      
 		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
 		{
-			
+			$errores = true;
+            $return_data = $this->form_validation->error_string();
 		}
+        else
+        {
+          $obj->setNombreinsititucion(set_value('nombreinsititucion'));
+          $obj->setRazonsocial(set_value('razonsocial'));
+          $obj->setRut(set_value('rut'));
+          $obj->setNaturaleza(set_value('naturaleza'));
+          $obj->setPrimernivel(set_value('primernivel'));
+          $obj->setSegundonivel(set_value('segundonivel'));
+          $obj->setTercernivel(set_value('tercernivel'));
+          $obj->setDomicilioinstitucional(set_value('domicilioinstitucional'));
+          $obj->setDomiciliofiscal(set_value('domiciliofiscal'));
+          $obj->setTipoestablecimiento(set_value('tipoestablecimiento'));
+          $obj->setObservacionescomite(set_value('observacionescomite'));
+          $obj->setNombrecontacto(set_value('nombrecontacto'));
+          $obj->setMailcontacto(set_value('mailcontacto'));
+          $obj->setTelcontacto(set_value('telcontacto'));
+          $obj->save();
+          $return_data = $this->load->view('registros/instituciones/showinstitucion', array('institucion' => $obj), true);
+        }
+        $salida['response'] = ($errores)? "ERROR" :"OK";
+        $salida['options'] = array('id' => $id, 'content' => $return_data, 'is_new' => $is_new);
+        $this->output
+         ->set_content_type('application/json')
+         ->set_output(json_encode($salida));
     }
     
     
@@ -700,6 +738,84 @@ class registros extends MY_Controller{
         $this->load->view("admin/layout", $this->data);
         
     }
+    
+    
+    function actInstitucion($id, $status)
+    {
+      $this->load->model('instituciones/institucion');
+      $institucion = $this->institucion->getById($id);
+      if($status == 1 || $status == "1")
+      {
+        $institucion->setIsActive(0);
+      }
+      else
+      {
+        $institucion->setIsActive(1);
+      }
+      $institucion->save();
+      redirect('registros/instituciones');
+    }
+    
+    function dodeleteinstitucion($id)
+    {
+      $this->load->model('instituciones/institucion');
+      $this->load->model('instituciones/institucionespecie');    
+      $this->load->model('instituciones/instituciondocenteinvestigador');
+      $this->load->model('instituciones/institucionveterinario');
+      $this->load->model('instituciones/institucionsociedadcivil');
+      $this->load->model('instituciones/institucionunidadesdependientes');
+      $this->load->model('instituciones/institucionarchivos');
+      
+      $institucion = $this->institucion->getById($id);
+      $especies = $this->institucionespecie->getByInstitucionId($id, true);
+      $docentesinvestigadores = $this->instituciondocenteinvestigador->getByInstitucionId($id, true);
+      $veterinarios = $this->institucionveterinario->getByInstitucionId($id, true);
+      $sociedadesciviles = $this->institucionsociedadcivil->getByInstitucionId($id, true);
+      $unidadesdependientes = $this->institucionunidadesdependientes->getByInstitucionId($id, true);
+      $archivos = $this->institucionarchivos->getByInstitucionId($id);
+      
+      //var_dump($veterinarios);
+      foreach($veterinarios as $veterinario)
+      {
+        $this->institucionveterinario->simpleDeleteById($veterinario->getId());
+      }
+      //echo '<hr/>';
+      //var_dump($unidadesdependientes);
+      foreach($unidadesdependientes as $unidaddependiente)
+      {
+        $this->institucionunidadesdependientes->simpleDeleteById($unidaddependiente->getId());
+      }
+      //echo '<hr/>';
+      //var_dump($sociedadesciviles);
+      foreach($sociedadesciviles as $sociedadcivil)
+      {
+        $this->institucionsociedadcivil->simpleDeleteById($sociedadcivil->getId());
+      }
+      //echo '<hr/>';
+      //var_dump($especies);
+      foreach($especies as $especie)
+      {
+        $this->institucionespecie->simpleDeleteById($especie->getId());
+      }
+      //echo '<hr/>';
+      //var_dump($docentesinvestigadores);
+      foreach($docentesinvestigadores as $docenteinvestigador)
+      {
+        $this->instituciondocenteinvestigador->simpleDeleteById($docenteinvestigador->getId());
+      }
+      //echo '<hr/>';
+      //var_dump($archivos);
+      foreach($archivos as $archivo)
+      {
+        $this->institucionarchivos->deleteAllById($archivo->id);
+      }
+      //echo '<hr/>';
+      //var_dump($institucion);
+      $institucion->deleteAll();
+      redirect('registros/instituciones');
+      
+    }
+    
     /***
      * 
      * De aca para abajo es Viejo

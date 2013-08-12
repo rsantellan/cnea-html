@@ -391,6 +391,14 @@ class institucion extends MY_Model{
       // done!
       return $password;
     }
+    
+    public function deleteAll()
+    {
+      @unlink($this->getResonsablefilepath().$this->getCvfilename());
+      $this->simpleDeleteById($this->getId());
+    }
+    
+    
 }
 
 
