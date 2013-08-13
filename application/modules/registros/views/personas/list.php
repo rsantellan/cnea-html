@@ -43,7 +43,7 @@
 </table>
 
 
-<a href="<?php echo site_url("registros/addPersona");?>">
+<a href="<?php echo site_url("registros/createacreditacion");?>">
   Agregar
 </a>
 
