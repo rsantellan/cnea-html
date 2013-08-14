@@ -13,9 +13,7 @@ class acreditacion extends MY_Model{
   private $id;
   private $fecha;
   private $nombreapellido;
-  private $formacion_primaria;
-  private $formacion_secundaria;
-  private $formacionterciaria;
+  private $formacion;
   private $documento;
   private $fechanacimiento;
   private $direccionpostal;
@@ -28,30 +26,27 @@ class acreditacion extends MY_Model{
   private $nombresupervisor;
   private $especiestrabajadas;
   private $describatareas;
-  private $pctinvestigacion;
-  private $pctmedicinaclinica;
-  private $pctcirugia;
-  private $pctmantenimientocolonias;
-  private $pctmanipulacion;
-  private $pctdirprojectos;
-  private $pctnecropsia;
-  private $pctdiaglaboratorio;
-  private $pctceua;
-  private $pcthistopatologia;
-  private $pctentedu;
-  private $pctapoyoinvestigadores;
-  private $pctsupervision;
-  private $pctprodanimal;
-  private $pctlegal;
-  private $pctotrasfunciones;
-  private $pctfuncnorel;
+  private $pctinvestigacion = 0;
+  private $pctmedicinaclinica = 0;
+  private $pctcirugia = 0;
+  private $pctmantenimientocolonias = 0;
+  private $pctmanipulacion = 0;
+  private $pctdirprojectos = 0;
+  private $pctnecropsia = 0;
+  private $pctdiaglaboratorio = 0;
+  private $pctceua = 0;
+  private $pcthistopatologia = 0;
+  private $pctentedu = 0;
+  private $pctapoyoinvestigadores = 0;
+  private $pctsupervision = 0;
+  private $pctprodanimal = 0;
+  private $pctlegal = 0;
+  private $pctotrasfunciones = 0;
+  private $pctfuncnorel = 0;
   private $pctobservaciones;
   private $realizocursos;
   private $acrpersonales;
-  private $categoriaa;
-  private $categoriab;
-  private $categoria_c1;
-  private $categoria_c2;
+  private $categoria;
   private $cvfile;
   private $cvpath;
   private $isactive;
@@ -87,28 +82,13 @@ class acreditacion extends MY_Model{
     $this->nombreapellido = $nombreapellido;
   }
 
-  public function getFormacion_primaria() {
-    return $this->formacion_primaria;
+  public function getFormacion() {
+    if(empty($this->formacion)) return "primaria";
+    return $this->formacion;
   }
 
-  public function setFormacion_primaria($formacion_primaria) {
-    $this->formacion_primaria = $formacion_primaria;
-  }
-
-  public function getFormacion_secundaria() {
-    return $this->formacion_secundaria;
-  }
-
-  public function setFormacion_secundaria($formacion_secundaria) {
-    $this->formacion_secundaria = $formacion_secundaria;
-  }
-
-  public function getFormacionterciaria() {
-    return $this->formacionterciaria;
-  }
-
-  public function setFormacionterciaria($formacionterciaria) {
-    $this->formacionterciaria = $formacionterciaria;
+  public function setFormacion($formacion) {
+    $this->formacion = $formacion;
   }
 
   public function getDocumento() {
@@ -208,6 +188,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctinvestigacion() {
+    if(empty($this->pctinvestigacion)) return 0;
     return $this->pctinvestigacion;
   }
 
@@ -216,6 +197,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctmedicinaclinica() {
+    if(empty($this->pctmedicinaclinica)) return 0;
     return $this->pctmedicinaclinica;
   }
 
@@ -224,6 +206,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctcirugia() {
+    if(empty($this->pctcirugia)) return 0;
     return $this->pctcirugia;
   }
 
@@ -232,6 +215,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctmantenimientocolonias() {
+    if(empty($this->pctmantenimientocolonias)) return 0;
     return $this->pctmantenimientocolonias;
   }
 
@@ -240,6 +224,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctmanipulacion() {
+    if(empty($this->pctmanipulacion)) return 0;
     return $this->pctmanipulacion;
   }
 
@@ -248,6 +233,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctdirprojectos() {
+    if(empty($this->pctdirprojectos)) return 0;
     return $this->pctdirprojectos;
   }
 
@@ -256,6 +242,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctnecropsia() {
+    if(empty($this->pctnecropsia)) return 0;
     return $this->pctnecropsia;
   }
 
@@ -264,6 +251,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctdiaglaboratorio() {
+    if(empty($this->pctdiaglaboratorio)) return 0;
     return $this->pctdiaglaboratorio;
   }
 
@@ -272,6 +260,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctceua() {
+    if(empty($this->pctceua)) return 0;
     return $this->pctceua;
   }
 
@@ -280,6 +269,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPcthistopatologia() {
+    if(empty($this->pcthistopatologia)) return 0;
     return $this->pcthistopatologia;
   }
 
@@ -288,6 +278,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctentedu() {
+    if(empty($this->pctentedu)) return 0;
     return $this->pctentedu;
   }
 
@@ -296,6 +287,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctapoyoinvestigadores() {
+    if(empty($this->pctapoyoinvestigadores)) return 0;
     return $this->pctapoyoinvestigadores;
   }
 
@@ -304,6 +296,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctsupervision() {
+    if(empty($this->pctsupervision)) return 0;
     return $this->pctsupervision;
   }
 
@@ -312,6 +305,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctprodanimal() {
+    if(empty($this->pctprodanimal)) return 0;
     return $this->pctprodanimal;
   }
 
@@ -320,6 +314,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctlegal() {
+    if(empty($this->pctlegal)) return 0;
     return $this->pctlegal;
   }
 
@@ -328,6 +323,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctotrasfunciones() {
+    if(empty($this->pctotrasfunciones)) return 0;
     return $this->pctotrasfunciones;
   }
 
@@ -336,6 +332,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getPctfuncnorel() {
+    if(empty($this->pctfuncnorel)) return 0;
     return $this->pctfuncnorel;
   }
 
@@ -352,6 +349,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getRealizocursos() {
+    if(empty($this->realizocursos)) return "0";
     return $this->realizocursos;
   }
 
@@ -360,6 +358,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getAcrpersonales() {
+    if(empty($this->acrpersonales)) return "0";
     return $this->acrpersonales;
   }
 
@@ -367,36 +366,13 @@ class acreditacion extends MY_Model{
     $this->acrpersonales = $acrpersonales;
   }
 
-  public function getCategoriaa() {
-    return $this->categoriaa;
+  public function getCategoria() {
+    if(empty($this->categoria)) return "A";
+    return $this->categoria;
   }
 
-  public function setCategoriaa($categoriaa) {
-    $this->categoriaa = $categoriaa;
-  }
-
-  public function getCategoriab() {
-    return $this->categoriab;
-  }
-
-  public function setCategoriab($categoriab) {
-    $this->categoriab = $categoriab;
-  }
-
-  public function getCategoria_c1() {
-    return $this->categoria_c1;
-  }
-
-  public function setCategoria_c1($categoria_c1) {
-    $this->categoria_c1 = $categoria_c1;
-  }
-
-  public function getCategoria_c2() {
-    return $this->categoria_c2;
-  }
-
-  public function setCategoria_c2($categoria_c2) {
-    $this->categoria_c2 = $categoria_c2;
+  public function setCategoria($categoria) {
+    $this->categoria = $categoria;
   }
 
   public function getCvfile() {

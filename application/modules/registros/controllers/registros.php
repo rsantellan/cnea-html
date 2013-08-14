@@ -945,9 +945,7 @@ class registros extends MY_Controller{
         $form_data = array(
                       'fecha' => set_value('fecha'),
                       'nombreapellido' => set_value('nombreapellido'),
-                      'formacion_primaria' => set_value('formacion_primaria'),
-                      'formacion_secundaria' => set_value('formacion_secundaria'),
-                      'formacionterciaria' => set_value('formacionterciaria'),
+                      'formacion' => set_value('formacion'),
                       'documento' => set_value('documento'),
                       'fechanacimiento' => set_value('fechanacimiento'),
                       'direccionpostal' => set_value('direccionpostal'),
@@ -980,10 +978,7 @@ class registros extends MY_Controller{
                       'pctobservaciones' => set_value('pctobservaciones'),
                       'realizocursos' => set_value('realizocursos'),
                       'acrpersonales' => set_value('acrpersonales'),
-                      'categoriaa' => set_value('categoriaa'),
-                      'categoriab' => set_value('categoriab'),
-                      'categoria_c1' => set_value('categoria_c1'),
-                      'categoria_c2' => set_value('categoria_c2'),
+                      'categoria' => set_value('categoria'),
                       'cvfile' => set_value('cvfile'),
                       'cvpath' => set_value('cvpath'),
                       'isactive' => set_value('isactive'),
@@ -993,9 +988,7 @@ class registros extends MY_Controller{
         
         $obj->setFecha($form_data['fecha']);
         $obj->setNombreapellido($form_data['nombreapellido']);
-        $obj->setFormacion_primaria($form_data['formacion_primaria']);
-        $obj->setFormacion_secundaria($form_data['formacion_secundaria']);
-        $obj->setFormacionterciaria($form_data['formacionterciaria']);
+        $obj->setFormacion($form_data['formacion']);
         $obj->setDocumento($form_data['documento']);
         $obj->setFechanacimiento($form_data['fechanacimiento']);
         $obj->setDireccionpostal($form_data['direccionpostal']);
@@ -1028,10 +1021,7 @@ class registros extends MY_Controller{
         $obj->setPctobservaciones($form_data['pctobservaciones']);
         $obj->setRealizocursos($form_data['realizocursos']);
         $obj->setAcrpersonales($form_data['acrpersonales']);
-        $obj->setCategoriaa($form_data['categoriaa']);
-        $obj->setCategoriab($form_data['categoriab']);
-        $obj->setCategoria_c1($form_data['categoria_c1']);
-        $obj->setCategoria_c2($form_data['categoria_c2']);
+        $obj->setCategoria($form_data['categoria']);
         
         /*
         
@@ -1064,6 +1054,8 @@ class registros extends MY_Controller{
         $this -> data['errores'] = $errores;
         //var_dump($obj);
         $this->data['obj'] = $obj;
+        $this->data['use_grid_16'] = false;
+        $this->addJqueryUI();
         $this->data['content'] = "registros/personas/createformacreditacion";
       
         $this->load->view("admin/layout", $this->data);

@@ -13,7 +13,7 @@
       <?php endif; ?>
 	  <?php if($jquery_ui_on): ?>
         <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-ui-1.8.16.custom.min.js";?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/eggplant/jquery-ui-1.8.18.custom.css";?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/le-frog/jquery-ui-1.8.16.custom.css";?>" />
       <?php endif; ?>
       <?php if($fancybox_on): ?>
         <script type="text/javascript" src="<?php echo base_url() . "assets/js/fancybox/jquery.fancybox-1.3.4.pack.js";?>"></script>
