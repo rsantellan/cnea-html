@@ -1,12 +1,12 @@
 
-<form method="POST" action="<?php echo site_url("registros/createacreditacion"); ?>" enctype="multipart/form-data">
+<form method="POST" action="<?php echo site_url("registros/editarSavePersona"); ?>" enctype="multipart/form-data">
   <input type="hidden" name="id" value="<?php echo $obj->getId(); ?>" />
   <div class="grid_5">
     <p>
       <label for="fecha">Fecha <span class="required">*</span></label>
       <?php echo form_error('fecha'); ?>
       <br />
-      <input id="fecha" type="input" name="fecha"  value="<?php echo $obj->getFecha(); ?>"  />
+      <input id="fecha" type="input" name="fecha"  value="<?php echo $obj->getFecha(true); ?>"  />
     </p>
   </div>
   <div class="grid_5">
@@ -48,7 +48,7 @@
     <p>
       <label for="fechanacimiento">fecha nacimiento <span class="required">*</span></label>
       <?php echo form_error('fechanacimiento'); ?>
-      <br /><input id="fechanacimiento" type="text" name="fechanacimiento"  value="<?php echo $obj->getFechanacimiento(); ?>"  />
+      <br /><input id="fechanacimiento" type="text" name="fechanacimiento"  value="<?php echo $obj->getFechanacimiento(true); ?>"  />
     </p>
   </div>
   <div class="grid_5">
@@ -328,16 +328,8 @@
     <p>
       <label for="fechavencimiento">Fecha de Vencimiento <span class="required">*</span></label>
       <?php echo form_error('fechavencimiento'); ?>
-      <br /><input id="fechavencimiento" type="text" name="fechavencimiento"  value="<?php echo $obj->getFechavencimiento(); ?>"  />
+      <br /><input id="fechavencimiento" type="text" name="fechavencimiento"  value="<?php echo $obj->getFechavencimiento(true); ?>"  />
     </p>
-  </div>
-  <div class="clear"></div>
-  <div class="grid_6">
-    <h5><?php echo "Curriculum Vitae" ?></h5>
-    <?php if(isset($errores["curriculum"])): ?>
-      <?php echo $errores["curriculum"]; ?>
-    <?php endif; ?>
-    <input type="file" name="curriculum" id="curriculum" class="file" />
   </div>
   <div class="clear"></div>
   <div class="grid_8">

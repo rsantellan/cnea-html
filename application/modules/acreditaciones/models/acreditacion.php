@@ -66,7 +66,8 @@ class acreditacion extends MY_Model{
     $this->id = $id;
   }
 
-  public function getFecha() {
+  public function getFecha($format_date = false) {
+    if($format_date) return $this->formatDateFromMysql($this->fecha);
     return $this->fecha;
   }
 
@@ -99,7 +100,8 @@ class acreditacion extends MY_Model{
     $this->documento = $documento;
   }
 
-  public function getFechanacimiento() {
+  public function getFechanacimiento($format_date = false) {
+    if($format_date) return $this->formatDateFromMysql($this->fechanacimiento);
     return $this->fechanacimiento;
   }
 
@@ -399,7 +401,8 @@ class acreditacion extends MY_Model{
     $this->isactive = $isactive;
   }
 
-  public function getFechavencimiento() {
+  public function getFechavencimiento($format_date = false) {
+    if($format_date) return $this->formatDateFromMysql($this->fechavencimiento);
     return $this->fechavencimiento;
   }
 
@@ -429,35 +432,112 @@ class acreditacion extends MY_Model{
     
     private function edit()
     {
-      die;
-      $data = array();
-      $data["nombreinsititucion"] = $this->getNombreinsititucion();
-      $data["razonsocial"] = $this->getRazonsocial();
-      $data["rut"] = $this->getRut();
-      $data["naturaleza"] = $this->getNaturaleza();
-      $data["primernivel"] = $this->getPrimernivel();
-      $data["segundonivel"] = $this->getSegundonivel();
-      $data["tercernivel"] = $this->getTercernivel();
-      $data["domicilioinstitucional"] = $this->getDomicilioinstitucional();
-      $data["domiciliofiscal"] = $this->getDomiciliofiscal();
-      $data["tipoestablecimiento"] = $this->getTipoestablecimiento();
-      $data["observacionescomite"] = $this->getObservacionescomite();
-      $data["nombrecontacto"] = $this->getNombrecontacto();
-      $data["mailcontacto"] = $this->getMailcontacto();
-      $data["telcontacto"] = $this->getTelcontacto();
-      $data["isactive"] = $this->getIsActive();
-      $data["responsablefilename"] = $this->getCvfilename();
-      $data["responsablefilepath"] = $this->getCvfilepath();
-      $data["password"] = $this->getPassword();
+      $data = array(
+            'fecha' => $this->formatDateToMysql($this->getFecha()),
+            'nombreapellido' => $this->getNombreapellido(),
+            'formacion' => $this->getFormacion(),
+            'documento' => $this->getDocumento(),
+            'fechanacimiento' => $this->formatDateToMysql($this->getFechanacimiento()),
+            'direccionpostal' => $this->getDireccionpostal(),
+            'direccionelectronica' => $this->getDireccionelectronica(),
+            'telefonocontacto' => $this->getTelefonocontacto(),
+            'instituciondesempeno' => $this->getInstituciondesempeno(),
+            'laboratoriounidad' => $this->getLaboratoriounidad(),
+            'cargofuncioninstitucion' => $this->getCargofuncioninstitucion(),
+            'cargahorariasemanal' => $this->getCargahorariasemanal(),
+            'nombresupervisor' => $this->getNombresupervisor(),
+            'especiestrabajadas' => $this->getEspeciestrabajadas(),
+            'describatareas' => $this->getDescribatareas(),
+            'pctinvestigacion' => $this->getPctinvestigacion(),
+            'pctmedicinaclinica' => $this->getPctmedicinaclinica(),
+            'pctcirugia' => $this->getPctcirugia(),
+            'pctmantenimientocolonias' => $this->getPctmantenimientocolonias(),
+            'pctmanipulacion' => $this->getPctmanipulacion(),
+            'pctdirprojectos' => $this->getPctdirprojectos(),
+            'pctnecropsia' => $this->getPctnecropsia(),
+            'pctdiaglaboratorio' => $this->getPctdiaglaboratorio(),
+            'pctceua' => $this->getPctceua(),
+            'pcthistopatologia' => $this->getPcthistopatologia(),
+            'pctentedu' => $this->getPctentedu(),
+            'pctapoyoinvestigadores' => $this->getPctapoyoinvestigadores(),
+            'pctsupervision' => $this->getPctsupervision(),
+            'pctprodanimal' => $this->getPctprodanimal(),
+            'pctlegal' => $this->getPctlegal(),
+            'pctotrasfunciones' => $this->getPctotrasfunciones(),
+            'pctfuncnorel' => $this->getPctfuncnorel(),
+            'pctobservaciones' => $this->getPctobservaciones(),
+            'realizocursos' => $this->getRealizocursos(),
+            'acrpersonales' => $this->getAcrpersonales(),
+            'categoria' => $this->getCategoria(),
+            'cvfile' => $this->getCvfile(),
+            'cvpath' => $this->getCvpath(),
+            'isactive' => $this->getIsactive(),
+            'fechavencimiento' => $this->formatDateToMysql($this->getFechavencimiento())
+        );
+      
       $this->db->where('id', $this->getId());
       $this->db->update($this->getTablename(), $data);
       return $this->getId();
     }
     
+    private function formatDateToMysql($date)
+    {
+      $pieces = explode("/", $date);
+      return $pieces[2]."-".$pieces[0]."-".$pieces[1];
+    }
+    
+    private function formatDateFromMysql($date)
+    {
+      $pieces = explode("-", $date);
+      return $pieces[1]."/".$pieces[2]."/".$pieces[0];
+    }
+    
     private function saveNew()
     {
-      die;
-      $data = array();
+      
+      $data = array(
+            'fecha' => $this->formatDateToMysql($this->getFecha()),
+            'nombreapellido' => $this->getNombreapellido(),
+            'formacion' => $this->getFormacion(),
+            'documento' => $this->getDocumento(),
+            'fechanacimiento' => $this->formatDateToMysql($this->getFechanacimiento()),
+            'direccionpostal' => $this->getDireccionpostal(),
+            'direccionelectronica' => $this->getDireccionelectronica(),
+            'telefonocontacto' => $this->getTelefonocontacto(),
+            'instituciondesempeno' => $this->getInstituciondesempeno(),
+            'laboratoriounidad' => $this->getLaboratoriounidad(),
+            'cargofuncioninstitucion' => $this->getCargofuncioninstitucion(),
+            'cargahorariasemanal' => $this->getCargahorariasemanal(),
+            'nombresupervisor' => $this->getNombresupervisor(),
+            'especiestrabajadas' => $this->getEspeciestrabajadas(),
+            'describatareas' => $this->getDescribatareas(),
+            'pctinvestigacion' => $this->getPctinvestigacion(),
+            'pctmedicinaclinica' => $this->getPctmedicinaclinica(),
+            'pctcirugia' => $this->getPctcirugia(),
+            'pctmantenimientocolonias' => $this->getPctmantenimientocolonias(),
+            'pctmanipulacion' => $this->getPctmanipulacion(),
+            'pctdirprojectos' => $this->getPctdirprojectos(),
+            'pctnecropsia' => $this->getPctnecropsia(),
+            'pctdiaglaboratorio' => $this->getPctdiaglaboratorio(),
+            'pctceua' => $this->getPctceua(),
+            'pcthistopatologia' => $this->getPcthistopatologia(),
+            'pctentedu' => $this->getPctentedu(),
+            'pctapoyoinvestigadores' => $this->getPctapoyoinvestigadores(),
+            'pctsupervision' => $this->getPctsupervision(),
+            'pctprodanimal' => $this->getPctprodanimal(),
+            'pctlegal' => $this->getPctlegal(),
+            'pctotrasfunciones' => $this->getPctotrasfunciones(),
+            'pctfuncnorel' => $this->getPctfuncnorel(),
+            'pctobservaciones' => $this->getPctobservaciones(),
+            'realizocursos' => $this->getRealizocursos(),
+            'acrpersonales' => $this->getAcrpersonales(),
+            'categoria' => $this->getCategoria(),
+            'cvfile' => $this->getCvfile(),
+            'cvpath' => $this->getCvpath(),
+            'isactive' => 0,
+            'fechavencimiento' => $this->formatDateToMysql($this->getFechavencimiento())
+        );
+      /*
       $data["nombreinsititucion"] = $this->getNombreinsititucion();
       $data["razonsocial"] = $this->getRazonsocial();
       $data["rut"] = $this->getRut();
@@ -476,7 +556,8 @@ class acreditacion extends MY_Model{
       $data["responsablefilename"] = $this->getCvfilename();
       $data["responsablefilepath"] = $this->getCvfilepath();
       $data["password"] = $this->generatePassword();
-              
+      */      
+      //var_dump($data);die;
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       
@@ -486,7 +567,9 @@ class acreditacion extends MY_Model{
     function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)
     {
       //$this->db->order_by("ordinal", "desc");
-      $this->db->order_by("id", "desc");
+      $this->db->select($this->getTablename().'.*, institucion.nombreinsititucion');
+      $this->db->order_by($this->getTablename().".id", "desc");
+      $this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno');
       $query = null;
       if(is_null($number))
       {
@@ -515,6 +598,7 @@ class acreditacion extends MY_Model{
     public function getById($id, $return_obj = true)
     {
       $this->db->where('id', $id);
+      //$this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno');
       $this->db->limit('1');
       $query = $this->db->get($this->getTablename());
       if( $query->num_rows() == 1 ){
@@ -531,29 +615,51 @@ class acreditacion extends MY_Model{
       }
     }
     
-    private function createStdObjectFromRow($obj)
+    private function createStdObjectFromRow($aux)
     {
-      $aux = new acreditacion();
-      $aux->setId($obj->id);
-      $aux->setNombreinsititucion($obj->nombreinsititucion);
-      $aux->setRazonsocial($obj->razonsocial);
-      $aux->setRut($obj->rut);
-      $aux->setNaturaleza($obj->naturaleza);
-      $aux->setPrimernivel($obj->primernivel);
-      $aux->setSegundonivel($obj->segundonivel);
-      $aux->setTercernivel($obj->tercernivel);
-      $aux->setDomicilioinstitucional($obj->domicilioinstitucional);
-      $aux->setDomiciliofiscal($obj->domiciliofiscal);
-      $aux->setTipoestablecimiento($obj->tipoestablecimiento);
-      $aux->setObservacionescomite($obj->observacionescomite);
-      $aux->setNombrecontacto($obj->nombrecontacto);
-      $aux->setMailcontacto($obj->mailcontacto);
-      $aux->setTelcontacto($obj->telcontacto);
-      $aux->setPassword($obj->password);
-      $aux->setIsActive($obj->isactive);
-      $aux->setCvfilename($obj->responsablefilename);
-      $aux->setCvfilepath($obj->responsablefilepath);
-      return $aux;
+      $obj = new acreditacion();
+      $obj->setId($aux->id);
+      $obj->setFecha($aux->fecha);
+      $obj->setNombreapellido($aux->nombreapellido);
+      $obj->setFormacion($aux->formacion);
+      $obj->setDocumento($aux->documento);
+      $obj->setFechanacimiento($aux->fechanacimiento);
+      $obj->setDireccionpostal($aux->direccionpostal);
+      $obj->setDireccionelectronica($aux->direccionelectronica);
+      $obj->setTelefonocontacto($aux->telefonocontacto);
+      $obj->setInstituciondesempeno($aux->instituciondesempeno);
+      $obj->setLaboratoriounidad($aux->laboratoriounidad);
+      $obj->setCargofuncioninstitucion($aux->cargofuncioninstitucion);
+      $obj->setCargahorariasemanal($aux->cargahorariasemanal);
+      $obj->setNombresupervisor($aux->nombresupervisor);
+      $obj->setEspeciestrabajadas($aux->especiestrabajadas);
+      $obj->setDescribatareas($aux->describatareas);
+      $obj->setPctinvestigacion($aux->pctinvestigacion);
+      $obj->setPctmedicinaclinica($aux->pctmedicinaclinica);
+      $obj->setPctcirugia($aux->pctcirugia);
+      $obj->setPctmantenimientocolonias($aux->pctmantenimientocolonias);
+      $obj->setPctmanipulacion($aux->pctmanipulacion);
+      $obj->setPctdirprojectos($aux->pctdirprojectos);
+      $obj->setPctnecropsia($aux->pctnecropsia);
+      $obj->setPctdiaglaboratorio($aux->pctdiaglaboratorio);
+      $obj->setPctceua($aux->pctceua);
+      $obj->setPcthistopatologia($aux->pcthistopatologia);
+      $obj->setPctentedu($aux->pctentedu);
+      $obj->setPctapoyoinvestigadores($aux->pctapoyoinvestigadores);
+      $obj->setPctsupervision($aux->pctsupervision);
+      $obj->setPctprodanimal($aux->pctprodanimal);
+      $obj->setPctlegal($aux->pctlegal);
+      $obj->setPctotrasfunciones($aux->pctotrasfunciones);
+      $obj->setPctfuncnorel($aux->pctfuncnorel);
+      $obj->setPctobservaciones($aux->pctobservaciones);
+      $obj->setRealizocursos($aux->realizocursos);
+      $obj->setAcrpersonales($aux->acrpersonales);
+      $obj->setCategoria($aux->categoria);
+      $obj->setFechavencimiento($aux->fechavencimiento);
+      $obj->setIsactive($aux->isactive);
+      $obj->setCvfile($aux->cvfile);
+      $obj->setCvpath($aux->cvpath);
+      return $obj;
     }
   
 }
