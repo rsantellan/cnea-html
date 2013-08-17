@@ -220,15 +220,71 @@
         <?php echo ($acreditacion->getRealizocursos() == 1)? "Si" : "No"; ?>
       </span>
     </div>
+	
+	<?php 
+	if($acreditacion->getRealizocursos() == 1): ?>
+	<div class="grid_5">
+      <span>
+        <label>Curso 1</label>
+        <?php echo $acreditacion->getCurso1() ?>
+      </span>
+    </div>
+	<div class="grid_5">
+      <span>
+        <label>Curso 2</label>
+        <?php echo $acreditacion->getCurso2() ?>
+      </span>
+    </div>
+	<div class="grid_5">
+      <span>
+        <label>Curso 3</label>
+        <?php echo $acreditacion->getCurso3() ?>
+      </span>
+    </div>
+	<div class="grid_5">
+      <span>
+        <label>Curso observaciones</label>
+        <?php echo $acreditacion->getCursoobservacion() ?>
+      </span>
+    </div>
+	<?php endif; ?>
+	<div class="clear"></div>
+	
     <div class="grid_5">
       <span>
         <label>Acreditaciones Personales</label>
         <?php echo ($acreditacion->getAcrpersonales() == 1)? "Si" : "No"; ?>
       </span>
     </div>
+	<?php 
+	if($acreditacion->getAcrpersonales() == 1): ?>
+	<div class="grid_7">
+      <span>
+        <label>Organismo / Institución que la expidió:</label>
+        <?php echo $acreditacion->getAcrorganismo() ?>
+      </span>
+    </div>
+	<div class="grid_5">
+      <span>
+        <label>Categoría adjudicada:</label>
+        <?php echo $acreditacion->getAcrcategoria() ?>
+      </span>
+    </div>
+	<div class="grid_5">
+      <span>
+        <label>Fecha de vencimiento:</label>
+        <?php echo $acreditacion->getAcrfecha() ?>
+      </span>
+    </div>
+	<?php endif; ?>
   </div>
   <div class="clear"></div>
   <?php //var_dump($acreditacion); ?>
   <hr/>
   <?php //var_dump($institucion); ?>
+  
 </div>
+<div class="clear"></div>
+<a href="<?php echo site_url("registros/index");?>">
+  Volver
+</a>

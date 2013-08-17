@@ -51,6 +51,13 @@ class acreditacion extends MY_Model{
   private $cvpath;
   private $isactive;
   private $fechavencimiento;
+  private $curso1;
+  private $curso2;
+  private $curso3;
+  private $cursoobservacion;
+  private $acrorganismo;
+  private $acrcategoria;
+  private $acrfecha;
  
   function __construct()
   {
@@ -409,7 +416,63 @@ class acreditacion extends MY_Model{
   public function setFechavencimiento($fechavencimiento) {
     $this->fechavencimiento = $fechavencimiento;
   }
+  
+  public function getCurso1() {
+	return $this->curso1;
+  }
 
+  public function setCurso1($curso1) {
+	$this->curso1 = $curso1;
+  }
+
+  public function getCurso2() {
+	return $this->curso2;
+  }
+
+  public function setCurso2($curso2) {
+	$this->curso2 = $curso2;
+  }
+
+  public function getCurso3() {
+	return $this->curso3;
+  }
+
+  public function setCurso3($curso3) {
+	$this->curso3 = $curso3;
+  }
+
+  public function getCursoobservacion() {
+	return $this->cursoobservacion;
+  }
+
+  public function setCursoobservacion($cursoobservacion) {
+	$this->cursoobservacion = $cursoobservacion;
+  }
+
+  public function getAcrorganismo() {
+	return $this->acrorganismo;
+  }
+
+  public function setAcrorganismo($acrorganismo) {
+	$this->acrorganismo = $acrorganismo;
+  }
+
+  public function getAcrcategoria() {
+	return $this->acrcategoria;
+  }
+
+  public function setAcrcategoria($acrcategoria) {
+	$this->acrcategoria = $acrcategoria;
+  }
+
+  public function getAcrfecha($format_date = false) {
+    if($format_date) return $this->formatDateFromMysql($this->acrfecha);
+	return $this->acrfecha;
+  }
+
+  public function setAcrfecha($acrfecha) {
+	$this->acrfecha = $acrfecha;
+  }
 
   public function isNew(){
       if($this->getId() == "" || is_null($this->getId()))
@@ -472,7 +535,14 @@ class acreditacion extends MY_Model{
             'cvfile' => $this->getCvfile(),
             'cvpath' => $this->getCvpath(),
             'isactive' => $this->getIsactive(),
-            'fechavencimiento' => $this->formatDateToMysql($this->getFechavencimiento())
+            'fechavencimiento' => $this->formatDateToMysql($this->getFechavencimiento()),
+			'curso1' => $this->getCurso1(),
+			'curso2' => $this->getCurso2(),
+			'curso3' => $this->getCurso3(),
+			'cursoobservacion' => $this->getCursoobservacion(),
+			'acrorganismo' => $this->getAcrorganismo(),
+			'acrcategoria' => $this->getAcrcategoria(),
+			'acrfecha' => $this->formatDateToMysql($this->getAcrfecha()),
         );
       
       $this->db->where('id', $this->getId());
@@ -482,12 +552,14 @@ class acreditacion extends MY_Model{
     
     private function formatDateToMysql($date)
     {
+	  if(empty($date)) return $date;
       $pieces = explode("/", $date);
       return $pieces[2]."-".$pieces[0]."-".$pieces[1];
     }
     
     private function formatDateFromMysql($date)
     {
+	  if(is_null($date)) return $date;
       $pieces = explode("-", $date);
       return $pieces[1]."/".$pieces[2]."/".$pieces[0];
     }
@@ -535,7 +607,14 @@ class acreditacion extends MY_Model{
             'cvfile' => $this->getCvfile(),
             'cvpath' => $this->getCvpath(),
             'isactive' => 0,
-            'fechavencimiento' => $this->formatDateToMysql($this->getFechavencimiento())
+			'fechavencimiento' => $this->formatDateToMysql($this->getFechavencimiento()),
+			'curso1' => $this->getCurso1(),
+			'curso2' => $this->getCurso2(),
+			'curso3' => $this->getCurso3(),
+			'cursoobservacion' => $this->getCursoobservacion(),
+			'acrorganismo' => $this->getAcrorganismo(),
+			'acrcategoria' => $this->getAcrcategoria(),
+			'acrfecha' => $this->formatDateToMysql($this->getAcrfecha()),
         );
       /*
       $data["nombreinsititucion"] = $this->getNombreinsititucion();
@@ -659,7 +738,14 @@ class acreditacion extends MY_Model{
       $obj->setIsactive($aux->isactive);
       $obj->setCvfile($aux->cvfile);
       $obj->setCvpath($aux->cvpath);
-      return $obj;
+	  $obj->setCurso1($aux->curso1);
+	  $obj->setCurso2($aux->curso2);
+	  $obj->setCurso3($aux->curso3);
+	  $obj->setCursoobservacion($aux->cursoobservacion);
+	  $obj->setAcrorganismo($aux->acrorganismo);
+	  $obj->setAcrcategoria($aux->acrcategoria);
+	  $obj->setAcrfecha($aux->acrfecha);
+	  return $obj;
     }
   
 }

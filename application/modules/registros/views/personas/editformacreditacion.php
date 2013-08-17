@@ -285,6 +285,36 @@
     </p>
   </div>
   <div class="clear"></div>
+    <div class="grid_5">
+	<p>
+      <label for="curso1">Curso 1</label>
+      <?php echo form_error('curso1'); ?>
+      <br /><input id="curso1" type="text" name="curso1"  value="<?php echo $obj->getCurso1(); ?>"  />
+    </p>
+  </div>
+  <div class="grid_5">
+	<p>
+      <label for="curso2">Curso 2</label>
+      <?php echo form_error('curso2'); ?>
+      <br /><input id="curso2" type="text" name="curso2"  value="<?php echo $obj->getCurso2(); ?>"  />
+    </p>
+  </div>
+  <div class="grid_5">
+	<p>
+      <label for="curso3">Curso 3</label>
+      <?php echo form_error('curso3'); ?>
+      <br /><input id="curso3" type="text" name="curso3"  value="<?php echo $obj->getCurso3(); ?>"  />
+    </p>
+  </div>
+  <div class="grid_6">
+    <p>
+      <label for="cursoobservacion">Observaciones de cursos</label>
+      <?php echo form_error('cursoobservacion'); ?>
+      <br />
+      <?php echo form_textarea(array('name' => 'cursoobservacion', 'rows' => '5', 'cols' => '80', 'value' => $obj->getCursoobservacion())) ?>
+    </p>
+  </div>
+  <div class="clear"></div>
   <div class="grid_5">
     <p>
       <label for="acrpersonales">Acreditaciones Personales <span class="required">*</span></label>
@@ -299,6 +329,28 @@
       <input id="acrpersonales" name="acrpersonales" type="radio" class="" value="0" <?php echo ($obj->getAcrpersonales() == "0")? "checked=\"checked\"" : ""; ?> />
       <label for="acrpersonales" class="">No</label>
     </div>
+    </p>
+  </div>
+  <div class="clear"></div>
+  <div class="grid_7">
+	<p>
+      <label for="acrorganismo">Organismo / Institución que la expidió:</label>
+      <?php echo form_error('acrorganismo'); ?>
+      <br /><input id="acrorganismo" type="text" name="acrorganismo"  value="<?php echo $obj->getAcrorganismo(); ?>"  />
+    </p>
+  </div>
+  <div class="grid_5">
+	<p>
+      <label for="acrcategoria">Categoría adjudicada:</label>
+      <?php echo form_error('acrcategoria'); ?>
+      <br /><input id="acrcategoria" type="text" name="acrcategoria"  value="<?php echo $obj->getAcrcategoria(); ?>"  />
+    </p>
+  </div>
+  <div class="grid_5">
+	<p>
+      <label for="acrfecha">Fecha de vencimiento:</label>
+      <?php echo form_error('acrfecha'); ?>
+      <br /><input id="acrfecha" type="text" name="acrfecha"  value="<?php echo $obj->getAcrfecha(true); ?>"  />
     </p>
   </div>
   <div class="clear"></div>
@@ -346,6 +398,7 @@ $(document).ready(function() {
    $('#fecha').datepicker();
    $('#fechanacimiento').datepicker();
    $('#fechavencimiento').datepicker();
+   $('#acrfecha').datepicker();
  });
 
 </script>  

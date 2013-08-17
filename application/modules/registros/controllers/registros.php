@@ -904,7 +904,17 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('realizocursos', 'Realizo Cursos', 'required|max_length[1]');			
 		$this->form_validation->set_rules('acrpersonales', 'Acreditaciones Personales', 'required|max_length[1]');			
 		$this->form_validation->set_rules('categoria', 'Categoria', 'required');			
-		$this->form_validation->set_rules('fechavencimiento', 'fechavencimiento', 'required');			
+		$this->form_validation->set_rules('fechavencimiento', 'fechavencimiento', 'required');
+		
+		$this -> form_validation -> set_rules('curso1', 'curso1', 'max_length[255]');
+		$this -> form_validation -> set_rules('curso2', 'curso2', 'max_length[255]');
+		$this -> form_validation -> set_rules('curso3', 'curso3', 'max_length[255]');
+		$this -> form_validation -> set_rules('cursoobservacion', 'cursoobservacion', 'max_length[1000]');
+		
+		$this -> form_validation -> set_rules('acrorganismo', 'acrorganismo', 'max_length[255]');
+		$this -> form_validation -> set_rules('acrcategoria', 'acrcategoria', 'max_length[255]');
+		$this -> form_validation -> set_rules('acrfecha', 'acrfecha', 'max_length[255]');
+		
 		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
         $this->load->model('acreditaciones/acreditacion');
         $this->load->model('instituciones/institucion');
@@ -1014,6 +1024,34 @@ class registros extends MY_Controller{
         $obj->setAcrpersonales($form_data['acrpersonales']);
         $obj->setCategoria($form_data['categoria']);
         $obj->setFechavencimiento($form_data['fechavencimiento']);
+		
+		if($obj->getRealizocursos() == 1)
+		{
+		  $obj->setCurso1(set_value('curso1'));
+		  $obj->setCurso2(set_value('curso2'));
+		  $obj->setCurso3(set_value('curso3'));
+		  $obj->setCursoobservacion(set_value('cursoobservacion'));
+		
+		}
+		else
+		{
+		  $obj->setCurso1("");
+		  $obj->setCurso2("");
+		  $obj->setCurso3("");
+		  $obj->setCursoobservacion("");
+		}
+		if($obj->getAcrpersonales() == 1)
+		{
+		  $obj->setAcrorganismo(set_value('acrorganismo'));
+		  $obj->setAcrcategoria(set_value('acrcategoria'));
+		  $obj->setAcrfecha(set_value('acrfecha'));
+		}
+		else
+		{
+		  $obj->setAcrorganismo("");
+		  $obj->setAcrcategoria("");
+		  $obj->setAcrfecha("");
+		}
         if($save)
         {
             $obj->setCvfile($upload_data['curriculum']['file_name']);
@@ -1041,10 +1079,12 @@ class registros extends MY_Controller{
         $this->data['menu_id'] = 'registros_personas';
         $this->addFancyBox();
         $this->load->model('acreditaciones/acreditacion');
+        $this->load->model('acreditaciones/acreditacionarchivo');
         $this->load->model('instituciones/institucion');
         $acreditacion = $this->acreditacion->getById($id);
         $this->data['institucion'] = $this->institucion->getById($acreditacion->getInstituciondesempeno());
         $this->data['acreditacion'] = $acreditacion;
+        $this->data['acreditacionarchivos'] = $this->acreditacionarchivo->getByAcreditacionId($acreditacion->getId());
         $this->data['content'] = "registros/personas/show";
         $this->load->view("admin/layout", $this->data);
     }
@@ -1114,7 +1154,17 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('realizocursos', 'Realizo Cursos', 'required|max_length[1]');			
 		$this->form_validation->set_rules('acrpersonales', 'Acreditaciones Personales', 'required|max_length[1]');			
 		$this->form_validation->set_rules('categoria', 'Categoria', 'required');			
-		$this->form_validation->set_rules('fechavencimiento', 'fechavencimiento', 'required');			
+		$this->form_validation->set_rules('fechavencimiento', 'fechavencimiento', 'required');
+		
+		$this -> form_validation -> set_rules('curso1', 'curso1', 'max_length[255]');
+		$this -> form_validation -> set_rules('curso2', 'curso2', 'max_length[255]');
+		$this -> form_validation -> set_rules('curso3', 'curso3', 'max_length[255]');
+		$this -> form_validation -> set_rules('cursoobservacion', 'cursoobservacion', 'max_length[1000]');
+		
+		$this -> form_validation -> set_rules('acrorganismo', 'acrorganismo', 'max_length[255]');
+		$this -> form_validation -> set_rules('acrcategoria', 'acrcategoria', 'max_length[255]');
+		$this -> form_validation -> set_rules('acrfecha', 'acrfecha', 'max_length[255]');
+		
 		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
         $this->load->model('acreditaciones/acreditacion');
         $this->load->model('instituciones/institucion');
@@ -1212,6 +1262,32 @@ class registros extends MY_Controller{
         $obj->setAcrpersonales($form_data['acrpersonales']);
         $obj->setCategoria($form_data['categoria']);
         $obj->setFechavencimiento($form_data['fechavencimiento']);
+		if($obj->getRealizocursos() == 1)
+		{
+		  $obj->setCurso1(set_value('curso1'));
+		  $obj->setCurso2(set_value('curso2'));
+		  $obj->setCurso3(set_value('curso3'));
+		  $obj->setCursoobservacion(set_value('cursoobservacion'));
+		}
+		else
+		{
+		  $obj->setCurso1("");
+		  $obj->setCurso2("");
+		  $obj->setCurso3("");
+		  $obj->setCursoobservacion("");
+		}
+		if($obj->getAcrpersonales() == 1)
+		{
+		  $obj->setAcrorganismo(set_value('acrorganismo'));
+		  $obj->setAcrcategoria(set_value('acrcategoria'));
+		  $obj->setAcrfecha(set_value('acrfecha'));
+		}
+		else
+		{
+		  $obj->setAcrorganismo("");
+		  $obj->setAcrcategoria("");
+		  $obj->setAcrfecha("");
+		}
         if($save)
         {
             $acreditacionId = $obj->save();
