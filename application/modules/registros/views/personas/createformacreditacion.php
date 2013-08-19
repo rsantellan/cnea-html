@@ -385,7 +385,7 @@
   </div>
   <div class="clear"></div>
   <div class="grid_6">
-    <h5><?php echo "Curriculum Vitae" ?></h5>
+    <h5><?php echo "Firma del interesado" ?></h5>
     <?php if(isset($errores["curriculum"])): ?>
       <?php echo $errores["curriculum"]; ?>
     <?php endif; ?>

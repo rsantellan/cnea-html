@@ -1076,17 +1076,7 @@ class registros extends MY_Controller{
     
     function showPersona($id)
     {
-        $this->data['menu_id'] = 'registros_personas';
-        $this->addFancyBox();
-        $this->load->model('acreditaciones/acreditacion');
-        $this->load->model('acreditaciones/acreditacionarchivo');
-        $this->load->model('instituciones/institucion');
-        $acreditacion = $this->acreditacion->getById($id);
-        $this->data['institucion'] = $this->institucion->getById($acreditacion->getInstituciondesempeno());
-        $this->data['acreditacion'] = $acreditacion;
-        $this->data['acreditacionarchivos'] = $this->acreditacionarchivo->getByAcreditacionId($acreditacion->getId());
-        $this->data['content'] = "registros/personas/show";
-        $this->load->view("admin/layout", $this->data);
+        $this->loadShowAcreditacion($id);
     }
     
     
@@ -1305,6 +1295,122 @@ class registros extends MY_Controller{
         $this->data['content'] = "registros/personas/createformacreditacion";
       
         $this->load->view("admin/layout", $this->data);
+    }
+    
+    
+    
+    
+    function acreditacionesSubirArchivo()
+    {
+      $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+      $config['allowed_types'] = 'pdf|doc|docx';
+      $this -> load -> library('upload', $config);
+      $errores = array();
+      $upload_data = array();
+      $id = $this->input->post('id', true);
+      $type = $this->input->post('type', true);
+      if (!$this -> upload -> do_upload('archivo')) {
+        switch ($type) {
+          case "curso": 
+              $errores['archivo_cursos'] = $this -> upload -> display_errors();
+             break;
+          case "acreditacion": 
+              $errores['archivo_acreditacion'] = $this -> upload -> display_errors();
+             break;
+          default:
+            break;
+        }
+          
+          $this->upload->clean_errors();
+      }else{
+          $upload_data['archivo'] = $this->upload->data();
+          $this->load->model('acreditaciones/acreditacionarchivo');
+          $archivo = new $this->acreditacionarchivo;
+          $archivo->setAcreditacion_id($id);
+          $archivo->setType($type);
+          $archivo->setFilename($upload_data['archivo']['file_name']);
+          $archivo->setFilepath($upload_data['archivo']['file_path']);
+          $archivo->save();
+          redirect('registros/showPersona/'.$id);
+      }
+      $this->data['errores'] = $errores;
+      $this->loadShowAcreditacion($id);
+    }
+    
+    
+    public function downloadArchivoAcreditacion($id)
+    {
+      $this->load->helper('download');
+      $this->load->model('acreditaciones/acreditacionarchivo');
+      $archivo = $this->acreditacionarchivo->simpleGetById($id);
+      force_download($archivo->filename, file_get_contents($archivo->filepath.$archivo->filename));
+      die;
+    }
+    
+    public function downloadArchivoFirmaAcreditacion($id)
+    {
+      $this->load->helper('download');
+      $this->load->model('acreditaciones/acreditacion');
+      $archivo = $this->acreditacion->simpleGetById($id);
+      force_download($archivo->cvfile, file_get_contents($archivo->cvpath.$archivo->cvfile));
+      die;
+    }
+    
+    public function removeArchivoAcreditacion()
+    {
+      $this->load->model('acreditaciones/acreditacionarchivo');
+      // Get ID from form
+      $id = $this->input->post('id', true);
+      $this->acreditacionarchivo->deleteAllById($id);
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['options'] = array('id' => $id);
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+      
+    }
+    
+    private function loadShowAcreditacion($id)
+    {
+      $this->data['menu_id'] = 'registros_personas';
+      $this->addModuleJavascript("registros", "showInstitucion.js");
+      $this->addFancyBox();
+      $this->load->model('acreditaciones/acreditacion');
+      $this->load->model('acreditaciones/acreditacionarchivo');
+      $this->load->model('instituciones/institucion');
+      $acreditacion = $this->acreditacion->getById($id);
+      $this->data['institucion'] = $this->institucion->getById($acreditacion->getInstituciondesempeno());
+      $this->data['acreditacion'] = $acreditacion;
+      $this->data['archivos'] = $this->acreditacionarchivo->getByAcreditacionId($acreditacion->getId());
+      $this->data['content'] = "registros/personas/show";
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+    
+    public function acreditacionesSubirFirma()
+    {
+      $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+      $config['allowed_types'] = 'pdf|doc|docx';
+      $this -> load -> library('upload', $config);
+      $errores = array();
+      $upload_data = array();
+      $id = $this->input->post('id', true);
+      if (!$this -> upload -> do_upload('archivo')) {
+          $errores['archivo'] = $this -> upload -> display_errors();
+          $this->upload->clean_errors();
+      }else{
+          $upload_data['archivo'] = $this->upload->data();
+          $this->load->model('acreditaciones/acreditacion');
+          $archivo = $this->acreditacion->getById($id);
+          unlink($archivo->getCvpath().$archivo->getCvfile());
+          $archivo->setCvfile($upload_data['archivo']['file_name']);
+          $archivo->setCvpath($upload_data['archivo']['file_path']);
+          $archivo->save();
+          redirect('registros/showPersona/'.$id);
+      }
+      $this->data['errores'] = $errores;
+      $this->loadShowAcreditacion($id);
     }
     
     /***

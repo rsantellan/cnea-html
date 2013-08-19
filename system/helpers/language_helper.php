@@ -39,7 +39,7 @@
  */
 if ( ! function_exists('lang'))
 {
-	function lang($line, $id = '')
+	function lang($line, $id = '', $show_warning = false)
 	{
 		$CI =& get_instance();
 		$line = $CI->lang->line($line);
@@ -47,7 +47,10 @@ if ( ! function_exists('lang'))
 		{
 			$line = '<label for="'.$id.'">'.$line."</label>";
 		}
-
+        if($show_warning && empty($line))
+        {
+          trigger_error("La linea :".$line." esta vacia. Agregarla a los idiomas", E_USER_WARNING);
+        }
 		return stripcslashes($line);
 	}
 }

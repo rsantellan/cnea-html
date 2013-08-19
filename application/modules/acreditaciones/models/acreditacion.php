@@ -643,6 +643,12 @@ class acreditacion extends MY_Model{
       return $id;
     }
     
+    function retrieveRegistrosByInstitucionId($institucionId)
+    {
+      $this->db->where("instituciondesempeno", $institucionId);
+      return $this->db->get($this->getTablename())->result();
+    }
+    
     function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)
     {
       //$this->db->order_by("ordinal", "desc");

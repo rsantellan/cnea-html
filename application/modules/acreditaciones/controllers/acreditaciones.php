@@ -30,27 +30,41 @@ class acreditaciones extends MY_Controller {
 		$this -> load -> view('layout', $this -> data);
 	}
 
-	function registro($page = 0) {
-		$this -> load -> model('registros/registro_persona');
-		$this -> load -> library('pagination');
-		$this -> load -> helper('text');
-		$quantity = 10;
-		$config['base_url'] = base_url() . 'index.php/acreditaciones/registro/';
-		$config['total_rows'] = $this -> registro_persona -> retrieveCountForPager();
-		$config['per_page'] = $quantity;
-		$config['cur_tag_open'] = '<a href="javascript:void(0)" class="current">';
-		$config['cur_tag_close'] = '</a> -';
-		$config['prev_link'] = FALSE;
-		$config['next_link'] = FALSE;
-		$config['num_tag_close'] = ' - ';
-
-		$this -> pagination -> initialize($config);
-        //Lo que tendria que ordenar es la cantidad de instituciones y a partir de eso la cantidad de usuarios.
-        $this->data['listado'] = $this->registro_persona ->retrieveRegistrosEncadenados($quantity, $page, true);
-        
-        //$this -> data['list'] = $this -> registro_persona -> retrieveRegistros($quantity, $page, true);
-		$this -> data['page'] = $page;
-		$this -> data['content'] = 'registro';
+    function verregistros()
+    {
+      if($_SERVER['REQUEST_METHOD'] === 'POST')
+      {
+        $this->load->model('instituciones/institucion');
+        $institucion_id = $this->input->post('institucion');
+        $password = $this->input->post('password');
+        $institucion = $this->institucion->getById($institucion_id);
+        if($institucion->getPassword() == $password)
+        {
+          $this->load->model('acreditaciones/acreditacion');
+          $this->data['acreditaciones'] = $this->acreditacion->retrieveRegistrosByInstitucionId($institucion_id);
+          //var_dump($this->data['acreditaciones']);
+          //die('aca :)');
+          $this -> data['content'] = 'registroSecure';
+          $this -> load -> view('layout', $this -> data);
+        }
+        else
+        {
+          $this->session->set_flashdata('registroError', 'Contraseña equivocada');
+          redirect('acreditaciones/registro'); 
+        }
+      }
+      else
+      {
+        $this->session->set_flashdata('registroError', 'No puede acceder a la pagina directamente, llene el formulario');
+        redirect('acreditaciones/registro'); 
+      }
+    }
+    
+	function registro() {
+        $this->load->model('instituciones/institucion');
+        $this->data['instituciones'] = $this->institucion->retrieveRegistros();
+        $this->data['errores'] = $this->session->flashdata('registroError');
+        $this -> data['content'] = 'registro';
 		$this -> load -> view('layout', $this -> data);
 	}
 
@@ -85,6 +99,66 @@ class acreditaciones extends MY_Controller {
 		$this -> addJavascript("basicInfieldFormPersonas.js");
 		$this->addJavascript("FormAcreditaciones.js");
 		$this -> addStyleSheet("infieldlabelPersonas.css");
+        
+        $this -> load -> helper('form');
+        $this -> load -> library('form_validation');
+        $this->form_validation->set_rules('fecha', 'Fecha', 'required');			
+		$this->form_validation->set_rules('nombreapellido', 'Nombre y Apellido', 'required|trim|max_length[255]');			
+		$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');			
+		$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');			
+		$this->form_validation->set_rules('formacionterciaria', 'formacion terciaria', 'max_length[1]');			
+		$this->form_validation->set_rules('documento', 'Documento', 'required|max_length[255]');			
+		$this->form_validation->set_rules('fechanacimiento', 'fecha nacimiento', 'required');			
+		$this->form_validation->set_rules('direccionpostal', 'Direccion Postal', 'required|max_length[255]');			
+		$this->form_validation->set_rules('direccionelectronica', 'Direccion Electronica', 'required|valid_email|max_length[255]');			
+		$this->form_validation->set_rules('telefonocontacto', 'Telefono Contacto', 'required|max_length[255]');			
+		$this->form_validation->set_rules('instituciondesempeno', 'Institucion desempeño', 'required|max_length[11]');			
+		$this->form_validation->set_rules('laboratoriounidad', 'Laboratorio/Unidad', 'required|max_length[255]');			
+		$this->form_validation->set_rules('cargofuncioninstitucion', 'Cargo/Funcion en la institucion', 'required|max_length[255]');			
+		$this->form_validation->set_rules('cargahorariasemanal', 'Carga Horaria Semanal', 'required|is_numeric');			
+		$this->form_validation->set_rules('nombresupervisor', 'nombre supervisor', 'required|max_length[255]');			
+		$this->form_validation->set_rules('especiestrabajadas', 'Especies que trabajadas', 'required');			
+		$this->form_validation->set_rules('describatareas', 'Describa las tareas', '');			
+		$this->form_validation->set_rules('pctinvestigacion', 'Porcentaje Investigacion', 'is_numeric');			
+		$this->form_validation->set_rules('pctmedicinaclinica', 'Porcentaje Medicina Clinica', 'is_numeric');			
+		$this->form_validation->set_rules('pctcirugia', 'Porcentaje Cirugia', 'is_numeric');			
+		$this->form_validation->set_rules('pctmantenimientocolonias', 'Porcentaje Mantenimiento Colonias', 'is_numeric');			
+		$this->form_validation->set_rules('pctmanipulacion', 'Porcentaje Manipulación', 'is_numeric');			
+		$this->form_validation->set_rules('pctdirprojectos', 'Porcentaje Dirección de Projectos', 'is_numeric');			
+		$this->form_validation->set_rules('pctnecropsia', 'Porcentaje Necropsia', 'is_numeric');			
+		$this->form_validation->set_rules('pctdiaglaboratorio', 'Porcentaje Diagnostico Laboratorio', 'is_numeric');			
+		$this->form_validation->set_rules('pctceua', 'Porcentaje CEUA', 'is_numeric');			
+		$this->form_validation->set_rules('pcthistopatologia', 'Porcentaje Histopatologia', 'is_numeric');			
+		$this->form_validation->set_rules('pctentedu', 'Porcentaje Entrenamiento/Educacion', 'is_numeric');			
+		$this->form_validation->set_rules('pctapoyoinvestigadores', 'Porcentaje Apoyo Investigadores', 'is_numeric');			
+		$this->form_validation->set_rules('pctsupervision', 'Porcentaje Supervision', 'is_numeric');			
+		$this->form_validation->set_rules('pctprodanimal', 'Porcentaje Produccion animal', 'is_numeric');			
+		$this->form_validation->set_rules('pctlegal', 'Porcentaje Responsabilidad Legal', 'is_numeric');			
+		$this->form_validation->set_rules('pctotrasfunciones', 'Porcentaje Otras Funciones', 'is_numeric');			
+		$this->form_validation->set_rules('pctfuncnorel', 'Porcentaje Funciones No Relacionadas', 'is_numeric');			
+		$this->form_validation->set_rules('pctobservaciones', 'Observaciones de Porcentajes', '');			
+		$this->form_validation->set_rules('realizocursos', 'Realizo Cursos', 'required|max_length[1]');			
+		$this->form_validation->set_rules('acrpersonales', 'Acreditaciones Personales', 'required|max_length[1]');			
+		$this->form_validation->set_rules('categoria', 'Categoria', 'required');			
+		//$this->form_validation->set_rules('fechavencimiento', 'fechavencimiento', 'required');
+		
+		$this -> form_validation -> set_rules('curso1', 'curso1', 'max_length[255]');
+		$this -> form_validation -> set_rules('curso2', 'curso2', 'max_length[255]');
+		$this -> form_validation -> set_rules('curso3', 'curso3', 'max_length[255]');
+		$this -> form_validation -> set_rules('cursoobservacion', 'cursoobservacion', 'max_length[1000]');
+		
+		$this -> form_validation -> set_rules('acrorganismo', 'acrorganismo', 'max_length[255]');
+		$this -> form_validation -> set_rules('acrcategoria', 'acrcategoria', 'max_length[255]');
+		$this -> form_validation -> set_rules('acrfecha', 'acrfecha', 'max_length[255]');
+		
+		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+        $this->load->model('acreditaciones/acreditacion');
+        $this->load->model('instituciones/institucion');
+        $this->data['instituciones'] = $this->institucion->retrieveRegistros();
+        $obj = new $this->acreditacion;
+        $errores = array();
+        $save = false;        
+        /*
 		$this -> load -> library('form_validation');
 		$this -> load -> helper('form');
 
@@ -112,7 +186,19 @@ class acreditaciones extends MY_Controller {
 		$this -> form_validation -> set_rules('observaciones_institucion_field', 'observaciones_institucion_field', 'max_length[1000]');
 		
 		$this -> form_validation -> set_error_delimiters('<br /><span class="error">', '</span>');
-		if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
+         
+         */
+        if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+		{
+			$this -> data['errores'] = $errores;
+		}
+        else
+        {
+          
+          
+        }
+		/*
+        if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
 		{
 			$this -> data['errores'] = array();
 			$this -> data['content'] = 'formulario';
@@ -265,6 +351,125 @@ class acreditaciones extends MY_Controller {
 			}
 
 		}
+        */
+        $form_data = array(
+                      'fecha' => set_value('fecha'),
+                      'nombreapellido' => set_value('nombreapellido'),
+                      'formacion' => set_value('formacion'),
+                      'documento' => set_value('documento'),
+                      'fechanacimiento' => set_value('fechanacimiento'),
+                      'direccionpostal' => set_value('direccionpostal'),
+                      'direccionelectronica' => set_value('direccionelectronica'),
+                      'telefonocontacto' => set_value('telefonocontacto'),
+                      'instituciondesempeno' => set_value('instituciondesempeno'),
+                      'laboratoriounidad' => set_value('laboratoriounidad'),
+                      'cargofuncioninstitucion' => set_value('cargofuncioninstitucion'),
+                      'cargahorariasemanal' => set_value('cargahorariasemanal'),
+                      'nombresupervisor' => set_value('nombresupervisor'),
+                      'especiestrabajadas' => set_value('especiestrabajadas'),
+                      'describatareas' => set_value('describatareas'),
+                      'pctinvestigacion' => set_value('pctinvestigacion'),
+                      'pctmedicinaclinica' => set_value('pctmedicinaclinica'),
+                      'pctcirugia' => set_value('pctcirugia'),
+                      'pctmantenimientocolonias' => set_value('pctmantenimientocolonias'),
+                      'pctmanipulacion' => set_value('pctmanipulacion'),
+                      'pctdirprojectos' => set_value('pctdirprojectos'),
+                      'pctnecropsia' => set_value('pctnecropsia'),
+                      'pctdiaglaboratorio' => set_value('pctdiaglaboratorio'),
+                      'pctceua' => set_value('pctceua'),
+                      'pcthistopatologia' => set_value('pcthistopatologia'),
+                      'pctentedu' => set_value('pctentedu'),
+                      'pctapoyoinvestigadores' => set_value('pctapoyoinvestigadores'),
+                      'pctsupervision' => set_value('pctsupervision'),
+                      'pctprodanimal' => set_value('pctprodanimal'),
+                      'pctlegal' => set_value('pctlegal'),
+                      'pctotrasfunciones' => set_value('pctotrasfunciones'),
+                      'pctfuncnorel' => set_value('pctfuncnorel'),
+                      'pctobservaciones' => set_value('pctobservaciones'),
+                      'realizocursos' => set_value('realizocursos'),
+                      'acrpersonales' => set_value('acrpersonales'),
+                      'categoria' => set_value('categoria'),
+                      'cvfile' => set_value('cvfile'),
+                      'cvpath' => set_value('cvpath'),
+                  );
+        
+        $obj->setFecha($form_data['fecha']);
+        $obj->setNombreapellido($form_data['nombreapellido']);
+        $obj->setFormacion($form_data['formacion']);
+        $obj->setDocumento($form_data['documento']);
+        $obj->setFechanacimiento($form_data['fechanacimiento']);
+        $obj->setDireccionpostal($form_data['direccionpostal']);
+        $obj->setDireccionelectronica($form_data['direccionelectronica']);
+        $obj->setTelefonocontacto($form_data['telefonocontacto']);
+        $obj->setInstituciondesempeno($form_data['instituciondesempeno']);
+        $obj->setLaboratoriounidad($form_data['laboratoriounidad']);
+        $obj->setCargofuncioninstitucion($form_data['cargofuncioninstitucion']);
+        $obj->setCargahorariasemanal($form_data['cargahorariasemanal']);
+        $obj->setNombresupervisor($form_data['nombresupervisor']);
+        $obj->setEspeciestrabajadas($form_data['especiestrabajadas']);
+        $obj->setDescribatareas($form_data['describatareas']);
+        $obj->setPctinvestigacion($form_data['pctinvestigacion']);
+        $obj->setPctmedicinaclinica($form_data['pctmedicinaclinica']);
+        $obj->setPctcirugia($form_data['pctcirugia']);
+        $obj->setPctmantenimientocolonias($form_data['pctmantenimientocolonias']);
+        $obj->setPctmanipulacion($form_data['pctmanipulacion']);
+        $obj->setPctdirprojectos($form_data['pctdirprojectos']);
+        $obj->setPctnecropsia($form_data['pctnecropsia']);
+        $obj->setPctdiaglaboratorio($form_data['pctdiaglaboratorio']);
+        $obj->setPctceua($form_data['pctceua']);
+        $obj->setPcthistopatologia($form_data['pcthistopatologia']);
+        $obj->setPctentedu($form_data['pctentedu']);
+        $obj->setPctapoyoinvestigadores($form_data['pctapoyoinvestigadores']);
+        $obj->setPctsupervision($form_data['pctsupervision']);
+        $obj->setPctprodanimal($form_data['pctprodanimal']);
+        $obj->setPctlegal($form_data['pctlegal']);
+        $obj->setPctotrasfunciones($form_data['pctotrasfunciones']);
+        $obj->setPctfuncnorel($form_data['pctfuncnorel']);
+        $obj->setPctobservaciones($form_data['pctobservaciones']);
+        $obj->setRealizocursos($form_data['realizocursos']);
+        $obj->setAcrpersonales($form_data['acrpersonales']);
+        $obj->setCategoria($form_data['categoria']);
+        
+		if($obj->getRealizocursos() == 1)
+		{
+		  $obj->setCurso1(set_value('curso1'));
+		  $obj->setCurso2(set_value('curso2'));
+		  $obj->setCurso3(set_value('curso3'));
+		  $obj->setCursoobservacion(set_value('cursoobservacion'));
+		
+		}
+		else
+		{
+		  $obj->setCurso1("");
+		  $obj->setCurso2("");
+		  $obj->setCurso3("");
+		  $obj->setCursoobservacion("");
+		}
+		if($obj->getAcrpersonales() == 1)
+		{
+		  $obj->setAcrorganismo(set_value('acrorganismo'));
+		  $obj->setAcrcategoria(set_value('acrcategoria'));
+		  $obj->setAcrfecha(set_value('acrfecha'));
+		}
+		else
+		{
+		  $obj->setAcrorganismo("");
+		  $obj->setAcrcategoria("");
+		  $obj->setAcrfecha("");
+		}
+        if($save)
+        {
+            $obj->setCvfile($upload_data['curriculum']['file_name']);
+            $obj->setCvpath($upload_data['curriculum']['file_path']);
+            $acreditacionId = $obj->save();
+            //redirect('registros/index');
+            redirect('registros/showPersona/'.$acreditacionId);
+            
+        }
+        $this->data['obj'] = $obj;
+        $this -> data['errores'] = $errores;
+        $this -> data['content'] = 'formulario';
+        $this -> load -> view('layout', $this -> data);
 
 	}
 
