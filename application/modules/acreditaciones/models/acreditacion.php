@@ -358,7 +358,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getRealizocursos() {
-    if(empty($this->realizocursos)) return "0";
+    if(empty($this->realizocursos)) return "1";
     return $this->realizocursos;
   }
 
@@ -367,7 +367,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getAcrpersonales() {
-    if(empty($this->acrpersonales)) return "0";
+    if(empty($this->acrpersonales)) return "1";
     return $this->acrpersonales;
   }
 
@@ -552,6 +552,7 @@ class acreditacion extends MY_Model{
     
     private function formatDateToMysql($date)
     {
+	  //var_dump($date);
 	  if(empty($date)) return $date;
       $pieces = explode("/", $date);
       return $pieces[2]."-".$pieces[0]."-".$pieces[1];

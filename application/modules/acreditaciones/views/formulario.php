@@ -11,6 +11,7 @@
   <h5><?php echo lang("personal_formulario_subtitulo"); ?></h5>
   <?php if(strlen(validation_errors()) > 0): ?>
   <span class="msg_error"><?php echo lang("personal_formulario_subtitulo_errores"); ?></span>
+  
   <?php endif;?>
   <?php
   $attributes = array('class' => 'infield_form', 'id' => '');
@@ -202,17 +203,24 @@
       <label for="realizocursos"><?php echo lang("personal_formulario_subtitulo_realizacion"); ?></label>
       <?php echo form_error('realizocursos'); ?>
       <div class="float_left" style="margin-right:20px;">
-        <input onchange ='hideShowRealizacion(this)' name="realizocursos" type="radio" class="radiobuttom" value="1" <?php echo ($obj->getRealizocursos() == "1")? "checked=\"checked\"" : ""; ?> />
+        <input onchange ='hideShowRealizacion(this)' name="realizocursos" type="radio" class="radiobuttom" value="1" 
+		 <?php if($obj->getRealizocursos() === "1"):?>
+		   checked='checked'
+		 <?php endif; ?> 
+		  />
         <label for="realizocursos" class="">Si</label>
       </div>
       <div class="float_left">
-        <input onchange ='hideShowRealizacion(this)' name="realizocursos" type="radio" class="radiobuttom" value="0" <?php echo ($obj->getRealizocursos() == "0")? "checked=\"checked\"" : ""; ?> />
+        <input onchange ='hideShowRealizacion(this)' name="realizocursos" type="radio" class="radiobuttom" value="0"
+		  <?php if((int)$obj->getRealizocursos() == 0):?>
+		   checked='checked'
+		 <?php endif; ?> />
         <label for="realizocursos" class="">No</label>
       </div>
     </p>
     <?php
       $extra_r_class = "";
-      if($obj->getRealizocursos() == "0") $extra_r_class = "hidden";
+      if($obj->getRealizocursos() == "0" || $obj->getRealizocursos() == 0) $extra_r_class = "hidden";
     ?>
     <div class="clear"></div>
     <h5 class="realizacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_subtitulo_cursos"); ?></h5>
@@ -238,14 +246,13 @@
       <br />
       <?php echo form_textarea(array('class' => ((form_error('observaciones_curso') != "")? "textarea_error" : ""),'name' => 'cursoobservacion', 'rows' => '5', 'cols' => '80', 'value' => $obj->getCursoobservacion())) ?>
     </p>
-    
-    POR QUE ESTE NO ESTA OCULTO!!
+
     <div class="clear"></div>
   <span class="realizacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_subtitulo_adjuntar_cursos"); ?></span>
     <?php if(isset($errores['cursos_upload'])): ?>
 		<?php echo $errores['cursos_upload'];?>
 	<?php endif;?>
-    <div class="container_cursos realizacion_field">
+    <div class="container_cursos realizacion_field <?php echo $extra_r_class; ?>">
       <?php if(isset($errores["cursos_upload"])): ?>
       <span class="msg_error"><?php echo $errores["cursos_upload"]; ?></span>
       <?php endif; ?>          
@@ -265,28 +272,23 @@
             <div class="clear"></div>
             <a href="javascript:void(0)" onclick="return eliminarFileInput(this);" style="float:right">Sacar</a><div class="clear"></div>
         </div>
-<?php        
+<?php    
+		  $counter++;
           else:
             $finish = true;
             
           endif;
-          $counter++;
+          
         endwhile;
         ?>    
-    
-    
-    <input type="file" name="cursos_upload" id="cursos_upload" class="file" />
+<!--    
+    Esto no esta funcionando
+    <input type="file" name="cursos_upload" id="cursos_upload" class="file hidden" />
     <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
+	-->
     <div class="clear"></div>
     <a class="realizacion_field" href="javascript:void(0)" onclick="return agregarFileInputCursos();" style="float:right"><?php echo lang("personal_formulario_agregar_mas"); ?></a>
     <div class="clear"></div>
-    
-    
-    SIGO POR ACA :)
-    
-    
-    
-    
     
     <p>
       <label for="acrpersonales"><?php echo lang("personal_formulario_subtitulo_acreditacion"); ?></label>
@@ -319,8 +321,6 @@
     
     <span class="acreditacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_adjuntar_acreditacion"); ?></span>
     
-    ESTO NO SE OCULTA!!
-    
     <div class="container_acreditaciones acreditacion_field">
       <?php if(isset($errores["acreditacion_upload"])): ?>
       <span class="msg_error"><?php echo $errores["acreditacion_upload"]; ?></span>
@@ -350,19 +350,20 @@
           $counter++;
         endwhile;
         ?>    
-    <input type="file" name="cursos_upload" id="cursos_upload" class="file" />
-    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
+<!--    <input type="file" name="cursos_upload" id="cursos_upload" class="file" />-->
+<!--    <input type="button" class="button button_short realizacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />-->
     <div class="clear"></div>
     <a class="acreditacion_field" href="javascript:void(0)" onclick="return agregarFileInputAcreditaciones();" style="float:right"><?php echo lang("personal_formulario_agregar_mas"); ?></a>
     <div class="clear"></div>
       
   
-  
+<!--  
     <input type="file" name="acreditacion_upload" id="acreditacion_upload" class="file" /> 
     <input type="button" class="button button_short acreditacion_field <?php echo $extra_r_class; ?>" value="adjuntar" />
-    <div class="clear"></div>
     
-    TERMINA ACA!!
+	-->
+	<div class="clear"></div>
+    
     <div class="clear"></div>
     
     
@@ -390,25 +391,28 @@
     
     <?php echo lang("personal_formulario_texto_firma_persona"); ?>
     
-    <input type="button" class="button button_short_descargar" value="descargar" />
+<!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_persona_upload'])): ?>
-		<?php echo $errores['firma_persona_upload'];?>
+		<span class="upload_error"><?php echo $errores['firma_persona_upload'];?></span>
 	<?php endif;?>
-    
+    <?php 
+//var_dump(isset($errores['firma_persona_upload']));
+//var_dump($errores);?>
     <input type="file" name="firma_persona_upload" id="firma_persona_upload" class="file" />
-    <button class="adjuntar">Adjuntar</button>
+<!--    <button class="adjuntar">Adjuntar</button>-->
+<!--	<div class="clear"></div>-->
     <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
     
     <div class="clear"></div>
     
     <?php echo lang("personal_formulario_texto_firma_institucion"); ?>
-    <input type="button" class="button button_short_descargar" value="descargar" />
+<!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_institucion_upload'])): ?>
 		<span class="upload_error"><?php echo $errores['firma_institucion_upload'];?></span>
 	<?php endif;?>
     <input type="file" name="firma_institucion_upload" id="firma_institucion_upload" class="file"/>
-    <input type="button" class="button button_short" value="adjuntar" />
-    <button class="adjuntar">Adjuntar</button>
+<!--    <input type="button" class="button button_short" value="adjuntar" />-->
+<!--    <button class="adjuntar">Adjuntar</button>-->
     <a href="<?php echo site_url("acreditaciones/descargarFormularioEmpresa");?>" class="descargar descargar_forms">descargar</a>
     <div class="clear"></div>
     <input type="submit" class="button button_large" value="enviar formulario" />

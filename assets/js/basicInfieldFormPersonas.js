@@ -1,6 +1,7 @@
 $(document).ready(function() {
    $(":date").dateinput();
    $(".infield_form p label").inFieldLabels();
+   
    $('.button_short').each(function(index, val){
       $(this).bind('click', function() {
         $(this).prev().trigger('click');
@@ -11,7 +12,32 @@ $(document).ready(function() {
         $(this).prev().trigger('click');
         return false;
       });
-    }); 
+    });
+	if($('input[name=realizocursos]:checked').val() == 1)
+	{
+	  $(".realizacion_field").each(function(index, value) {
+		$(this).show();
+	  });
+	}
+	else
+	{
+	  $(".realizacion_field").each(function(index, value) {
+		$(this).hide();
+	  });
+	}
+	if($('input[name=acrpersonales]:checked').val() == 1)
+	{
+	  $(".acreditacion_field").each(function(index, value) {
+		$(this).show();
+	  });
+	}
+	else
+	{
+	  $(".acreditacion_field").each(function(index, value) {
+		$(this).hide();
+	  });
+	}
+	
  });
 
 
