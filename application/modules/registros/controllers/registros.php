@@ -834,20 +834,41 @@ class registros extends MY_Controller{
      **/
     
     function index(){
-      /*
-      $this->load->model('registros/registro_persona');
-      
-      $this->load->model('instituciones/institucion');
-      $this->data['list'] = $this->institucion->retrieveRegistros();
-      $this->data['content'] = "registros/instituciones/list";
-      
-      $this->addJquery();
-      $this->addFancyBox();
-      
-      $this->load->view("admin/layout", $this->data);
-      */
+
       $this->load->model('acreditaciones/acreditacion');
       $this->data['list'] = $this->acreditacion->retrieveRegistros();
+      $this->data['content'] = "registros/personas/list";
+      $this->data['menu_id'] = 'registros_personas';
+      $this->addJquery();
+      $this->addFancyBox();
+      $this->addModuleJavascript("registros", "list.js");
+      $this->addModuleJavascript("datatable", "jquery.dataTables.js");
+      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
+      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
+      
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+    function acreditacionNextToExpire(){
+      //$this->output->enable_profiler(TRUE);
+      $this->load->model('acreditaciones/acreditacion');
+      $this->data['list'] = $this->acreditacion->retrieveRegistrosWithCloseExpireDate();
+      $this->data['content'] = "registros/personas/list";
+      $this->data['menu_id'] = 'registros_personas';
+      $this->addJquery();
+      $this->addFancyBox();
+      $this->addModuleJavascript("registros", "list.js");
+      $this->addModuleJavascript("datatable", "jquery.dataTables.js");
+      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
+      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
+      
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+    function acreditacionInactive(){
+      //$this->output->enable_profiler(TRUE);
+      $this->load->model('acreditaciones/acreditacion');
+      $this->data['list'] = $this->acreditacion->retrieveRegistrosInactive();
       $this->data['content'] = "registros/personas/list";
       $this->data['menu_id'] = 'registros_personas';
       $this->addJquery();
@@ -1317,6 +1338,9 @@ class registros extends MY_Controller{
           case "acreditacion": 
               $errores['archivo_acreditacion'] = $this -> upload -> display_errors();
              break;
+          case "firmainstitucion":
+              $errores['archivo_firmainstitucion'] = $this -> upload -> display_errors();
+            break;
           default:
             break;
         }
@@ -1413,6 +1437,37 @@ class registros extends MY_Controller{
       $this->loadShowAcreditacion($id);
     }
     
+    function fullDeletePersona($id)
+    {
+      $this->load->model('acreditaciones/acreditacion');
+      $this->load->model('acreditaciones/acreditacionarchivo');
+      $acreditacion = $this->acreditacion->getById($id);
+      
+      $archivos = $this->acreditacionarchivo->getByAcreditacionId($acreditacion->getId());
+      foreach($archivos as $archivo)
+      {
+        $this->acreditacionarchivo->deleteAllById($archivo->id);
+      }
+      $acreditacion->deleteAll();
+      redirect('registros/index');
+      
+    }
+    
+    function actPersona($id, $status)
+    {
+      $this->load->model('acreditaciones/acreditacion');
+      $acreditacion = $this->acreditacion->getById($id);
+      if($status == 1 || $status == "1")
+      {
+        $acreditacion->setIsActive(0);
+      }
+      else
+      {
+        $acreditacion->setIsActive(1);
+      }
+      $acreditacion->save();
+      redirect('registros/index');
+    }
     /***
      * 
      * De aca para abajo es Viejo

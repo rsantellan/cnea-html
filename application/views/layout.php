@@ -95,22 +95,11 @@
               </div>
           </div><!--HEADER-->
           <div id="content">
-            
               <?php echo modules::run('sitio/leftBar')?>
               
               <?php if(isset($content)): ?>
                 <?php echo $this->load->view($content) ?>
               <?php endif; ?>
-            
-<!--              <div class="content_right img_home">
-                  <h1>Comisión Nacional de Experimentación Animal</h1>
-                  <p>La Comisión Nacional de Experimentación Animal <strong>(CNEA)</strong> fue creada por la Ley de Experimentación Animal <a href="http://sip.parlamento.gub.uy/leyes/AccesoTextoLey.asp?Ley=18611&Anchor=" target="_blank">(Ley 18.611 "Utilización de animales de experimentación, docencia e investigación científica")</a> sancionada por el Parlamento uruguayo en 2009. Está presidida por el Ministerio de Educación y Cultura e integrada por representantes de diversas instituciones y organizaciones vinculadas a la temática de la experimentación animal.</p>
-                  <p>La <strong>CNEA</strong> dispone los lineamientos para el trato adecuado de animales vertebrados durante su cría o utilización en actividades de experimentación, investigación o docencia en todo el territorio nacional. De acuerdo con las regulaciones internacionales vigentes, la CNEA vela por asegurar el máximo bienestar de los animales a través del establecimiento de normativas nacionales que promuevan la reducción del número de animales utilizados para estos fines y eviten el sufrimiento físico innecesario.</p>
-                  <p>La <strong>CNEA</strong> centraliza la organización de la actividad de experimentación animal en el país a través del Registro de Instituciones habilitadas y de la creación del Sistema Nacional de Acreditaciones Personales, asegurando capacitación y otorgando licencias a las personas que utilicen animales en experimentación, docencia e investigación científica</p>
-              </div>-->
-              <!--CONTENT RIGHT-->
-              
-              
           </div><!--CONTENT-->
           
           
@@ -142,58 +131,4 @@
 	  
 	  
   </body>    
-    
-<!--    <body>
-	  [if !IE]>start wrapper<![endif]
-	  <div id="wrapper">
-            <?php //$this->load->view('header'); ?>
-		    
-            
-				
-			 		
-		[if !IE]>start content<![endif]
-		<div id="content">
-		
-			[if !IE]>start page<![endif]
-			<div id="page">
-				<div class="inner">
-					
-                    <?php //echo $this->load->view($content) ?>
-					<?php //include('msg.php'); ?>
-									
-					
-					
-				</div>
-			</div>
-			[if !IE]>end page<![endif]
-			
-			[if !IE]>start sidebar<![endif]
-			<div id="sidebar">
-				<div class="inner">
-					
-					<?php //include('quick_stats.php'); ?>
-					<?php //echo modules::run('menu/menu')?>
-					<?php
-					  //if($leftBoxOn):
-					?>
-					  <?php //echo $this->load->view($leftBoxContent) ?>
-				  <?php //endif; ?>
-				</div>
-			</div>
-			[if !IE]>end sidebar<![endif]
-		
-		</div>
-		[if !IE]>end content<![endif]
-	</div>
-	[if !IE]>end wrapper<![endif]	  
-	  <?php //$this->load->view('footer'); ?>
-
-	<div style="display:none" class="upload_progress" id="upload_container">
-	  <div class="progressWindow">Procesando, por favor espere ...</div>
-	  <img src="<?php //echo base_url() .APPPATH;?>images/ajax-loader.gif" alt="" />
-	</div>
-	<div style="display:none" class="upload_progress" id="message_container">
-	  <div class="progressWindow" style="padding-top: 33px;"></div>
-	</div>
-    </body>-->
 </html>

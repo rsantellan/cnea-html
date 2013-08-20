@@ -415,6 +415,14 @@
 <!--    <button class="adjuntar">Adjuntar</button>-->
     <a href="<?php echo site_url("acreditaciones/descargarFormularioEmpresa");?>" class="descargar descargar_forms">descargar</a>
     <div class="clear"></div>
+    
+    
+    <?php if(isset($errores["captcha"])): ?>
+      <span class="msg_error"><?php echo $errores['captcha'];?></span>
+    <?php endif; ?>
+    <?php echo $captchaImage;  // this will show the captcha image?>
+    <input type="text" name="word"  />
+    <div class="clear"></div>
     <input type="submit" class="button button_large" value="enviar formulario" />
   <?php echo form_close(); ?>
   

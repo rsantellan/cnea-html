@@ -188,9 +188,47 @@ class instituciones extends MY_Controller{
         }
         
         $this -> form_validation -> set_error_delimiters('<br /><span class="error">', '</span>');
-        if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
+
+        $errores = array();
+        $word = $this->input->post('wordinstitucion');
+        $captcha_erroneo = false;
+        
+        if ($this->input->post() && ($word == $this->session->userdata('wordinstitucion'))) 
         {
-            $this -> data['errores'] = array();
+          $captcha_erroneo = false;
+        }
+        else
+        {
+          $captcha_erroneo = true;
+          if(!empty($word) || $this->input->post() )
+          {
+            $errores["captcha"] = "Captcha invalido"; 
+          }
+        }
+        
+        $this->load->helper('captcha');
+        $vals = array(
+            'img_path'     => './captcha/',
+            'img_url'     => $this->config->base_url()."captcha/",
+            'img_width'     => '200',
+            'img_height' => 30,
+            'border' => 0,
+            'expiration' => 7200,
+            'usecaps' => true
+            );
+        
+          // create captcha image
+         $cap = create_captcha($vals);
+         // store image html code in a variable
+         
+         $this->data['captchaImage'] = $cap['image'];
+
+        // store the captcha word in a session
+         $this->session->set_userdata('wordinstitucion', $cap['word']); 
+        
+        if ($captcha_erroneo || $this -> form_validation -> run() == FALSE)// validation hasn't been passed
+        {
+            $this -> data['errores'] = $errores;
             $this -> data['content'] = 'formulario';
             $this -> load -> view('layout', $this -> data);
         } else {
@@ -201,7 +239,7 @@ class instituciones extends MY_Controller{
             $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
             $config['allowed_types'] = 'pdf|doc|docx';
             $this -> load -> library('upload', $config);
-            $errores = array();
+            //$errores = array();
             $upload_data = array();
             
             if (!$this -> upload -> do_upload('copia_resolucion_institucion')) {

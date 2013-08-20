@@ -650,12 +650,58 @@ class acreditacion extends MY_Model{
       return $this->db->get($this->getTablename())->result();
     }
     
+    function retrieveRegistrosWithCloseExpireDate($returnObjects = FALSE)
+    {
+      $this->db->select($this->getTablename().'.*, institucion.nombreinsititucion');
+      $this->db->order_by($this->getTablename().".id", "desc");
+      $this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno', 'left');
+      $this->db->where($this->getTablename().'.fechavencimiento >= DATE_SUB(NOW(), INTERVAL 1 MONTH)');
+      $query = $this->db->get($this->getTablename());
+      if(!$returnObjects)
+      {
+        return $query->result();
+      }
+      else
+      {
+        $salida = array();
+        foreach($query->result() as $obj)
+        {
+          
+          $salida[] = $this->createStdObjectFromRow($obj);
+        }
+        return $salida;
+      }
+    }
+    
+    function retrieveRegistrosInactive($returnObjects = FALSE)
+    {
+      $this->db->select($this->getTablename().'.*, institucion.nombreinsititucion');
+      $this->db->order_by($this->getTablename().".id", "desc");
+      $this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno', 'left');
+      $this->db->where($this->getTablename().'.isactive', 0);
+      $query = $this->db->get($this->getTablename());
+      if(!$returnObjects)
+      {
+        return $query->result();
+      }
+      else
+      {
+        $salida = array();
+        foreach($query->result() as $obj)
+        {
+          
+          $salida[] = $this->createStdObjectFromRow($obj);
+        }
+        return $salida;
+      }
+    }
+    
     function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)
     {
       //$this->db->order_by("ordinal", "desc");
       $this->db->select($this->getTablename().'.*, institucion.nombreinsititucion');
       $this->db->order_by($this->getTablename().".id", "desc");
-      $this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno');
+      $this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno', 'left');
       $query = null;
       if(is_null($number))
       {
@@ -753,6 +799,12 @@ class acreditacion extends MY_Model{
 	  $obj->setAcrcategoria($aux->acrcategoria);
 	  $obj->setAcrfecha($aux->acrfecha);
 	  return $obj;
+    }
+    
+    public function deleteAll()
+    {
+      @unlink($this->getCvpath().$this->getCvfile());
+      $this->simpleDeleteById($this->getId());
     }
   
 }

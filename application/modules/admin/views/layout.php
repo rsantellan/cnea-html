@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/template.css";?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colour.css";?>" />
 
-      <?php if($jquery_on): ?>
+      <?php if($jquery_on || true): ?>
         <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-1.7.1.min.js";?>"></script>
       <?php endif; ?>
 	  <?php if($jquery_ui_on): ?>
@@ -28,7 +28,9 @@
       <?php foreach($stylesheet as $sheet): ?>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/css/".$sheet;?>" />
       <?php endforeach; ?>
-        
+      <script type="text/javascript" src="<?php echo base_url() ."assets/admin/superfish/js/hoverIntent.js"; ?>"></script>
+      <script type="text/javascript" src="<?php echo base_url() ."assets/admin/superfish/js/superfish.js"; ?>"></script>
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/admin/superfish/css/superfish.css";?>" />  
       <!-- Menu drop down-->  
 <!--      <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/dropdown_menu.js";?>"></script>-->
 	</head>
@@ -38,15 +40,50 @@
 <!--        <h1 id="head">Administrador</h1>-->
         <img src="<?php echo base_url();?>assets/images/logo.jpg" />
       </div>
-      
+      <div class="menu_container">
+        <ul id="superfish-menu" class="sf-menu">
+          <li class="<?php echo ($menu_id == 'dashboard')? "current": "";?>"><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
+          <li class="<?php echo ($menu_id == 'fsadfx')? "current": "";?>"><a href="<?php echo site_url('language/index');?>">Textos</a></li>
+
+          <li class="<?php echo ($menu_id == 'actas' || $menu_id == 'novedades' || $menu_id == 'intereses' )? "current": "";?>">
+            <a href="javascript:void(0)">Contenidos publicos</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'actas')? "current": "";?>"><a href="<?php echo site_url('actaadmin/index');?>">Actas</a></li>
+              <li class="<?php echo ($menu_id == 'novedades')? "current": "";?>"><a href="<?php echo site_url('novedadesadmin/index');?>">Novedades</a></li>
+              <li class="<?php echo ($menu_id == 'intereses' )? "current": "";?>"><a href="<?php echo site_url('interesesadmin/index');?>">Intereses</a></li>
+            </ul>
+          </li>
+          <li class="<?php echo ($menu_id == 'registros_personas' || $menu_id == 'registros_instituciones')? "current": "";?>">
+            <a href="javascript:void(0)">Registros</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/index');?>">Registro Personas</a></li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionNextToExpire');?>">Registro Personas cerca de expirar</a></li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionInactive');?>">Registro Personas inactivas</a></li>
+              <li class="<?php echo ($menu_id == 'registros_instituciones')? "current": "";?>"><a href="<?php echo site_url('registros/instituciones');?>">Registro Instituciones</a></li>
+            </ul>
+          </li>
+          <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
+            <a href="javascript:void(0)">Configuraciones</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>"><a href="<?php echo site_url('contacto/contactoadmin');?>">Contacto</a></li>
+              <li><a href="<?php echo site_url('admin/backup');?>" onclick="return confirm('Esta seguro de querer generar el respaldo?')">Generar Respaldo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="<?php echo site_url('auth/logout');?>">Salir</a>
+          </li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+      <?php if(false): ?>
       <ul id="navigation">
-      <!--
+      
       <?php if($menu_id == 'dashboard'): ?>
         <li><span class="active">Dashboard</span></li>
       <?php else: ?>
         <li><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
       <?php endif; ?>
-      -->
+      
         <li><a href="<?php echo site_url('language/index');?>">Textos</a></li>
       <!--      
       <?php if($menu_id == 'users'): ?>
@@ -88,7 +125,7 @@
         <li><a href="<?php echo site_url('admin/backup');?>" onclick="return confirm('Esta seguro de querer generar el respaldo?')">Generar Respaldo</a></li>
         <li style="float: right;"><a href="<?php echo site_url('auth/logout');?>">Salir</a></li>	
 		</ul>
-		
+		<?php endif; ?>
 			<div id="content" class="container_16 clearfix">
 
 <!-- Filtro -->     

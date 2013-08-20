@@ -179,11 +179,43 @@ class acreditaciones extends MY_Controller {
 	  $this -> form_validation -> set_error_delimiters('<br /><span class="error">', '</span>');
 
 	 */
-	if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
-	  $this->data['errores'] = $errores;
-	} else {
-	  $save = true;
-	}
+    $word = $this->input->post('word');
+    if ($this->input->post() && ($word == $this->session->userdata('word'))) 
+    {
+      if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
+        $this->data['errores'] = $errores;
+      } else {
+        $save = true;
+      }
+    }
+    else
+    {
+      if(!empty($word) || $this->input->post() )
+      {
+        $errores["captcha"] = "Captcha invalido"; 
+      }
+        
+    }
+    
+    $this->load->helper('captcha');
+    $vals = array(
+        'img_path'     => './captcha/',
+        'img_url'     => $this->config->base_url()."captcha/",
+        'img_width'     => '200',
+        'img_height' => 30,
+        'border' => 0,
+        'expiration' => 7200,
+        'usecaps' => true
+        );
+
+      // create captcha image
+     $cap = create_captcha($vals);
+     // store image html code in a variable
+     $this->data['captchaImage'] = $cap['image'];
+
+    // store the captcha word in a session
+     $this->session->set_userdata('word', $cap['word']); 
+	
 	/*
 	  if ($this -> form_validation -> run() == FALSE)// validation hasn't been passed
 	  {

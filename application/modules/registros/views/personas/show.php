@@ -453,7 +453,7 @@
         <tbody>
           <?php 
             foreach($archivos as $archivo):
-              if($archivo->type == "acreditacion"):
+              if($archivo->type == "firmainstitucion"):
                 
             ?>  
           <tr id="archivo_<?php echo $archivo->id;?>">
@@ -470,7 +470,7 @@
         </tbody>
       </table>
       <div class="clear"></div>
-      <div id="add_archivo_acreditaciones_form" style="<?php if(!isset($errores) && !isset($errores['archivo_acreditacion'])):?>display:none<?php endif;?>">
+      <div id="add_archivo_instituciones_form" style="<?php if(!isset($errores) && !isset($errores['archivo_acreditacion'])):?>display:none<?php endif;?>">
         <div class="grid_14">
           <span>
             <label>adjuntar certificado correspondiente</label>
@@ -478,24 +478,24 @@
               <input type="file" name="archivo" size="20" />
               <input type="submit" value="upload" />
               <input type="hidden" value="<?php echo $acreditacion->getId();?>" name="id"/>
-              <input type="hidden" value="acreditacion" name="type"/>
+              <input type="hidden" value="firmainstitucion" name="type"/>
             </form>
           </span>
         </div>
       </div>
     </div>
-    <?php if(isset($errores) && isset($errores['archivo_acreditacion'])):?>
+    <?php if(isset($errores) && isset($errores['archivo_firmainstitucion'])):?>
     
     <div class="clear"></div>
     <div class="grid_5">
       <div class="error">
-        <?php echo $errores['archivo_acreditacion'];?>
+        <?php echo $errores['archivo_firmainstitucion'];?>
       </div>
     </div>  
     <?php endif; ?>
 
     <div class="clear"></div>
-    <a href="javascript:void(0)" onclick="$('#add_archivo_acreditaciones_form').slideToggle('slow');">Agregar</a>
+    <a href="javascript:void(0)" onclick="$('#add_archivo_instituciones_form').slideToggle('slow');">Agregar</a>
     <hr/>
   
   <?php //var_dump($acreditacion); ?>

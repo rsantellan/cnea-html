@@ -290,9 +290,16 @@
 <!--        <button class="adjuntar"><?php echo lang("instituciones_formulario_responsable_institucional_adjuntar"); ?></button>-->
         <a href="<?php echo site_url("instituciones/descargarFormularioInstitucion");?>" class="descargar descargar_forms"><?php echo lang("instituciones_formulario_responsable_institucional_descargar"); ?></a>
         <div class="clear"></div>
+        
+        <?php if(isset($errores["captcha"])): ?>
+          <span class="msg_error"><?php echo $errores['captcha'];?></span>
+        <?php endif; ?>
+        <?php echo $captchaImage;  // this will show the captcha image?>
+        <input type="text" name="wordinstitucion"  />
+        <div class="clear"></div>
+    
         <input type="submit" class="button button_large" value="enviar formulario" />
     <?php echo form_close(); ?>
-    <div class="clear"></div>
     <div class="clear"></div>
     <p><?php echo lang("instituciones_formulario_consultas"); ?></p>
 </div><!--CONTENT RIGHT-->
