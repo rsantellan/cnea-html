@@ -1,6 +1,6 @@
 $(document).ready(function() {
    $(":date").dateinput();
-   $(".infield_form p label").inFieldLabels();
+   $(".infield_form p label.hasinfieldlabel").inFieldLabels();
    
    $('.button_short').each(function(index, val){
       $(this).bind('click', function() {

@@ -94,4 +94,34 @@ $lang['personal_formulario_titulo_descarga']='<h5>Instructivo para enviar el for
 <p><strong>B)</strong> Si usted no pertenece a una instituci&oacute;n registrada ante la CNEA, no podr&aacute; solicitar acreditaci&oacute;n personal.</p>
 <p><strong>C)</strong> Si usted pertenece a m&aacute;s de una instituci&oacute;n registrada ante la CNEA deber&aacute; solicitar la acreditaci&oacute;n personal por cada instituci&oacute;n registrada a la que pertenece. Deber&aacute; completar un formulario por cada instituci&oacute;n.</p>';
 $lang['personal_formulario_agregar_mas']='Agregar mas';
+$lang['personal_formulario_nivel_formacion']='Nivel de formación';
+$lang['personal_formulario_documento']='Documento*';
+$lang['personal_formulario_fechanacimiento']='fecha nacimiento *';
+$lang['personal_formulario_institucion_laboratorio_unidad']='Laboratorio/Unidad*';
+$lang['personal_formulario_institucion_carga_horaria_semanal']='Carga Horaria Semanal*';
+$lang['personal_formulario_institucion_nombre_supervisor']='nombre supervisor*';
+$lang['personal_formulario_especies_que_trabaja']='Especies trabajadas *';
+$lang['personal_formulario_describa_tareas']='Describa las tareas';
+$lang['personal_formulario_pct_investigacion']='% Investigacion';
+$lang['personal_formulario_pct_medicina_clinica']='% Medicina Clinica';
+$lang['personal_formulario_pct_cirugia']='% Cirugia';
+$lang['personal_formulario_pct_mantenimiento_colonias']='% Mantenimiento Colonias';
+$lang['personal_formulario_pct_manipulacion']='% Manipulación';
+$lang['personal_formulario_pct_direccion_proyectos']='% Dirección de Proyectos';
+$lang['personal_formulario_pct_necropsia']='% Necropsia';
+$lang['personal_formulario_pct_diagnostico_laboratorio']='% Diagnostico Laboratorio';
+$lang['personal_formulario_pct_ceua']='% CEUA';
+$lang['personal_formulario_pct_histopatologia']='% Histopatologia';
+$lang['personal_formulario_pct_entrenamiento_educacion']='% Entrenamiento / Educación';
+$lang['personal_formulario_pct_apoyo_investigadores']='% Apoyo Investigadores';
+$lang['personal_formulario_pct_supervision']='% Supervision';
+$lang['personal_formulario_pct_produccion_animal']='% Producción animal';
+$lang['personal_formulario_pct_responsabilidad_legal']='% Responsabilidad Legal';
+$lang['personal_formulario_pct_otras_funciones']='% Otras Funciones';
+$lang['personal_formulario_pct_funciones_no_relacionadas']='% Funciones No Relacionadas';
+$lang['personal_formulario_pct_observaciones']='Observaciones de Porcentajes';
+$lang['personal_formulario_curso_observaciones']='Observaciones de cursos';
+$lang['personal_registro_elija_institucion']='Elija institución';
+$lang['personal_registro_password']='Contraseña';
+$lang['personal_registro_buscar']='Buscar';
 /* End of file acreditaciones_lang.php */
