@@ -722,3 +722,17 @@ form{
 	position:absolute;
 	width:0;			
 }
+
+
+label.hasinfieldlabel{
+	margin-bottom: 15px;
+}
+
+.instituciondesempeno_select{
+	inline: margin-top:8px;
+}
+
+input.pct_input{
+	width: 50px;
+	margin-top: 3px;
+}

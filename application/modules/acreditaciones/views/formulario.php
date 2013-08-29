@@ -67,7 +67,7 @@
         <input class="<?php echo (form_error('telefonocontacto') != "")? "input_error" : "";?>" id="telefonocontacto" type="text" name="telefonocontacto" maxlength="255" value="<?php echo $obj->getTelefonocontacto(); ?>"  />
     </p>
     <p>
-      <label class="hasinfieldlabel" for="instituciondesempeno">Institucion desempeño <span class="required">*</span></label>
+      <label class="hasinfieldlabel" for="instituciondesempeno">Institucion desempeño *</label>
       <?php echo form_error('instituciondesempeno'); ?>
 
       <?php // Change the values in this array to populate your dropdown as required ?>
@@ -79,7 +79,7 @@
       }
       ?>
 
-      <?php echo form_dropdown('instituciondesempeno', $options, $obj->getInstituciondesempeno()) ?>
+      <?php echo form_dropdown('instituciondesempeno', $options, $obj->getInstituciondesempeno(), 'class="instituciondesempeno_select"') ?>
 <!--      <label for="institucion"><?php echo lang("personal_formulario_institucion"); ?></label>
       <input class="<?php echo (form_error('institucion') != "")? "input_error" : "";?>" id="institucion" type="text" name="institucion" maxlength="255" value="<?php echo set_value('institucion'); ?>"  />-->
     </p>
@@ -111,87 +111,76 @@
       <textarea class="" id="describatareas" name="describatareas" rows="5" cols="80" ><?php echo $obj->getDescribatareas(); ?></textarea>
     </p>
     <p>
+      <input class="pct_input <?php echo (form_error('pctinvestigacion') != "")? "input_error" : "";?>" id="pctinvestigacion" type="text" name="pctinvestigacion"  value="<?php echo $obj->getPctinvestigacion();  ?>"  />  
       <label  class="pct"  for="pctinvestigacion"><?php echo lang("personal_formulario_pct_investigacion"); ?></label>
-      <input class="<?php echo (form_error('pctinvestigacion') != "")? "input_error" : "";?>" id="pctinvestigacion" type="text" name="pctinvestigacion"  value="<?php echo $obj->getPctinvestigacion();  ?>"  />
     </p>
-
     <p>
+      <input class="pct_input <?php echo (form_error('pctmedicinaclinica') != "")? "input_error" : "";?>" id="pctmedicinaclinica" type="text" name="pctmedicinaclinica"  value="<?php echo $obj->getPctmedicinaclinica(); ?>"  />  
       <label class="pct" for="pctmedicinaclinica"><?php echo lang("personal_formulario_pct_medicina_clinica"); ?></label>
-      <input class="<?php echo (form_error('pctmedicinaclinica') != "")? "input_error" : "";?>" id="pctmedicinaclinica" type="text" name="pctmedicinaclinica"  value="<?php echo $obj->getPctmedicinaclinica(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctcirugia') != "")? "input_error" : "";?>" id="pctcirugia" type="text" name="pctcirugia"  value="<?php echo $obj->getPctcirugia(); ?>"  />  
       <label class="pct" for="pctcirugia"><?php echo lang("personal_formulario_pct_cirugia"); ?></label>
-      <input class="<?php echo (form_error('pctcirugia') != "")? "input_error" : "";?>" id="pctcirugia" type="text" name="pctcirugia"  value="<?php echo $obj->getPctcirugia(); ?>"  />
     </p>
     
     <p>
+      <input class="pct_input <?php echo (form_error('pctmantenimientocolonias') != "")? "input_error" : "";?>" id="pctmantenimientocolonias" type="text" name="pctmantenimientocolonias"  value="<?php echo $obj->getPctmantenimientocolonias(); ?>"  />  
       <label class="pct" for="pctmantenimientocolonias"><?php echo lang("personal_formulario_pct_mantenimiento_colonias"); ?></label>
-      <input class="<?php echo (form_error('pctmantenimientocolonias') != "")? "input_error" : "";?>" id="pctmantenimientocolonias" type="text" name="pctmantenimientocolonias"  value="<?php echo $obj->getPctmantenimientocolonias(); ?>"  />
     </p>
     <p>
+      <input class="pct_input <?php echo (form_error('pctmanipulacion') != "")? "input_error" : "";?>" id="pctmanipulacion" type="text" name="pctmanipulacion"  value="<?php echo $obj->getPctmanipulacion(); ?>"  />  
       <label class="pct" for="pctmanipulacion"><?php echo lang("personal_formulario_pct_manipulacion"); ?></label>
-      <input class="<?php echo (form_error('pctmanipulacion') != "")? "input_error" : "";?>" id="pctmanipulacion" type="text" name="pctmanipulacion"  value="<?php echo $obj->getPctmanipulacion(); ?>"  />
     </p>
     <p>
+      <input class="pct_input <?php echo (form_error('pctdirprojectos') != "")? "input_error" : "";?>" id="pctdirprojectos" type="text" name="pctdirprojectos"  value="<?php echo $obj->getPctdirprojectos(); ?>"  />  
       <label class="pct" for="pctdirprojectos"><?php echo lang("personal_formulario_pct_direccion_proyectos"); ?></label>
-      <input class="<?php echo (form_error('pctdirprojectos') != "")? "input_error" : "";?>" id="pctdirprojectos" type="text" name="pctdirprojectos"  value="<?php echo $obj->getPctdirprojectos(); ?>"  />
     </p>
     <p>
+      <input class="pct_input <?php echo (form_error('pctnecropsia') != "")? "input_error" : "";?>" id="pctnecropsia" type="text" name="pctnecropsia"  value="<?php echo $obj->getPctnecropsia(); ?>"  />  
       <label class="pct" for="pctnecropsia"><?php echo lang("personal_formulario_pct_necropsia"); ?></label>
-      <input class="<?php echo (form_error('pctnecropsia') != "")? "input_error" : "";?>" id="pctnecropsia" type="text" name="pctnecropsia"  value="<?php echo $obj->getPctnecropsia(); ?>"  />
     </p>
     <p>
+      <input class="pct_input <?php echo (form_error('pctdiaglaboratorio') != "")? "input_error" : "";?>" id="pctdiaglaboratorio" type="text" name="pctdiaglaboratorio"  value="<?php echo $obj->getPctdiaglaboratorio(); ?>"  />  
       <label class="pct" for="pctdiaglaboratorio"><?php echo lang("personal_formulario_pct_diagnostico_laboratorio"); ?></label>
-      <br /><input class="<?php echo (form_error('pctdiaglaboratorio') != "")? "input_error" : "";?>" id="pctdiaglaboratorio" type="text" name="pctdiaglaboratorio"  value="<?php echo $obj->getPctdiaglaboratorio(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctdiaglaboratorio') != "")? "input_error" : "";?>" id="pctceua" type="text" name="pctceua"  value="<?php echo $obj->getPctceua(); ?>"  />  
       <label class="pct" for="pctceua"><?php echo lang("personal_formulario_pct_ceua"); ?></label>
-      <input class="<?php echo (form_error('pctdiaglaboratorio') != "")? "input_error" : "";?>" id="pctceua" type="text" name="pctceua"  value="<?php echo $obj->getPctceua(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pcthistopatologia') != "")? "input_error" : "";?>" id="pcthistopatologia" type="text" name="pcthistopatologia"  value="<?php echo $obj->getPcthistopatologia(); ?>"  />  
       <label class="pct" for="pcthistopatologia"><?php echo lang("personal_formulario_pct_histopatologia"); ?></label>
-      <input class="<?php echo (form_error('pcthistopatologia') != "")? "input_error" : "";?>" id="pcthistopatologia" type="text" name="pcthistopatologia"  value="<?php echo $obj->getPcthistopatologia(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctentedu') != "")? "input_error" : "";?>" id="pctentedu" type="text" name="pctentedu"  value="<?php echo $obj->getPctentedu(); ?>"  />  
       <label class="pct" for="pctentedu"><?php echo lang("personal_formulario_pct_entrenamiento_educacion"); ?></label>
-      <input class="<?php echo (form_error('pctentedu') != "")? "input_error" : "";?>" id="pctentedu" type="text" name="pctentedu"  value="<?php echo $obj->getPctentedu(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctapoyoinvestigadores') != "")? "input_error" : "";?>" id="pctapoyoinvestigadores" type="text" name="pctapoyoinvestigadores"  value="<?php echo $obj->getPctapoyoinvestigadores(); ?>"  />  
       <label class="pct" for="pctapoyoinvestigadores"><?php echo lang("personal_formulario_pct_apoyo_investigadores"); ?></label>
-      <input class="<?php echo (form_error('pctapoyoinvestigadores') != "")? "input_error" : "";?>" id="pctapoyoinvestigadores" type="text" name="pctapoyoinvestigadores"  value="<?php echo $obj->getPctapoyoinvestigadores(); ?>"  />
     </p>
     
     <p>
+      <input class="pct_input <?php echo (form_error('pctsupervision') != "")? "input_error" : "";?>" id="pctsupervision" type="text" name="pctsupervision"  value="<?php echo $obj->getPctsupervision(); ?>"  />  
       <label class="pct"for="pctsupervision"><?php echo lang("personal_formulario_pct_supervision"); ?></label>
-      <input class="<?php echo (form_error('pctsupervision') != "")? "input_error" : "";?>" id="pctsupervision" type="text" name="pctsupervision"  value="<?php echo $obj->getPctsupervision(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctprodanimal') != "")? "input_error" : "";?>" id="pctprodanimal" type="text" name="pctprodanimal"  value="<?php echo $obj->getPctprodanimal(); ?>"  />  
       <label class="pct" for="pctprodanimal"><?php echo lang("personal_formulario_pct_produccion_animal"); ?></label>
-      <input class="<?php echo (form_error('pctprodanimal') != "")? "input_error" : "";?>" id="pctprodanimal" type="text" name="pctprodanimal"  value="<?php echo $obj->getPctprodanimal(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctlegal') != "")? "input_error" : "";?>" id="pctlegal" type="text" name="pctlegal"  value="<?php echo $obj->getPctlegal(); ?>"  />  
       <label class="pct" for="pctlegal"><?php echo lang("personal_formulario_pct_responsabilidad_legal"); ?></label>
-      <input class="<?php echo (form_error('pctlegal') != "")? "input_error" : "";?>" id="pctlegal" type="text" name="pctlegal"  value="<?php echo $obj->getPctlegal(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctotrasfunciones') != "")? "input_error" : "";?>" id="pctotrasfunciones" type="text" name="pctotrasfunciones"  value="<?php echo $obj->getPctotrasfunciones(); ?>"  />  
       <label class="pct" for="pctotrasfunciones"><?php echo lang("personal_formulario_pct_otras_funciones"); ?></label>
-      <input class="<?php echo (form_error('pctotrasfunciones') != "")? "input_error" : "";?>" id="pctotrasfunciones" type="text" name="pctotrasfunciones"  value="<?php echo $obj->getPctotrasfunciones(); ?>"  />
     </p>
-    
     <p>
+      <input class="pct_input <?php echo (form_error('pctfuncnorel') != "")? "input_error" : "";?>" id="pctfuncnorel" type="text" name="pctfuncnorel"  value="<?php echo $obj->getPctfuncnorel(); ?>"  />  
       <label class="pct" for="pctfuncnorel"><?php echo lang("personal_formulario_pct_funciones_no_relacionadas"); ?></label>
       <?php echo form_error('pctfuncnorel'); ?>
-      <input class="<?php echo (form_error('pctfuncnorel') != "")? "input_error" : "";?>" id="pctfuncnorel" type="text" name="pctfuncnorel"  value="<?php echo $obj->getPctfuncnorel(); ?>"  />
     </p>
-    
     <p>
       <label class="hasinfieldlabel" for="pctobservaciones"><?php echo lang("personal_formulario_pct_observaciones"); ?></label>
       <?php echo form_error('pctobservaciones'); ?>
