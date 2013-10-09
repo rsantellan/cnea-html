@@ -66,6 +66,7 @@
       <input type="radio" class="radiobuttom" name="tipoestablecimiento" value="mixto" <?php echo ($obj->getTipoestablecimiento() == "mixto")? "checked=\"checked\"" : "";?> />
     </div>
   </p>
+  <div class='clear'></div>
   <p>
     <label for="observacionescomite">observaciones comite</label>
     <?php echo form_error('observacionescomite'); ?>
@@ -87,6 +88,15 @@
     <?php echo form_error('telcontacto'); ?>
     <br /><input id="telcontacto" type="text" name="telcontacto" maxlength="255" value="<?php echo $obj->getTelcontacto(); ?>"  />
   </p>
+  <p>
+    <label for="code">Codigo</label>
+    <input type="text" name="code" maxlength="255" value="<?php echo $obj->getCode() ?>" />
+  </p>
+  <p>
+    <label for="url">Sitio web</label>
+    <input type="text" name="url" maxlength="255" value="<?php echo $obj->getUrl() ?>" />
+  </p>
+
   <input type="submit" value="Guardar" />
 </form>
 <div id="form_errores_institucion">

@@ -1,12 +1,12 @@
 <div class="grid_5">
   <span>
-    <label>nombreinsititucion</label>
+    <label>nombre insititucion</label>
     <?php echo $institucion->getNombreinsititucion(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>razonsocial</label>
+    <label>razon social</label>
     <?php echo $institucion->getRazonsocial(); ?>
   </span>
 </div>
@@ -24,67 +24,79 @@
 </div>
 <div class="grid_5">
   <span>
-    <label>primernivel</label>
+    <label>primer nivel</label>
     <?php echo $institucion->getPrimernivel(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>segundonivel</label>
+    <label>segundo nivel</label>
     <?php echo $institucion->getSegundonivel(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>tercernivel</label>
+    <label>tercer nivel</label>
     <?php echo $institucion->getTercernivel(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>domicilioinstitucional</label>
+    <label>domicilio institucional</label>
     <?php echo $institucion->getDomicilioinstitucional(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>domiciliofiscal</label>
+    <label>domicilio fiscal</label>
     <?php echo $institucion->getDomiciliofiscal(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>domicilioinstitucional</label>
+    <label>domicilio institucional</label>
     <?php echo $institucion->getDomicilioinstitucional(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>tipoestablecimiento</label>
+    <label>tipo establecimiento</label>
     <?php echo $institucion->getTipoestablecimiento(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>observacionescomite</label>
+    <label>observaciones comite</label>
     <?php echo $institucion->getObservacionescomite(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>nombrecontacto</label>
+    <label>nombre contacto</label>
     <?php echo $institucion->getNombrecontacto(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>mailcontacto</label>
+    <label>Mail contacto</label>
     <?php echo $institucion->getMailcontacto(); ?>
   </span>
 </div>
 <div class="grid_5">
   <span>
-    <label>telcontacto</label>
+    <label>Telefono contacto</label>
     <?php echo $institucion->getTelcontacto(); ?>
+  </span>
+</div>
+<div class="grid_5">
+  <span>
+    <label>Codigo</label>
+    <?php echo $institucion->getCode(); ?>
+  </span>
+</div>
+<div class="grid_5">
+  <span>
+    <label>Sitio web</label>
+    <?php echo $institucion->getUrl(); ?>
   </span>
 </div>

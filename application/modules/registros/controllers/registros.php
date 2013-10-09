@@ -623,7 +623,8 @@ class registros extends MY_Controller{
       $this->form_validation->set_rules('nombrecontacto', 'nombrecontacto', 'required|max_length[255]');			
       $this->form_validation->set_rules('mailcontacto', 'mailcontacto', 'valid_email|max_length[255]');			
       $this->form_validation->set_rules('telcontacto', 'telcontacto', 'max_length[255]');
-
+      $this->form_validation->set_rules('url', 'url', 'max_length[255]'); 
+      $this->form_validation->set_rules('code', 'code', 'xss_clean|max_length[255]');
       $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
         
       $id = $this->input->post('id', true);
@@ -655,6 +656,8 @@ class registros extends MY_Controller{
           $obj->setNombrecontacto(set_value('nombrecontacto'));
           $obj->setMailcontacto(set_value('mailcontacto'));
           $obj->setTelcontacto(set_value('telcontacto'));
+          $obj->setCode(set_value('code'));
+          $obj->setUrl(set_value('url'));
           $obj->save();
           $return_data = $this->load->view('registros/instituciones/showinstitucion', array('institucion' => $obj), true);
         }
@@ -684,7 +687,8 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('nombrecontacto', 'nombrecontacto', 'required|max_length[255]');			
 		$this->form_validation->set_rules('mailcontacto', 'mailcontacto', 'valid_email|max_length[255]');			
 		$this->form_validation->set_rules('telcontacto', 'telcontacto', 'max_length[255]');
-			
+		$this->form_validation->set_rules('url', 'url', 'max_length[255]'); 
+        $this->form_validation->set_rules('code', 'code', 'xss_clean|max_length[255]');
 		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
         $this->load->model('instituciones/institucion');
         $obj = new $this->institucion;
@@ -728,6 +732,8 @@ class registros extends MY_Controller{
         $obj->setNombrecontacto(set_value('nombrecontacto'));
         $obj->setMailcontacto(set_value('mailcontacto'));
         $obj->setTelcontacto(set_value('telcontacto'));
+        $obj->setCode(set_value('code'));
+        $obj->setUrl(set_value('url'));
         if($save)
         {
             $obj->setCvfilename($upload_data['responsable_institucional']['file_name']);

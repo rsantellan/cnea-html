@@ -8,7 +8,7 @@
     <?php $counter = (1 * (int) $page) + 1; ?>
 	<?php foreach($list as $registro): ?>
 		<div class="registradas">
-			<strong><?php echo $registro->getNombre();//$registro->getNombreinsititucion();?></strong><br />
+			<strong><?php echo $registro->getNombreinsititucion();//$registro->getNombre();?></strong><br />
 			código: <?php echo $registro->getCode();?> | <a href="<?php echo prep_url($registro->getUrl());?>" target="_blank"><?php echo $registro->getUrl();?></a>
 		</div>
       <?php $counter++; ?>

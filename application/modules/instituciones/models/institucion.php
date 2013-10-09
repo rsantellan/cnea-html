@@ -29,6 +29,8 @@ class institucion extends MY_Model{
     private $responsablefilename;
     private $responsablefilepath;
     private $isActive;
+    private $code;
+	private $url;
     
     function __construct()
 	{
@@ -196,6 +198,22 @@ class institucion extends MY_Model{
     public function setIsActive($isActive) {
       $this->isActive = $isActive;
     }
+    
+    public function getCode() {
+      return $this->code;
+    }
+
+    public function setCode($code) {
+      $this->code = $code;
+    }
+
+    public function getUrl() {
+      return $this->url;
+    }
+
+    public function setUrl($url) {
+      $this->url = $url;
+    }
 
     public function isNew(){
       if($this->getId() == "" || is_null($this->getId()))
@@ -237,6 +255,8 @@ class institucion extends MY_Model{
       $data["responsablefilename"] = $this->getCvfilename();
       $data["responsablefilepath"] = $this->getCvfilepath();
       $data["password"] = $this->getPassword();
+      $data["code"] = $this->getCode();
+      $data["url"] = $this->getUrl();
       $this->db->where('id', $this->getId());
       $this->db->update($this->getTablename(), $data);
       return $this->getId();
@@ -263,7 +283,8 @@ class institucion extends MY_Model{
       $data["responsablefilename"] = $this->getCvfilename();
       $data["responsablefilepath"] = $this->getCvfilepath();
       $data["password"] = $this->generatePassword();
-              
+      $data["code"] = $this->getCode();
+      $data["url"] = $this->getUrl();        
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       
@@ -280,11 +301,21 @@ class institucion extends MY_Model{
       return $this->getId();
     }
     
-    function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)
+    function countAllActiveRecords()
+    {
+      $this->db->where('isactive', 1);
+      return $this->db->count_all_results($this->getTablename());
+    }
+    
+    function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE, $onlyActive = false)
     {
       //$this->db->order_by("ordinal", "desc");
       $this->db->order_by("id", "desc");
       $query = null;
+      if($onlyActive)
+      {
+        $this->db->where('isactive', 1);
+      }
       if(is_null($number))
       {
         $query = $this->db->get($this->getTablename());
@@ -348,6 +379,8 @@ class institucion extends MY_Model{
       $aux->setTelcontacto($obj->telcontacto);
       $aux->setPassword($obj->password);
       $aux->setIsActive($obj->isactive);
+      $aux->setCode($obj->code);
+      $aux->setUrl($obj->url);
       $aux->setCvfilename($obj->responsablefilename);
       $aux->setCvfilepath($obj->responsablefilepath);
       return $aux;
