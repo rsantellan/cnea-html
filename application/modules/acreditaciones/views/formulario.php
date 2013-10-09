@@ -1,18 +1,13 @@
 <div class="content_right img_instituciones">
   <h1><?php echo lang("personal_formulario_titulo"); ?></h1>
   
-  <?php echo lang("personal_formulario_titulo_descarga");?>
-  <div style="width:515px">
-    <span><strong><?php echo lang("personal_formulario_texto_descarga"); ?></strong></span>
-
-    <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
-  </div>
   <div class="clear"></div>
   <h5><?php echo lang("personal_formulario_subtitulo"); ?></h5>
   <?php if(strlen(validation_errors()) > 0): ?>
   <span class="msg_error"><?php echo lang("personal_formulario_subtitulo_errores"); ?></span>
   
   <?php endif;?>
+  
   <?php
   $attributes = array('class' => 'infield_form', 'id' => '');
   echo form_open_multipart('acreditaciones/formulario', $attributes); ?>    
@@ -33,14 +28,14 @@
       <h6><?php echo lang("personal_formulario_nivel_formacion"); ?><!--  --></h6>
       <?php echo form_error('formacion'); ?>
       
-        <label for="formacion_primaria">formacion primaria</label>
+      <label for="formacion_primaria">formaci&oacute;n primaria</label>
         <input type="radio" class="radiobuttom"  id="formacion_primaria" name="formacion" value="primaria" class="" <?php echo ($obj->getFormacion() == "primaria")? "checked=\"checked\"" : "";?> /> 
       
-        <label for="formacion_secundaria">formacion secundaria</label>
+        <label for="formacion_secundaria">formaci&oacute;n secundaria</label>
         <input type="radio" class="radiobuttom"  id="formacion_secundaria" name="formacion" value="secundaria" class="" <?php echo ($obj->getFormacion() =="secundaria")? "checked=\"checked\""  : ""; ?> /> 
       
       
-        <label for="formacionterciaria">formacion terciaria</label>
+        <label for="formacionterciaria">formaci&oacute;n terciaria</label>
         <input type="radio" class="radiobuttom"  id="formacionterciaria" name="formacion" value="terciaria" class="" <?php echo ($obj->getFormacion() == "terciaria")? "checked=\"checked\"" : ""; ?> /> 
       
     </p>
@@ -67,7 +62,7 @@
         <input class="<?php echo (form_error('telefonocontacto') != "")? "input_error" : "";?>" id="telefonocontacto" type="text" name="telefonocontacto" maxlength="255" value="<?php echo $obj->getTelefonocontacto(); ?>"  />
     </p>
     <p>
-      <label class="hasinfieldlabel" for="instituciondesempeno">Institucion desempeño *</label>
+      <label class="hasinfieldlabel" for="instituciondesempeno"><?php echo lang("personal_formulario_instituciondesempeno"); ?></label>
       <?php echo form_error('instituciondesempeno'); ?>
 
       <?php // Change the values in this array to populate your dropdown as required ?>
@@ -83,6 +78,9 @@
 <!--      <label for="institucion"><?php echo lang("personal_formulario_institucion"); ?></label>
       <input class="<?php echo (form_error('institucion') != "")? "input_error" : "";?>" id="institucion" type="text" name="institucion" maxlength="255" value="<?php echo set_value('institucion'); ?>"  />-->
     </p>
+    <div class="clear"></div>
+        <?php echo lang("personal_formulario_instituciondesempeno_texto"); ?>
+      <div class="clear"></div>
     <div class="clear"></div>
     <p>
       <label  class="hasinfieldlabel" for="laboratoriounidad"><?php echo lang("personal_formulario_institucion_laboratorio_unidad"); ?></label>
@@ -103,97 +101,20 @@
     <div class="clear"></div>
     <p>
       <label class="hasinfieldlabel" for="especiestrabajadas"><?php echo lang("personal_formulario_especies_que_trabaja"); ?></label>
-      <textarea class="" id="especiestrabajadas" name="especiestrabajadas" rows="5" cols="80" ><?php echo $obj->getEspeciestrabajadas(); ?></textarea>
+      <textarea class="<?php echo (form_error('especiestrabajadas') != "")? "input_error" : "";?>" id="especiestrabajadas" name="especiestrabajadas" rows="5" cols="80" ><?php echo $obj->getEspeciestrabajadas(); ?></textarea>
     </p>
     
     <p class="describatareas">
       <label  class="hasinfieldlabel" for="describatareas"><?php echo lang("personal_formulario_describa_tareas"); ?></label>
-      <textarea class="" id="describatareas" name="describatareas" rows="5" cols="80" ><?php echo $obj->getDescribatareas(); ?></textarea>
+      <textarea class="<?php echo (form_error('describatareas') != "")? "input_error" : "";?>" id="describatareas" name="describatareas" rows="5" cols="80" ><?php echo $obj->getDescribatareas(); ?></textarea>
     </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctinvestigacion') != "")? "input_error" : "";?>" id="pctinvestigacion" type="text" name="pctinvestigacion"  value="<?php echo $obj->getPctinvestigacion();  ?>"  />  
-      <label  class="pct"  for="pctinvestigacion"><?php echo lang("personal_formulario_pct_investigacion"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctmedicinaclinica') != "")? "input_error" : "";?>" id="pctmedicinaclinica" type="text" name="pctmedicinaclinica"  value="<?php echo $obj->getPctmedicinaclinica(); ?>"  />  
-      <label class="pct" for="pctmedicinaclinica"><?php echo lang("personal_formulario_pct_medicina_clinica"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctcirugia') != "")? "input_error" : "";?>" id="pctcirugia" type="text" name="pctcirugia"  value="<?php echo $obj->getPctcirugia(); ?>"  />  
-      <label class="pct" for="pctcirugia"><?php echo lang("personal_formulario_pct_cirugia"); ?></label>
-    </p>
-    
-    <p>
-      <input class="pct_input <?php echo (form_error('pctmantenimientocolonias') != "")? "input_error" : "";?>" id="pctmantenimientocolonias" type="text" name="pctmantenimientocolonias"  value="<?php echo $obj->getPctmantenimientocolonias(); ?>"  />  
-      <label class="pct" for="pctmantenimientocolonias"><?php echo lang("personal_formulario_pct_mantenimiento_colonias"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctmanipulacion') != "")? "input_error" : "";?>" id="pctmanipulacion" type="text" name="pctmanipulacion"  value="<?php echo $obj->getPctmanipulacion(); ?>"  />  
-      <label class="pct" for="pctmanipulacion"><?php echo lang("personal_formulario_pct_manipulacion"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctdirprojectos') != "")? "input_error" : "";?>" id="pctdirprojectos" type="text" name="pctdirprojectos"  value="<?php echo $obj->getPctdirprojectos(); ?>"  />  
-      <label class="pct" for="pctdirprojectos"><?php echo lang("personal_formulario_pct_direccion_proyectos"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctnecropsia') != "")? "input_error" : "";?>" id="pctnecropsia" type="text" name="pctnecropsia"  value="<?php echo $obj->getPctnecropsia(); ?>"  />  
-      <label class="pct" for="pctnecropsia"><?php echo lang("personal_formulario_pct_necropsia"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctdiaglaboratorio') != "")? "input_error" : "";?>" id="pctdiaglaboratorio" type="text" name="pctdiaglaboratorio"  value="<?php echo $obj->getPctdiaglaboratorio(); ?>"  />  
-      <label class="pct" for="pctdiaglaboratorio"><?php echo lang("personal_formulario_pct_diagnostico_laboratorio"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctdiaglaboratorio') != "")? "input_error" : "";?>" id="pctceua" type="text" name="pctceua"  value="<?php echo $obj->getPctceua(); ?>"  />  
-      <label class="pct" for="pctceua"><?php echo lang("personal_formulario_pct_ceua"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pcthistopatologia') != "")? "input_error" : "";?>" id="pcthistopatologia" type="text" name="pcthistopatologia"  value="<?php echo $obj->getPcthistopatologia(); ?>"  />  
-      <label class="pct" for="pcthistopatologia"><?php echo lang("personal_formulario_pct_histopatologia"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctentedu') != "")? "input_error" : "";?>" id="pctentedu" type="text" name="pctentedu"  value="<?php echo $obj->getPctentedu(); ?>"  />  
-      <label class="pct" for="pctentedu"><?php echo lang("personal_formulario_pct_entrenamiento_educacion"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctapoyoinvestigadores') != "")? "input_error" : "";?>" id="pctapoyoinvestigadores" type="text" name="pctapoyoinvestigadores"  value="<?php echo $obj->getPctapoyoinvestigadores(); ?>"  />  
-      <label class="pct" for="pctapoyoinvestigadores"><?php echo lang("personal_formulario_pct_apoyo_investigadores"); ?></label>
-    </p>
-    
-    <p>
-      <input class="pct_input <?php echo (form_error('pctsupervision') != "")? "input_error" : "";?>" id="pctsupervision" type="text" name="pctsupervision"  value="<?php echo $obj->getPctsupervision(); ?>"  />  
-      <label class="pct"for="pctsupervision"><?php echo lang("personal_formulario_pct_supervision"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctprodanimal') != "")? "input_error" : "";?>" id="pctprodanimal" type="text" name="pctprodanimal"  value="<?php echo $obj->getPctprodanimal(); ?>"  />  
-      <label class="pct" for="pctprodanimal"><?php echo lang("personal_formulario_pct_produccion_animal"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctlegal') != "")? "input_error" : "";?>" id="pctlegal" type="text" name="pctlegal"  value="<?php echo $obj->getPctlegal(); ?>"  />  
-      <label class="pct" for="pctlegal"><?php echo lang("personal_formulario_pct_responsabilidad_legal"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctotrasfunciones') != "")? "input_error" : "";?>" id="pctotrasfunciones" type="text" name="pctotrasfunciones"  value="<?php echo $obj->getPctotrasfunciones(); ?>"  />  
-      <label class="pct" for="pctotrasfunciones"><?php echo lang("personal_formulario_pct_otras_funciones"); ?></label>
-    </p>
-    <p>
-      <input class="pct_input <?php echo (form_error('pctfuncnorel') != "")? "input_error" : "";?>" id="pctfuncnorel" type="text" name="pctfuncnorel"  value="<?php echo $obj->getPctfuncnorel(); ?>"  />  
-      <label class="pct" for="pctfuncnorel"><?php echo lang("personal_formulario_pct_funciones_no_relacionadas"); ?></label>
-      <?php echo form_error('pctfuncnorel'); ?>
-    </p>
-    <p>
-      <label class="hasinfieldlabel" for="pctobservaciones"><?php echo lang("personal_formulario_pct_observaciones"); ?></label>
-      <?php echo form_error('pctobservaciones'); ?>
-      <?php echo form_textarea(array('class' => '', 'name' => 'pctobservaciones', 'rows' => '5', 'cols' => '80', 'value' => $obj->getPctobservaciones())) ?>
-    </p>
-    
     <div class="clear"></div>
     <p>
       <label for="realizocursos"><?php echo lang("personal_formulario_subtitulo_realizacion"); ?></label>
       <?php echo form_error('realizocursos'); ?>
       <div class="float_left" style="margin-right:20px;">
         <input onchange ='hideShowRealizacion(this)' name="realizocursos" type="radio" class="radiobuttom" value="1" 
-		 <?php if($obj->getRealizocursos() === "1"):?>
+		 <?php if($obj->getRealizocursos() == "1" || $obj->getRealizocursos() == 1):?>
 		   checked='checked'
 		 <?php endif; ?> 
 		  />
@@ -358,38 +279,37 @@
     <h5><?php echo lang("personal_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("personal_formulario_subtitulo_ver_bases"); ?></a></h5>
     <p>
       <div style="width: 23%; float: left;">
-      <label for="categoriaa">Categoria A</label>
+        <label for="categoriaa">Categor&iacute;a A</label>
       <input name="categoria" type="radio" value="A" class="radiobuttom" <?php echo ($obj->getCategoria() == "A")? "checked=\"checked\"" : ""; ?>> 
     </div>
     <div style="width: 23%; float: left;">
-      <label for="categoriab">Categoria B</label>
+      <label for="categoriab">Categor&iacute;a B</label>
       <input name="categoria" type="radio" value="B" class="radiobuttom" <?php echo ($obj->getCategoria() == "B")? "checked=\"checked\"" : ""; ?>> 
     </div>   
     <div style="width: 23%; float: left;">
-      <label for="categoria_c1">Categoria C1</label>
+      <label for="categoria_c1">Categor&iacute;a C1*</label>
       <input name="categoria" type="radio" value="C1" class="radiobuttom" <?php echo ($obj->getCategoria() == "C1")? "checked=\"checked\"" : ""; ?>> 
     </div>
-    <div style="width: 23%; float: left;">
-      <label for="categoria_c2">Categoria C2</label>
+    <div style="width: 24%; float: left;">
+      <label for="categoria_c2">Categor&iacute;a C2**</label>
       <input name="categoria" type="radio" value="C2" class="radiobuttom" <?php echo ($obj->getCategoria() == "C2")? "checked=\"checked\"" : ""; ?>> 
     </div>
     </p>
     <div class="clear"></div>
-    <?php echo lang("personal_formulario_texto_categoria"); ?>
     
+    <?php echo lang("personal_formulario_texto_categoria"); ?>
+    <!--
+    <h1>aca?</h1>
     <?php echo lang("personal_formulario_texto_firma_persona"); ?>
     
-<!--    <input type="button" class="button button_short_descargar" value="descargar" />-->
     <?php if(isset($errores['firma_persona_upload'])): ?>
 		<span class="upload_error"><?php echo $errores['firma_persona_upload'];?></span>
 	<?php endif;?>
-    <?php 
-//var_dump(isset($errores['firma_persona_upload']));
-//var_dump($errores);?>
+
     <input type="file" name="firma_persona_upload" id="firma_persona_upload" class="file" />
-<!--    <button class="adjuntar">Adjuntar</button>-->
-<!--	<div class="clear"></div>-->
+
     <a href="<?php echo site_url("acreditaciones/descargarFormularioPersona");?>" class="descargar descargar_forms">descargar</a>
+    -->
     
     <div class="clear"></div>
     

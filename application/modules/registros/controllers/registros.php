@@ -910,24 +910,7 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('nombresupervisor', 'nombre supervisor', 'required|max_length[255]');			
 		$this->form_validation->set_rules('especiestrabajadas', 'Especies que trabajadas', 'required');			
 		$this->form_validation->set_rules('describatareas', 'Describa las tareas', '');			
-		$this->form_validation->set_rules('pctinvestigacion', 'Porcentaje Investigacion', 'is_numeric');			
-		$this->form_validation->set_rules('pctmedicinaclinica', 'Porcentaje Medicina Clinica', 'is_numeric');			
-		$this->form_validation->set_rules('pctcirugia', 'Porcentaje Cirugia', 'is_numeric');			
-		$this->form_validation->set_rules('pctmantenimientocolonias', 'Porcentaje Mantenimiento Colonias', 'is_numeric');			
-		$this->form_validation->set_rules('pctmanipulacion', 'Porcentaje Manipulación', 'is_numeric');			
-		$this->form_validation->set_rules('pctdirprojectos', 'Porcentaje Dirección de Projectos', 'is_numeric');			
-		$this->form_validation->set_rules('pctnecropsia', 'Porcentaje Necropsia', 'is_numeric');			
-		$this->form_validation->set_rules('pctdiaglaboratorio', 'Porcentaje Diagnostico Laboratorio', 'is_numeric');			
-		$this->form_validation->set_rules('pctceua', 'Porcentaje CEUA', 'is_numeric');			
-		$this->form_validation->set_rules('pcthistopatologia', 'Porcentaje Histopatologia', 'is_numeric');			
-		$this->form_validation->set_rules('pctentedu', 'Porcentaje Entrenamiento/Educacion', 'is_numeric');			
-		$this->form_validation->set_rules('pctapoyoinvestigadores', 'Porcentaje Apoyo Investigadores', 'is_numeric');			
-		$this->form_validation->set_rules('pctsupervision', 'Porcentaje Supervision', 'is_numeric');			
-		$this->form_validation->set_rules('pctprodanimal', 'Porcentaje Produccion animal', 'is_numeric');			
-		$this->form_validation->set_rules('pctlegal', 'Porcentaje Responsabilidad Legal', 'is_numeric');			
-		$this->form_validation->set_rules('pctotrasfunciones', 'Porcentaje Otras Funciones', 'is_numeric');			
-		$this->form_validation->set_rules('pctfuncnorel', 'Porcentaje Funciones No Relacionadas', 'is_numeric');			
-		$this->form_validation->set_rules('pctobservaciones', 'Observaciones de Porcentajes', '');			
+        	
 		$this->form_validation->set_rules('realizocursos', 'Realizo Cursos', 'required|max_length[1]');			
 		$this->form_validation->set_rules('acrpersonales', 'Acreditaciones Personales', 'required|max_length[1]');			
 		$this->form_validation->set_rules('categoria', 'Categoria', 'required');			
@@ -956,19 +939,6 @@ class registros extends MY_Controller{
         else
         {
             $save = true;    
-            $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
-            $config['allowed_types'] = 'pdf|doc|docx';
-            $this -> load -> library('upload', $config);
-            $errores = array();
-            $upload_data = array();
-            
-            if (!$this -> upload -> do_upload('curriculum')) {
-                $errores['curriculum'] = $this -> upload -> display_errors();
-                $this->upload->clean_errors();
-                $save = false;
-            }else{
-                $upload_data['curriculum'] = $this->upload->data();
-            }
         }
         $form_data = array(
                       'fecha' => set_value('fecha'),
@@ -986,24 +956,6 @@ class registros extends MY_Controller{
                       'nombresupervisor' => set_value('nombresupervisor'),
                       'especiestrabajadas' => set_value('especiestrabajadas'),
                       'describatareas' => set_value('describatareas'),
-                      'pctinvestigacion' => set_value('pctinvestigacion'),
-                      'pctmedicinaclinica' => set_value('pctmedicinaclinica'),
-                      'pctcirugia' => set_value('pctcirugia'),
-                      'pctmantenimientocolonias' => set_value('pctmantenimientocolonias'),
-                      'pctmanipulacion' => set_value('pctmanipulacion'),
-                      'pctdirprojectos' => set_value('pctdirprojectos'),
-                      'pctnecropsia' => set_value('pctnecropsia'),
-                      'pctdiaglaboratorio' => set_value('pctdiaglaboratorio'),
-                      'pctceua' => set_value('pctceua'),
-                      'pcthistopatologia' => set_value('pcthistopatologia'),
-                      'pctentedu' => set_value('pctentedu'),
-                      'pctapoyoinvestigadores' => set_value('pctapoyoinvestigadores'),
-                      'pctsupervision' => set_value('pctsupervision'),
-                      'pctprodanimal' => set_value('pctprodanimal'),
-                      'pctlegal' => set_value('pctlegal'),
-                      'pctotrasfunciones' => set_value('pctotrasfunciones'),
-                      'pctfuncnorel' => set_value('pctfuncnorel'),
-                      'pctobservaciones' => set_value('pctobservaciones'),
                       'realizocursos' => set_value('realizocursos'),
                       'acrpersonales' => set_value('acrpersonales'),
                       'categoria' => set_value('categoria'),
@@ -1029,24 +981,6 @@ class registros extends MY_Controller{
         $obj->setNombresupervisor($form_data['nombresupervisor']);
         $obj->setEspeciestrabajadas($form_data['especiestrabajadas']);
         $obj->setDescribatareas($form_data['describatareas']);
-        $obj->setPctinvestigacion($form_data['pctinvestigacion']);
-        $obj->setPctmedicinaclinica($form_data['pctmedicinaclinica']);
-        $obj->setPctcirugia($form_data['pctcirugia']);
-        $obj->setPctmantenimientocolonias($form_data['pctmantenimientocolonias']);
-        $obj->setPctmanipulacion($form_data['pctmanipulacion']);
-        $obj->setPctdirprojectos($form_data['pctdirprojectos']);
-        $obj->setPctnecropsia($form_data['pctnecropsia']);
-        $obj->setPctdiaglaboratorio($form_data['pctdiaglaboratorio']);
-        $obj->setPctceua($form_data['pctceua']);
-        $obj->setPcthistopatologia($form_data['pcthistopatologia']);
-        $obj->setPctentedu($form_data['pctentedu']);
-        $obj->setPctapoyoinvestigadores($form_data['pctapoyoinvestigadores']);
-        $obj->setPctsupervision($form_data['pctsupervision']);
-        $obj->setPctprodanimal($form_data['pctprodanimal']);
-        $obj->setPctlegal($form_data['pctlegal']);
-        $obj->setPctotrasfunciones($form_data['pctotrasfunciones']);
-        $obj->setPctfuncnorel($form_data['pctfuncnorel']);
-        $obj->setPctobservaciones($form_data['pctobservaciones']);
         $obj->setRealizocursos($form_data['realizocursos']);
         $obj->setAcrpersonales($form_data['acrpersonales']);
         $obj->setCategoria($form_data['categoria']);
@@ -1081,8 +1015,8 @@ class registros extends MY_Controller{
 		}
         if($save)
         {
-            $obj->setCvfile($upload_data['curriculum']['file_name']);
-            $obj->setCvpath($upload_data['curriculum']['file_path']);
+            //$obj->setCvfile($upload_data['curriculum']['file_name']);
+            //$obj->setCvpath($upload_data['curriculum']['file_path']);
             $acreditacionId = $obj->save();
             //redirect('registros/index');
             redirect('registros/showPersona/'.$acreditacionId);
@@ -1150,24 +1084,6 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('nombresupervisor', 'nombre supervisor', 'required|max_length[255]');			
 		$this->form_validation->set_rules('especiestrabajadas', 'Especies que trabajadas', 'required');			
 		$this->form_validation->set_rules('describatareas', 'Describa las tareas', '');			
-		$this->form_validation->set_rules('pctinvestigacion', 'Porcentaje Investigacion', 'is_numeric');			
-		$this->form_validation->set_rules('pctmedicinaclinica', 'Porcentaje Medicina Clinica', 'is_numeric');			
-		$this->form_validation->set_rules('pctcirugia', 'Porcentaje Cirugia', 'is_numeric');			
-		$this->form_validation->set_rules('pctmantenimientocolonias', 'Porcentaje Mantenimiento Colonias', 'is_numeric');			
-		$this->form_validation->set_rules('pctmanipulacion', 'Porcentaje Manipulación', 'is_numeric');			
-		$this->form_validation->set_rules('pctdirprojectos', 'Porcentaje Dirección de Projectos', 'is_numeric');			
-		$this->form_validation->set_rules('pctnecropsia', 'Porcentaje Necropsia', 'is_numeric');			
-		$this->form_validation->set_rules('pctdiaglaboratorio', 'Porcentaje Diagnostico Laboratorio', 'is_numeric');			
-		$this->form_validation->set_rules('pctceua', 'Porcentaje CEUA', 'is_numeric');			
-		$this->form_validation->set_rules('pcthistopatologia', 'Porcentaje Histopatologia', 'is_numeric');			
-		$this->form_validation->set_rules('pctentedu', 'Porcentaje Entrenamiento/Educacion', 'is_numeric');			
-		$this->form_validation->set_rules('pctapoyoinvestigadores', 'Porcentaje Apoyo Investigadores', 'is_numeric');			
-		$this->form_validation->set_rules('pctsupervision', 'Porcentaje Supervision', 'is_numeric');			
-		$this->form_validation->set_rules('pctprodanimal', 'Porcentaje Produccion animal', 'is_numeric');			
-		$this->form_validation->set_rules('pctlegal', 'Porcentaje Responsabilidad Legal', 'is_numeric');			
-		$this->form_validation->set_rules('pctotrasfunciones', 'Porcentaje Otras Funciones', 'is_numeric');			
-		$this->form_validation->set_rules('pctfuncnorel', 'Porcentaje Funciones No Relacionadas', 'is_numeric');			
-		$this->form_validation->set_rules('pctobservaciones', 'Observaciones de Porcentajes', '');			
 		$this->form_validation->set_rules('realizocursos', 'Realizo Cursos', 'required|max_length[1]');			
 		$this->form_validation->set_rules('acrpersonales', 'Acreditaciones Personales', 'required|max_length[1]');			
 		$this->form_validation->set_rules('categoria', 'Categoria', 'required');			
@@ -1214,24 +1130,6 @@ class registros extends MY_Controller{
                       'nombresupervisor' => set_value('nombresupervisor'),
                       'especiestrabajadas' => set_value('especiestrabajadas'),
                       'describatareas' => set_value('describatareas'),
-                      'pctinvestigacion' => set_value('pctinvestigacion'),
-                      'pctmedicinaclinica' => set_value('pctmedicinaclinica'),
-                      'pctcirugia' => set_value('pctcirugia'),
-                      'pctmantenimientocolonias' => set_value('pctmantenimientocolonias'),
-                      'pctmanipulacion' => set_value('pctmanipulacion'),
-                      'pctdirprojectos' => set_value('pctdirprojectos'),
-                      'pctnecropsia' => set_value('pctnecropsia'),
-                      'pctdiaglaboratorio' => set_value('pctdiaglaboratorio'),
-                      'pctceua' => set_value('pctceua'),
-                      'pcthistopatologia' => set_value('pcthistopatologia'),
-                      'pctentedu' => set_value('pctentedu'),
-                      'pctapoyoinvestigadores' => set_value('pctapoyoinvestigadores'),
-                      'pctsupervision' => set_value('pctsupervision'),
-                      'pctprodanimal' => set_value('pctprodanimal'),
-                      'pctlegal' => set_value('pctlegal'),
-                      'pctotrasfunciones' => set_value('pctotrasfunciones'),
-                      'pctfuncnorel' => set_value('pctfuncnorel'),
-                      'pctobservaciones' => set_value('pctobservaciones'),
                       'realizocursos' => set_value('realizocursos'),
                       'acrpersonales' => set_value('acrpersonales'),
                       'categoria' => set_value('categoria'),
@@ -1257,24 +1155,6 @@ class registros extends MY_Controller{
         $obj->setNombresupervisor($form_data['nombresupervisor']);
         $obj->setEspeciestrabajadas($form_data['especiestrabajadas']);
         $obj->setDescribatareas($form_data['describatareas']);
-        $obj->setPctinvestigacion($form_data['pctinvestigacion']);
-        $obj->setPctmedicinaclinica($form_data['pctmedicinaclinica']);
-        $obj->setPctcirugia($form_data['pctcirugia']);
-        $obj->setPctmantenimientocolonias($form_data['pctmantenimientocolonias']);
-        $obj->setPctmanipulacion($form_data['pctmanipulacion']);
-        $obj->setPctdirprojectos($form_data['pctdirprojectos']);
-        $obj->setPctnecropsia($form_data['pctnecropsia']);
-        $obj->setPctdiaglaboratorio($form_data['pctdiaglaboratorio']);
-        $obj->setPctceua($form_data['pctceua']);
-        $obj->setPcthistopatologia($form_data['pcthistopatologia']);
-        $obj->setPctentedu($form_data['pctentedu']);
-        $obj->setPctapoyoinvestigadores($form_data['pctapoyoinvestigadores']);
-        $obj->setPctsupervision($form_data['pctsupervision']);
-        $obj->setPctprodanimal($form_data['pctprodanimal']);
-        $obj->setPctlegal($form_data['pctlegal']);
-        $obj->setPctotrasfunciones($form_data['pctotrasfunciones']);
-        $obj->setPctfuncnorel($form_data['pctfuncnorel']);
-        $obj->setPctobservaciones($form_data['pctobservaciones']);
         $obj->setRealizocursos($form_data['realizocursos']);
         $obj->setAcrpersonales($form_data['acrpersonales']);
         $obj->setCategoria($form_data['categoria']);

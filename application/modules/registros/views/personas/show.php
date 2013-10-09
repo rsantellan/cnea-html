@@ -93,114 +93,6 @@
     </div>
     <div class="grid_5">
       <span>
-        <label>% Investigacion</label>
-        <?php echo $acreditacion->getPctinvestigacion(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Medicina Clinica</label>
-        <?php echo $acreditacion->getPctmedicinaclinica(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Cirugia</label>
-        <?php echo $acreditacion->getPctcirugia(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Mantenimiento Colonias</label>
-        <?php echo $acreditacion->getPctmantenimientocolonias(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Manipulación</label>
-        <?php echo $acreditacion->getPctmanipulacion(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Dirección de Projectos</label>
-        <?php echo $acreditacion->getPctdirprojectos(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Necropsia</label>
-        <?php echo $acreditacion->getPctnecropsia(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Diagnostico Laboratorio</label>
-        <?php echo $acreditacion->getPctdiaglaboratorio(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% CEUA</label>
-        <?php echo $acreditacion->getPctceua(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Histopatologia</label>
-        <?php echo $acreditacion->getPcthistopatologia(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Entrenamiento / Educacion</label>
-        <?php echo $acreditacion->getPctentedu(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Apoyo Investigadores</label>
-        <?php echo $acreditacion->getPctapoyoinvestigadores(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Supervision</label>
-        <?php echo $acreditacion->getPctsupervision(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Produccion animal</label>
-        <?php echo $acreditacion->getPctprodanimal(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Responsabilidad Legal</label>
-        <?php echo $acreditacion->getPctlegal(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Otras Funciones</label>
-        <?php echo $acreditacion->getPctotrasfunciones(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>% Funciones No Relacionadas</label>
-        <?php echo $acreditacion->getPctfuncnorel(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>Observaciones de Porcentajes</label>
-        <?php echo $acreditacion->getPctobservaciones(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
         <label>Categoria</label>
         <?php echo $acreditacion->getCategoria(); ?>
       </span>
@@ -214,6 +106,8 @@
     <div class="clear"></div>
     <a href="<?php echo site_url("registros/editarPersona/".$acreditacion->getId());?>">Editar</a>
     <div class="clear"></div>
+    <!-- Cursos -->
+    <hr/>
     <div class="grid_5">
       <span>
         <label>Realizo Cursos</label>
@@ -249,7 +143,7 @@
     </div>
     
     <div class="grid_14">
-      <h4>Archivos</h4>
+      <h4>Archivos de los cursos</h4>
       <table>
         <thead>
           <tr>
@@ -305,7 +199,8 @@
     <hr/>
 	<?php endif; ?>
 	<div class="clear"></div>
-	
+	<hr/>
+    <!-- Acreditaciones -->
     <div class="grid_5">
       <span>
         <label>Acreditaciones Personales</label>
@@ -333,7 +228,7 @@
       </span>
     </div>
     <div class="grid_14">
-      <h4>Archivos</h4>
+      <h4>Archivos de las acreditaciones</h4>
       <table>
         <thead>
           <tr>
@@ -392,57 +287,12 @@
 	<?php endif; ?>
     
     
-    <div class="grid_14">
-      <h4>Firma del interesado</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Accion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="archivo_<?php echo $acreditacion->getId();?>">
-            <td><?php echo $acreditacion->getCvfile(); ?></td>
-            <td>
-              <a href="<?php echo site_url("registros/downloadArchivoFirmaAcreditacion/".$acreditacion->getId());?>">Descargar</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="clear"></div>
-      <div id="add_archivo_firma_form" style="<?php if(!isset($errores) && !isset($errores['archivo'])):?>display:none<?php endif;?>">
-        <div class="grid_14">
-          <span>
-            <label>Firma del interesado</label>
-            <form action="<?php echo site_url('registros/acreditacionesSubirFirma'); ?>" method="POST" enctype="multipart/form-data">
-              <input type="file" name="archivo" size="20" />
-              <input type="submit" value="upload" />
-              <input type="hidden" value="<?php echo $acreditacion->getId();?>" name="id"/>
-              <input type="hidden" value="acreditacion" name="type"/>
-            </form>
-          </span>
-        </div>
-      </div>
-    </div>
-    <?php if(isset($errores) && isset($errores['archivo_acreditacion'])):?>
     
-    <div class="clear"></div>
-    <div class="grid_5">
-      <div class="error">
-        <?php echo $errores['archivo_acreditacion'];?>
-      </div>
-    </div>  
-    <?php endif; ?>
-
-    <div class="clear"></div>
-    <a href="javascript:void(0)" onclick="$('#add_archivo_firma_form').slideToggle('slow');">Agregar</a>
-    <hr/>
   </div>
   <div class="clear"></div>
   
   <div class="grid_14">
-      <h4>Archivos</h4>
+      <h4>Firma de la institucion</h4>
       <table>
         <thead>
           <tr>

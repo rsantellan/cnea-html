@@ -43,12 +43,12 @@ class acreditacion extends MY_Model{
   private $pctlegal = 0;
   private $pctotrasfunciones = 0;
   private $pctfuncnorel = 0;
-  private $pctobservaciones;
+  private $pctobservaciones = "";
   private $realizocursos;
   private $acrpersonales;
   private $categoria;
-  private $cvfile;
-  private $cvpath;
+  private $cvfile = "";
+  private $cvpath = "";
   private $isactive;
   private $fechavencimiento;
   private $curso1;
@@ -358,7 +358,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getRealizocursos() {
-    if(empty($this->realizocursos)) return "1";
+    if($this->realizocursos == "") return "1";
     return $this->realizocursos;
   }
 
@@ -367,7 +367,7 @@ class acreditacion extends MY_Model{
   }
 
   public function getAcrpersonales() {
-    if(empty($this->acrpersonales)) return "1";
+    if($this->acrpersonales == "") return "1";
     return $this->acrpersonales;
   }
 

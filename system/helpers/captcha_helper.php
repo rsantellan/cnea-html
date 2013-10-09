@@ -108,7 +108,8 @@ if ( ! function_exists('create_captcha'))
 
 	   if ($word == '')
 	   {
-			$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			//$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 			$str = '';
 			for ($i = 0; $i < 8; $i++)

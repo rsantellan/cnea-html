@@ -1,14 +1,6 @@
 <div class="content_right img_instituciones">
     <h1><?php echo lang("instituciones_formulario_titulo"); ?></h1>
-    <?php echo lang("instituciones_formulario_titulo_descarga"); ?>
-    <div style="width:515px">
-      <span>
-        <strong> 
-        <?php echo lang('instituciones_formulario_descarga_texto'); ?>
-        </strong>
-      </span>
-      <a href="<?php echo site_url("instituciones/descargarFormularioFirmasInstitucion");?>" class="descargar descargar_forms">descargar</a>
-    </div>
+    
     <div class="clear"></div>
     <h5><?php echo lang("instituciones_formulario_strong_text_1"); ?></h5>
     <?php if(strlen(validation_errors()) > 0 || (isset($errores) && count($errores) > 0)): ?>
