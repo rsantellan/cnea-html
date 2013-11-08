@@ -91,6 +91,9 @@ class acreditaciones extends MY_Controller {
 	$this->addJavascript("FormAcreditaciones.js");
 	$this->addStyleSheet("infieldlabelPersonas.css");
 
+    $this->addJavascript("jquery.cookie.js");
+    $this->addJavascript("sayt.jquery.js");
+        
 	$this->load->helper('form');
 	$this->load->library('form_validation');
 	$this->form_validation->set_rules('fecha', 'Fecha', 'required');

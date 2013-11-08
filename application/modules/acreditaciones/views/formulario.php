@@ -9,7 +9,7 @@
   <?php endif;?>
   
   <?php
-  $attributes = array('class' => 'infield_form', 'id' => '');
+  $attributes = array('class' => 'infield_form', 'id' => 'acreditacion_form');
   echo form_open_multipart('acreditaciones/formulario', $attributes); ?>    
     <h4><?php echo lang("personal_formulario_subtitulo_identificacion"); ?></h4>
     <div class="clear"></div>

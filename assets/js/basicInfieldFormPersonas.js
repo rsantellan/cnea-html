@@ -1,7 +1,8 @@
 $(document).ready(function() {
    $(":date").dateinput();
+   $("#acreditacion_form").sayt();
    $(".infield_form p label.hasinfieldlabel").inFieldLabels();
-   
+   /*
    $('.button_short').each(function(index, val){
       $(this).bind('click', function() {
         $(this).prev().trigger('click');
@@ -13,6 +14,7 @@ $(document).ready(function() {
         return false;
       });
     });
+    */
 	if($('input[name=realizocursos]:checked').val() == 1)
 	{
 	  $(".realizacion_field").each(function(index, value) {

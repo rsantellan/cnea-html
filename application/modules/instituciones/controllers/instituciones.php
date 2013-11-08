@@ -110,8 +110,15 @@ class instituciones extends MY_Controller{
         $this -> addJavascript("basicInfieldFormInstituciones.js");
         //$this->addJavascript("acreditacion.js");
         $this -> addStyleSheet("infieldlabelInstituciones.css");
+        
+        $this->addJavascript("jquery.cookie.js");
+        $this->addJavascript("sayt.jquery.js");
+        
         $this -> addJavascript("FormInstituciones.js");
 
+        
+        
+    
         $this -> form_validation -> set_rules('NombreInsititucion', 'NombreInsititucion', 'required|max_length[255]');
         $this -> form_validation -> set_rules('RazonSocial', 'RazonSocial', 'max_length[255]');
         $this -> form_validation -> set_rules('RUT', 'RUT', 'max_length[255]');

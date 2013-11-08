@@ -7,7 +7,7 @@
     <span class="msg_error"><?php echo lang("instituciones_formulario_info_text_1"); ?></span>
     <?php endif; ?>
     <?php
-        $attributes = array('class' => 'infield_form', 'id' => '');
+        $attributes = array('class' => 'infield_form', 'id' => 'institucion_form');
         echo form_open_multipart('instituciones/formulario', $attributes); ?>
     <?php //echo form_open_multipart('instituciones/formulario', array('class' => 'infield_form', 'id' => '')); ?>
         <h4><?php echo lang("instituciones_formulario_subtitulo_1"); ?></h4>
@@ -287,7 +287,7 @@
           <span class="msg_error"><?php echo $errores['captcha'];?></span>
         <?php endif; ?>
         <?php echo $captchaImage;  // this will show the captcha image?>
-        <input type="text" name="wordinstitucion"  />
+        <input type="text" name="wordinstitucion" id="captchaword" />
         <div class="clear"></div>
     
         <input type="submit" class="button button_large" value="enviar formulario" />
