@@ -54,16 +54,16 @@
     <label for="tipoestablecimiento">tipo establecimiento <span class="required">*</span></label>
     <?php echo form_error('tipoestablecimiento'); ?>  
     <div style="width: 30%; float: left;">
-      <label>Cria</label>
-      <input type="radio" class="radiobuttom" name="tipoestablecimiento" value="cria" <?php echo ($obj->getTipoestablecimiento() == "cria" || $obj->getTipoestablecimiento() == "")? "checked=\"checked\"" : "";?> />
+      <label style="float: left">Cria</label>
+      <input style="float: left; width: 20px; margin-top: 7px;" type="radio" class="radiobuttom" name="tipoestablecimiento" value="cria" <?php echo ($obj->getTipoestablecimiento() == "cria" || $obj->getTipoestablecimiento() == "")? "checked=\"checked\"" : "";?> />
     </div>
     <div style="width: 30%; float: left;">
-      <label><?php echo lang("instituciones_formulario_experimentacion"); ?></label>
-      <input type="radio" class="radiobuttom" name="tipoestablecimiento" value="experimentación" <?php echo ($obj->getTipoestablecimiento() == "experimentación")? "checked=\"checked\"" : "";?> />
+      <label style="float: left"><?php echo lang("instituciones_formulario_experimentacion"); ?></label>
+      <input style="float: left; width: 20px; margin-top: 7px;" type="radio" class="radiobuttom" name="tipoestablecimiento" value="experimentación" <?php echo ($obj->getTipoestablecimiento() == "experimentación")? "checked=\"checked\"" : "";?> />
     </div>
     <div style="width: 30%; float: left;">
-      <label><?php echo lang("instituciones_formulario_mixto"); ?></label>
-      <input type="radio" class="radiobuttom" name="tipoestablecimiento" value="mixto" <?php echo ($obj->getTipoestablecimiento() == "mixto")? "checked=\"checked\"" : "";?> />
+      <label style="float: left"><?php echo lang("instituciones_formulario_mixto"); ?></label>
+      <input style="float: left; width: 20px; margin-top: 7px;" type="radio" class="radiobuttom" name="tipoestablecimiento" value="mixto" <?php echo ($obj->getTipoestablecimiento() == "mixto")? "checked=\"checked\"" : "";?> />
     </div>
   </p>
   <div class='clear'></div>

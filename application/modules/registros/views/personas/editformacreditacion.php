@@ -16,22 +16,22 @@
       <br /><input id="nombreapellido" type="text" name="nombreapellido" maxlength="255" value="<?php echo $obj->getNombreapellido(); ?>"  />
     </p>
   </div>
-  <div class="grid_10">
+  <div class="grid_14">
     <p>
     <h6>Nivel de formación</h6>
     <?php echo form_error('formacion_primaria'); ?>
     <?php echo form_error('formacion_secundaria'); ?>
     <?php echo form_error('formacionterciaria'); ?>
-    <div style="width: 30%; float: left;">
-      <label for="formacion_primaria">formacion primaria</label>
+    <div style="width: 32%; float: left;">
+      <label for="formacion_primaria" style="float:left">formacion primaria</label>
       <input type="radio" class="radiobuttom"  id="formacion_primaria" name="formacion" value="primaria" class="" <?php echo ($obj->getFormacion() == "primaria")? "checked=\"checked\"" : "";?> /> 
     </div>
-    <div style="width: 30%; float: left;">
-      <label for="formacion_secundaria">formacion secundaria</label>
+    <div style="width: 36%; float: left;">
+      <label for="formacion_secundaria" style="float:left">formacion secundaria</label>
       <input type="radio" class="radiobuttom"  id="formacion_secundaria" name="formacion" value="secundaria" class="" <?php echo ($obj->getFormacion() =="secundaria")? "checked=\"checked\""  : ""; ?> /> 
     </div>
-    <div style="width: 30%; float: left;">
-      <label for="formacionterciaria">formacion terciaria</label>
+    <div style="width: 32%; float: left;">
+      <label for="formacionterciaria" style="float:left">formacion terciaria</label>
       <input type="radio" class="radiobuttom"  id="formacionterciaria" name="formacion" value="terciaria" class="" <?php echo ($obj->getFormacion() == "terciaria")? "checked=\"checked\"" : ""; ?> /> 
     </div>
     </p>
@@ -141,13 +141,13 @@
       <label for="realizocursos">Realizo Cursos <span class="required">*</span></label>
       <?php echo form_error('realizocursos'); ?>
       <br />
-    <div style="width: 30%; float: left;">
-      <input  name="realizocursos" type="radio" class="" value="1" <?php echo ($obj->getRealizocursos() == "1")? "checked=\"checked\"" : ""; ?> />
-      <label for="realizocursos" class="">Si</label>
+    <div style="width: 20%; float: left; margin-right: 30px;">
+      <input style="width:20px; margin-top: 6px;" name="realizocursos" type="radio" class="" value="1" <?php echo ($obj->getRealizocursos() == "1")? "checked=\"checked\"" : ""; ?> />
+      <label style="float: left;" for="realizocursos" class="">Si</label>
     </div>
-    <div style="width: 30%; float: left;">
-      <input name="realizocursos" type="radio" class="" value="0" <?php echo ($obj->getRealizocursos() == "0")? "checked=\"checked\"" : ""; ?> />
-      <label for="realizocursos" class="">No</label>
+    <div style="width: 20%; float: left; margin-right: 30px;">
+      <input style="width:20px; margin-top: 6px;" name="realizocursos" type="radio" class="" value="0" <?php echo ($obj->getRealizocursos() == "0")? "checked=\"checked\"" : ""; ?> />
+      <label style="float: left;" for="realizocursos" class="">No</label>
     </div>
     </p>
   </div>
@@ -188,13 +188,13 @@
       <?php echo form_error('acrpersonales'); ?>
       <br />
       
-    <div style="width: 30%; float: left;">
-      <input id="acrpersonales" name="acrpersonales" type="radio" class="" value="1" <?php echo ($obj->getAcrpersonales() == "1")? "checked=\"checked\"" : ""; ?> />
-      <label for="acrpersonales" class="">Si</label>
+    <div style="width: 20%; float: left; margin-right: 30px;">
+      <input style="width:20px; margin-top: 6px;" id="acrpersonales" name="acrpersonales" type="radio" class="" value="1" <?php echo ($obj->getAcrpersonales() == "1")? "checked=\"checked\"" : ""; ?> />
+      <label style="float: left;" for="acrpersonales" class="">Si</label>
     </div>
-    <div style="width: 30%; float: left;">
-      <input id="acrpersonales" name="acrpersonales" type="radio" class="" value="0" <?php echo ($obj->getAcrpersonales() == "0")? "checked=\"checked\"" : ""; ?> />
-      <label for="acrpersonales" class="">No</label>
+    <div style="width: 20%; float: left; margin-right: 30px;">
+      <input style="width:20px; margin-top: 6px;" id="acrpersonales" name="acrpersonales" type="radio" class="" value="0" <?php echo ($obj->getAcrpersonales() == "0")? "checked=\"checked\"" : ""; ?> />
+      <label style="float: left;" for="acrpersonales" class="">No</label>
     </div>
     </p>
   </div>
@@ -221,24 +221,24 @@
     </p>
   </div>
   <div class="clear"></div>
-  <div class="grid_10">
+  <div class="grid_16">
     <p>
       <h4>Seleccione la categoria</h4>
     <div style="width: 23%; float: left;">
-      <label for="categoriaa">Categoria A</label>
+      <label style="float:left" for="categoriaa">Categoria A</label>
       <input name="categoria" type="radio" value="A" class="" <?php echo ($obj->getCategoria() == "A")? "checked=\"checked\"" : ""; ?>> 
     </div>
     <div style="width: 23%; float: left;">
-      <label for="categoriab">Categoria B</label>
-      <input name="categoria" type="radio" value="B" class="" <?php echo ($obj->getCategoria() == "B")? "checked=\"checked\"" : ""; ?>> 
+      <label style="float:left" for="categoriab">Categoria B</label>
+      <input style="float:left; width: 20px; margin-top: 7px" name="categoria" type="radio" value="B" class="" <?php echo ($obj->getCategoria() == "B")? "checked=\"checked\"" : ""; ?>> 
     </div>   
     <div style="width: 23%; float: left;">
       <label for="categoria_c1">Categoria C1</label>
-      <input name="categoria" type="radio" value="C1" class="" <?php echo ($obj->getCategoria() == "C1")? "checked=\"checked\"" : ""; ?>> 
+      <input style="float:left; width: 20px; margin-top: 7px" name="categoria" type="radio" value="C1" class="" <?php echo ($obj->getCategoria() == "C1")? "checked=\"checked\"" : ""; ?>> 
     </div>
     <div style="width: 23%; float: left;">
-      <label for="categoria_c2">Categoria C2</label>
-      <input name="categoria" type="radio" value="C2" class="" <?php echo ($obj->getCategoria() == "C2")? "checked=\"checked\"" : ""; ?>> 
+      <label style="float:left" for="categoria_c2">Categoria C2</label>
+      <input style="float:left; width: 20px; margin-top: 7px" name="categoria" type="radio" value="C2" class="" <?php echo ($obj->getCategoria() == "C2")? "checked=\"checked\"" : ""; ?>> 
     </div>
     </p>
   </div>
@@ -262,10 +262,30 @@
   
 <script type="text/javascript">
 $(document).ready(function() {
-   $('#fecha').datepicker();
-   $('#fechanacimiento').datepicker();
-   $('#fechavencimiento').datepicker();
-   $('#acrfecha').datepicker();
+   $('#fecha').datepicker({
+      changeYear: true,
+      yearRange: "-100:+0"
+    });
+   $('#fechanacimiento').datepicker({
+      changeYear: true,
+      yearRange: "-100:+0"
+    });
+   $('#fechavencimiento').datepicker({
+      changeYear: true,
+      yearRange: "-100:+0"
+    });
+   $('#acrfecha').datepicker({
+      changeYear: true,
+      yearRange: "-100:+0"
+    });
  });
 
 </script>  
+
+<style>
+input.radiobuttom {
+float: left;
+width: 15px !important;
+height: 15px !important;
+}
+</style>
