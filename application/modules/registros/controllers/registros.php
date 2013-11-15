@@ -1069,6 +1069,7 @@ class registros extends MY_Controller{
         $this -> load -> library('form_validation');
         $this->form_validation->set_rules('fecha', 'Fecha', 'required');			
 		$this->form_validation->set_rules('nombreapellido', 'Nombre y Apellido', 'required|trim|max_length[255]');			
+		$this->form_validation->set_rules('formacion', 'formacion', '');			
 		$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacionterciaria', 'formacion terciaria', 'max_length[1]');			
@@ -1139,7 +1140,7 @@ class registros extends MY_Controller{
                       'fechavencimiento' => set_value('fechavencimiento')
                   );
         
-        
+//        var_dump($form_data['formacion']);die;
         $obj->setFecha($form_data['fecha']);
         $obj->setNombreapellido($form_data['nombreapellido']);
         $obj->setFormacion($form_data['formacion']);
