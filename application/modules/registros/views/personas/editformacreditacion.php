@@ -272,11 +272,11 @@ $(document).ready(function() {
     });
    $('#fechavencimiento').datepicker({
       changeYear: true,
-      yearRange: "-100:+0"
+      yearRange: "-100:+10"
     });
    $('#acrfecha').datepicker({
       changeYear: true,
-      yearRange: "-100:+0"
+      yearRange: "-100:+10"
     });
  });
 
