@@ -46,7 +46,10 @@ class acreditacion extends MY_Model{
   private $pctobservaciones = "";
   private $realizocursos;
   private $acrpersonales;
-  private $categoria;
+  private $categoriaA;
+  private $categoriaB;
+  private $categoriaC1;
+  private $categoriaC2;
   private $cvfile = "";
   private $cvpath = "";
   private $isactive;
@@ -375,15 +378,39 @@ class acreditacion extends MY_Model{
     $this->acrpersonales = $acrpersonales;
   }
 
-  public function getCategoria() {
-    if(empty($this->categoria)) return "A";
-    return $this->categoria;
+  public function getCategoriaA() {
+    return $this->categoriaA;
   }
 
-  public function setCategoria($categoria) {
-    $this->categoria = $categoria;
+  public function setCategoriaA($categoriaA) {
+    $this->categoriaA = $categoriaA;
   }
 
+  public function getCategoriaB() {
+    return $this->categoriaB;
+  }
+
+  public function setCategoriaB($categoriaB) {
+    $this->categoriaB = $categoriaB;
+  }
+
+  public function getCategoriaC1() {
+    return $this->categoriaC1;
+  }
+
+  public function setCategoriaC1($categoriaC1) {
+    $this->categoriaC1 = $categoriaC1;
+  }
+
+  public function getCategoriaC2() {
+    return $this->categoriaC2;
+  }
+
+  public function setCategoriaC2($categoriaC2) {
+    $this->categoriaC2 = $categoriaC2;
+  }
+
+  
   public function getCvfile() {
     return $this->cvfile;
   }
@@ -531,7 +558,10 @@ class acreditacion extends MY_Model{
             'pctobservaciones' => $this->getPctobservaciones(),
             'realizocursos' => $this->getRealizocursos(),
             'acrpersonales' => $this->getAcrpersonales(),
-            'categoria' => $this->getCategoria(),
+            'categoriaA' => $this->getCategoriaA(),
+            'categoriaB' => $this->getCategoriaB(),
+            'categoriaC1' => $this->getCategoriaC1(),
+            'categoriaC2' => $this->getCategoriaC2(),
             'cvfile' => $this->getCvfile(),
             'cvpath' => $this->getCvpath(),
             'isactive' => $this->getIsactive(),
@@ -544,7 +574,7 @@ class acreditacion extends MY_Model{
 			'acrcategoria' => $this->getAcrcategoria(),
 			'acrfecha' => $this->formatDateToMysql($this->getAcrfecha()),
         );
-      
+      //var_dump($data);die;
       $this->db->where('id', $this->getId());
       $this->db->update($this->getTablename(), $data);
       return $this->getId();
@@ -604,7 +634,10 @@ class acreditacion extends MY_Model{
             'pctobservaciones' => $this->getPctobservaciones(),
             'realizocursos' => $this->getRealizocursos(),
             'acrpersonales' => $this->getAcrpersonales(),
-            'categoria' => $this->getCategoria(),
+            'categoriaA' => $this->getCategoriaA(),
+            'categoriaB' => $this->getCategoriaB(),
+            'categoriaC1' => $this->getCategoriaC1(),
+            'categoriaC2' => $this->getCategoriaC2(),
             'cvfile' => $this->getCvfile(),
             'cvpath' => $this->getCvpath(),
             'isactive' => 0,
@@ -617,6 +650,14 @@ class acreditacion extends MY_Model{
 			'acrcategoria' => $this->getAcrcategoria(),
 			'acrfecha' => $this->formatDateToMysql($this->getAcrfecha()),
         );
+      /**
+       *       $obj->setCategoriaA($aux->categoriaA);
+      $obj->setCategoriaB($aux->categoriaB);
+      $obj->setCategoriaC1($aux->categoriaC1);
+      $obj->setCategoriaC2($aux->categoriaC2);
+       * 
+       */
+      
       /*
       $data["nombreinsititucion"] = $this->getNombreinsititucion();
       $data["razonsocial"] = $this->getRazonsocial();
@@ -638,6 +679,7 @@ class acreditacion extends MY_Model{
       $data["password"] = $this->generatePassword();
       */      
       //var_dump($data);die;
+      
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       
@@ -786,7 +828,10 @@ class acreditacion extends MY_Model{
       $obj->setPctobservaciones($aux->pctobservaciones);
       $obj->setRealizocursos($aux->realizocursos);
       $obj->setAcrpersonales($aux->acrpersonales);
-      $obj->setCategoria($aux->categoria);
+      $obj->setCategoriaA($aux->categoriaA);
+      $obj->setCategoriaB($aux->categoriaB);
+      $obj->setCategoriaC1($aux->categoriaC1);
+      $obj->setCategoriaC2($aux->categoriaC2);
       $obj->setFechavencimiento($aux->fechavencimiento);
       $obj->setIsactive($aux->isactive);
       $obj->setCvfile($aux->cvfile);

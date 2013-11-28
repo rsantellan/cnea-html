@@ -93,8 +93,33 @@
     </div>
     <div class="grid_5">
       <span>
-        <label>Categoria</label>
-        <?php echo $acreditacion->getCategoria(); ?>
+        <label>Categorias</label>
+        <?php 
+          $catIndex = 0;
+          if($acreditacion->getCategoriaA() == 1)
+          {
+            echo "A";
+            $catIndex++;
+          }
+          if($acreditacion->getCategoriaB() == 1)
+          {
+            if($catIndex > 0) echo ", ";
+            echo "B";
+            $catIndex++;
+          }
+          if($acreditacion->getCategoriaC1() == 1)
+          {
+            if($catIndex > 0) echo ", ";
+            echo "C1";
+            $catIndex++;
+          }
+          if($acreditacion->getCategoriaC2() == 1)
+          {
+            if($catIndex > 0) echo ", ";
+            echo "C2";
+            $catIndex++;
+          }
+        ?>
       </span>
     </div>
     <div class="grid_5">

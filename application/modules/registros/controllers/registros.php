@@ -913,7 +913,10 @@ class registros extends MY_Controller{
         	
 		$this->form_validation->set_rules('realizocursos', 'Realizo Cursos', 'required|max_length[1]');			
 		$this->form_validation->set_rules('acrpersonales', 'Acreditaciones Personales', 'required|max_length[1]');			
-		$this->form_validation->set_rules('categoria', 'Categoria', 'required');			
+		$this->form_validation->set_rules('categoriaA', 'Categoria A');			
+        $this->form_validation->set_rules('categoriaB', 'Categoria B');
+        $this->form_validation->set_rules('categoriaC1', 'Categoria C1');
+        $this->form_validation->set_rules('categoriaC2', 'Categoria C2');
 		$this->form_validation->set_rules('fechavencimiento', 'fechavencimiento', 'required');
 		
 		$this -> form_validation -> set_rules('curso1', 'curso1', 'max_length[255]');
@@ -958,7 +961,10 @@ class registros extends MY_Controller{
                       'describatareas' => set_value('describatareas'),
                       'realizocursos' => set_value('realizocursos'),
                       'acrpersonales' => set_value('acrpersonales'),
-                      'categoria' => set_value('categoria'),
+                      'categoriaA' => set_value('categoriaA'),
+                      'categoriaB' => set_value('categoriaB'),
+                      'categoriaC1' => set_value('categoriaC1'),
+                      'categoriaC2' => set_value('categoriaC2'),
                       'cvfile' => set_value('cvfile'),
                       'cvpath' => set_value('cvpath'),
                       'isactive' => set_value('isactive'),
@@ -983,7 +989,10 @@ class registros extends MY_Controller{
         $obj->setDescribatareas($form_data['describatareas']);
         $obj->setRealizocursos($form_data['realizocursos']);
         $obj->setAcrpersonales($form_data['acrpersonales']);
-        $obj->setCategoria($form_data['categoria']);
+        $obj->setCategoriaA($form_data['categoriaA']);
+        $obj->setCategoriaB($form_data['categoriaB']);
+        $obj->setCategoriaC1($form_data['categoriaC1']);
+        $obj->setCategoriaC2($form_data['categoriaC2']);
         $obj->setFechavencimiento($form_data['fechavencimiento']);
 		
 		if($obj->getRealizocursos() == 1)
@@ -1087,7 +1096,10 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('describatareas', 'Describa las tareas', '');			
 		$this->form_validation->set_rules('realizocursos', 'Realizo Cursos', 'required|max_length[1]');			
 		$this->form_validation->set_rules('acrpersonales', 'Acreditaciones Personales', 'required|max_length[1]');			
-		$this->form_validation->set_rules('categoria', 'Categoria', 'required');			
+        $this->form_validation->set_rules('categoriaA', 'Categoria A');			
+        $this->form_validation->set_rules('categoriaB', 'Categoria B');
+        $this->form_validation->set_rules('categoriaC1', 'Categoria C1');
+        $this->form_validation->set_rules('categoriaC2', 'Categoria C2');			
 		$this->form_validation->set_rules('fechavencimiento', 'fechavencimiento', 'required');
 		
 		$this -> form_validation -> set_rules('curso1', 'curso1', 'max_length[255]');
@@ -1133,14 +1145,19 @@ class registros extends MY_Controller{
                       'describatareas' => set_value('describatareas'),
                       'realizocursos' => set_value('realizocursos'),
                       'acrpersonales' => set_value('acrpersonales'),
-                      'categoria' => set_value('categoria'),
+                      'categoriaA' => set_value('categoriaA'),
+                      'categoriaB' => set_value('categoriaB'),
+                      'categoriaC1' => set_value('categoriaC1'),
+                      'categoriaC2' => set_value('categoriaC2'),
                       'cvfile' => set_value('cvfile'),
                       'cvpath' => set_value('cvpath'),
                       'isactive' => set_value('isactive'),
                       'fechavencimiento' => set_value('fechavencimiento')
                   );
-        
-//        var_dump($form_data['formacion']);die;
+        /*
+        var_dump($form_data);
+        echo '<hr/>';
+        */
         $obj->setFecha($form_data['fecha']);
         $obj->setNombreapellido($form_data['nombreapellido']);
         $obj->setFormacion($form_data['formacion']);
@@ -1158,7 +1175,10 @@ class registros extends MY_Controller{
         $obj->setDescribatareas($form_data['describatareas']);
         $obj->setRealizocursos($form_data['realizocursos']);
         $obj->setAcrpersonales($form_data['acrpersonales']);
-        $obj->setCategoria($form_data['categoria']);
+        $obj->setCategoriaA($form_data['categoriaA']);
+        $obj->setCategoriaB($form_data['categoriaB']);
+        $obj->setCategoriaC1($form_data['categoriaC1']);
+        $obj->setCategoriaC2($form_data['categoriaC2']);
         $obj->setFechavencimiento($form_data['fechavencimiento']);
 		if($obj->getRealizocursos() == 1)
 		{

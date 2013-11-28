@@ -225,19 +225,19 @@
       <h4>Seleccione la categoria</h4>
     <div style="width: 23%; float: left;">
       <label style="float:left" for="categoriaa">Categoria A</label>
-      <input style="float:left; width: 20px; margin-top: 7px" name="categoria" type="radio" value="A" class="" <?php echo ($obj->getCategoria() == "A")? "checked=\"checked\"" : ""; ?>> 
+      <input style="float:left; width: 20px; margin-top: 7px" name="categoriaA" type="checkbox" value="1" class="" <?php echo ($obj->getCategoriaA() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>
     <div style="width: 23%; float: left;">
       <label style="float:left" for="categoriab">Categoria B</label>
-      <input style="float:left; width: 20px; margin-top: 7px" name="categoria" type="radio" value="B" class="" <?php echo ($obj->getCategoria() == "B")? "checked=\"checked\"" : ""; ?>> 
+      <input style="float:left; width: 20px; margin-top: 7px" name="categoriaB" type="checkbox" value="1" class="" <?php echo ($obj->getCategoriaB() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>   
     <div style="width: 23%; float: left;">
       <label style="float:left" for="categoria_c1">Categoria C1</label>
-      <input style="float:left; width: 20px; margin-top: 7px" name="categoria" type="radio" value="C1" class="" <?php echo ($obj->getCategoria() == "C1")? "checked=\"checked\"" : ""; ?>> 
+      <input style="float:left; width: 20px; margin-top: 7px" name="categoriaC1" type="checkbox" value="1" class="" <?php echo ($obj->getCategoriaC1() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>
     <div style="width: 23%; float: left;">
       <label style="float:left" for="categoria_c2">Categoria C2</label>
-      <input style="float:left; width: 20px; margin-top: 7px" name="categoria" type="radio" value="C2" class="" <?php echo ($obj->getCategoria() == "C2")? "checked=\"checked\"" : ""; ?>> 
+      <input style="float:left; width: 20px; margin-top: 7px" name="categoriaC2" type="checkbox" value="1" class="" <?php echo ($obj->getCategoriaC2() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>
     </p>
   </div>

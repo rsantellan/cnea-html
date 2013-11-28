@@ -280,19 +280,19 @@
     <p>
       <div style="width: 23%; float: left;">
         <label for="categoriaa">Categor&iacute;a A</label>
-      <input name="categoria" type="radio" value="A" class="radiobuttom" <?php echo ($obj->getCategoria() == "A")? "checked=\"checked\"" : ""; ?>> 
+      <input name="categoriaA" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaA() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>
     <div style="width: 23%; float: left;">
       <label for="categoriab">Categor&iacute;a B</label>
-      <input name="categoria" type="radio" value="B" class="radiobuttom" <?php echo ($obj->getCategoria() == "B")? "checked=\"checked\"" : ""; ?>> 
+      <input name="categoriaB" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaB() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>   
     <div style="width: 23%; float: left;">
       <label for="categoria_c1">Categor&iacute;a C1*</label>
-      <input name="categoria" type="radio" value="C1" class="radiobuttom" <?php echo ($obj->getCategoria() == "C1")? "checked=\"checked\"" : ""; ?>> 
+      <input name="categoriaC1" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaC1() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>
     <div style="width: 24%; float: left;">
       <label for="categoria_c2">Categor&iacute;a C2**</label>
-      <input name="categoria" type="radio" value="C2" class="radiobuttom" <?php echo ($obj->getCategoria() == "C2")? "checked=\"checked\"" : ""; ?>> 
+      <input name="categoriaC2" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaC2() == 1)? "checked=\"checked\"" : ""; ?>> 
     </div>
     </p>
     <div class="clear"></div>

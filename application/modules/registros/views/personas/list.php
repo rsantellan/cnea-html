@@ -42,7 +42,32 @@
         <?php echo ($registro->direccionelectronica); ?>
       </td>
       <td>
-        <?php echo ($registro->categoria); ?>
+        <?php 
+          $catIndex = 0;
+          if($registro->categoriaA == 1)
+          {
+            echo "A";
+            $catIndex++;
+          }
+          if($registro->categoriaB == 1)
+          {
+            if($catIndex > 0) echo ", ";
+            echo "B";
+            $catIndex++;
+          }
+          if($registro->categoriaC1 == 1)
+          {
+            if($catIndex > 0) echo ", ";
+            echo "C1";
+            $catIndex++;
+          }
+          if($registro->categoriaC2 == 1)
+          {
+            if($catIndex > 0) echo ", ";
+            echo "C2";
+            $catIndex++;
+          }
+        ?>
       </td>
       <td>
         <?php echo ($registro->fechavencimiento); ?>
