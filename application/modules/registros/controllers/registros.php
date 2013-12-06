@@ -894,7 +894,8 @@ class registros extends MY_Controller{
         $this -> load -> helper('form');
         $this -> load -> library('form_validation');
         $this->form_validation->set_rules('fecha', 'Fecha', 'required');			
-		$this->form_validation->set_rules('nombreapellido', 'Nombre y Apellido', 'required|trim|max_length[255]');			
+		$this->form_validation->set_rules('nombreapellido', 'Nombre y Apellido', 'required|trim|max_length[255]');
+        $this->form_validation->set_rules('formacion', 'formacion', '');
 		$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacionterciaria', 'formacion terciaria', 'max_length[1]');			
@@ -1220,7 +1221,7 @@ class registros extends MY_Controller{
         $this->data['obj'] = $obj;
         $this->data['use_grid_16'] = false;
         $this->addJqueryUI();
-        $this->data['content'] = "registros/personas/createformacreditacion";
+        $this->data['content'] = "registros/personas/editformacreditacion";
       
         $this->load->view("admin/layout", $this->data);
     }
