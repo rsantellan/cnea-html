@@ -74,6 +74,7 @@ class instituciones extends MY_Controller{
   
   function registro($page = 0)
   {
+    //$this->output->enable_profiler(TRUE);  
     //$this->load->model('registros/registro_institucion');
     $this->load->model('instituciones/institucion');
     $this->load->library('pagination');

@@ -31,6 +31,7 @@ class institucion extends MY_Model{
     private $isActive;
     private $code;
 	private $url;
+    private $ordinal;
     
     function __construct()
 	{
@@ -215,6 +216,40 @@ class institucion extends MY_Model{
       $this->url = $url;
     }
 
+    public function getOrdinal() {
+        return $this->ordinal;
+    }
+
+    public function setOrdinal($ordinal) {
+        $this->ordinal = $ordinal;
+    }
+
+    function retrieveLastOrder()
+    {
+      $this->db->select_max('ordinal');
+      $query = $this->db->get($this->getTablename());
+      $result = $query->result('array');
+      return ((int)$result[0]['ordinal'] + 1);
+    }
+    
+    function retrieveRegistrosForSort()
+    {
+      $this->db->select(array('id', 'nombreinsititucion', 'ordinal'));
+      $this->db->order_by("ordinal", "desc");
+      $query = $this->db->get($this->getTablename());
+      
+      return $query->result();
+    }
+    
+    function updateOrder($institucion_id, $order)
+    {
+      $data = array(
+                'ordinal' => $order
+             );
+      $this->db->where('id', $institucion_id);
+      $this->db->update($this->getTablename(), $data);
+    }
+    
     public function isNew(){
       if($this->getId() == "" || is_null($this->getId()))
       {
@@ -284,7 +319,8 @@ class institucion extends MY_Model{
       $data["responsablefilepath"] = $this->getCvfilepath();
       $data["password"] = $this->generatePassword();
       $data["code"] = $this->getCode();
-      $data["url"] = $this->getUrl();        
+      $data["url"] = $this->getUrl();  
+      $data["ordinal"] = $this->retrieveLastOrder();
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       
@@ -309,8 +345,8 @@ class institucion extends MY_Model{
     
     function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE, $onlyActive = false)
     {
-      //$this->db->order_by("ordinal", "desc");
-      $this->db->order_by("id", "desc");
+      $this->db->order_by("ordinal", "desc");
+      //$this->db->order_by("id", "desc");
       $query = null;
       if($onlyActive)
       {

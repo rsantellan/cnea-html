@@ -41,6 +41,7 @@ class registros extends MY_Controller{
     
     
     function instituciones(){
+//      $this->output->enable_profiler(TRUE);  
       $this->data['menu_id'] = 'registros_instituciones';
       
       $this->load->model('instituciones/institucion');
@@ -1415,8 +1416,8 @@ class registros extends MY_Controller{
     function sortInstituciones(){
       $this->data['menu_id'] = 'registros_instituciones';
       
-      $this->load->model('registros/registro_institucion');
-      $this->data['list'] = $this->registro_institucion->retrieveRegistrosForSort();
+      $this->load->model('instituciones/institucion');
+      $this->data['list'] = $this->institucion->retrieveRegistrosForSort();
       
       $this->load->view('registros/instituciones/sortable', $this->data);
     }
@@ -1466,14 +1467,14 @@ class registros extends MY_Controller{
       $this->data['menu_id'] = 'registros_instituciones';
       
       $lista = $this->input->post('listItem');
-      $this->load->model('registros/registro_institucion');
+      $this->load->model('instituciones/institucion');
       
       
       $maximo = count($lista) - 1;
       $cantidad = 0;
       while($cantidad <= $maximo)
       {
-        $this->registro_institucion->updateOrder($lista[$maximo - $cantidad], $cantidad);
+        $this->institucion->updateOrder($lista[$maximo - $cantidad], $cantidad);
         $cantidad ++;
       }
       /*

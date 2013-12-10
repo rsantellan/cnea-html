@@ -6,6 +6,9 @@
         Estado
       </th>
       <th>
+        Orden
+      </th>
+      <th>
         Nombre
       </th>
 	  <th>
@@ -27,6 +30,9 @@
     <tr id="registro_row_<?php echo $registro->id;?>">
       <td>
         <?php echo ($registro->isactive == 1)? "Activo" : "Desactivado"; ?>
+      </td>
+      <td>
+          <?php echo $registro->ordinal; ?>
       </td>
       <td>
         <?php echo ($registro->nombreinsititucion); ?>
