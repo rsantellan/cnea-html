@@ -698,7 +698,7 @@ class acreditacion extends MY_Model{
       $this->db->select($this->getTablename().'.*, institucion.nombreinsititucion');
       $this->db->order_by($this->getTablename().".id", "desc");
       $this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno', 'left');
-      $this->db->where($this->getTablename().'.fechavencimiento >= DATE_SUB(NOW(), INTERVAL 1 MONTH)');
+      $this->db->where($this->getTablename().'.fechavencimiento <= DATE_ADD(NOW(), INTERVAL 1 MONTH)');
       $query = $this->db->get($this->getTablename());
       if(!$returnObjects)
       {
