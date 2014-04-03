@@ -23,6 +23,7 @@ class acreditaciones extends MY_Controller {
 	$this->addJavascript("jquery.infieldlabel.min.js");
 	$this->addJavascript("busqueda.js");
 	$this->addStyleSheet("busqueda.css");
+//    $this->output->enable_profiler(TRUE);
   }
 
   function bases() {
@@ -55,7 +56,7 @@ class acreditaciones extends MY_Controller {
 
   function registro() {
 	$this->load->model('instituciones/institucion');
-	$this->data['instituciones'] = $this->institucion->retrieveRegistros();
+	$this->data['instituciones'] = $this->institucion->retrieveRegistros(NULL, NULL, FALSE, TRUE, 'nombreinsititucion');
 	$this->data['errores'] = $this->session->flashdata('registroError');
 	$this->data['content'] = 'registro';
 	$this->load->view('layout', $this->data);

@@ -690,6 +690,7 @@ class acreditacion extends MY_Model{
     function retrieveRegistrosByInstitucionId($institucionId)
     {
       $this->db->where("instituciondesempeno", $institucionId);
+      $this->db->where("isactive", 1);
       return $this->db->get($this->getTablename())->result();
     }
     

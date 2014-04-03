@@ -13,7 +13,7 @@
       <?php  endforeach; ?>
     </select>
     <label><?php echo lang("personal_registro_password"); ?></label>
-    <input type="input" value="" name="password" />
+    <input type="password" value="" name="password" />
     <input type="submit" value="<?php echo lang("personal_registro_buscar"); ?>" />
   </form>
 </div>

@@ -76,7 +76,6 @@
 
 
 <script type="text/javascript">
-  
 $(document).ready(function(){
     $('#table_data').dataTable({
         "aaSorting": [[ 1, "desc" ]],
@@ -106,5 +105,4 @@ $(document).ready(function(){
         }
     });
 });
-
 </script>

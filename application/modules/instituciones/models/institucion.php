@@ -343,9 +343,17 @@ class institucion extends MY_Model{
       return $this->db->count_all_results($this->getTablename());
     }
     
-    function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE, $onlyActive = false)
+    function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE, $onlyActive = false, $orderby = null)
     {
-      $this->db->order_by("ordinal", "desc");
+      if($orderby == null)
+      {
+        $this->db->order_by("ordinal", "desc");
+      }
+      else
+      {
+        $this->db->order_by($orderby, "asc");
+      }
+      
       //$this->db->order_by("id", "desc");
       $query = null;
       if($onlyActive)

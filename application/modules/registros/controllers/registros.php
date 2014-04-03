@@ -969,7 +969,7 @@ class registros extends MY_Controller{
                       'categoriaC2' => set_value('categoriaC2'),
                       'cvfile' => set_value('cvfile'),
                       'cvpath' => set_value('cvpath'),
-                      'isactive' => set_value('isactive'),
+                      'isactive' => 1,
                       'fechavencimiento' => set_value('fechavencimiento')
                   );
         
