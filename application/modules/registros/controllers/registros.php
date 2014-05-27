@@ -1366,15 +1366,8 @@ class registros extends MY_Controller{
     {
       $this->load->model('acreditaciones/acreditacion');
       $acreditacion = $this->acreditacion->getById($id);
-      if($status == 1 || $status == "1")
-      {
-        $acreditacion->setIsActive(0);
-      }
-      else
-      {
-        $acreditacion->setIsActive(1);
-      }
-      $acreditacion->save();
+      $acreditacion->changeStatus($status);
+      
       redirect('registros/index');
     }
     /***

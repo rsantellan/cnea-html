@@ -134,7 +134,7 @@ class acreditaciones extends MY_Controller {
 	$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
 	$this->load->model('acreditaciones/acreditacion');
 	$this->load->model('instituciones/institucion');
-	$this->data['instituciones'] = $this->institucion->retrieveRegistros();
+	$this->data['instituciones'] = $this->institucion->retrieveRegistros(NULL, NULL, FALSE, TRUE, 'nombreinsititucion');
 	$obj = new $this->acreditacion;
 	$errores = array();
 	$save = false;

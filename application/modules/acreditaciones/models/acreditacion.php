@@ -580,6 +580,19 @@ class acreditacion extends MY_Model{
       return $this->getId();
     }
     
+    public function changeStatus($status)
+    {
+      $active = 1;
+      if($status == 1 || $status == "1")
+      {
+        $active = 0;
+      }
+      $data = array('isactive' => $active);
+      $this->db->where('id', $this->getId());
+      $this->db->update($this->getTablename(), $data);
+      return $this->getId();
+    }
+    
     private function formatDateToMysql($date)
     {
 	  //var_dump($date);
@@ -651,36 +664,6 @@ class acreditacion extends MY_Model{
 			'acrcategoria' => $this->getAcrcategoria(),
 			'acrfecha' => $this->formatDateToMysql($this->getAcrfecha()),
         );
-      /**
-       *       $obj->setCategoriaA($aux->categoriaA);
-      $obj->setCategoriaB($aux->categoriaB);
-      $obj->setCategoriaC1($aux->categoriaC1);
-      $obj->setCategoriaC2($aux->categoriaC2);
-       * 
-       */
-      
-      /*
-      $data["nombreinsititucion"] = $this->getNombreinsititucion();
-      $data["razonsocial"] = $this->getRazonsocial();
-      $data["rut"] = $this->getRut();
-      $data["naturaleza"] = $this->getNaturaleza();
-      $data["primernivel"] = $this->getPrimernivel();
-      $data["segundonivel"] = $this->getSegundonivel();
-      $data["tercernivel"] = $this->getTercernivel();
-      $data["domicilioinstitucional"] = $this->getDomicilioinstitucional();
-      $data["domiciliofiscal"] = $this->getDomiciliofiscal();
-      $data["tipoestablecimiento"] = $this->getTipoestablecimiento();
-      $data["observacionescomite"] = $this->getObservacionescomite();
-      $data["nombrecontacto"] = $this->getNombrecontacto();
-      $data["mailcontacto"] = $this->getMailcontacto();
-      $data["telcontacto"] = $this->getTelcontacto();
-      $data["isactive"] = 0;
-      $data["responsablefilename"] = $this->getCvfilename();
-      $data["responsablefilepath"] = $this->getCvfilepath();
-      $data["password"] = $this->generatePassword();
-      */      
-      //var_dump($data);die;
-      
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       

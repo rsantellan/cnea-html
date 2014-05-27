@@ -3,7 +3,7 @@
   <div id="acreditacion_data_<?php echo $acreditacion->getId(); ?>">
     <div class="grid_5">
       <span>
-        <label>Fecha</label>
+        <label>Fecha de solicitud</label>
         <?php echo $acreditacion->getFecha(); ?>
       </span>
     </div>

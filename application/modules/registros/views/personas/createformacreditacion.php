@@ -3,7 +3,7 @@
   <input type="hidden" name="id" value="<?php echo $obj->getId(); ?>" />
   <div class="grid_5">
     <p>
-      <label for="fecha">Fecha <span class="required">*</span></label>
+      <label for="fecha">Fecha de solicitud <span class="required">*</span></label>
       <?php echo form_error('fecha'); ?>
       <br />
       <input id="fecha" type="input" name="fecha"  value="<?php echo $obj->getFecha(); ?>"  />
