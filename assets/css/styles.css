@@ -100,6 +100,14 @@ h5{
 		color:#748FC9;
 		text-decoration:underline;
 		}
+	h5 span{
+		color:#AB1917;
+		font-weight: bold;
+		}
+h6{
+	font-size: 12px;
+	font-weight: bold;
+	}
 p{
 	text-align:justify;
 	line-height:15px;
@@ -480,7 +488,7 @@ form{
 	width:515px;
 	}
 	form input{
-		width:485px;
+		width:495px;
 		height:22px;
 		border:1px solid #B4B4B4;
 		-webkit-border-radius:15px;	
@@ -536,14 +544,17 @@ form{
 			}
 		label{
 			float:left;
-			margin:10px 5px 0 10px;
+			margin:10px 5px 0 0;
 			}
 			input.radiobuttom{
 				float:left;
 				width:15px !important;
 				height:15px !important;
-				margin:10px 0;
+				margin:10px 16px 10px 0;
 				}
+				input.radiobuttom_realiz{
+					margin:10px 5px 10px 0;
+					}
 			input.input_checkbox{
 				float:left;
 				width:15px !important;
@@ -571,9 +582,19 @@ form{
 				margin:0 0 10px 10px;
 				}
 			input.button_large{
-				width:150px;
-				background:url(../images/button_large.jpg) left top no-repeat;
+				width:auto;
+				background: rgb(160,32,29); /* Old browsers */
+				/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+				background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y0ZjRmNCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZWVlZWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+				background: -moz-linear-gradient(top,  rgba(160,32,29,1) 0%, rgba(92,72,65,1) 100%); /* FF3.6+ */ 
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(160,32,29,1)), color-stop(100%,rgba(92,72,65,1))); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(top,  rgba(160,32,29,1) 0%,rgba(92,72,65,1) 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(top,  rgba(160,32,29,1) 0%,rgba(92,72,65,1) 100%); /* Opera 11.10+ */
+				background: -ms-linear-gradient(top,  rgba(160,32,29,1) 0%,rgba(92,72,65,1) 100%); /* IE10+ */
+				background: linear-gradient(top,  rgba(160,32,29,1) 0%,rgba(92,72,65,1) 100%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0201d', endColorstr='#5c4841',GradientType=0 ); /* IE6-8 */				
 				margin:20px 0;
+				padding: 0 25px;
 				}
 				.button_desc{
 					background:url(../images/button_short_desc.jpg) left top no-repeat !important;
@@ -620,14 +641,14 @@ form{
 				input.file{
 					/*display:none;*/
 					height:22px;
-					border:1px solid #B4B4B4;
-					-webkit-border-radius:15px;	
-					-moz-border-radius:15px;
-					border-radius:15px;
-					margin:13px 80px 10px 10px;
+					border:none;
+					-webkit-border-radius:0;	
+					-moz-border-radius:0;
+					border-radius:0;
+					margin:17px 0 10px 10px;
 					font-size:12px;
 					padding:0 10px;
-					width:150px !important;
+					width:170px !important;
 					float:right;
 					}
 				
@@ -650,9 +671,9 @@ form{
 				color:#F00;
 				}
 	form span{
-		font-size:10px;
-		color:#999999;
-		margin:0 15px 10px 15px;
+		font-size:11px;
+		color:#727272;
+		margin:0 15px 10px 0;
 		display:block;
 		}
 	form a{
@@ -723,16 +744,53 @@ form{
 	width:0;			
 }
 
-
+.infield{
+	margin-left: 10px;
+}
 label.hasinfieldlabel{
+	margin:10px 10px 5px 10px;
+	}
+	p.hasinfieldlabel_titl{
+
+		}
+		p.hasinfieldlabel_titl label{
+			margin:10px 10px 5px 0;
+					
+		font-weight: bold;
+		font-weight: 12px;
+		}
+label.hasinfieldlabel_left{
+	margin-left: 0px;
 	margin-bottom: 15px;
-}
-
+	}
+label.hasinfieldlabel_left_bottom{
+	margin-left: 0px;
+	margin-bottom: 5px;
+	}
+label.label_registro{
+	margin-left: 0;
+	float: left;
+	}
+	input.input_registro{
+		float: left;
+		width: 150px;
+		margin-top: 6px;
+		}
 .instituciondesempeno_select{
-	inline: margin-top:8px;
-}
-
+	margin:7px 0;
+}	
+label.pct{
+	margin-left: 0;
+	}
 input.pct_input{
 	width: 50px;
-	margin-top: 3px;
-}
+	margin-top: 7px;
+	}
+h5.h5_form{
+	width: 105px;
+	float: left;
+	}
+select.select_inst{
+	margin-top: 8px;
+	float: left;
+	}

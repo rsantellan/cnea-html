@@ -9,9 +9,9 @@ $lang['personal_base_contenido']='<h2>Registro nacional de personas que cr&iacut
 <h4>&iquest;Es obligatorio presentarse?</h4>
 <p>S&iacute;. Todas las <strong>Personas</strong> que realicen experimentaci&oacute;n con animales en las <strong>Instituciones registradas</strong> as&iacute; como los procedimientos experimentales de las mismas, <strong>quedar&aacute;n habilitadas y amparadas por la <a href=\"http://sip.parlamento.gub.uy/leyes/AccesoTextoLey.asp?Ley=18611&Anchor;=\" target=\"_blank\">Ley N&ordm; 18.611.</a></strong></p>
 <h4>Procedimiento de registro</h4>
-<p>Las solicitudes deber&aacute;n completarse a trav&eacute;s del formulario que est&aacute; disponible en el portal <a href=\"http://www.cnea.org.uy\" target=\"_blank\">www.cnea.org.uy</a> con toda la informaci&oacute;n que se solicita. Al finalizar, se deber&aacute; entregar el formulario completo, firmado (se aceptan firmas electr&oacute;nicas) y los certificados y documentaci&oacute;n adjunta que correspondiere (se aceptan escaneos electr&oacute;nicos) a la Comisi&oacute;n de &Eacute;tica en el Uso de Animales (CEUA) de la instituci&oacute;n correspondiente. Posteriormente, la CEUA elevar&aacute; a la CNEA la n&oacute;mina completa de las personas involucradas a la direcci&oacute;n de correo electr&oacute;nico: <a href=\"mailto:secretaria@cnea.org.uy\">secretaria@cnea.org.uy</a></p>
+<p>Las solicitudes deber&aacute;n completarse a trav&eacute;s del formulario que est&aacute; disponible en el portal <a href=\"../../../../../\" target=\"_blank\">www.cnea.org.uy</a> con toda la informaci&oacute;n que se solicita. Al finalizar, se deber&aacute; entregar el formulario completo, firmado (se aceptan firmas electr&oacute;nicas) y los certificados y documentaci&oacute;n adjunta que correspondiere (se aceptan escaneos electr&oacute;nicos) a la Comisi&oacute;n de &Eacute;tica en el Uso de Animales (CEUA) de la instituci&oacute;n correspondiente. Posteriormente, la CEUA elevar&aacute; a la CNEA la n&oacute;mina completa de las personas involucradas a la direcci&oacute;n de correo electr&oacute;nico: <a href=\"mailto:secretaria@cnea.org.uy\">secretaria@cnea.org.uy</a></p>
 <h4>Resoluci&oacute;n</h4>
-<p>Una vez recibida y procesada la informaci&oacute;n, la CNEA le adjudicar&aacute; un n&uacute;mero de tr&aacute;mite a cada Instituci&oacute;n al cual har&aacute; referencia en futuras acciones. La CNEA se tomar&aacute; un plazo de 90 d&iacute;as luego del cierre de la convocatoria para otorgar los certificados de acreditaciones personales CNEA, recomendar la realizaci&oacute;n de cursos espec&iacute;ficos habilitantes para la acreditaci&oacute;n en las distintas categor&iacute;as y comunicar estas decisiones a la CEUA respectiva. Las Personas Acreditadas vinculadas a Instituciones Registradas ingresar&aacute;n al Registro Nacional de Personas que cr&iacute;an, transportan o utilizan animales en experimentaci&oacute;n, docencia e investigaci&oacute;n cient&iacute;fica que se publicar&aacute; en el portal <a href=\"http://www.cnea.org.uy\" target=\"_blank\">www.cnea.org.uy</a> y se actualizar&aacute; cada 6 meses.</p>
+<p>Una vez recibida y procesada la informaci&oacute;n, la CNEA le adjudicar&aacute; un n&uacute;mero de tr&aacute;mite a cada Instituci&oacute;n al cual har&aacute; referencia en futuras acciones. La CNEA se tomar&aacute; un plazo de 90 d&iacute;as luego del cierre de la convocatoria para otorgar los certificados de acreditaciones personales CNEA, recomendar la realizaci&oacute;n de cursos espec&iacute;ficos habilitantes para la acreditaci&oacute;n en las distintas categor&iacute;as y comunicar estas decisiones a la CEUA respectiva. Las Personas Acreditadas vinculadas a Instituciones Registradas ingresar&aacute;n al Registro Nacional de Personas que cr&iacute;an, transportan o utilizan animales en experimentaci&oacute;n, docencia e investigaci&oacute;n cient&iacute;fica que se publicar&aacute; en el portal <a href=\"../../../../../\" target=\"_blank\">www.cnea.org.uy</a> y se actualizar&aacute; cada 6 meses.</p>
 <h4>Per&iacute;odo de registro</h4>
 <p>El tr&aacute;mite para ingresar al Registro Nacional de Personas que cr&iacute;an, transportan o utilizan animales en experimentaci&oacute;n, docencia e investigaci&oacute;n cient&iacute;fica se podr&aacute; realizar a partir del 1&ordm; de marzo de 2012. Las personas vinculadas a instituciones registradas que realicen el tr&aacute;mite antes del 1&ordm; de julio de 2012 podr&aacute;n recibir la capacitaci&oacute;n espec&iacute;fica y/o ser incluidas en el Registro Nacional  durante el a&ntilde;o 2012.</p>
 <h2>Comisi&oacute;n nacional de experimentaci&oacute;n animal Sistema nacional de acreditaciones personales Definici&oacute;n y perfil de las categor&iacute;as</h2>
@@ -52,10 +52,10 @@ $lang['personal_reglamentacion_contenido']='<h2>Comisi&oacute;n nacional de expe
 <p><strong>Art&iacute;culo 4&ordm;-</strong> La Comisi&oacute;n Asesora SisNAP estar&aacute; integrada por dos especialistas en ciencias de animales de laboratorio del pa&iacute;s y un especialista en ciencias de animales de laboratorio de relevancia internacional.</p>
 <p><strong>Art&iacute;culo 5&ordm;-</strong> La Comisi&oacute;n Asesora SisNAP tiene los siguientes cometidos:<br /> <strong>a)</strong> Asesorar a la CNEA en aspectos t&eacute;cnicos referentes al manejo de animales de experimentaci&oacute;n.<br /> <strong>b)</strong> Evaluar y recomendar la habilitaci&oacute;n de propuestas de cursos de capacitaci&oacute;n requeridos para las acreditaciones en las distintas categor&iacute;as de acuerdo a lo establecido en el documento &ldquo;Definici&oacute;n y Perfil de Categor&iacute;as&rdquo;.<br /> <strong>c)</strong> Evaluar las solicitudes de rev&aacute;lidas para acreditaciones personales.<br /> <strong>d)</strong> Evaluar las solicitudes de acreditaci&oacute;n por competencia notoria en las Categor&iacute;as C1 y C2.</p>
 <p><strong>Art&iacute;culo 6&ordm;-</strong> La CNEA actualizar&aacute; semestralmente el registro nacional de personas acreditadas solicitando a las CEUAs de las instituciones registradas el env&iacute;o de la n&oacute;mina de los funcionarios involucrados que deber&aacute;n llenar el formulario previsto a tales efectos. La CNEA se tomar&aacute; un plazo de hasta dos meses para otorgar los certificados de acreditaciones personales en las distintas categor&iacute;as y/o recomendar la realizaci&oacute;n de cursos espec&iacute;ficos habilitantes. En caso de acreditaciones por rev&aacute;lida o competencia notoria, la CNEA se tomar&aacute; un plazo de hasta 6 meses para fallar.</p>
-<p><strong>Art&iacute;culo 7&ordm;-</strong> El registro nacional de personas acreditadas se publicar&aacute; en la pagina web de la <a href=\"http://www.cnea.org.uy\" target=\"_blank\">CNEA</a> al que se podr&aacute; acceder por nombre o por instituci&oacute;n registrada a la que pertenece el funcionario y se actualizar&aacute; cada 6 meses.</p>
+<p><strong>Art&iacute;culo 7&ordm;-</strong> El registro nacional de personas acreditadas se publicar&aacute; en la pagina web de la <a href=\"../../../../../\" target=\"_blank\">CNEA</a> al que se podr&aacute; acceder por nombre o por instituci&oacute;n registrada a la que pertenece el funcionario y se actualizar&aacute; cada 6 meses.</p>
 <p><strong>Art&iacute;culo 8&ordm;-</strong> Las acreditaciones personales tendr&aacute;n una vigencia de hasta 5 a&ntilde;os.</p>
-<p><strong>Art&iacute;culo 9&ordm;-</strong> Para ingresar al Sistema de Acreditaciones personales, para la renovaci&oacute;n de una acreditaci&oacute;n personal caducada, o para solicitar cambio de categorizaci&oacute;n, se realizar&aacute; la petici&oacute;n llenando el formulario ad hoc disponible en la p&aacute;gina web de la <a href=\"http://www.cnea.org.uy\" target=\"_blank\">CNEA</a></p>';
-$lang['personal_formulario_titulo']='formulario para acreditaciones personales';
+<p><strong>Art&iacute;culo 9&ordm;-</strong> Para ingresar al Sistema de Acreditaciones personales, para la renovaci&oacute;n de una acreditaci&oacute;n personal caducada, o para solicitar cambio de categorizaci&oacute;n, se realizar&aacute; la petici&oacute;n llenando el formulario ad hoc disponible en la p&aacute;gina web de la <a href=\"../../../../../\" target=\"_blank\">CNEA</a></p>';
+$lang['personal_formulario_titulo']='formulario para acreditaci&oacute;n personal';
 $lang['personal_formulario_subtitulo']='Todos los campos son obligatorios.<br />';
 $lang['personal_formulario_subtitulo_errores']='Por favor completar los campos marcados en rojo';
 $lang['personal_formulario_subtitulo_identificacion']='1- IDENTIFICACI&Oacute;N PERSONAL';
@@ -72,10 +72,10 @@ $lang['personal_formulario_texto_firma_persona']='<h5>Firma del Interesado*</h5>
 <span>Descargar hoja de firma, escanearla y adjuntarla luego de estar firmada</span>';
 $lang['personal_formulario_texto_firma_institucion']='<h5>Firma del interesado y firma de un integrante de la CEUA de la instituci&oacute;n se&ntilde;alada anteriormente.</h5>
 <span>Descargar hoja de firmas. Escanear y adjuntar luego de firmar.<br /></span>';
-$lang['personal_formulario_fecha']='Fecha';
+$lang['personal_formulario_fecha']='Fecha de solicitud';
 $lang['personal_formulario_primera_vez']='Primera Vez';
 $lang['personal_formulario_renovacion']='Renovaci&oacute;n';
-$lang['personal_formulario_nombre']='Nombres y apellidos<br />';
+$lang['personal_formulario_nombre']='Apellidos y nombres<br />';
 $lang['personal_formulario_postal']='Direcci&oacute;n postal';
 $lang['personal_formulario_email']='Direcci&oacute;n electr&oacute;nica';
 $lang['personal_formulario_telefono']='Tel&eacute;fonos de contacto';
@@ -88,12 +88,12 @@ $lang['personal_formulario_fecha_vencimiento_acreditacion']='fecha de vencimient
 $lang['personal_formulario_adjuntar_acreditacion']='Es imprescindible adjuntar certificado de acreditaci&oacute;n.<br />';
 $lang['personal_formulario_texto_consultas']='<p>Por Consultas: <a href=\"mailto:secretaria@cnea.org.uy\">secretaria@cnea.org.uy</a></p>';
 $lang['personal_formulario_texto_descarga']='Si desea puede descargar el formulario para completarlo y enviarlo v&iacute;a mail o en persona en la sede de la CNEA';
-$lang['personal_formulario_institucion_observaciones']='En caso de Integrar m&aacute;s de una instutic&oacute;n especifique el nombre de la misma y cargo que desempe&ntilde;a';
-$lang['personal_formulario_titulo_descarga']='';
 $lang['personal_formulario_agregar_mas']='Agregar mas';
+$lang['personal_formulario_titulo_descarga']='';
+$lang['personal_formulario_institucion_observaciones']='En caso de Integrar m&aacute;s de una instutic&oacute;n especifique el nombre de la misma y cargo que desempe&ntilde;a';
 $lang['personal_formulario_nivel_formacion']='Nivel de formaci&oacute;n';
 $lang['personal_formulario_documento']='Documento de identidad (CI/Pasaporte)<br />';
-$lang['personal_formulario_fechanacimiento']='Fecha';
+$lang['personal_formulario_fechanacimiento']='Fecha de Nacimiento<br />';
 $lang['personal_formulario_institucion_laboratorio_unidad']='Laboratorio/Unidad';
 $lang['personal_formulario_institucion_carga_horaria_semanal']='Carga Horaria Semanal';
 $lang['personal_formulario_institucion_nombre_supervisor']='Nombre del Jefe/Supervisor/Orientador<br />';
@@ -121,6 +121,6 @@ $lang['personal_formulario_curso_observaciones']='Observaciones de cursos';
 $lang['personal_registro_elija_institucion']='Elija instituci&oacute;n';
 $lang['personal_registro_password']='Contrase&ntilde;a';
 $lang['personal_registro_buscar']='Buscar';
-$lang['personal_formulario_instituciondesempeno']='<p><label class=\"hasinfieldlabel\" for=\"instituciondesempeno\">Instituci&oacute;n en la que se desempe&ntilde;a*</label></p>';
+$lang['personal_formulario_instituciondesempeno']='Instituci&oacute;n en la que se desempe&ntilde;a*';
 $lang['personal_formulario_instituciondesempeno_texto']='<span>*La acreditaci&oacute;n personal se expedir&aacute; para personas que se desempe&ntilde;en en instituciones registradas en la CNEA. El solicitante deber&aacute; completar un formulario por cada instituci&oacute;n donde se desempe&ntilde;e, solicitando el aval al CEUA correspondiente.</span>';
 /* End of file acreditaciones_lang.php */

@@ -72,6 +72,13 @@
               <div class="div_table"><?php echo lang("cnea_integrantes_protectora_animales_persona2"); ?></div>
           </td>
       </tr>
+      <tr>
+          <th>Sociedad de Medicina del Uruguay</th>
+          <td>
+              <div class="div_table" style="border-top:none;">María Angélica Solari</div>
+              <div class="div_table">Ulises Cuore</div>
+          </td>
+      </tr>  
   </table>
 </div>
 <!--CONTENT RIGHT-->
