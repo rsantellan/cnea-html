@@ -56,10 +56,21 @@
           <li class="<?php echo ($menu_id == 'registros_personas' || $menu_id == 'registros_instituciones')? "current": "";?>">
             <a href="javascript:void(0)">Registros</a>
             <ul>
-              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/index');?>">Registro Personas</a></li>
-              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionNextToExpire');?>">Registro Personas cerca de expirar</a></li>
-              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionInactive');?>">Registro Personas inactivas</a></li>
-              <li class="<?php echo ($menu_id == 'registros_instituciones')? "current": "";?>"><a href="<?php echo site_url('registros/instituciones');?>">Registro Instituciones</a></li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>">
+                <a href="<?php echo site_url('registros/index');?>">Registro Personas</a>
+              </li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>">
+                <a href="<?php echo site_url('registros/acreditacionNextToExpire');?>">Registro Personas cerca de expirar o expirados hace menos de 3 meses</a>
+              </li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>">
+                <a href="<?php echo site_url('registros/acreditacionInactive');?>">Registro Personas Vencidos </a>
+              </li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>">
+                <a href="<?php echo site_url('registros/acreditacionNew');?>">Registro Personas Nuevas</a>
+              </li>
+              <li class="<?php echo ($menu_id == 'registros_instituciones')? "current": "";?>">
+                <a href="<?php echo site_url('registros/instituciones');?>">Registro Instituciones</a>
+              </li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">

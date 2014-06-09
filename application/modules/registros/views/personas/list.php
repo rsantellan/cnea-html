@@ -2,99 +2,16 @@
 <table id="table_data">
   <thead>
     <tr>
-      <th>
-        Estado
-      </th>
-      <th>
-        Nombre Persona
-      </th>
+      <?php foreach($headers as $h): ?>
 	  <th>
-        Nombre Institucion
+        <?php echo $h;?>
       </th>
-	  <th>
-        Email
-      </th>
-      <th>
-        Categoria
-      </th>
-      <th>
-        Fecha de vencimiento
-      </th>
-      <th>
-        Acciones
-      </th>
+	  <?php endforeach; ?>
     </tr>
   </thead>
   <tbody>
     <?php foreach($list as $registro): ?>
-    <?php //var_dump($registro);?>
-    <tr id="registro_row_<?php echo $registro->id;?>">
-      <td>
-		<?php
-		  echo $estados[$registro->estado];
-		?>
-      </td>
-      <td>
-        <?php echo ($registro->nombreapellido); ?>
-      </td>
-	  <td>
-        <?php echo ($registro->nombreinsititucion); ?>
-      </td>
-	  <td>
-        <?php echo ($registro->direccionelectronica); ?>
-      </td>
-      <td>
-        <?php 
-          $catIndex = 0;
-          if($registro->categoriaA == 1)
-          {
-            echo "A";
-            $catIndex++;
-          }
-          if($registro->categoriaB == 1)
-          {
-            if($catIndex > 0) echo ", ";
-            echo "B";
-            $catIndex++;
-          }
-          if($registro->categoriaC1 == 1)
-          {
-            if($catIndex > 0) echo ", ";
-            echo "C1";
-            $catIndex++;
-          }
-          if($registro->categoriaC2 == 1)
-          {
-            if($catIndex > 0) echo ", ";
-            echo "C2";
-            $catIndex++;
-          }
-        ?>
-      </td>
-      <td>
-        <?php echo ($registro->fechavencimiento); ?>
-      </td>
-      <td>
-		<ul>
-		  <li>
-			<a href="<?php echo site_url("registros/showPersona/".$registro->id);?>">
-			  Mostrar
-			</a>
-		  </li>
-		  <li>
-			<a class="changeStateLink" href="<?php echo site_url("registros/cambiarEstado/".$registro->id);?>">
-			  Cambiar Estado
-			</a>
-		  </li>
-		  <li>
-			<a href="<?php echo site_url("registros/fullDeletePersona/".$registro->id);?>" onclick="return confirm('Esta seguro de querer eliminar el registro?');">
-			  Eliminar
-			</a>
-		  </li>
-		</ul>
-      </td>
-    </tr>
-      
+      <?php echo $this->load->view('registros/personas/acreditacion_row', array('registro' => $registro));?>
     <?php endforeach; ?>
   </tbody>
 </table>
@@ -118,6 +35,12 @@
 $(document).ready(function(){
     $('#table_data').dataTable({
         "aaSorting": [[ 1, "desc" ]],
+        "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ 4, 6 ] }
+        ],
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "<?php echo site_url($url);?>",
         "oLanguage" : {
             "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -147,4 +70,26 @@ $(document).ready(function(){
 	$('a.changeStateLink').fancybox();
 });
 
+function doChangeFormState(form){
+    $.fancybox.showActivity();
+    $.ajax({
+          url: $(form).attr('action'),
+          data: $(form).serialize(),
+          type: 'post',
+          dataType: 'json',
+          success: function(json){
+              if(json.response == "OK")
+              {
+                $('#messagescontainer').html(json.message);
+              }
+          }, 
+          complete: function()
+          {
+            $.fancybox.hideActivity();
+            $.fancybox.resize();
+          }
+      });
+      return false;      
+}
 </script>
+

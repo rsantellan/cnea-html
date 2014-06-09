@@ -617,6 +617,18 @@ class acreditacion extends MY_Model{
       return $this->getId();
     }
     
+    public function doChangeStatus($id, $estado){
+      $returnString = "Sin cambio";
+      $listado = $this->getEstadoList();
+      if(array_key_exists($estado, $listado)){
+        $data = array('estado' => $estado);
+        $this->db->where('id', $id);
+        $this->db->update($this->getTablename(), $data);
+        $returnString = "Nuevo estado es: ".$listado[$estado];
+      }
+      return $returnString;
+    }
+    
     private function formatDateToMysql($date)
     {
 	  //var_dump($date);
@@ -746,6 +758,126 @@ class acreditacion extends MY_Model{
         }
         return $salida;
       }
+    }
+    
+    
+    
+    public function retrieveCountBasicData($where, $addIsExpire = false, $isInactive = false, $isNew = false)
+    {
+      $sql = 'select 
+              count(*) as C
+            from acreditacion 
+            left join institucion on institucion.id = instituciondesempeno ';
+      $whereAdded = false;
+      $parameteres = array();
+      if ($where !== "") {
+        $whereAdded = true;
+        $sql .= 'where (acreditacion.nombreapellido like ? or acreditacion.direccionelectronica like ? or institucion.nombreinsititucion like ?)';
+        $parameteres[] = '%'.$where.'%';
+        $parameteres[] = '%'.$where.'%';
+        $parameteres[] = '%'.$where.'%';
+      }
+      if($addIsExpire)
+      {
+        if(!$whereAdded){
+          $sql .= ' where ';
+          $whereAdded = true;
+        }else{
+          $sql .= ' and ';
+        }
+        $sql .= ' (acreditacion.fechavencimiento <= DATE_ADD(NOW(), INTERVAL 1 MONTH) and acreditacion.fechavencimiento >= DATE_ADD(NOW(), INTERVAL -3 MONTH) ) and acreditacion.estado != ?';
+        $parameteres[] = 'N';
+      }
+      if($isInactive){
+        if(!$whereAdded){
+          $sql .= ' where ';
+          $whereAdded = true;
+        }else{
+          $sql .= ' and ';
+        }
+        $sql .= 'acreditacion.estado != ? and acreditacion.estado != ?';
+        $parameteres[] = 'A';
+        $parameteres[] = 'N';
+      }
+      if($isNew){
+        if(!$whereAdded){
+          $sql .= ' where ';
+          $whereAdded = true;
+        }else{
+          $sql .= ' and ';
+        }
+        $sql .= 'acreditacion.estado = ?';
+        $parameteres[] = 'N';
+      }
+      $query = $this->db->query($sql, $parameteres);
+      $row = $query->row();
+      return $row->C;
+    }
+    
+    function retrieveTableBasicData($limit, $offset, $order, $where, $addIsExpire = false, $isInactive = false, $isNew = false) 
+    {
+      $sql = 'select 
+              acreditacion.id, 
+              acreditacion.estado, 
+              acreditacion.nombreapellido, 
+              institucion.nombreinsititucion, 
+              acreditacion.direccionelectronica, 
+              acreditacion.categoriaA, 
+              acreditacion.categoriaB, 
+              acreditacion.categoriaC1, 
+              acreditacion.categoriaC2, 
+              acreditacion.fechavencimiento 
+            from acreditacion 
+            left join institucion on institucion.id = instituciondesempeno ';
+      $whereAdded = false;
+      $parameteres = array();
+      if ($where !== "") {
+        $whereAdded = true;
+        $sql .= 'where (acreditacion.nombreapellido like ? or acreditacion.direccionelectronica like ? or institucion.nombreinsititucion like ?)';
+        $parameteres[] = '%'.$where.'%';
+        $parameteres[] = '%'.$where.'%';
+        $parameteres[] = '%'.$where.'%';
+      }
+      if($addIsExpire)
+      {
+        if(!$whereAdded){
+          $sql .= ' where ';
+          $whereAdded = true;
+        }else{
+          $sql .= ' and ';
+        }
+        $sql .= ' (acreditacion.fechavencimiento <= DATE_ADD(NOW(), INTERVAL 1 MONTH) and acreditacion.fechavencimiento >= DATE_ADD(NOW(), INTERVAL -3 MONTH) ) and acreditacion.estado != ?';
+        $parameteres[] = 'N';
+      }
+      if($isInactive){
+        if(!$whereAdded){
+          $sql .= ' where ';
+          $whereAdded = true;
+        }else{
+          $sql .= ' and ';
+        }
+        $sql .= 'acreditacion.estado != ? and acreditacion.estado != ?';
+        $parameteres[] = 'A';
+        $parameteres[] = 'N';
+      }
+      if($isNew){
+        if(!$whereAdded){
+          $sql .= ' where ';
+          $whereAdded = true;
+        }else{
+          $sql .= ' and ';
+        }
+        $sql .= 'acreditacion.estado = ?';
+        $parameteres[] = 'N';
+      }
+      
+      if ($order !== "") {
+        $sql .= ' order by '.$order;
+      }
+      $sql .= sprintf(' LIMIT %s OFFSET %s', $limit, $offset);
+      //var_dump($sql);
+      $query = $this->db->query($sql, $parameteres);
+      return $query->result();
     }
     
     function retrieveRegistros($number = NULL, $offset = NULL, $returnObjects = FALSE)

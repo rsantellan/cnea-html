@@ -842,27 +842,166 @@ class registros extends MY_Controller{
     
     function index(){
 
+      //$this->load->model('acreditaciones/acreditacion');
+	  //$this->loadAcreditacionListView($this->acreditacion->retrieveRegistros());
+	  $this->loadAcreditacionListView('registros/searchFullAcreditaciones');
+    }
+    
+    private function  doSearchOfTable($type){
+      $aColumns = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha de vencimiento', 'Acciones');
+      $filterColumns = array('estado', 'nombreapellido', 'nombreinsititucion', 'direccionelectronica', 'category', 'fechavencimiento', 'Acciones');
+      /* Indexed column (used for fast and accurate table cardinality) */
+      $sIndexColumn = "id";
+
+      /* DB table to use */
+      $sTable = "acreditacion";
+
+      /*
+       * Paging
+       */
+      $sLimit = "";
+      $iDisplayStart = $this->input->get('iDisplayStart', NULL);
+      $iDisplayLength = $this->input->get('iDisplayLength', NULL);
+
+      $sOrder = "";
+
+      if ($this->input->get('iSortCol_0')) {
+        $sOrder .= "";
+        for ($i = 0; $i < intval($this->input->get('iSortingCols')); $i++) {
+          $auxSortCol = intval($this->input->get('iSortCol_' . $i));
+          if ($this->input->get('bSortable_' . $auxSortCol) == 'true') {
+            $sOrder .= $filterColumns[$auxSortCol] . ' ' . $this->input->get('sSortDir_' . $i);
+          }
+        }
+      }
+      //var_dump($sOrder);
+
+      $sWhere = $this->input->get('sSearch');
       $this->load->model('acreditaciones/acreditacion');
-	  $this->loadAcreditacionListView($this->acreditacion->retrieveRegistros());
+      
+      $rResult = array();
+      $iTotal = 0;
+      switch ($type) {
+        case 'basic':
+          $rResult = $this->acreditacion->retrieveTableBasicData($iDisplayLength, $iDisplayLength * ($iDisplayStart / $iDisplayLength), $sOrder, $sWhere);
+          $iTotal = $this->acreditacion->retrieveCountBasicData($sWhere);
+          break;
+        case 'nextToExpire':
+          $rResult = $this->acreditacion->retrieveTableBasicData($iDisplayLength, $iDisplayLength * ($iDisplayStart / $iDisplayLength), $sOrder, $sWhere, true);
+          $iTotal = $this->acreditacion->retrieveCountBasicData($sWhere, true);
+          break;
+        case 'inactive':
+          $rResult = $this->acreditacion->retrieveTableBasicData($iDisplayLength, $iDisplayLength * ($iDisplayStart / $iDisplayLength), $sOrder, $sWhere, false, true);
+          $iTotal = $this->acreditacion->retrieveCountBasicData($sWhere, false, true);
+          break;
+        case 'isnew':
+          $rResult = $this->acreditacion->retrieveTableBasicData($iDisplayLength, $iDisplayLength * ($iDisplayStart / $iDisplayLength), $sOrder, $sWhere, false, false, true);
+          $iTotal = $this->acreditacion->retrieveCountBasicData($sWhere, false, false, true);
+          break;
+        default:
+          $rResult = $this->acreditacion->retrieveTableBasicData($iDisplayLength, $iDisplayLength * ($iDisplayStart / $iDisplayLength), $sOrder, $sWhere);
+          $iTotal = $this->acreditacion->retrieveCountBasicData($sWhere);
+        break;
+      }
+      
+      
+      $iFilteredTotal = $iTotal; //count($rResult);
+      
+      /*
+       * Output
+       */
+      $output = array(
+          "sEcho" => intval($this->input->get('sEcho')),
+          "iTotalRecords" => $iTotal,
+          "iTotalDisplayRecords" => $iFilteredTotal,
+          "aaData" => array()
+      );
+      $estados = $this->acreditacion->getEstadoList();
+      foreach ($rResult as $registro) {
+        $catIndex = 0;
+        $catString = "";
+        if ($registro->categoriaA == 1) {
+          $catString = "A";
+        }
+        if ($registro->categoriaB == 1) {
+          if ($catIndex > 0)
+            $catString .= ", ";
+          $catString .= "B";
+          $catIndex++;
+        }
+        if ($registro->categoriaC1 == 1) {
+          if ($catIndex > 0)
+            $catString .= ", ";
+          $catString .= "C1";
+          $catIndex++;
+        }
+        if ($registro->categoriaC2 == 1) {
+          if ($catIndex > 0)
+            $catString .= ", ";
+          $catString .= "C2";
+          $catIndex++;
+        }
+        $row = array(
+            $estados[$registro->estado],
+            $registro->nombreapellido,
+            $registro->nombreinsititucion,
+            $registro->direccionelectronica,
+            $catString,
+            $registro->fechavencimiento,
+            $this->load->view('registros/personas/acreditacion_row_action', array('id' => $registro->id), true),
+        );
+        $output['aaData'][] = $row;
+      }
+      
+      header('Cache-Control: no-cache');
+      header('Pragma: no-cache');
+      header('Content-type: application/json');
+      echo json_encode($output);
+      die(0);
+    }
+
+
+    function searchFullAcreditaciones() {
+      $this->doSearchOfTable('basic');
+    }
+    
+    function searchNextToExpireAcreditaciones() {
+      $this->doSearchOfTable('nextToExpire');
+    }
+    
+    function searchInactiveAcreditaciones(){
+      $this->doSearchOfTable('inactive');
+    }
+    
+    function searchNewAcreditaciones(){
+      $this->doSearchOfTable('isnew');
     }
     
     function acreditacionNextToExpire(){
       //$this->output->enable_profiler(TRUE);
-      $this->load->model('acreditaciones/acreditacion');
-	  $this->loadAcreditacionListView($this->acreditacion->retrieveRegistrosWithCloseExpireDate());
+      //$this->load->model('acreditaciones/acreditacion');
+	  //$this->loadAcreditacionListView($this->acreditacion->retrieveRegistrosWithCloseExpireDate());
+      $this->loadAcreditacionListView('registros/searchNextToExpireAcreditaciones');
     }
     
     function acreditacionInactive(){
       //$this->output->enable_profiler(TRUE);
-      $this->load->model('acreditaciones/acreditacion');
-	  $this->loadAcreditacionListView($this->acreditacion->retrieveRegistrosInactive());
+      //$this->load->model('acreditaciones/acreditacion');
+	  //$this->loadAcreditacionListView($this->acreditacion->retrieveRegistrosInactive());
+      $this->loadAcreditacionListView('registros/searchInactiveAcreditaciones');
     }
     
-	private function loadAcreditacionListView($listado){
+    function acreditacionNew(){
+      $this->loadAcreditacionListView('registros/searchNewAcreditaciones');
+    }
+    
+	private function loadAcreditacionListView($url){
+      $this->data['headers'] = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha de vencimiento', 'Acciones');
 	  $this->load->model('acreditaciones/acreditacion');
 	  $estados = $this->acreditacion->getEstadoList();
 	  $this->data['estados'] = $estados;
-	  $this->data['list'] = $listado;
+	  $this->data['list'] = array();
+      $this->data['url'] = $url;
 	  $this->data['content'] = "registros/personas/list";
       $this->data['menu_id'] = 'registros_personas';
       $this->addJquery();
@@ -1364,6 +1503,20 @@ class registros extends MY_Controller{
       $acreditacion->changeStatus($status);
       
       redirect('registros/index');
+    }
+    
+    function doChangeEstado(){
+      $this->load->model('acreditaciones/acreditacion');
+      $id = $this->input->post('id', true);
+      $estado = $this->input->post('estado', true);
+      
+      $message = $this->acreditacion->doChangeStatus($id, $estado);
+      $message .= "<br/>Refresque la pagina para ver los cambios.";
+      $salida = array();
+      $salida['response'] = "OK";
+      $salida['message'] = $message;
+      echo json_encode($salida);
+      die;
     }
     /***
      * 

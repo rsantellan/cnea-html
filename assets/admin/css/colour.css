@@ -113,3 +113,7 @@ div.tags_usadas{
 div.tags_libres{
   
 }
+
+th.sorting_disabled{
+  background-color: white !important;
+}
