@@ -30,7 +30,9 @@
     <?php //var_dump($registro);?>
     <tr id="registro_row_<?php echo $registro->id;?>">
       <td>
-        <?php echo ($registro->isactive == 1)? "Activo" : "Desactivado"; ?>
+		<?php
+		  echo $estados[$registro->estado];
+		?>
       </td>
       <td>
         <?php echo ($registro->nombreapellido); ?>
@@ -73,15 +75,23 @@
         <?php echo ($registro->fechavencimiento); ?>
       </td>
       <td>
-        <a href="<?php echo site_url("registros/showPersona/".$registro->id);?>">
-          Mostrar
-        </a>
-        <a href="<?php echo site_url("registros/actPersona/".$registro->id."/".$registro->isactive);?>">
-          <?php echo ($registro->isactive == 1)? "Desactivar" : "Activar"; ?>
-        </a>
-        <a href="<?php echo site_url("registros/fullDeletePersona/".$registro->id);?>" onclick="return confirm('Esta seguro de querer eliminar el registro?');">
-          Eliminar
-        </a>
+		<ul>
+		  <li>
+			<a href="<?php echo site_url("registros/showPersona/".$registro->id);?>">
+			  Mostrar
+			</a>
+		  </li>
+		  <li>
+			<a class="changeStateLink" href="<?php echo site_url("registros/cambiarEstado/".$registro->id);?>">
+			  Cambiar Estado
+			</a>
+		  </li>
+		  <li>
+			<a href="<?php echo site_url("registros/fullDeletePersona/".$registro->id);?>" onclick="return confirm('Esta seguro de querer eliminar el registro?');">
+			  Eliminar
+			</a>
+		  </li>
+		</ul>
       </td>
     </tr>
       
@@ -133,6 +143,8 @@ $(document).ready(function(){
             }
         }
     });
+	
+	$('a.changeStateLink').fancybox();
 });
 
 </script>

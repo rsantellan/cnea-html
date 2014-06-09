@@ -1,6 +1,12 @@
 <div class="grid_16">
   <h4>Acreditacion Persona</h4>
   <div id="acreditacion_data_<?php echo $acreditacion->getId(); ?>">
+	<div class="grid_5">
+      <span>
+        <label>Estado</label>
+        <?php echo $estados[$acreditacion->getEstado()]; ?>
+      </span>
+    </div>
     <div class="grid_5">
       <span>
         <label>Fecha de solicitud</label>

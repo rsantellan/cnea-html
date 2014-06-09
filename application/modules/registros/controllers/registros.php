@@ -843,40 +843,27 @@ class registros extends MY_Controller{
     function index(){
 
       $this->load->model('acreditaciones/acreditacion');
-      $this->data['list'] = $this->acreditacion->retrieveRegistros();
-      $this->data['content'] = "registros/personas/list";
-      $this->data['menu_id'] = 'registros_personas';
-      $this->addJquery();
-      $this->addFancyBox();
-      $this->addModuleJavascript("registros", "list.js");
-      $this->addModuleJavascript("datatable", "jquery.dataTables.js");
-      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
-      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
-      
-      $this->load->view("admin/layout", $this->data);
+	  $this->loadAcreditacionListView($this->acreditacion->retrieveRegistros());
     }
     
     function acreditacionNextToExpire(){
       //$this->output->enable_profiler(TRUE);
       $this->load->model('acreditaciones/acreditacion');
-      $this->data['list'] = $this->acreditacion->retrieveRegistrosWithCloseExpireDate();
-      $this->data['content'] = "registros/personas/list";
-      $this->data['menu_id'] = 'registros_personas';
-      $this->addJquery();
-      $this->addFancyBox();
-      $this->addModuleJavascript("registros", "list.js");
-      $this->addModuleJavascript("datatable", "jquery.dataTables.js");
-      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
-      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
-      
-      $this->load->view("admin/layout", $this->data);
+	  $this->loadAcreditacionListView($this->acreditacion->retrieveRegistrosWithCloseExpireDate());
     }
     
     function acreditacionInactive(){
       //$this->output->enable_profiler(TRUE);
       $this->load->model('acreditaciones/acreditacion');
-      $this->data['list'] = $this->acreditacion->retrieveRegistrosInactive();
-      $this->data['content'] = "registros/personas/list";
+	  $this->loadAcreditacionListView($this->acreditacion->retrieveRegistrosInactive());
+    }
+    
+	private function loadAcreditacionListView($listado){
+	  $this->load->model('acreditaciones/acreditacion');
+	  $estados = $this->acreditacion->getEstadoList();
+	  $this->data['estados'] = $estados;
+	  $this->data['list'] = $listado;
+	  $this->data['content'] = "registros/personas/list";
       $this->data['menu_id'] = 'registros_personas';
       $this->addJquery();
       $this->addFancyBox();
@@ -884,10 +871,8 @@ class registros extends MY_Controller{
       $this->addModuleJavascript("datatable", "jquery.dataTables.js");
       $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
       $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
-      
       $this->load->view("admin/layout", $this->data);
-    }
-    
+	}
     
     function createacreditacion()
     {
@@ -970,7 +955,7 @@ class registros extends MY_Controller{
                       'cvfile' => set_value('cvfile'),
                       'cvpath' => set_value('cvpath'),
                       'isactive' => 1,
-                      'fechavencimiento' => set_value('fechavencimiento')
+                      'fechavencimiento' => set_value('fechavencimiento')					  
                   );
         
         
@@ -996,6 +981,7 @@ class registros extends MY_Controller{
         $obj->setCategoriaC1($form_data['categoriaC1']);
         $obj->setCategoriaC2($form_data['categoriaC2']);
         $obj->setFechavencimiento($form_data['fechavencimiento']);
+		$obj->setEstado('A');
 		
 		if($obj->getRealizocursos() == 1)
 		{
@@ -1306,12 +1292,14 @@ class registros extends MY_Controller{
     
     private function loadShowAcreditacion($id)
     {
-      $this->data['menu_id'] = 'registros_personas';
+	  $this->data['menu_id'] = 'registros_personas';
       $this->addModuleJavascript("registros", "showInstitucion.js");
       $this->addFancyBox();
       $this->load->model('acreditaciones/acreditacion');
       $this->load->model('acreditaciones/acreditacionarchivo');
       $this->load->model('instituciones/institucion');
+	  $estados = $this->acreditacion->getEstadoList();
+	  $this->data['estados'] = $estados;
       $acreditacion = $this->acreditacion->getById($id);
       $this->data['institucion'] = $this->institucion->getById($acreditacion->getInstituciondesempeno());
       $this->data['acreditacion'] = $acreditacion;
@@ -1362,6 +1350,13 @@ class registros extends MY_Controller{
       
     }
     
+	function cambiarEstado($id){
+	  $this->load->model('acreditaciones/acreditacion');
+      $acreditacion = $this->acreditacion->getById($id);
+	  $estados = $this->acreditacion->getEstadoList();
+	  $this->load->view('registros/personas/changeStateForm', array('estados' => $estados, 'acreditacion' => $acreditacion));
+	}
+	
     function actPersona($id, $status)
     {
       $this->load->model('acreditaciones/acreditacion');

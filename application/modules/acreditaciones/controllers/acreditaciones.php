@@ -324,6 +324,7 @@ class acreditaciones extends MY_Controller {
 	  if($save)
 	  {
 		$obj->setFechavencimiento(date('m/d/Y'));
+		$obj->setEstado('N');
 		$acreditacionId = $obj->save();
 		
 		$this->load->model('acreditaciones/acreditacionarchivo');

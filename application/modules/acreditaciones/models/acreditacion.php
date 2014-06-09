@@ -61,6 +61,7 @@ class acreditacion extends MY_Model{
   private $acrorganismo;
   private $acrcategoria;
   private $acrfecha;
+  private $estado;
  
   function __construct()
   {
@@ -501,6 +502,28 @@ class acreditacion extends MY_Model{
 	$this->acrfecha = $acrfecha;
   }
 
+  public function getEstado() {
+	return $this->estado;
+  }
+
+  public function setEstado($estado) {
+	$this->estado = $estado;
+	if($estado !== 'A'){
+	  $this->setIsactive(false);
+	}else{
+	  $this->setIsactive(true);
+	}
+  }
+
+  public function getEstadoList(){
+	return array(
+		'A' => 'Activo',
+		'N' => 'Nuevo',
+		'V' => 'Vencido no renovo',
+		'VR' => 'Vencido en renovacion',
+	);
+  }
+  
   public function isNew(){
       if($this->getId() == "" || is_null($this->getId()))
       {
@@ -573,6 +596,7 @@ class acreditacion extends MY_Model{
 			'acrorganismo' => $this->getAcrorganismo(),
 			'acrcategoria' => $this->getAcrcategoria(),
 			'acrfecha' => $this->formatDateToMysql($this->getAcrfecha()),
+			'estado' => $this->getEstado(),
         );
       //var_dump($data);die;
       $this->db->where('id', $this->getId());
@@ -663,6 +687,7 @@ class acreditacion extends MY_Model{
 			'acrorganismo' => $this->getAcrorganismo(),
 			'acrcategoria' => $this->getAcrcategoria(),
 			'acrfecha' => $this->formatDateToMysql($this->getAcrfecha()),
+			'estado' => $this->getEstado(),
         );
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
@@ -828,6 +853,7 @@ class acreditacion extends MY_Model{
 	  $obj->setAcrorganismo($aux->acrorganismo);
 	  $obj->setAcrcategoria($aux->acrcategoria);
 	  $obj->setAcrfecha($aux->acrfecha);
+	  $obj->setEstado($aux->estado);
 	  return $obj;
     }
     
