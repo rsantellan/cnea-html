@@ -252,7 +252,7 @@ class acreditaciones extends MY_Controller {
 	if ($save) {
 	  //var_dump('aca_? fsdflsdfs');
 	  $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
-      $config['allowed_types'] = 'pdf|doc|docx';
+      $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg';
       $this -> load -> library('upload', $config);
 	  $errores = array();
 	  $upload_data = array();
