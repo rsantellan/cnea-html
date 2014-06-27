@@ -814,7 +814,7 @@ class acreditacion extends MY_Model{
       return $row->C;
     }
     
-    function retrieveTableBasicData($limit, $offset, $order, $where, $addIsExpire = false, $isInactive = false, $isNew = false) 
+    function retrieveTableBasicData($limit = NULL, $offset = NULL, $order = '', $where = '', $addIsExpire = false, $isInactive = false, $isNew = false) 
     {
       $sql = 'select 
               acreditacion.id, 
@@ -875,7 +875,10 @@ class acreditacion extends MY_Model{
       if ($order !== "") {
         $sql .= ' order by '.$order;
       }
-      $sql .= sprintf(' LIMIT %s OFFSET %s', $limit, $offset);
+	  if($limit !== null){
+		$sql .= sprintf(' LIMIT %s OFFSET %s', $limit, $offset);
+	  }
+      
       //var_dump($sql);
       $query = $this->db->query($sql, $parameteres);
       return $query->result();

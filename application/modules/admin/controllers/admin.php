@@ -28,7 +28,27 @@ class admin extends MY_Controller{
     $this->data['content'] = "admin/welcome";
     $this->data['menu_id'] = 'dashboard';
     
+	$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+	$cache_key = 'nextToExpireToSendMails';
+	$searchAcreditacionesToExpire = $this->cache->get($cache_key);
+    if (!$searchAcreditacionesToExpire && true) {
+	  $this->load->model('acreditaciones/acreditacion');
+	  $rResult = $this->acreditacion->retrieveTableBasicData(NULL, NULL, '', '', true);
+	  var_dump($rResult);
+	  // Tengo que insertar aquellos que no estan.
+	  // Tengo que verificar aquellos que no se les mando mail esta semana y actualizarlos
+	  
+	  $this->cache->save($cache_key, true, 86400);
+	}
     $this->load->view("admin/layout", $this->data);
+  }
+
+  public function sendMails(){
+	//Esto va a ser para que desde una llamada de ajax se vayan mandando los mails.
+  }
+  
+  public function sendAllMails(){
+	//Esto es para que se manden todos los mails que haya que mandar en ese instante.
   }
   
   public function adminLogin()
