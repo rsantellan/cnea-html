@@ -848,8 +848,8 @@ class registros extends MY_Controller{
     }
     
     private function  doSearchOfTable($type){
-      $aColumns = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha de vencimiento', 'Acciones');
-      $filterColumns = array('estado', 'nombreapellido', 'nombreinsititucion', 'direccionelectronica', 'category', 'fechavencimiento', 'Acciones');
+      $aColumns = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha registro', 'Fecha de vencimiento', 'Acciones');
+      $filterColumns = array('estado', 'nombreapellido', 'nombreinsititucion', 'direccionelectronica', 'category', 'fecha', 'fechavencimiento', 'Acciones');
       /* Indexed column (used for fast and accurate table cardinality) */
       $sIndexColumn = "id";
 
@@ -947,6 +947,7 @@ class registros extends MY_Controller{
             $registro->nombreinsititucion,
             $registro->direccionelectronica,
             $catString,
+            $registro->fecha,
             $registro->fechavencimiento,
             $this->load->view('registros/personas/acreditacion_row_action', array('id' => $registro->id), true),
         );
@@ -996,7 +997,7 @@ class registros extends MY_Controller{
     }
     
 	private function loadAcreditacionListView($url){
-      $this->data['headers'] = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha de vencimiento', 'Acciones');
+      $this->data['headers'] = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha registro', 'Fecha de vencimiento', 'Acciones');
 	  $this->load->model('acreditaciones/acreditacion');
 	  $estados = $this->acreditacion->getEstadoList();
 	  $this->data['estados'] = $estados;
@@ -1358,7 +1359,7 @@ class registros extends MY_Controller{
     function acreditacionesSubirArchivo()
     {
       $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
-      $config['allowed_types'] = 'pdf|doc|docx';
+      $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png';
       $this -> load -> library('upload', $config);
       $errores = array();
       $upload_data = array();
@@ -1375,7 +1376,10 @@ class registros extends MY_Controller{
           case "firmainstitucion":
               $errores['archivo_firmainstitucion'] = $this -> upload -> display_errors();
             break;
-          default:
+          case "categoria":
+              $errores['archivo_categoria'] = $this -> upload -> display_errors();
+            break;
+		  default:
             break;
         }
           

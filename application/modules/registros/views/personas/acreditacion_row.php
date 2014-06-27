@@ -41,6 +41,9 @@
     ?>
   </td>
   <td>
+    <?php echo ($registro->fecha); ?>
+  </td>
+  <td>
     <?php echo ($registro->fechavencimiento); ?>
   </td>
   <td>

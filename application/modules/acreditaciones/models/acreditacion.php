@@ -826,6 +826,7 @@ class acreditacion extends MY_Model{
               acreditacion.categoriaB, 
               acreditacion.categoriaC1, 
               acreditacion.categoriaC2, 
+              acreditacion.fecha, 
               acreditacion.fechavencimiento 
             from acreditacion 
             left join institucion on institucion.id = instituciondesempeno ';

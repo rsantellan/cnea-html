@@ -141,6 +141,7 @@ class acreditaciones extends MY_Controller {
 	
     $word = $this->input->post('word');
     $captcha = false;
+    //$captcha = true;
     if ($this->input->post() && ($word == $this->session->userdata('word'))) 
     {
       $captcha = true;
@@ -182,7 +183,7 @@ class acreditaciones extends MY_Controller {
 	$form_data = array(
 		'fecha' => set_value('fecha'),
 		'nombreapellido' => set_value('nombreapellido'),
-		'formacion' => set_value('formacion'),
+		'formacion' => $_POST['formacion'],
 		'documento' => set_value('documento'),
 		'fechanacimiento' => set_value('fechanacimiento'),
 		'direccionpostal' => set_value('direccionpostal'),
@@ -204,9 +205,10 @@ class acreditaciones extends MY_Controller {
 		'cvfile' => set_value('cvfile'),
 		'cvpath' => set_value('cvpath'),
 	);
-
+//var_dump($_POST);var_dump(set_value('formacion'));die;
 	$obj->setFecha($form_data['fecha']);
 	$obj->setNombreapellido($form_data['nombreapellido']);
+	//$obj->setFormacion('terciaria');
 	$obj->setFormacion($form_data['formacion']);
 	$obj->setDocumento($form_data['documento']);
 	$obj->setFechanacimiento($form_data['fechanacimiento']);
@@ -252,7 +254,7 @@ class acreditaciones extends MY_Controller {
 	if ($save) {
 	  //var_dump('aca_? fsdflsdfs');
 	  $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
-      $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg';
+      $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png';
       $this -> load -> library('upload', $config);
 	  $errores = array();
 	  $upload_data = array();
@@ -321,9 +323,37 @@ class acreditaciones extends MY_Controller {
 		$upload_data['firma_institucion_upload'] = $this->upload->data();
 	  }
 	  
+	  if(isset($_FILES['categoria_upload']))
+	  {
+		if (!$this->upload->do_upload('categoria_upload')) {
+		  $errores['categoria_upload'] = $this->upload->display_errors();
+		  $this->upload->clean_errors();
+		  $save = false;
+		} else {
+		  $upload_data['categoria_upload'][] = $this->upload->data();
+		}
+	  }
+	  $finish = false;
+	  $counter = 0;
+	  while (!$finish) {
+		if (isset($_FILES["categoria_upload_" . $counter])) {
+		  if (!$this->upload->do_upload('categoria_upload_' . $counter)) {
+			$errores['categoria_upload_' . $counter] = $this->upload->display_errors();
+			$this->upload->clean_errors();
+			$save = false;
+		  } else {
+			$upload_data['categoria_upload'][] = $this->upload->data();
+		  }
+		} else {
+		  $finish = true;
+		}
+		$counter++;
+	  }
+	  
 	  if($save)
 	  {
-		$obj->setFechavencimiento(date('m/d/Y'));
+		
+		//$obj->setFechavencimiento(date('m/d/Y'));
 		$obj->setEstado('N');
 		$acreditacionId = $obj->save();
 		
@@ -396,6 +426,14 @@ class acreditaciones extends MY_Controller {
 			$finish = true;
 		  }
 		  $counter++;
+		}
+		foreach($upload_data['categoria_upload'] as $categoriaUpload){
+		  $archivo = new $this->acreditacionarchivo;
+			$archivo->setAcreditacion_id($acreditacionId);
+			$archivo->setType("categoria");
+			$archivo->setFilename($categoriaUpload['file_name']);
+			$archivo->setFilepath($categoriaUpload['file_path']);
+			$archivo->save();
 		}
 		$this -> data['content'] = 'formulario_ok';
 	  }

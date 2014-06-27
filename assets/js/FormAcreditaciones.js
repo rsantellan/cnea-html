@@ -40,3 +40,22 @@ function agregarFileInputAcreditaciones()
  $('<div class="clear"></div>').insertAfter(ultimo);
  counterAcreditaciones++;
 }
+
+var counterCategoria = 0;
+
+function agregarFileInputCategoria()
+{
+ var cloned = $("#categoria_upload").clone();
+ var ultimo = $('.container_categoria').last();
+ var auxId = cloned.attr("id");
+ var auxName = cloned.attr("name");
+ cloned.attr("id","sacar_"+ counterCategoria);
+ cloned.attr("id",auxId + "_"+ counterCategoria);
+ cloned.attr("name",auxName + "_"+ counterCategoria);
+ var container = $('<div class="container_categoria"></div>');
+ container.append(cloned);
+ container.append($('<a style="float: right;" onclick="return eliminarFileInput(this);" href="javascript:void(0)">Sacar</a><div class="clear"></div>'));
+ container.insertAfter(ultimo);
+ $('<div class="clear"></div>').insertAfter(ultimo);
+ counterCategoria++;
+}
