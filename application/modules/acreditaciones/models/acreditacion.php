@@ -998,6 +998,24 @@ class acreditacion extends MY_Model{
       @unlink($this->getCvpath().$this->getCvfile());
       $this->simpleDeleteById($this->getId());
     }
+    
+    public function retrieveAllToAddToMailQueue()
+    {
+      $sql = "insert into acreditacion_mail (id, nombreapellido, documento, direccionelectronica, nombrecontacto, mailcontacto, categoriaA, categoriaB, categoriaC1, categoriaC2)
+        select 
+        acreditacion.id, acreditacion.nombreapellido, acreditacion.documento, acreditacion.direccionelectronica, institucion.nombrecontacto, institucion.mailcontacto,
+        acreditacion.categoriaA, acreditacion.categoriaB, acreditacion.categoriaC1, acreditacion.categoriaC2
+        from acreditacion 
+        left join institucion on institucion.id = acreditacion.instituciondesempeno
+        where 
+        acreditacion.fechavencimiento <= DATE_ADD(NOW(), INTERVAL 1 MONTH) 
+        and 
+        acreditacion.fechavencimiento >= DATE_ADD(NOW(), INTERVAL -3 MONTH) 
+        and 
+        acreditacion.estado != 'N'
+        and acreditacion.id not in (select acreditacion_mail.id from acreditacion_mail)";
+      return $this->db->query($sql);
+    }
   
 }
 

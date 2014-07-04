@@ -31,14 +31,16 @@ class admin extends MY_Controller{
 	$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
 	$cache_key = 'nextToExpireToSendMails';
 	$searchAcreditacionesToExpire = $this->cache->get($cache_key);
-    if (!$searchAcreditacionesToExpire && true) {
+    if (!$searchAcreditacionesToExpire || true) {
+      $seconds = strtotime('tomorrow 00:00:00') - time();
+      //var_dump($seconds);
 	  $this->load->model('acreditaciones/acreditacion');
-	  $rResult = $this->acreditacion->retrieveTableBasicData(NULL, NULL, '', '', true);
-	  var_dump($rResult);
+	  $rResult = $this->acreditacion->retrieveAllToAddToMailQueue();
+	  //var_dump($rResult);
 	  // Tengo que insertar aquellos que no estan.
 	  // Tengo que verificar aquellos que no se les mando mail esta semana y actualizarlos
 	  
-	  $this->cache->save($cache_key, true, 86400);
+	  $this->cache->save($cache_key, true, $seconds);
 	}
     $this->load->view("admin/layout", $this->data);
   }
