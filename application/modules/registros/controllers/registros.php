@@ -467,6 +467,14 @@ class registros extends MY_Controller{
       die;
     }
     
+    public function downloadDescargarResponsable($id)
+    {
+      $this->load->helper('download');
+      $this->load->model('instituciones/institucion');
+      $institucion = $this->institucion->getById($id);
+      force_download($institucion->getCvfilename(), file_get_contents($institucion->getCvfilepath().$institucion->getCvfilename()));
+      die;
+    }
     
     function institucionesCambiarResponsable()
     {

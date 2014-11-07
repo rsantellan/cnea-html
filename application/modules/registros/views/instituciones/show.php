@@ -189,7 +189,7 @@
   <div class="grid_5">
     <span>
       <label>Descargar</label>
-      <a href="javascript:void(0)"><?php echo $institucion->getCvfilename();?></a>
+      <a href="<?php echo site_url('registros/downloadDescargarResponsable/'.$institucion->getId()); ?>"><?php echo $institucion->getCvfilename();?></a>
       
     </span>
   </div>

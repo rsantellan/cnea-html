@@ -180,10 +180,15 @@ class acreditaciones extends MY_Controller {
      $this->session->set_userdata('word', $cap['word']); 
      //var_dump($cap["word"]);
 	//var_dump(set_value('realizocursos'));
+  $formacion_data = 'primaria';
+  if(isset($_POST['formacion']))
+  {
+    $formacion_data = $_POST['formacion'];
+  }
 	$form_data = array(
 		'fecha' => set_value('fecha'),
 		'nombreapellido' => set_value('nombreapellido'),
-		'formacion' => $_POST['formacion'],
+		'formacion' => $formacion_data,
 		'documento' => set_value('documento'),
 		'fechanacimiento' => set_value('fechanacimiento'),
 		'direccionpostal' => set_value('direccionpostal'),
