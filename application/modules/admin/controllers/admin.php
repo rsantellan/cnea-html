@@ -35,7 +35,7 @@ class admin extends MY_Controller{
       $seconds = strtotime('tomorrow 00:00:00') - time();
       //var_dump($seconds);
 	  $this->load->model('acreditaciones/acreditacion');
-	  $rResult = $this->acreditacion->retrieveAllToAddToMailQueue();
+	  //$rResult = $this->acreditacion->retrieveAllToAddToMailQueue();
 	  //var_dump($rResult);
 	  // Tengo que insertar aquellos que no estan.
 	  // Tengo que verificar aquellos que no se les mando mail esta semana y actualizarlos

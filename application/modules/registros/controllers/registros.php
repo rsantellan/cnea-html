@@ -1028,7 +1028,8 @@ class registros extends MY_Controller{
         $this -> load -> helper('form');
         $this -> load -> library('form_validation');
         $this->form_validation->set_rules('fecha', 'Fecha', 'required');			
-		$this->form_validation->set_rules('nombreapellido', 'Nombre y Apellido', 'required|trim|max_length[255]');
+		$this->form_validation->set_rules('nombre', 'Nombre', 'required|trim|max_length[255]');
+		$this->form_validation->set_rules('nombreapellido', 'Apellido', 'required|trim|max_length[255]');
         $this->form_validation->set_rules('formacion', 'formacion', '');
 		$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');			
@@ -1080,6 +1081,7 @@ class registros extends MY_Controller{
         }
         $form_data = array(
                       'fecha' => set_value('fecha'),
+                      'nombre' => set_value('nombre'),
                       'nombreapellido' => set_value('nombreapellido'),
                       'formacion' => set_value('formacion'),
                       'documento' => set_value('documento'),
@@ -1108,6 +1110,7 @@ class registros extends MY_Controller{
         
         
         $obj->setFecha($form_data['fecha']);
+        $obj->setNombre($form_data['nombre']);
         $obj->setNombreapellido($form_data['nombreapellido']);
         $obj->setFormacion($form_data['formacion']);
         $obj->setDocumento($form_data['documento']);
@@ -1212,7 +1215,8 @@ class registros extends MY_Controller{
         $this->data['menu_id'] = 'registros_personas';
         $this -> load -> helper('form');
         $this -> load -> library('form_validation');
-        $this->form_validation->set_rules('fecha', 'Fecha', 'required');			
+        $this->form_validation->set_rules('fecha', 'Fecha', 'required');
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required|trim|max_length[255]');			
 		$this->form_validation->set_rules('nombreapellido', 'Nombre y Apellido', 'required|trim|max_length[255]');			
 		$this->form_validation->set_rules('formacion', 'formacion', '');			
 		$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');			
@@ -1265,6 +1269,7 @@ class registros extends MY_Controller{
         }
         $form_data = array(
                       'fecha' => set_value('fecha'),
+                      'nombre' => set_value('nombre'),
                       'nombreapellido' => set_value('nombreapellido'),
                       'formacion' => set_value('formacion'),
                       'documento' => set_value('documento'),
@@ -1295,6 +1300,7 @@ class registros extends MY_Controller{
         echo '<hr/>';
         */
         $obj->setFecha($form_data['fecha']);
+        $obj->setNombre($form_data['nombre']);
         $obj->setNombreapellido($form_data['nombreapellido']);
         $obj->setFormacion($form_data['formacion']);
         $obj->setDocumento($form_data['documento']);

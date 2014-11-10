@@ -19,7 +19,11 @@
     </p>
     
     <p>
-      <label class="hasinfieldlabel" for="nombreapellido"><?php echo lang("personal_formulario_nombre"); ?></label>
+      <label class="hasinfieldlabel" for="nombre"><?php echo lang("personal_formulario_nombre"); ?></label>
+      <input class="<?php echo (form_error('nombre') != "")? "input_error" : "";?>" id="nombre" type="text" name="nombre"  value="<?php echo $obj->getNombre(); ?>"  />
+    </p>
+    <p>
+      <label class="hasinfieldlabel" for="nombreapellido"><?php echo lang("personal_formulario_apellido"); ?></label>
       <input class="<?php echo (form_error('nombreapellido') != "")? "input_error" : "";?>" id="nombreapellido" type="text" name="nombreapellido"  value="<?php echo $obj->getNombreapellido(); ?>"  />
     </p>
     

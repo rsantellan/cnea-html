@@ -15,7 +15,13 @@
     </div>
     <div class="grid_5">
       <span>
-        <label>Nombre y Apellido</label>
+        <label>Nombre</label>
+        <?php echo $acreditacion->getNombre(); ?>
+      </span>
+    </div>
+    <div class="grid_5">
+      <span>
+        <label>Apellido</label>
         <?php echo $acreditacion->getNombreapellido(); ?>
       </span>
     </div>

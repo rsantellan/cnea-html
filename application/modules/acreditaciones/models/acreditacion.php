@@ -12,6 +12,7 @@ class acreditacion extends MY_Model{
   
   private $id;
   private $fecha;
+  private $nombre;
   private $nombreapellido;
   private $formacion;
   private $documento;
@@ -86,6 +87,14 @@ class acreditacion extends MY_Model{
     $this->fecha = $fecha;
   }
 
+  public function getNombre() {
+    return $this->nombre;
+  }
+
+  public function setNombre($nombre) {
+    $this->nombre = $nombre;
+  }
+  
   public function getNombreapellido() {
     return $this->nombreapellido;
   }
@@ -547,6 +556,7 @@ class acreditacion extends MY_Model{
     {
       $data = array(
             'fecha' => $this->formatDateToMysql($this->getFecha()),
+            'nombre' => $this->getNombre(),
             'nombreapellido' => $this->getNombreapellido(),
             'formacion' => $this->getFormacion(),
             'documento' => $this->getDocumento(),
@@ -650,6 +660,7 @@ class acreditacion extends MY_Model{
       
       $data = array(
             'fecha' => $this->formatDateToMysql($this->getFecha()),
+            'nombre' => $this->getNombre(),
             'nombreapellido' => $this->getNombreapellido(),
             'formacion' => $this->getFormacion(),
             'documento' => $this->getDocumento(),
@@ -940,6 +951,7 @@ class acreditacion extends MY_Model{
       $obj = new acreditacion();
       $obj->setId($aux->id);
       $obj->setFecha($aux->fecha);
+      $obj->setNombre($aux->nombre);
       $obj->setNombreapellido($aux->nombreapellido);
       $obj->setFormacion($aux->formacion);
       $obj->setDocumento($aux->documento);

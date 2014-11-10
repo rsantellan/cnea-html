@@ -98,7 +98,8 @@ class acreditaciones extends MY_Controller {
 	$this->load->helper('form');
 	$this->load->library('form_validation');
 	$this->form_validation->set_rules('fecha', 'Fecha', 'required');
-	$this->form_validation->set_rules('nombreapellido', 'Nombre y Apellido', 'required|trim|max_length[255]');
+	$this->form_validation->set_rules('nombre', 'Nombre', 'required|trim|max_length[255]');
+	$this->form_validation->set_rules('nombreapellido', 'Apellido', 'required|trim|max_length[255]');
 	$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');
 	$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');
 	$this->form_validation->set_rules('formacionterciaria', 'formacion terciaria', 'max_length[1]');
@@ -187,6 +188,7 @@ class acreditaciones extends MY_Controller {
   }
 	$form_data = array(
 		'fecha' => set_value('fecha'),
+		'nombre' => set_value('nombre'),
 		'nombreapellido' => set_value('nombreapellido'),
 		'formacion' => $formacion_data,
 		'documento' => set_value('documento'),
@@ -212,6 +214,7 @@ class acreditaciones extends MY_Controller {
 	);
 //var_dump($_POST);var_dump(set_value('formacion'));die;
 	$obj->setFecha($form_data['fecha']);
+	$obj->setNombre($form_data['nombre']);
 	$obj->setNombreapellido($form_data['nombreapellido']);
 	//$obj->setFormacion('terciaria');
 	$obj->setFormacion($form_data['formacion']);

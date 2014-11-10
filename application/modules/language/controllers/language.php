@@ -268,7 +268,9 @@ class Language extends MY_Controller {
               $comments[$key] = '';
             }
             $f .= '$lang[\'' . $key . '\']=\''; ///for language array
-            $f .= addslashes($this->input->post($key, TRUE)) . '\';' . "\n";  ///for language array		, add escaping "
+            //var_dump($this->input->post($key));
+            //$f .= addslashes($this->input->post($key, TRUE)) . '\';' . "\n";  ///for language array		, add escaping "
+            $f .= addslashes($this->input->post($key)) . '\';' . "\n";  ///for language array		, add escaping "
           } elseif ($pos = strpos($key, 'new_key_') !== FALSE) { /// check if there is new key -> strpos is faster than substr
             $new_key = $this->prepare_str(trim($this->input->post($key, TRUE)));
             if (!empty($new_key)) {
