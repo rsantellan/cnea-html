@@ -1,5 +1,13 @@
 $(document).ready(function() {
-   $(":date").dateinput();
+   //$(":date").dateinput();
+   $('#fecha').datepicker({
+      changeYear: true,
+      yearRange: "-100:+0"
+    });
+   $('#fechanacimiento').datepicker({
+      changeYear: true,
+      yearRange: "-100:+0"
+    }); 
    $("#acreditacion_form").sayt();
    $(".infield_form p label.hasinfieldlabel").inFieldLabels();
    /*

@@ -86,12 +86,16 @@ class acreditaciones extends MY_Controller {
   function formulario() {
 	//$this->addJquery();
 	$this->addJavascript("jquery.js");
+	
 	$this->addStyleSheet("skin1.css");
 	$this->addJavascript("jquery.infieldlabel.min.js");
 	$this->addJavascript("basicInfieldFormPersonas.js");
 	$this->addJavascript("FormAcreditaciones.js");
 	$this->addStyleSheet("infieldlabelPersonas.css");
 
+	$this->addJavascript("jquery-ui-1.8.16.custom.min.js");
+	$this->addStyleSheet("le-frog/jquery-ui-1.8.16.custom.css");
+	
     $this->addJavascript("jquery.cookie.js");
     $this->addJavascript("sayt.jquery.js");
         
