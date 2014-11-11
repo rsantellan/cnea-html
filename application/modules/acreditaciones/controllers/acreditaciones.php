@@ -99,6 +99,8 @@ class acreditaciones extends MY_Controller {
     $this->addJavascript("jquery.cookie.js");
     $this->addJavascript("sayt.jquery.js");
         
+    $this->addModuleJavascript('registros', 'createEditAcreditacion.js');
+    
 	$this->load->helper('form');
 	$this->load->library('form_validation');
 	$this->form_validation->set_rules('fecha', 'Fecha', 'required');
@@ -107,6 +109,7 @@ class acreditaciones extends MY_Controller {
 	$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');
 	$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');
 	$this->form_validation->set_rules('formacionterciaria', 'formacion terciaria', 'max_length[1]');
+    $this->form_validation->set_rules('titulo', 'titulo', 'trim|max_length[255]');
 	$this->form_validation->set_rules('documento', 'Documento', 'required|max_length[255]');
 	$this->form_validation->set_rules('fechanacimiento', 'fecha nacimiento', 'required');
 	$this->form_validation->set_rules('direccionpostal', 'Direccion Postal', 'required|max_length[255]');
@@ -164,6 +167,7 @@ class acreditaciones extends MY_Controller {
     } else {
         if($captcha)
           $save = true;
+        $save = true;
     }
     $this->load->helper('captcha');
     $vals = array(
@@ -195,6 +199,7 @@ class acreditaciones extends MY_Controller {
 		'nombre' => set_value('nombre'),
 		'nombreapellido' => set_value('nombreapellido'),
 		'formacion' => $formacion_data,
+        'titulo' => set_value('titulo'),
 		'documento' => set_value('documento'),
 		'fechanacimiento' => set_value('fechanacimiento'),
 		'direccionpostal' => set_value('direccionpostal'),
@@ -222,6 +227,7 @@ class acreditaciones extends MY_Controller {
 	$obj->setNombreapellido($form_data['nombreapellido']);
 	//$obj->setFormacion('terciaria');
 	$obj->setFormacion($form_data['formacion']);
+    $obj->setTitulo($form_data['titulo']);
 	$obj->setDocumento($form_data['documento']);
 	$obj->setFechanacimiento($form_data['fechanacimiento']);
 	$obj->setDireccionpostal($form_data['direccionpostal']);
@@ -365,7 +371,7 @@ class acreditaciones extends MY_Controller {
 	  if($save)
 	  {
 		
-		//$obj->setFechavencimiento(date('m/d/Y'));
+		$obj->setFechavencimiento(date('m/d/Y'));
 		$obj->setEstado('N');
 		$acreditacionId = $obj->save();
 		

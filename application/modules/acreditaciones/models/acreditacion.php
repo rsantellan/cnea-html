@@ -15,6 +15,7 @@ class acreditacion extends MY_Model{
   private $nombre;
   private $nombreapellido;
   private $formacion;
+  private $titulo;
   private $documento;
   private $fechanacimiento;
   private $direccionpostal;
@@ -110,6 +111,14 @@ class acreditacion extends MY_Model{
 
   public function setFormacion($formacion) {
     $this->formacion = $formacion;
+  }
+
+  public function getTitulo() {
+    return $this->titulo;
+  }
+
+  public function setTitulo($titulo) {
+    $this->titulo = $titulo;
   }
 
   public function getDocumento() {
@@ -559,6 +568,7 @@ class acreditacion extends MY_Model{
             'nombre' => $this->getNombre(),
             'nombreapellido' => $this->getNombreapellido(),
             'formacion' => $this->getFormacion(),
+            'titulo' => $this->getTitulo(),
             'documento' => $this->getDocumento(),
             'fechanacimiento' => $this->formatDateToMysql($this->getFechanacimiento()),
             'direccionpostal' => $this->getDireccionpostal(),
@@ -663,6 +673,7 @@ class acreditacion extends MY_Model{
             'nombre' => $this->getNombre(),
             'nombreapellido' => $this->getNombreapellido(),
             'formacion' => $this->getFormacion(),
+            'titulo' => $this->getTitulo(),
             'documento' => $this->getDocumento(),
             'fechanacimiento' => $this->formatDateToMysql($this->getFechanacimiento()),
             'direccionpostal' => $this->getDireccionpostal(),
@@ -954,6 +965,7 @@ class acreditacion extends MY_Model{
       $obj->setNombre($aux->nombre);
       $obj->setNombreapellido($aux->nombreapellido);
       $obj->setFormacion($aux->formacion);
+      $obj->setTitulo($aux->titulo);
       $obj->setDocumento($aux->documento);
       $obj->setFechanacimiento($aux->fechanacimiento);
       $obj->setDireccionpostal($aux->direccionpostal);

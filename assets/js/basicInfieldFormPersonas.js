@@ -8,6 +8,11 @@ $(document).ready(function() {
       changeYear: true,
       yearRange: "-100:+0"
     }); 
+    
+    $('#acrfecha').datepicker({
+      changeYear: true,
+      yearRange: "-100:+0"
+    });
    $("#acreditacion_form").sayt();
    $(".infield_form p label.hasinfieldlabel").inFieldLabels();
    /*

@@ -117,3 +117,7 @@ div.tags_libres{
 th.sorting_disabled{
   background-color: white !important;
 }
+
+.hidden {
+  display:none;
+}

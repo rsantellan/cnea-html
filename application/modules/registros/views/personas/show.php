@@ -33,6 +33,12 @@
     </div>
     <div class="grid_5">
       <span>
+        <label>Titulo</label>
+        <?php echo $acreditacion->getTitulo(); ?>
+      </span>
+    </div>
+    <div class="grid_5">
+      <span>
         <label>Documento</label>
         <?php echo $acreditacion->getDocumento(); ?>
       </span>

@@ -33,15 +33,19 @@
       <?php echo form_error('formacion'); ?>
       
       <label for="formacion_primaria">formaci&oacute;n primaria</label>
-        <input type="radio" class="radiobuttom"  id="formacion_primaria" name="formacion" value="primaria" class="" <?php echo ($obj->getFormacion() == "primaria")? "checked=\"checked\"" : "";?> /> 
+        <input type="radio" class="radiobuttom"  id="formacion_primaria" name="formacion" value="primaria" class="" <?php echo ($obj->getFormacion() == "primaria")? "checked=\"checked\"" : "";?>  onclick="hideTitulo();"/> 
       
         <label for="formacion_secundaria">formaci&oacute;n secundaria</label>
-        <input type="radio" class="radiobuttom"  id="formacion_secundaria" name="formacion" value="secundaria" class="" <?php echo ($obj->getFormacion() =="secundaria")? "checked=\"checked\""  : ""; ?> /> 
+        <input type="radio" class="radiobuttom"  id="formacion_secundaria" name="formacion" value="secundaria" class="" <?php echo ($obj->getFormacion() =="secundaria")? "checked=\"checked\""  : ""; ?>  onclick="hideTitulo();"/> 
       
       
         <label for="formacionterciaria">formaci&oacute;n terciaria</label>
-        <input type="radio" class="radiobuttom"  id="formacionterciaria" name="formacion" value="terciaria" class="" <?php echo ($obj->getFormacion() == "terciaria")? "checked=\"checked\"" : ""; ?> /> 
-      
+        <input type="radio" class="radiobuttom"  id="formacionterciaria" name="formacion" value="terciaria" class="" <?php echo ($obj->getFormacion() == "terciaria")? "checked=\"checked\"" : ""; ?>  onclick="showTitulo();" /> 
+    </p>
+    <div class="clear"></div>
+    <p class="hidden"  id="titulo_container">
+      <label class="hasinfieldlabel" for="titulo"><?php echo lang("personal_formulario_formacion_titulo"); ?></label>
+      <input class="<?php echo (form_error('titulo') != "")? "input_error" : "";?>" id="titulo" type="text" name="titulo" maxlength="255" value="<?php echo $obj->getTitulo(); ?>"  />
     </p>
     <div class="clear"></div>
     <p>

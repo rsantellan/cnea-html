@@ -23,6 +23,7 @@
       <br /><input id="nombreapellido" type="text" name="nombreapellido" maxlength="255" value="<?php echo $obj->getNombreapellido(); ?>"  />
     </p>
   </div>
+  <div class="clear"></div>
   <div class="grid_14">
     <p>
     <h6>Nivel de formación</h6>
@@ -31,16 +32,24 @@
     <?php echo form_error('formacionterciaria'); ?>
     <div style="width: 32%; float: left;">
       <label for="formacion_primaria" style="float:left">formacion primaria</label>
-      <input style="margin: 5px 0 0 7px;" type="radio" class="radiobuttom"  id="formacion_primaria" name="formacion" value="primaria" class="" <?php echo ($obj->getFormacion() == "primaria")? "checked=\"checked\"" : "";?> /> 
+      <input style="margin: 5px 0 0 7px;" type="radio" class="radiobuttom"  id="formacion_primaria" name="formacion" value="primaria" class="" <?php echo ($obj->getFormacion() == "primaria")? "checked=\"checked\"" : "";?> onclick="hideTitulo();"/> 
     </div>
     <div style="width: 36%; float: left;">
       <label for="formacion_secundaria" style="float:left">formacion secundaria</label>
-      <input style="margin: 5px 0 0 7px;" type="radio" class="radiobuttom"  id="formacion_secundaria" name="formacion" value="secundaria" class="" <?php echo ($obj->getFormacion() =="secundaria")? "checked=\"checked\""  : ""; ?> /> 
+      <input style="margin: 5px 0 0 7px;" type="radio" class="radiobuttom"  id="formacion_secundaria" name="formacion" value="secundaria" class="" <?php echo ($obj->getFormacion() =="secundaria")? "checked=\"checked\""  : ""; ?> onclick="hideTitulo();"/> 
     </div>
     <div style="width: 32%; float: left;">
       <label for="formacionterciaria" style="float:left">formacion terciaria</label>
-      <input style="margin: 5px 0 0 7px;" type="radio" class="radiobuttom"  id="formacionterciaria" name="formacion" value="terciaria" class="" <?php echo ($obj->getFormacion() == "terciaria")? "checked=\"checked\"" : ""; ?> /> 
+      <input style="margin: 5px 0 0 7px;" type="radio" class="radiobuttom"  id="formacionterciaria" name="formacion" value="terciaria" class="" <?php echo ($obj->getFormacion() == "terciaria")? "checked=\"checked\"" : ""; ?> onclick="showTitulo();"/> 
     </div>
+    </p>
+  </div>
+  <div class="grid_5 hidden" id="titulo_container">
+    <p>
+      <label for="titulo">Titulo</label>
+      <?php echo form_error('titulo'); ?>
+      <br />
+      <input id="titulo" type="text" name="titulo" maxlength="255" value="<?php echo $obj->getTitulo(); ?>"  />
     </p>
   </div>
   <div class="clear"></div>

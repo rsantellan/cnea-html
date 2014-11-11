@@ -11,11 +11,19 @@
   </div>
   <div class="grid_5">
     <p>
-      <label for="nombreapellido">Nombre y Apellido <span class="required">*</span></label>
+      <label for="nombre">Nombre<span class="required">*</span></label>
+      <?php echo form_error('nombre'); ?>
+      <br /><input id="nombre" type="text" name="nombre" maxlength="255" value="<?php echo $obj->getNombre(); ?>"  />
+    </p>
+  </div>
+  <div class="grid_5">
+    <p>
+      <label for="nombreapellido">Apellido <span class="required">*</span></label>
       <?php echo form_error('nombreapellido'); ?>
       <br /><input id="nombreapellido" type="text" name="nombreapellido" maxlength="255" value="<?php echo $obj->getNombreapellido(); ?>"  />
     </p>
   </div>
+  <div class="clear"></div>
   <div class="grid_14">
     <p>
     <h6>Nivel de formación</h6>
@@ -34,6 +42,14 @@
       <label for="formacionterciaria" style="float:left">formacion terciaria</label>
       <input type="radio" class="radiobuttom"  id="formacionterciaria" name="formacion" value="terciaria" class="" <?php echo ($obj->getFormacion() == "terciaria")? "checked=\"checked\"" : ""; ?> /> 
     </div>
+    </p>
+  </div>
+  <div class="grid_5 hidden" id="titulo_container">
+    <p>
+      <label for="titulo">Titulo</label>
+      <?php echo form_error('titulo'); ?>
+      <br />
+      <input id="titulo" type="text" name="titulo" maxlength="255" value="<?php echo $obj->getTitulo(); ?>"  />
     </p>
   </div>
   <div class="clear"></div>

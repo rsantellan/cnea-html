@@ -1034,6 +1034,7 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacionterciaria', 'formacion terciaria', 'max_length[1]');			
+        $this->form_validation->set_rules('titulo', 'titulo', 'trim|max_length[255]');
 		$this->form_validation->set_rules('documento', 'Documento', 'required|max_length[255]');			
 		$this->form_validation->set_rules('fechanacimiento', 'fecha nacimiento', 'required');			
 		$this->form_validation->set_rules('direccionpostal', 'Direccion Postal', 'required|max_length[255]');			
@@ -1084,6 +1085,7 @@ class registros extends MY_Controller{
                       'nombre' => set_value('nombre'),
                       'nombreapellido' => set_value('nombreapellido'),
                       'formacion' => set_value('formacion'),
+                      'titulo' => set_value('titulo'),
                       'documento' => set_value('documento'),
                       'fechanacimiento' => set_value('fechanacimiento'),
                       'direccionpostal' => set_value('direccionpostal'),
@@ -1113,6 +1115,7 @@ class registros extends MY_Controller{
         $obj->setNombre($form_data['nombre']);
         $obj->setNombreapellido($form_data['nombreapellido']);
         $obj->setFormacion($form_data['formacion']);
+        $obj->setTitulo($form_data['titulo']);
         $obj->setDocumento($form_data['documento']);
         $obj->setFechanacimiento($form_data['fechanacimiento']);
         $obj->setDireccionpostal($form_data['direccionpostal']);
@@ -1177,6 +1180,7 @@ class registros extends MY_Controller{
         $this->data['obj'] = $obj;
         $this->data['use_grid_16'] = false;
         $this->addJqueryUI();
+        $this->addModuleJavascript('registros', 'createEditAcreditacion.js');
         $this->data['content'] = "registros/personas/createformacreditacion";
       
         $this->load->view("admin/layout", $this->data);
@@ -1205,6 +1209,7 @@ class registros extends MY_Controller{
         $this->data['obj'] = $obj;
         $this->data['use_grid_16'] = false;
         $this->addJqueryUI();
+        $this->addModuleJavascript('registros', 'createEditAcreditacion.js');
         $this->data['content'] = "registros/personas/editformacreditacion";
       
         $this->load->view("admin/layout", $this->data);
@@ -1222,6 +1227,7 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('formacion_primaria', 'formacion primaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacion_secundaria', 'formacion secundaria', 'max_length[1]');			
 		$this->form_validation->set_rules('formacionterciaria', 'formacion terciaria', 'max_length[1]');			
+        $this->form_validation->set_rules('titulo', 'titulo', 'trim|max_length[255]');
 		$this->form_validation->set_rules('documento', 'Documento', 'required|max_length[255]');			
 		$this->form_validation->set_rules('fechanacimiento', 'fecha nacimiento', 'required');			
 		$this->form_validation->set_rules('direccionpostal', 'Direccion Postal', 'required|max_length[255]');			
@@ -1272,6 +1278,7 @@ class registros extends MY_Controller{
                       'nombre' => set_value('nombre'),
                       'nombreapellido' => set_value('nombreapellido'),
                       'formacion' => set_value('formacion'),
+                      'titulo' => set_value('titulo'),
                       'documento' => set_value('documento'),
                       'fechanacimiento' => set_value('fechanacimiento'),
                       'direccionpostal' => set_value('direccionpostal'),
@@ -1303,6 +1310,7 @@ class registros extends MY_Controller{
         $obj->setNombre($form_data['nombre']);
         $obj->setNombreapellido($form_data['nombreapellido']);
         $obj->setFormacion($form_data['formacion']);
+        $obj->setTitulo($form_data['titulo']);
         $obj->setDocumento($form_data['documento']);
         $obj->setFechanacimiento($form_data['fechanacimiento']);
         $obj->setDireccionpostal($form_data['direccionpostal']);
@@ -1362,6 +1370,7 @@ class registros extends MY_Controller{
         $this->data['obj'] = $obj;
         $this->data['use_grid_16'] = false;
         $this->addJqueryUI();
+        $this->addModuleJavascript('registros', 'createEditAcreditacion.js');
         $this->data['content'] = "registros/personas/editformacreditacion";
       
         $this->load->view("admin/layout", $this->data);
