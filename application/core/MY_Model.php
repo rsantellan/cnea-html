@@ -61,4 +61,21 @@ class MY_Model extends CI_Model{
         return NULL;
       }
     }
+    
+    
+    protected function formatDateToMysql($date)
+    {
+	  //var_dump($date);
+	  if(empty($date)) return $date;
+      $pieces = explode("/", $date);
+      return $pieces[2]."-".$pieces[0]."-".$pieces[1];
+    }
+    
+    protected function formatDateFromMysql($date)
+    {
+	  if(is_null($date)) return $date;
+      $pieces = explode("-", $date);
+      if(count($pieces) == 1) return $date;
+      return $pieces[1]."/".$pieces[2]."/".$pieces[0];
+    }
 }

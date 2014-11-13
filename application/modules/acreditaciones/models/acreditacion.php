@@ -648,7 +648,7 @@ class acreditacion extends MY_Model{
       }
       return $returnString;
     }
-    
+    /*
     private function formatDateToMysql($date)
     {
 	  //var_dump($date);
@@ -664,6 +664,7 @@ class acreditacion extends MY_Model{
       if(count($pieces) == 1) return $date;
       return $pieces[1]."/".$pieces[2]."/".$pieces[0];
     }
+    */
     
     private function saveNew()
     {

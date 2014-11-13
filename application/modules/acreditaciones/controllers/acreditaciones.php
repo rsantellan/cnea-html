@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of acreditaciones
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class acreditaciones extends MY_Controller {
 
