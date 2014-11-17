@@ -15,7 +15,7 @@
     <div class="clear"></div>
     <p>
       <label class="fecha_infield hasinfieldlabel" for="fecha"><?php echo lang("personal_formulario_fecha"); ?></label>
-      <input class="<?php echo (form_error('fecha') != "")? "input_error" : "";?>" id="fecha" type="date" name="fecha" maxlength="255" value="<?php echo $obj->getFecha(); ?>"  />
+      <input class="<?php echo (form_error('fecha') != "")? "input_error" : "";?>" id="fecha" type="input" name="fecha" maxlength="255" value="<?php echo $obj->getFecha(); ?>"  />
     </p>
     
     <p>
@@ -54,7 +54,7 @@
     </p>
     <p>
       <label class="fecha_infield hasinfieldlabel" for="fechanacimiento"><?php echo lang("personal_formulario_fechanacimiento"); ?></label>
-      <input class="<?php echo (form_error('fechanacimiento') != "")? "input_error" : "";?>" id="fechanacimiento" type="date" name="fechanacimiento" maxlength="255" value="<?php echo $obj->getFechanacimiento(); ?>"  />
+      <input class="<?php echo (form_error('fechanacimiento') != "")? "input_error" : "";?>" id="fechanacimiento" type="input" name="fechanacimiento" maxlength="255" value="<?php echo $obj->getFechanacimiento(); ?>"  />
     </p>
     <p>
       <label class="hasinfieldlabel" for="direccionpostal"><?php echo lang("personal_formulario_postal"); ?></label>
@@ -233,7 +233,7 @@
     </p>
     <p class="acreditacion_field <?php echo $extra_r_class; ?>">
       <label class="hasinfieldlabel"  for="acrfecha"><?php echo lang("personal_formulario_fecha_vencimiento_acreditacion"); ?></label>
-      <input class="<?php echo (form_error('acrfecha') != "")? "input_error" : "";?>" id="acrfecha" type="date" name="acrfecha"  value="<?php echo $obj->getAcrfecha(); ?>"  />
+      <input class="<?php echo (form_error('acrfecha') != "")? "input_error" : "";?>" id="acrfecha" type="input" name="acrfecha"  value="<?php echo $obj->getAcrfecha(); ?>"  />
     </p>
     
     <span class="acreditacion_field <?php echo $extra_r_class; ?>"><?php echo lang("personal_formulario_adjuntar_acreditacion"); ?></span>

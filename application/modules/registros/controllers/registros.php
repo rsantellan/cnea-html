@@ -1043,7 +1043,7 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('instituciondesempeno', 'Institucion desempeño', 'required|max_length[11]');			
 		$this->form_validation->set_rules('laboratoriounidad', 'Laboratorio/Unidad', 'required|max_length[255]');			
 		$this->form_validation->set_rules('cargofuncioninstitucion', 'Cargo/Funcion en la institucion', 'required|max_length[255]');			
-		$this->form_validation->set_rules('cargahorariasemanal', 'Carga Horaria Semanal', 'required|is_numeric');			
+		$this->form_validation->set_rules('cargahorariasemanal', 'Carga Horaria Semanal', 'required|is_numeric|less_than[60]');			
 		$this->form_validation->set_rules('nombresupervisor', 'nombre supervisor', 'required|max_length[255]');			
 		$this->form_validation->set_rules('especiestrabajadas', 'Especies que trabajadas', 'required');			
 		$this->form_validation->set_rules('describatareas', 'Describa las tareas', '');			
@@ -1236,7 +1236,7 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('instituciondesempeno', 'Institucion desempeño', 'required|max_length[11]');			
 		$this->form_validation->set_rules('laboratoriounidad', 'Laboratorio/Unidad', 'required|max_length[255]');			
 		$this->form_validation->set_rules('cargofuncioninstitucion', 'Cargo/Funcion en la institucion', 'required|max_length[255]');			
-		$this->form_validation->set_rules('cargahorariasemanal', 'Carga Horaria Semanal', 'required|is_numeric');			
+		$this->form_validation->set_rules('cargahorariasemanal', 'Carga Horaria Semanal', 'required|is_numeric|less_than[60]');			
 		$this->form_validation->set_rules('nombresupervisor', 'nombre supervisor', 'required|max_length[255]');			
 		$this->form_validation->set_rules('especiestrabajadas', 'Especies que trabajadas', 'required');			
 		$this->form_validation->set_rules('describatareas', 'Describa las tareas', '');			
