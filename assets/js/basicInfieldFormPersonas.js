@@ -2,32 +2,22 @@ $(document).ready(function() {
    //$(":date").dateinput();
    $('#fecha').datepicker({
       changeYear: true,
-      yearRange: "-100:+0"
+      yearRange: "-100:+0",
+      dateFormat: "dd/mm/yy"
     });
    $('#fechanacimiento').datepicker({
       changeYear: true,
-      yearRange: "-100:+0"
+      yearRange: "-100:+0",
+      dateFormat: "dd/mm/yy"
     }); 
     
     $('#acrfecha').datepicker({
       changeYear: true,
-      yearRange: "-100:+0"
+      yearRange: "-100:+0",
+      dateFormat: "dd/mm/yy"
     });
    $("#acreditacion_form").sayt();
    $(".infield_form p label.hasinfieldlabel").inFieldLabels();
-   /*
-   $('.button_short').each(function(index, val){
-      $(this).bind('click', function() {
-        $(this).prev().trigger('click');
-      });
-    });
-   $('.adjuntar').each(function(index, val){
-      $(this).bind('click', function() {
-        $(this).prev().trigger('click');
-        return false;
-      });
-    });
-    */
 	if($('input[name=realizocursos]:checked').val() == 1)
 	{
 	  $(".realizacion_field").each(function(index, value) {

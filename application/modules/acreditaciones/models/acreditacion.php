@@ -64,6 +64,7 @@ class acreditacion extends MY_Model{
   private $acrcategoria;
   private $acrfecha;
   private $estado;
+  private $historicoId;
  
   function __construct()
   {
@@ -539,7 +540,18 @@ class acreditacion extends MY_Model{
 		'N' => 'Nuevo',
 		'V' => 'Vencido no renovo',
 		'VR' => 'Vencido en renovacion',
+		'R' => 'Rechazado',
 	);
+  }
+  
+  public function getEstadoName($estadoCode){
+    $list = $this->getEstadoList();
+    return $list[$estadoCode];
+  }
+  
+  public function getHistoricoId()
+  {
+    return $this->historicoId;
   }
   
   public function isNew(){
@@ -634,6 +646,7 @@ class acreditacion extends MY_Model{
       $data = array('isactive' => $active);
       $this->db->where('id', $this->getId());
       $this->db->update($this->getTablename(), $data);
+      $this->doReplication($this->getId());
       return $this->getId();
     }
     
@@ -644,31 +657,20 @@ class acreditacion extends MY_Model{
         $data = array('estado' => $estado);
         $this->db->where('id', $id);
         $this->db->update($this->getTablename(), $data);
+        $this->doReplication($id);
         $returnString = "Nuevo estado es: ".$listado[$estado];
+      }
+      else
+      {
+        throw new Exception("Sin cambio");
       }
       return $returnString;
     }
-    /*
-    private function formatDateToMysql($date)
-    {
-	  //var_dump($date);
-	  if(empty($date)) return $date;
-      $pieces = explode("/", $date);
-      return $pieces[2]."-".$pieces[0]."-".$pieces[1];
-    }
     
-    private function formatDateFromMysql($date)
-    {
-	  if(is_null($date)) return $date;
-      $pieces = explode("-", $date);
-      if(count($pieces) == 1) return $date;
-      return $pieces[1]."/".$pieces[2]."/".$pieces[0];
-    }
-    */
     
     private function saveNew()
     {
-      
+      $this->setIsactive(0);
       $data = array(
             'fecha' => $this->formatDateToMysql($this->getFecha()),
             'nombre' => $this->getNombre(),
@@ -713,7 +715,7 @@ class acreditacion extends MY_Model{
             'categoriaC2' => $this->getCategoriaC2(),
             'cvfile' => $this->getCvfile(),
             'cvpath' => $this->getCvpath(),
-            'isactive' => 0,
+            'isactive' => $this->getIsactive(),
 			'fechavencimiento' => $this->formatDateToMysql($this->getFechavencimiento()),
 			'curso1' => $this->getCurso1(),
 			'curso2' => $this->getCurso2(),
@@ -726,7 +728,7 @@ class acreditacion extends MY_Model{
         );
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
-      
+      $this->setId($id);
       return $id;
     }
     
@@ -848,9 +850,9 @@ class acreditacion extends MY_Model{
               acreditacion.categoriaA, 
               acreditacion.categoriaB, 
               acreditacion.categoriaC1, 
-              acreditacion.categoriaC2, 
-              acreditacion.fecha, 
-              acreditacion.fechavencimiento 
+              acreditacion.categoriaC2,
+              DATE_FORMAT(acreditacion.fecha, "%d/%m/%Y") as fecha,
+              DATE_FORMAT(acreditacion.fechavencimiento , "%d/%m/%Y") as fechavencimiento
             from acreditacion 
             left join institucion on institucion.id = instituciondesempeno ';
       $whereAdded = false;
@@ -958,7 +960,27 @@ class acreditacion extends MY_Model{
       }
     }
     
-    private function createStdObjectFromRow($aux)
+    public function getByIdHistorico($id, $return_obj = true)
+    {
+      $this->db->where('id', $id);
+      //$this->db->join('institucion', 'institucion.id = '.$this->getTablename().'.instituciondesempeno');
+      $this->db->limit('1');
+      $query = $this->db->get($this->getTablename().'_historico');
+      if( $query->num_rows() == 1 ){
+        // One row, match!
+        $obj = $query->row();        
+        if($return_obj)
+        {
+          return $this->createStdObjectFromRow($obj);
+        }
+        return $obj;
+      } else {
+        // None
+        return NULL;
+      }
+    }
+    
+    private function createStdObjectFromRow($aux, $historico = false)
     {
       $obj = new acreditacion();
       $obj->setId($aux->id);
@@ -1042,6 +1064,35 @@ class acreditacion extends MY_Model{
       return $this->db->query($sql);
     }
   
+    
+    public function doReplication($acreditacionId)
+    {
+      $sql = 'INSERT INTO acreditacion_historico (acreditacion_id, fecha, nombre, nombreapellido, formacion, titulo, documento, fechanacimiento, direccionpostal, direccionelectronica, telefonocontacto, instituciondesempeno, laboratoriounidad,
+cargofuncioninstitucion, cargahorariasemanal,  nombresupervisor, especiestrabajadas, describatareas, pctinvestigacion, pctmedicinaclinica,pctcirugia,pctmantenimientocolonias, pctmanipulacion, pctdirprojectos, pctnecropsia,
+ pctdiaglaboratorio, pctceua,  pcthistopatologia, pctentedu, pctapoyoinvestigadores, pctsupervision, pctprodanimal, pctlegal, pctotrasfunciones, pctfuncnorel, pctobservaciones, realizocursos, acrpersonales, curso1, curso2, 
+ curso3, cursoobservacion, acrorganismo, acrcategoria, acrfecha, categoria, categoriaA, categoriaB, categoriaC1, categoriaC2, cvfile, cvpath, isactive, estado, fechavencimiento )
+SELECT id, fecha, nombre, nombreapellido, formacion, titulo, documento, fechanacimiento, direccionpostal, direccionelectronica, telefonocontacto, instituciondesempeno, laboratoriounidad,
+cargofuncioninstitucion, cargahorariasemanal,  nombresupervisor, especiestrabajadas, describatareas, pctinvestigacion, pctmedicinaclinica,pctcirugia,pctmantenimientocolonias, pctmanipulacion, pctdirprojectos, pctnecropsia,
+ pctdiaglaboratorio, pctceua,  pcthistopatologia, pctentedu, pctapoyoinvestigadores, pctsupervision, pctprodanimal, pctlegal, pctotrasfunciones, pctfuncnorel, pctobservaciones, realizocursos, acrpersonales, curso1, curso2, 
+ curso3, cursoobservacion, acrorganismo, acrcategoria, acrfecha, categoria, categoriaA, categoriaB, categoriaC1, categoriaC2, cvfile, cvpath, isactive, estado, fechavencimiento FROM acreditacion where id = ?';
+      
+      $ok = $this->db->query($sql, array($acreditacionId));
+      
+      if($ok){
+        $lastId = $this->db->query('SELECT LAST_INSERT_ID() as LASTID');
+        $lastIdData = $lastId->row();
+        
+        $archivosSql = 'INSERT INTO acreditacionarchivo_historico (acreditacion_historico_id, filename, filepath, type ) 
+          SELECT '.$lastIdData->LASTID.', filename, filepath, type FROM acreditacionarchivo where acreditacion_id = ?';
+        
+        $this->db->query($archivosSql, array($acreditacionId));
+      }
+    }
+    
+    public function listadoHistorico($acreditacionId){
+      $sql = "select id, acreditacion_id, nombre, nombreapellido, DATE_FORMAT(created_at, '%d-%m-%Y %T') AS created_at from acreditacion_historico where acreditacion_id = ? order by created_at desc";
+      return $this->db->query($sql, array($acreditacionId))->result();
+    }
 }
 
 

@@ -15,6 +15,7 @@ class acreditacionarchivo extends MY_Model{
     private $filename;
     private $filepath;
     private $type;
+    private $acreditacionHistoricoId;
 
   
     function __construct()
@@ -65,7 +66,16 @@ class acreditacionarchivo extends MY_Model{
 	  $this->type = $type;
 	}
 
-	public function isNew(){
+    
+    public function getAcreditacionHistoricoId() {
+      return $this->acreditacionHistoricoId;
+    }
+
+    public function setAcreditacionHistoricoId($acreditacionHistoricoId) {
+      $this->acreditacionHistoricoId = $acreditacionHistoricoId;
+    }
+
+    public function isNew(){
       if($this->getId() == "" || is_null($this->getId()))
       {
         return true;
@@ -93,6 +103,8 @@ class acreditacionarchivo extends MY_Model{
 	  $data["type"] = $this->getType();
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
+      $this->setId($id);
+      $this->replicateData();
       return $id;
     }
     
@@ -104,14 +116,48 @@ class acreditacionarchivo extends MY_Model{
       return $query->result();
     }
 
+    public function getByAcreditacionHistoricoId($id)
+    {
+	  $this->db->order_by('type', 'desc');
+      $this->db->where('acreditacion_historico_id', $id);
+      $query = $this->db->get($this->getTablename().'_historico');
+      return $query->result();
+    }
+    
     public function deleteAllById($id)
     {
-      $archivo = $this->simpleGetById($id);
-      @unlink($archivo->filepath.$archivo->filename);
+      // No voy a borrar mas los archivos.
+      //$archivo = $this->simpleGetById($id);
+      //@unlink($archivo->filepath.$archivo->filename);
       $this->db->where('id', $id);
       return $this->db->delete($this->getTablename());
     }
     
+    public function simpleGetByIdHistorico($id)
+    {
+      $this->db->where('id', $id);
+      $this->db->limit('1');
+      $query = $this->db->get($this->getTablename().'_historico');
+      if( $query->num_rows() == 1 ){
+        return $query->row();
+      } else {
+        return NULL;
+      }
+    }
+    
+    private function replicateData()
+    {
+      return true;
+      $data = array();
+      $data['acreditacion_historico_id'] = $this->getAcreditacionHistoricoId();
+      $data['filename'] = $this->getFilename();
+      $data['filepath'] = $this->getFilepath();
+	  $data["type"] = $this->getType();
+      $this->db->insert($this->getTablename().'_historico', $data);
+      $id = $this->db->insert_id(); 
+      $this->setId($id);
+      
+    }
 
 }
 

@@ -1,5 +1,5 @@
 <div class="grid_16">
-  <h4>Acreditacion Persona <a href="<?php echo site_url("registros/showPersonaListadoHistorico/" . $acreditacion->getId()); ?>">Ver historico</a></h4>
+  <h4>Acreditacion Persona <a href="<?php echo site_url("registros/showPersonaListadoHistorico/" . $acreditacionId); ?>">Ver historico</a> </h4>
   <div id="acreditacion_data_<?php echo $acreditacion->getId(); ?>">
 	<div class="grid_5">
       <span>
@@ -147,8 +147,6 @@
       </span>
     </div>
     <div class="clear"></div>
-    <a href="<?php echo site_url("registros/editarPersona/".$acreditacion->getId());?>">Editar</a>
-    <div class="clear"></div>
     <!-- Cursos -->
     <hr/>
     <div class="grid_5">
@@ -202,8 +200,7 @@
           <tr id="archivo_<?php echo $archivo->id;?>">
             <td><?php echo $archivo->filename; ?></td>
             <td>
-              <a href="<?php echo site_url("registros/downloadArchivoAcreditacion/".$archivo->id);?>">Descargar</a>
-              <a href="javascript:void(0)" onclick="return basicDelete(<?php echo $archivo->id?>, 'archivo_<?php echo $archivo->id;?>', 'Esta seguro de querer eliminar?', '<?php echo site_url("registros/removeArchivoAcreditacion");?>')">Borrar</a>
+              <a href="<?php echo site_url("registros/downloadArchivoAcreditacionHistorico/".$archivo->id);?>">Descargar</a>
             </td>
           </tr>
             <?php 
@@ -213,32 +210,7 @@
         </tbody>
       </table>
       <div class="clear"></div>
-      <div id="add_archivo_curso_form" style="<?php if(!isset($errores) && !isset($errores['archivo_cursos'])):?>display:none<?php endif;?>">
-        <div class="grid_14">
-          <span>
-            <label>Adjuntar programas con la carga horaria total y certificados de aprobación de dichos cursos.</label>
-            <form action="<?php echo site_url('registros/acreditacionesSubirArchivo'); ?>" method="POST" enctype="multipart/form-data">
-              <input type="file" name="archivo" size="20" />
-              <input type="submit" value="upload" />
-              <input type="hidden" value="<?php echo $acreditacion->getId();?>" name="id"/>
-              <input type="hidden" value="curso" name="type"/>
-            </form>
-          </span>
-        </div>
-      </div>
     </div>
-    <?php if(isset($errores) && isset($errores['archivo_cursos'])):?>
-    
-    <div class="clear"></div>
-    <div class="grid_5">
-      <div class="error">
-        <?php echo $errores['archivo_cursos'];?>
-      </div>
-    </div>  
-    <?php endif; ?>
-
-    <div class="clear"></div>
-    <a href="javascript:void(0)" onclick="$('#add_archivo_curso_form').slideToggle('slow');">Agregar</a>
     <hr/>
 	<?php endif; ?>
 	<div class="clear"></div>
@@ -288,8 +260,7 @@
           <tr id="archivo_<?php echo $archivo->id;?>">
             <td><?php echo $archivo->filename; ?></td>
             <td>
-              <a href="<?php echo site_url("registros/downloadArchivoAcreditacion/".$archivo->id);?>">Descargar</a>
-              <a href="javascript:void(0)" onclick="return basicDelete(<?php echo $archivo->id?>, 'archivo_<?php echo $archivo->id;?>', 'Esta seguro de querer eliminar?', '<?php echo site_url("registros/removeArchivoAcreditacion");?>')">Borrar</a>
+              <a href="<?php echo site_url("registros/downloadArchivoAcreditacionHistorico/".$archivo->id);?>">Descargar</a>
             </td>
           </tr>
             <?php 
@@ -299,34 +270,7 @@
         </tbody>
       </table>
       <div class="clear"></div>
-      <div id="add_archivo_acreditaciones_form" style="<?php if(!isset($errores) && !isset($errores['archivo_acreditacion'])):?>display:none<?php endif;?>">
-        <div class="grid_14">
-          <span>
-            <label>adjuntar certificado correspondiente</label>
-            <form action="<?php echo site_url('registros/acreditacionesSubirArchivo'); ?>" method="POST" enctype="multipart/form-data">
-              <input type="file" name="archivo" size="20" />
-              <input type="submit" value="upload" />
-              <input type="hidden" value="<?php echo $acreditacion->getId();?>" name="id"/>
-              <input type="hidden" value="acreditacion" name="type"/>
-            </form>
-          </span>
-        </div>
-      </div>
     </div>
-    <?php if(isset($errores) && isset($errores['archivo_acreditacion'])):?>
-    
-    <div class="clear"></div>
-    <div class="grid_5">
-      <div class="error">
-        <?php echo $errores['archivo_acreditacion'];?>
-      </div>
-    </div>  
-    <?php endif; ?>
-
-    <div class="clear"></div>
-    <a href="javascript:void(0)" onclick="$('#add_archivo_acreditaciones_form').slideToggle('slow');">Agregar</a>
-    <hr/>
-	
 	<?php endif; ?>
     
     
@@ -353,8 +297,7 @@
           <tr id="archivo_<?php echo $archivo->id;?>">
             <td><?php echo $archivo->filename; ?></td>
             <td>
-              <a href="<?php echo site_url("registros/downloadArchivoAcreditacion/".$archivo->id);?>">Descargar</a>
-              <a href="javascript:void(0)" onclick="return basicDelete(<?php echo $archivo->id?>, 'archivo_<?php echo $archivo->id;?>', 'Esta seguro de querer eliminar?', '<?php echo site_url("registros/removeArchivoAcreditacion");?>')">Borrar</a>
+              <a href="<?php echo site_url("registros/downloadArchivoAcreditacionHistorico/".$archivo->id);?>">Descargar</a>
             </td>
           </tr>
             <?php 
@@ -364,35 +307,7 @@
         </tbody>
       </table>
       <div class="clear"></div>
-      <div id="add_archivo_categoria_form" style="<?php if(!isset($errores) && !isset($errores['archivo_categoria'])):?>display:none<?php endif;?>">
-        <div class="grid_14">
-          <span>
-            <label>Subir archivo</label>
-            <form action="<?php echo site_url('registros/acreditacionesSubirArchivo'); ?>" method="POST" enctype="multipart/form-data">
-              <input type="file" name="archivo" size="20" />
-              <input type="submit" value="upload" />
-              <input type="hidden" value="<?php echo $acreditacion->getId();?>" name="id"/>
-              <input type="hidden" value="categoria" name="type"/>
-            </form>
-          </span>
-        </div>
-      </div>
     </div>
-    <?php if(isset($errores) && isset($errores['archivo_categoria'])):?>
-    
-    <div class="clear"></div>
-    <div class="grid_5">
-      <div class="error">
-        <?php echo $errores['archivo_categoria'];?>
-      </div>
-    </div>  
-    <?php endif; ?>
-
-    <div class="clear"></div>
-    <a href="javascript:void(0)" onclick="$('#add_archivo_categoria_form').slideToggle('slow');">Agregar</a>
-    <hr/>
-  
-	
   <div class="clear"></div>
   
   <div class="grid_14">
@@ -413,8 +328,7 @@
           <tr id="archivo_<?php echo $archivo->id;?>">
             <td><?php echo $archivo->filename; ?></td>
             <td>
-              <a href="<?php echo site_url("registros/downloadArchivoAcreditacion/".$archivo->id);?>">Descargar</a>
-              <a href="javascript:void(0)" onclick="return basicDelete(<?php echo $archivo->id?>, 'archivo_<?php echo $archivo->id;?>', 'Esta seguro de querer eliminar?', '<?php echo site_url("registros/removeArchivoAcreditacion");?>')">Borrar</a>
+              <a href="<?php echo site_url("registros/downloadArchivoAcreditacionHistorico/".$archivo->id);?>">Descargar</a>
             </td>
           </tr>
             <?php 
@@ -424,40 +338,7 @@
         </tbody>
       </table>
       <div class="clear"></div>
-      <div id="add_archivo_instituciones_form" style="<?php if(!isset($errores) && !isset($errores['archivo_acreditacion'])):?>display:none<?php endif;?>">
-        <div class="grid_14">
-          <span>
-            <label>adjuntar certificado correspondiente</label>
-            <form action="<?php echo site_url('registros/acreditacionesSubirArchivo'); ?>" method="POST" enctype="multipart/form-data">
-              <input type="file" name="archivo" size="20" />
-              <input type="submit" value="upload" />
-              <input type="hidden" value="<?php echo $acreditacion->getId();?>" name="id"/>
-              <input type="hidden" value="firmainstitucion" name="type"/>
-            </form>
-          </span>
-        </div>
-      </div>
     </div>
-    <?php if(isset($errores) && isset($errores['archivo_firmainstitucion'])):?>
-    
-    <div class="clear"></div>
-    <div class="grid_5">
-      <div class="error">
-        <?php echo $errores['archivo_firmainstitucion'];?>
-      </div>
-    </div>  
-    <?php endif; ?>
-
-    <div class="clear"></div>
-    <a href="javascript:void(0)" onclick="$('#add_archivo_instituciones_form').slideToggle('slow');">Agregar</a>
-    <hr/>
-  
-  <?php //var_dump($acreditacion); ?>
   <hr/>
-  <?php //var_dump($institucion); ?>
-  
 </div>
 <div class="clear"></div>
-<a href="<?php echo site_url("registros/index");?>">
-  Volver
-</a>

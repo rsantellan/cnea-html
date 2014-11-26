@@ -24,6 +24,7 @@ class registros extends MY_Controller{
         redirect('auth/login'); 
       }
 	  $this->addJquery();
+      //$this->output->enable_profiler(TRUE);
     }
     
     /**
@@ -1169,6 +1170,7 @@ class registros extends MY_Controller{
             //$obj->setCvfile($upload_data['curriculum']['file_name']);
             //$obj->setCvpath($upload_data['curriculum']['file_path']);
             $acreditacionId = $obj->save();
+            $this->acreditacion->doReplication($acreditacionId);
             //redirect('registros/index');
             redirect('registros/showPersona/'.$acreditacionId);
             
@@ -1360,6 +1362,7 @@ class registros extends MY_Controller{
         {
             $acreditacionId = $obj->save();
             //redirect('registros/index');
+            $this->acreditacion->doReplication($acreditacionId);
             redirect('registros/showPersona/'.$acreditacionId);
             
         }
@@ -1410,6 +1413,8 @@ class registros extends MY_Controller{
       }else{
           $upload_data['archivo'] = $this->upload->data();
           $this->load->model('acreditaciones/acreditacionarchivo');
+          $this->load->model('acreditaciones/acreditacion');
+          $this->acreditacion->doReplication($id);
           $archivo = new $this->acreditacionarchivo;
           $archivo->setAcreditacion_id($id);
           $archivo->setType($type);
@@ -1432,15 +1437,14 @@ class registros extends MY_Controller{
       die;
     }
     
-    public function downloadArchivoFirmaAcreditacion($id)
+    public function downloadArchivoAcreditacionHistorico($id)
     {
       $this->load->helper('download');
-      $this->load->model('acreditaciones/acreditacion');
-      $archivo = $this->acreditacion->simpleGetById($id);
-      force_download($archivo->cvfile, file_get_contents($archivo->cvpath.$archivo->cvfile));
+      $this->load->model('acreditaciones/acreditacionarchivo');
+      $archivo = $this->acreditacionarchivo->simpleGetByIdHistorico($id);
+      force_download($archivo->filename, file_get_contents($archivo->filepath.$archivo->filename));
       die;
     }
-    
     public function removeArchivoAcreditacion()
     {
       $this->load->model('acreditaciones/acreditacionarchivo');
@@ -1536,14 +1540,81 @@ class registros extends MY_Controller{
       $this->load->model('acreditaciones/acreditacion');
       $id = $this->input->post('id', true);
       $estado = $this->input->post('estado', true);
+      $emailText = $this->input->post('emailcontent');
       
-      $message = $this->acreditacion->doChangeStatus($id, $estado);
+      try{
+        $message = $this->acreditacion->doChangeStatus($id, $estado);
+        
+        $data = trim(str_replace('{{status}}', $this->acreditacion->getEstadoName($estado), $emailText));
+        //var_dump($data);
+        $acreditacion = $this->acreditacion->getById($id);
+        $this->load->model('instituciones/institucion');
+        $institucion = $this->institucion->getById($acreditacion->getInstituciondesempeno());
+        $toEmail = array($acreditacion->getDireccionelectronica());
+        if($institucion->getMailcontacto() != ''){
+          $toEmail[] = $institucion->getMailcontacto();
+        }
+        $this->load->model('contacto/mail_db');
+        $return = $this->mail_db->retrieveContactMailInfo();
+        
+        //Con estos datos preparo un email para enviar.
+        $this->load->library('email');
+        
+        $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+        $this->email->to($toEmail); 
+        $this->email->cc($return['cc']); 
+        $this->email->bcc($return['to']);
+        //$this->email->to('rsantellan@gmail.com');
+        $this->email->subject('[CNEA]Contacto desde el sitio web');
+        $emailMessage = $this->load->view('registros/personas/estadoemail', array('data' => $data), true);
+        $this->email->message($emailMessage); 
+        //echo $this->email->print_debugger();
+        $this->email->send();
+        
+      }catch(Exception $e){
+        $message = $e->getMessage();
+      }
       $message .= "<br/>Refresque la pagina para ver los cambios.";
       $salida = array();
       $salida['response'] = "OK";
       $salida['message'] = $message;
       echo json_encode($salida);
       die;
+    }
+    
+    function showPersonaListadoHistorico($acreditacionId)
+    {
+      $this->load->model('acreditaciones/acreditacion');
+      $listado = $this->acreditacion->listadoHistorico($acreditacionId);
+      $this->addJquery();
+      //$this->addFancyBox();
+      //$this->addModuleJavascript("registros", "list.js");
+      $this->addModuleJavascript("datatable", "jquery.dataTables.js");
+      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
+      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
+      $this->data['acreditacionId'] = $acreditacionId;
+      $this->data['listado'] = $listado;
+      $this->data['content'] = "registros/personas/listadoHistorico";
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+    function showPersonaHistorico($id, $acreditacionId)
+    {
+      $this->data['menu_id'] = 'registros_personas';
+      $this->addModuleJavascript("registros", "showInstitucion.js");
+      $this->addFancyBox();
+      $this->load->model('acreditaciones/acreditacion');
+      $this->load->model('acreditaciones/acreditacionarchivo');
+      $this->load->model('instituciones/institucion');
+	  $estados = $this->acreditacion->getEstadoList();
+	  $this->data['estados'] = $estados;
+      $acreditacion = $this->acreditacion->getByIdHistorico($id);
+      $this->data['institucion'] = $this->institucion->getById($acreditacion->getInstituciondesempeno());
+      $this->data['acreditacion'] = $acreditacion;
+      $this->data['archivos'] = $this->acreditacionarchivo->getByAcreditacionHistoricoId($acreditacion->getId());
+      $this->data['acreditacionId'] = $acreditacionId;
+      $this->data['content'] = "registros/personas/showHistorico";
+      $this->load->view("admin/layout", $this->data);
     }
     /***
      * 
@@ -1552,7 +1623,7 @@ class registros extends MY_Controller{
      */
     
     
-    
+    /*
     function sortPersonas(){
       $this->load->model('registros/registro_persona');
       $this->data['list'] = $this->registro_persona->retriveRegistrosInstitucionesForSort();
@@ -1645,15 +1716,6 @@ class registros extends MY_Controller{
         $this->institucion->updateOrder($lista[$maximo - $cantidad], $cantidad);
         $cantidad ++;
       }
-      /*
-      $cantidad = count($lista) - 1;
-      while($cantidad >= 0)
-      {
-        //echo $lista[$cantidad] . " - ".$cantidad;
-        $this->registro_institucion->updateOrder($lista[$cantidad], $cantidad);
-        $cantidad --;
-      }
-      */
       $salida = array();
       $salida['response'] = "OK";
       
@@ -1874,4 +1936,6 @@ class registros extends MY_Controller{
       //force user to download the Excel file without writing it to server's HD
       $objWriter->save('php://output');
     }
+     * 
+     */
 }

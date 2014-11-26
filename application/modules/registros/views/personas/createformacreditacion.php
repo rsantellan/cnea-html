@@ -279,19 +279,23 @@
 $(document).ready(function() {
    $('#fecha').datepicker({
       changeYear: true,
-      yearRange: "-100:+0"
+      yearRange: "-100:+0",
+      dateFormat: "dd/mm/yy" 
     });
    $('#fechanacimiento').datepicker({
       changeYear: true,
-      yearRange: "-100:+0"
+      yearRange: "-100:+0",
+      dateFormat: "dd/mm/yy"
     });
    $('#fechavencimiento').datepicker({
       changeYear: true,
-      yearRange: "-100:+10"
+      yearRange: "-100:+10",
+      dateFormat: "dd/mm/yy"
     });
    $('#acrfecha').datepicker({
       changeYear: true,
-      yearRange: "-100:+10"
+      yearRange: "-100:+10",
+      dateFormat: "dd/mm/yy"
     });
  });
 

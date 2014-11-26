@@ -453,6 +453,7 @@ class acreditaciones extends MY_Controller {
 			$archivo->setFilepath($categoriaUpload['file_path']);
 			$archivo->save();
 		}
+        $this->acreditacion->doReplication($acreditacionId);
 		$this -> data['content'] = 'formulario_ok';
 	  }
 

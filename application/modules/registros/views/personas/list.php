@@ -41,6 +41,10 @@ $(document).ready(function(){
         "bProcessing": true,
         "bServerSide": true,
         "sAjaxSource": "<?php echo site_url($url);?>",
+        "fnDrawCallback": function( oSettings ) {
+            //alert( 'DataTables has redrawn the table' );
+            $('a.changeStateLink').fancybox();
+        },
         "oLanguage" : {
             "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -67,7 +71,7 @@ $(document).ready(function(){
         }
     });
 	
-	$('a.changeStateLink').fancybox();
+	
 });
 
 function doChangeFormState(form){
