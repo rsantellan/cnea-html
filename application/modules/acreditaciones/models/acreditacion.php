@@ -797,7 +797,8 @@ class acreditacion extends MY_Model{
       $parameteres = array();
       if ($where !== "") {
         $whereAdded = true;
-        $sql .= 'where (acreditacion.nombreapellido like ? or acreditacion.direccionelectronica like ? or institucion.nombreinsititucion like ?)';
+        $sql .= 'where (acreditacion.nombre like ? or acreditacion.nombreapellido like ? or acreditacion.direccionelectronica like ? or institucion.nombreinsititucion like ?)';
+        $parameteres[] = '%'.$where.'%';
         $parameteres[] = '%'.$where.'%';
         $parameteres[] = '%'.$where.'%';
         $parameteres[] = '%'.$where.'%';
@@ -844,6 +845,7 @@ class acreditacion extends MY_Model{
       $sql = 'select 
               acreditacion.id, 
               acreditacion.estado, 
+              acreditacion.nombre, 
               acreditacion.nombreapellido, 
               institucion.nombreinsititucion, 
               acreditacion.direccionelectronica, 
@@ -859,7 +861,8 @@ class acreditacion extends MY_Model{
       $parameteres = array();
       if ($where !== "") {
         $whereAdded = true;
-        $sql .= 'where (acreditacion.nombreapellido like ? or acreditacion.direccionelectronica like ? or institucion.nombreinsititucion like ?)';
+        $sql .= 'where (acreditacion.nombre like ? or acreditacion.nombreapellido like ? or acreditacion.direccionelectronica like ? or institucion.nombreinsititucion like ?)';
+        $parameteres[] = '%'.$where.'%';
         $parameteres[] = '%'.$where.'%';
         $parameteres[] = '%'.$where.'%';
         $parameteres[] = '%'.$where.'%';

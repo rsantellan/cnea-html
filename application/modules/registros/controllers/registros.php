@@ -857,8 +857,8 @@ class registros extends MY_Controller{
     }
     
     private function  doSearchOfTable($type){
-      $aColumns = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha registro', 'Fecha de vencimiento', 'Acciones');
-      $filterColumns = array('estado', 'nombreapellido', 'nombreinsititucion', 'direccionelectronica', 'category', 'fecha', 'fechavencimiento', 'Acciones');
+      $aColumns = array('Estado', 'Nombre Persona', 'Apellido', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha registro', 'Fecha de vencimiento', 'Acciones');
+      $filterColumns = array('estado', 'nombre', 'nombreapellido', 'nombreinsititucion', 'direccionelectronica', 'category', 'fecha', 'fechavencimiento', 'Acciones');
       /* Indexed column (used for fast and accurate table cardinality) */
       $sIndexColumn = "id";
 
@@ -952,6 +952,7 @@ class registros extends MY_Controller{
         }
         $row = array(
             $estados[$registro->estado],
+            $registro->nombre,
             $registro->nombreapellido,
             $registro->nombreinsititucion,
             $registro->direccionelectronica,
@@ -1006,7 +1007,7 @@ class registros extends MY_Controller{
     }
     
 	private function loadAcreditacionListView($url){
-      $this->data['headers'] = array('Estado', 'Nombre Persona', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha registro', 'Fecha de vencimiento', 'Acciones');
+      $this->data['headers'] = array('Estado', 'Nombre Persona', 'Apellido', 'Nombre Institucion', 'Email', 'Categoria', 'Fecha registro', 'Fecha de vencimiento', 'Acciones');
 	  $this->load->model('acreditaciones/acreditacion');
 	  $estados = $this->acreditacion->getEstadoList();
 	  $this->data['estados'] = $estados;

@@ -4,7 +4,7 @@
     <?php foreach($acreditaciones as $acreditacion):?>
       
       <div class="registradas">
-          Nombre: <?php echo $acreditacion->nombreapellido;?> | <a href="mailto:<?php echo $acreditacion->direccionelectronica;?>"><?php echo $acreditacion->direccionelectronica;?></a>
+          Nombre: <?php echo $acreditacion->nombre. ' ' .$acreditacion->nombreapellido;?> | <a href="mailto:<?php echo $acreditacion->direccionelectronica;?>"><?php echo $acreditacion->direccionelectronica;?></a>
           <br />
           Categoria:
           <?php 

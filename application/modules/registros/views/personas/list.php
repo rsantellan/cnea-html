@@ -34,9 +34,9 @@
   
 $(document).ready(function(){
     $('#table_data').dataTable({
-        "aaSorting": [[ 1, "desc" ]],
+        "aaSorting": [[ 2, "desc" ]],
         "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 4, 6 ] }
+          { 'bSortable': false, 'aTargets': [ 5, 7 ] }
         ],
         "bProcessing": true,
         "bServerSide": true,
