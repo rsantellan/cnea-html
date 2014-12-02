@@ -20,7 +20,7 @@ class registros extends MY_Controller{
       if(!$this->isLogged())
       {
         //Si no esta logeado se tiene que ir a loguear
-        $this->session->set_userdata('url_to_direct_on_login', 'actaadmin/index');
+        $this->session->set_userdata('url_to_direct_on_login', 'registros/instituciones');
         redirect('auth/login'); 
       }
 	  $this->addJquery();
@@ -1239,7 +1239,7 @@ class registros extends MY_Controller{
 		$this->form_validation->set_rules('instituciondesempeno', 'Institucion desempeño', 'required|max_length[11]');			
 		$this->form_validation->set_rules('laboratoriounidad', 'Laboratorio/Unidad', 'required|max_length[255]');			
 		$this->form_validation->set_rules('cargofuncioninstitucion', 'Cargo/Funcion en la institucion', 'required|max_length[255]');			
-		$this->form_validation->set_rules('cargahorariasemanal', 'Carga Horaria Semanal', 'required|is_numeric|less_than[60]');			
+		$this->form_validation->set_rules('cargahorariasemanal', 'Carga Horaria Semanal', 'required|is_numeric|less_than[61]');			
 		$this->form_validation->set_rules('nombresupervisor', 'nombre supervisor', 'required|max_length[255]');			
 		$this->form_validation->set_rules('especiestrabajadas', 'Especies que trabajadas', 'required');			
 		$this->form_validation->set_rules('describatareas', 'Describa las tareas', '');			

@@ -14,8 +14,8 @@
     <h4><?php echo lang("personal_formulario_subtitulo_identificacion"); ?></h4>
     <div class="clear"></div>
     <p>
-      <label class="fecha_infield hasinfieldlabel" for="fecha"><?php echo lang("personal_formulario_fecha"); ?></label>
-      <input class="<?php echo (form_error('fecha') != "")? "input_error" : "";?>" id="fecha" type="input" name="fecha" maxlength="255" value="<?php echo $obj->getFecha(); ?>"  />
+       <label class="fecha_infield hasinfieldlabel" for="fecha"><?php echo lang("personal_formulario_fecha"); ?></label> 
+      <input class="<?php echo (form_error('fecha') != "")? "input_error" : "";?>" id="fecha" type="input" name="fecha" maxlength="255" value="<?php echo $obj->getFecha(); ?>" placeholder='dd/mm/yyyy' />
     </p>
     
     <p>
@@ -54,7 +54,7 @@
     </p>
     <p>
       <label class="fecha_infield hasinfieldlabel" for="fechanacimiento"><?php echo lang("personal_formulario_fechanacimiento"); ?></label>
-      <input class="<?php echo (form_error('fechanacimiento') != "")? "input_error" : "";?>" id="fechanacimiento" type="input" name="fechanacimiento" maxlength="255" value="<?php echo $obj->getFechanacimiento(); ?>"  />
+      <input class="<?php echo (form_error('fechanacimiento') != "")? "input_error" : "";?>" id="fechanacimiento" type="input" name="fechanacimiento" maxlength="255" value="<?php echo $obj->getFechanacimiento(); ?>" placeholder='dd/mm/yyyy' />
     </p>
     <p>
       <label class="hasinfieldlabel" for="direccionpostal"><?php echo lang("personal_formulario_postal"); ?></label>

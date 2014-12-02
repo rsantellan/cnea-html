@@ -131,4 +131,5 @@ $lang['personal_registro_password']='Contrase&ntilde;a';
 $lang['personal_registro_buscar']='Buscar';
 $lang['personal_formulario_instituciondesempeno']='<strong>Instituci&oacute;n en la que se desempe&ntilde;a*</strong>';
 $lang['personal_formulario_instituciondesempeno_texto']='<span>*La acreditaci&oacute;n personal se expedir&aacute; para personas que se desempe&ntilde;en en instituciones registradas en la CNEA. El solicitante deber&aacute; completar un formulario por cada instituci&oacute;n donde se desempe&ntilde;e, solicitando el aval al CEUA correspondiente.</span>';
+$lang['personal_formulario_formacion_titulo']='Titulo';
 /* End of file acreditaciones_lang.php */
