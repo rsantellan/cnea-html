@@ -1,5 +1,5 @@
 <div class="grid_16">
-  <h4>Acreditacion Persona <a href="<?php echo site_url("registros/showPersonaListadoHistorico/" . $renovacion->getId()); ?>">Ver historico</a></h4>
+  <h4>Renovación Persona<!--  <a href="<?php echo site_url("registros/showPersonaListadoHistorico/" . $renovacion->getId()); ?>">Ver historico</a>--></h4>
   <div id="acreditacion_data_<?php echo $renovacion->getId(); ?>">
 	<div class="grid_5">
       <span>

@@ -42,7 +42,8 @@ $route['default_controller'] = "sitio";
 $route['404_override'] = '';
 
 $route["login"] = "login";
-
+$route["formulario-renovacion.html"] = 'acreditaciones/formularioRenovacion';
+$route["formulario-renovacion-ok.html"] = 'acreditaciones/formularioRenovacionOk';
 //$route["sitio/cneaMision"] = "cnea/mision.html";
 /*
 $route['^es/(.+)$'] = "$1";

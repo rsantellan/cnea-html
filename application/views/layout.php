@@ -76,6 +76,7 @@
                               <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/bases");?>"><?php echo lang('menu_personas_bases');?></a></li>
                               <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/formulario");?>"><?php echo lang('menu_personas_formulario');?></a></li>
                               <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/registro");?>"><?php echo lang('menu_personas_registro');?></a></li>
+                              <li class="sub_menu"><a href="<?php echo site_url("formulario-renovacion.html");?>">Renovación</a></li>
                               <li class="sub_menu"><a href="<?php echo site_url("acreditaciones/reglamentacion");?>"><?php echo lang('menu_personas_reglamento');?></a></li>
                            </ul>
                        </dd>

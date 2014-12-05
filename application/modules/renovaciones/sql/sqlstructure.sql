@@ -38,3 +38,40 @@ ALTER TABLE `renovacion` ADD `fechasolicitud` DATE NOT NULL AFTER `fechaacredita
 ALTER TABLE `renovacion`
   ADD CONSTRAINT `renovacion_ibfk_1` FOREIGN KEY (`institucion`) REFERENCES `institucion` (`id`);
 
+CREATE TABLE IF NOT EXISTS `renovacionprotocolo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `renovacionid` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` TEXT NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `renovacionid` (`renovacionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `renovacionprotocolo`
+  ADD CONSTRAINT `renovacionprotocolo_ibfk_1` FOREIGN KEY (`renovacionid`) REFERENCES `renovacion` (`id`);
+
+CREATE TABLE IF NOT EXISTS `renovacionevento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `renovacionid` int(11) NOT NULL,
+  `name` varchar(255) default '',
+  `fecha` date default NULL,
+  `lugar` varchar(255) default '',
+  PRIMARY KEY (`id`),
+  KEY `renovacionid` (`renovacionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `renovacionevento`
+  ADD CONSTRAINT `renovacionevento_ibfk_1` FOREIGN KEY (`renovacionid`) REFERENCES `renovacion` (`id`);
+
+
+CREATE TABLE IF NOT EXISTS `renovaciontitulo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `renovacionid` int(11) NOT NULL,
+  `name` varchar(255) default '',
+  `description` TEXT NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `renovacionid` (`renovacionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `renovaciontitulo`
+  ADD CONSTRAINT `renovaciontitulo_ibfk_1` FOREIGN KEY (`renovacionid`) REFERENCES `renovacion` (`id`);

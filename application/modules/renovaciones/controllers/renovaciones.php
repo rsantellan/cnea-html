@@ -12,7 +12,7 @@ class renovaciones extends MY_Controller {
 
   function __construct() {
     parent::__construct();
-    $this->data['menu_id'] = 'renovacion_personas';
+    $this->data['menu_id'] = 'registros_renovaciones';
       if(!$this->isLogged())
       {
         //Si no esta logeado se tiene que ir a loguear
@@ -69,7 +69,7 @@ class renovaciones extends MY_Controller {
     $id = $this->input->post('id', true);
     $this->load->library('form_validation');
     $this -> load -> helper('form');
-    $this -> load -> library('form_validation');
+    //$this -> load -> library('form_validation');
     $this->form_validation->set_rules('nombre', 'nombre', 'required|trim|max_length[255]');
     $this->form_validation->set_rules('apellido', 'apellido', 'required|trim|max_length[255]');
     $this->form_validation->set_rules('ci', 'ci', 'required|trim|max_length[255]');

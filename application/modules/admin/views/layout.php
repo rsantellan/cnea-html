@@ -71,6 +71,9 @@
               <li class="<?php echo ($menu_id == 'registros_instituciones')? "current": "";?>">
                 <a href="<?php echo site_url('registros/instituciones');?>">Registro Instituciones</a>
               </li>
+              <li class="<?php echo ($menu_id == 'registros_renovaciones')? "current": "";?>">
+                <a href="<?php echo site_url('renovaciones/index');?>">Registro renovaciones</a>
+              </li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">

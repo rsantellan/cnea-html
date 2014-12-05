@@ -166,8 +166,9 @@ class acreditaciones extends MY_Controller {
        $this->data['errores'] = $errores;
     } else {
         if($captcha)
+        {
           $save = true;
-        $save = true;
+        }
     }
     $this->load->helper('captcha');
     $vals = array(
@@ -469,4 +470,254 @@ class acreditaciones extends MY_Controller {
 	$this->load->view('layout', $this->data);
   }
 
+  function formularioRenovacion() {
+	//$this->addJquery();
+	$this->addJavascript("jquery.js");
+	
+	$this->addStyleSheet("skin1.css");
+	$this->addJavascript("jquery.infieldlabel.min.js");
+	$this->addJavascript("basicInfieldFormPersonas.js");
+	$this->addJavascript("FormAcreditaciones.js");
+	$this->addStyleSheet("infieldlabelPersonas.css");
+
+	$this->addJavascript("jquery-ui-1.8.16.custom.min.js");
+	$this->addStyleSheet("le-frog/jquery-ui-1.8.16.custom.css");
+	
+    $this->addJavascript("jquery.cookie.js");
+    $this->addJavascript("sayt.jquery.js");
+        
+    $this->addModuleJavascript('registros', 'createEditAcreditacion.js');
+    
+	$this->load->helper('form');
+	$this->load->library('form_validation');
+    $this->load->model('renovaciones/renovacion');
+    $this->load->model('renovaciones/renovacionevento');
+    $this->load->model('renovaciones/renovaciontitulo');
+    $this->load->model('renovaciones/renovacionprotocolo');
+    $this->form_validation->set_rules('nombre', 'nombre', 'required|trim|max_length[255]');
+    $this->form_validation->set_rules('apellido', 'apellido', 'required|trim|max_length[255]');
+    $this->form_validation->set_rules('ci', 'ci', 'required|trim|max_length[255]');
+    $this->form_validation->set_rules('email', 'email', 'required|trim|valid_email|max_length[255]');
+    $this->form_validation->set_rules('institucion', 'institucion', 'is_numeric|required');
+    $this->form_validation->set_rules('laboratorio', 'laboratorio/unidad', 'max_length[255]');
+    $this->form_validation->set_rules('cargo', 'cargo', 'max_length[255]');
+    $this->form_validation->set_rules('cargahoraria', 'cargahoraria', 'is_numeric|less_than[61]');
+    $this->form_validation->set_rules('jefe', 'jefe', 'max_length[255]');
+    $this->form_validation->set_rules('fechaacreditacion', 'fechaacreditacion', 'required');
+    $this->form_validation->set_rules('fechasolicitud', 'fechasolicitud', 'required');
+    $this->form_validation->set_rules('numregistro', 'numregistro', 'required|max_length[255]');
+    $this->form_validation->set_rules('categoriaA', 'Categoria A');			
+    $this->form_validation->set_rules('categoriaB', 'Categoria B');
+    $this->form_validation->set_rules('categoriaC1', 'Categoria C1');
+    $this->form_validation->set_rules('categoriaC2', 'Categoria C2');    
+    
+    $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+    $this->load->model('instituciones/institucion');
+    $this->data['instituciones'] = $this->institucion->retrieveRegistros();
+    $obj = new $this->renovacion;
+    $errores = array();
+    $save = false;
+    
+    $word = $this->input->post('word');
+    $captcha = false;
+    //$captcha = true;
+    if ($this->input->post() && ($word == $this->session->userdata('word'))) 
+    {
+      $captcha = true;
+    }
+    else
+    {
+      if(!empty($word) || $this->input->post() )
+      {
+        $errores["captcha"] = "Captcha invalido"; 
+      }
+    }
+    //var_dump($captcha);
+    if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
+       $this->data['errores'] = $errores;
+    } else {
+        if($captcha)
+        {
+          $save = true;
+        }
+          
+        //$save = true;
+    }
+    $this->load->helper('captcha');
+    $vals = array(
+        'img_path'     => './captcha/',
+        'img_url'     => $this->config->base_url()."captcha/",
+        'img_width'     => '200',
+        'img_height' => 30,
+        'border' => 0,
+        'expiration' => 7200,
+        'usecaps' => false
+        );
+
+      // create captcha image
+     $cap = create_captcha($vals);
+     // store image html code in a variable
+     $this->data['captchaImage'] = $cap['image'];
+
+    // store the captcha word in a session
+     $this->session->set_userdata('word', $cap['word']); 
+    
+    $form_data = array(
+        'nombre' => set_value('nombre'),
+        'apellido' => set_value('apellido'),
+        'ci' => set_value('ci'),
+        'email' => set_value('email'),
+        'institucion' => set_value('institucion'),
+        'laboratorio' => set_value('laboratorio'),
+        'cargo' => set_value('cargo'),
+        'cargahoraria' => set_value('cargahoraria'),
+        'jefe' => set_value('jefe'),
+        'fechaacreditacion' => set_value('fechaacreditacion'),
+        'fechasolicitud' => set_value('fechasolicitud'),
+        'numregistro' => set_value('numregistro'),
+        'categoriaA' => set_value('categoriaA'),
+        'categoriaB' => set_value('categoriaB'),
+        'categoriaC1' => set_value('categoriaC1'),
+        'categoriaC2' => set_value('categoriaC2'),
+    );
+    $obj->setApellido($form_data['apellido']);
+    $obj->setCargahoraria($form_data['cargahoraria']);
+    $obj->setCargo($form_data['cargo']);
+    $obj->setCategoriaA($form_data['categoriaA']);
+    $obj->setCategoriaB($form_data['categoriaB']);
+    $obj->setCategoriaC1($form_data['categoriaC1']);
+    $obj->setCategoriaC2($form_data['categoriaC2']);
+    $obj->setCi($form_data['ci']);
+    $obj->setEmail($form_data['email']);
+    $obj->setFechaacreditacion($form_data['fechaacreditacion']);
+    $obj->setFechasolicitud($form_data['fechasolicitud']);
+    $obj->setInstitucion($form_data['institucion']);
+    $obj->setJefe($form_data['jefe']);
+    $obj->setLaboratorio($form_data['laboratorio']);
+    $obj->setNombre($form_data['nombre']);
+    $obj->setNumregistro($form_data['numregistro']);
+    
+    //Eventos
+    $events_lists = array();
+    //Titulos
+    $titles_list = array();
+    foreach ($_POST as $postkey => $postdata)
+    {
+      if(substr_count($postkey, 'eventname_')){
+        $number = explode('_', $postkey);
+        $number = $number[1];
+        $evento = new $this->renovacionevento;
+        $evento->setNombre($_POST['eventname_'.$number]);
+        $evento->setFecha($_POST['fechaevento_'.$number]);
+        $evento->setLugar($_POST['lugarevento_'.$number]);
+        $events_lists[$number] = $evento;
+      }
+      if(substr_count($postkey, 'titlename_'))
+      {
+        $number = explode('_', $postkey);
+        $number = $number[1];
+        $titulo = new $this->renovaciontitulo;
+        $titulo->setNombre($_POST['titlename_'.$number]);
+        $titulo->setDescription($_POST['titledescription_'.$number]);
+        $titles_list[$number] = $titulo;
+      }
+    }
+    if(count($events_lists) == 0)
+    {
+      $events_lists[] = new $this->renovacionevento;
+    }
+    if(count($titles_list) == 0)
+    {
+      $titles_list[] = new $this->renovaciontitulo;
+    }
+    
+    $protocolosotros_post_list = $this->input->post('protocolosotros');
+    $protocolosotros_list = array();
+    if($protocolosotros_post_list)
+    {
+      foreach($protocolosotros_post_list as $post_data)
+      {
+        $auxdata = new $this->renovacionprotocolo;
+        $auxdata->setDescription($post_data);
+        $protocolosotros_list[] = $auxdata;
+      }
+    }
+    else
+    {
+      $protocolosotros_list[] = new $this->renovacionprotocolo;
+    }
+    
+    $protocolosotrosfines_post_list = $this->input->post('protocolosotrosfines');
+    $protocolosotrosfines_list = array();
+    if($protocolosotrosfines_post_list)
+    {
+      foreach($protocolosotrosfines_post_list as $post_data)
+      {
+        $auxdata = new $this->renovacionprotocolo;
+        $auxdata->setDescription($post_data);
+        $protocolosotrosfines_list[] = $auxdata;
+      }
+    }
+    else
+    {
+      $protocolosotrosfines_list[] = new $this->renovacionprotocolo;
+    }
+    if(!$save)
+	{
+	  $this->data['content'] = 'formulariorenovacion';
+	}
+    else
+    {
+      $renovacionId = $renovacionId = $obj->save();
+      foreach($events_lists as $evento)
+      {
+        $evento->setRenovacionid($renovacionId);
+        $evento->save();
+      }      
+      foreach($titles_list as $title)
+      {
+        $title->setRenovacionid($renovacionId);
+        $title->save();
+      }
+      foreach($protocolosotros_list as $protocolo)
+      {
+        if(!empty($protocolo->getDescription()))
+        {
+          $protocolo->setRenovacionid($renovacionId);
+          $protocolo->setType(1);
+          $protocolo->save();
+        }
+      }
+      foreach($protocolosotrosfines_list as $protocolo)
+      {
+        if(!empty($protocolo->getDescription()))
+        {
+          $protocolo->setRenovacionid($renovacionId);
+          $protocolo->setType(2);
+          $protocolo->save();
+        }
+      }
+      redirect('formulario-renovacion-ok.html');
+    }
+    $this->data['content'] = 'formulariorenovacion';
+    $this->data['obj'] = $obj;
+    $this->data['protocolosotros'] = array_shift($protocolosotros_list);
+    $this->data['protocolosotros_list'] = $protocolosotros_list;
+    $this->data['protocolosotrosfines'] = array_shift($protocolosotrosfines_list);
+    $this->data['protocolosotrosfines_list'] = $protocolosotrosfines_list;
+    $this->data['evento'] = array_shift($events_lists);
+    $this->data['evento_list'] = $events_lists;
+    $this->data['titles'] = array_shift($titles_list);
+    $this->data['titles_list'] = $titles_list;
+    //$this->data['captchaImage'] = 'nada';
+    $this->load->view('layout', $this->data);
+    //var_dump('here');
+  }
+  
+  public function formularioRenovacionOk()
+  {
+    $this->data['content'] = 'formulariorenovacionok';
+    $this->load->view('layout', $this->data);
+    
+  }
 }
