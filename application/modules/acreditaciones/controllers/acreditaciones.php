@@ -681,7 +681,8 @@ class acreditaciones extends MY_Controller {
       }
       foreach($protocolosotros_list as $protocolo)
       {
-        if(!empty($protocolo->getDescription()))
+	//$isEmpy = empty($protocolo->getDescription());
+        if($protocolo->getDescription() != '')
         {
           $protocolo->setRenovacionid($renovacionId);
           $protocolo->setType(1);
@@ -690,7 +691,7 @@ class acreditaciones extends MY_Controller {
       }
       foreach($protocolosotrosfines_list as $protocolo)
       {
-        if(!empty($protocolo->getDescription()))
+        if($protocolo->getDescription() != '')
         {
           $protocolo->setRenovacionid($renovacionId);
           $protocolo->setType(2);
