@@ -1,42 +1,40 @@
 <div class="content_right img_instituciones">
-  <h1><?php echo lang("personal_formulario_titulo"); ?></h1>
+  <h1><?php echo lang("renovacion_formulario_titulo"); ?></h1>
   
   <div class="clear"></div>
-  <h5><?php echo lang("personal_formulario_subtitulo"); ?></h5>
+  <h5><?php echo lang("renovacion_formulario_subtitulo"); ?></h5>
   <?php if(strlen(validation_errors()) > 0): ?>
-  <span class="msg_error"><?php echo lang("personal_formulario_subtitulo_errores"); ?></span>
-  
+  <span class="msg_error"><?php echo lang("renovacion_formulario_subtitulo_errores"); ?></span>
   <?php endif;?>
-  
   <?php
   $attributes = array('class' => 'infield_form', 'id' => 'renovacion_form');
   echo form_open_multipart('formulario-renovacion.html', $attributes); ?>    
-    <h4><?php echo lang("personal_formulario_subtitulo_identificacion"); ?></h4>
+    <!-- <h4><?php echo lang("renovacion_formulario_subtitulo_identificacion"); ?></h4> -->
     <div class="clear"></div>
     <p>
-       <label class="fecha_infield hasinfieldlabel" for="fechasolicitud"><?php echo lang("personal_formulario_fecha"); ?></label> 
+       <label class="fecha_infield hasinfieldlabel" for="fechasolicitud"><?php echo lang("renovacion_formulario_fecha"); ?></label> 
       <input class="<?php echo (form_error('fechasolicitud') != "")? "input_error" : "";?> fecha" type="input" name="fechasolicitud" maxlength="255" value="<?php echo $obj->getFechasolicitud(); ?>" placeholder='dd/mm/yyyy' />
     </p>
     <p>
-      <label class="hasinfieldlabel" for="nombre"><?php echo lang("personal_formulario_nombre"); ?></label>
+      <label class="hasinfieldlabel" for="nombre"><?php echo lang("renovacion_formulario_nombre"); ?></label>
       <input class="<?php echo (form_error('nombre') != "")? "input_error" : "";?>" id="nombre" type="text" name="nombre"  value="<?php echo $obj->getNombre(); ?>"  />
     </p>
     <p>
-      <label class="hasinfieldlabel" for="apellido"><?php echo lang("personal_formulario_apellido"); ?></label>
+      <label class="hasinfieldlabel" for="apellido"><?php echo lang("renovacion_formulario_apellido"); ?></label>
       <input class="<?php echo (form_error('apellido') != "")? "input_error" : "";?>" id="nombreapellido" type="text" name="apellido"  value="<?php echo $obj->getApellido(); ?>"  />
     </p>
     
     <p>
-      <label class="hasinfieldlabel" for="ci"><?php echo lang("personal_formulario_documento"); ?></label>
+      <label class="hasinfieldlabel" for="ci"><?php echo lang("renovacion_formulario_documento"); ?></label>
       <input class="<?php echo (form_error('ci') != "")? "input_error" : "";?>" id="documento" type="text" name="ci" maxlength="255" value="<?php echo $obj->getCi(); ?>"  />
     </p>
     <p>
-        <label class="hasinfieldlabel" for="email"><?php echo lang("personal_formulario_email"); ?></label>
+        <label class="hasinfieldlabel" for="email"><?php echo lang("renovacion_formulario_email"); ?></label>
         <input class="<?php echo (form_error('email') != "")? "input_error" : "";?>" id="email" type="text" name="email" maxlength="255" value="<?php echo $obj->getEmail(); ?>"  />
     </p>
     
     <p>
-      <label class="hasinfieldlabel" for="institucion"><?php echo lang("personal_formulario_instituciondesempeno"); ?></label>
+      <label class="hasinfieldlabel" for="institucion"><?php echo lang("renovacion_formulario_instituciondesempeno"); ?></label>
       <?php echo form_error('institucion'); ?>
       <?php
       $options = array();
@@ -48,19 +46,19 @@
     </p>
     <div class="clear"></div>
     <p>
-      <label class="hasinfieldlabel" for="laboratorio"><?php echo lang("personal_formulario_institucion_laboratorio_unidad"); ?></label>
+      <label class="hasinfieldlabel" for="laboratorio"><?php echo lang("renovacion_formulario_institucion_laboratorio_unidad"); ?></label>
       <input class="<?php echo (form_error('laboratorio') != "")? "input_error" : "";?>" id="laboratorio" type="text" name="laboratorio" maxlength="255" value="<?php echo $obj->getLaboratorio(); ?>"  />
     </p>  
     <p>
-      <label  class="hasinfieldlabel" for="cargo"><?php echo lang("personal_formulario_institucion_cargo"); ?></label>
+      <label  class="hasinfieldlabel" for="cargo"><?php echo lang("renovacion_formulario_institucion_cargo"); ?></label>
       <input class="<?php echo (form_error('cargo') != "")? "input_error" : "";?>" id="cargo" type="text" name="cargo" maxlength="255" value="<?php echo $obj->getCargo(); ?>"  />
     </p>
     <p>
-      <label  class="hasinfieldlabel" for="cargahoraria"><?php echo lang("personal_formulario_institucion_carga_horaria_semanal"); ?></label>
+      <label  class="hasinfieldlabel" for="cargahoraria"><?php echo lang("renovacion_formulario_institucion_carga_horaria_semanal"); ?></label>
       <input class="<?php echo (form_error('cargahoraria') != "")? "input_error" : "";?>" id="cargahoraria" type="text" name="cargahoraria"  value="<?php echo $obj->getCargahoraria(); ?>"  />
     </p>
     <p>
-      <label  class="hasinfieldlabel" for="jefe"><?php echo lang("personal_formulario_institucion_nombre_supervisor"); ?></label>
+      <label  class="hasinfieldlabel" for="jefe"><?php echo lang("renovacion_formulario_institucion_nombre_supervisor"); ?></label>
       <input class="<?php echo (form_error('jefe') != "")? "input_error" : "";?>" id="jefe" type="text" name="jefe" maxlength="255" value="<?php echo $obj->getJefe(); ?>"  />
     </p>
     
@@ -76,7 +74,7 @@
         <input class="<?php echo (form_error('numregistro') != "")? "input_error" : "";?>" id="numregistro" type="text" name="numregistro" maxlength="255" value="<?php echo $obj->getNumregistro(); ?>"  />
     </p>
     <div class="clear"></div>
-    <h2>Eventos</h2>
+    <h4>Indique en qué jornadas de actualización sobre temáticas de animales de experimentación ha participado en los últimos cinco años. </h4>
     <div id="eventos">
       <p>
         <label class="hasinfieldlabel" for="eventname_1">Nombre del evento</label>
@@ -121,7 +119,7 @@
     <div class="clear"></div>
     
     <div class="clear"></div>
-    <h2>Mencione el/los título/s de los protocolos de experimentación animal en los que Ud. haya estado involucrado en los últimos cinco años, aprobados por la CEUA de su Institución. Especifique su rol en los mismos.</h2>
+    <h4>Mencione el/los título/s de los protocolos de experimentación animal en los que Ud. haya estado involucrado en los últimos cinco años, aprobados por la CEUA de su Institución. Especifique su rol en los mismos.</h4>
     <div id="titulos">
       <p>
         <label class="hasinfieldlabel" for="titlename_1">Nombre del titulo</label>
@@ -196,7 +194,7 @@
     <div class="clear"></div>
     
     
-    <h5><?php echo lang("personal_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("personal_formulario_subtitulo_ver_bases"); ?></a></h5>
+    <h5><?php echo lang("renovacion_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("renovacion_formulario_subtitulo_ver_bases"); ?></a></h5>
     <p>
       <div style="width: 23%; float: left;">
         <label for="categoriaa">Categor&iacute;a A</label>
@@ -217,7 +215,7 @@
     </p>
     <div class="clear"></div>
 	
-    <?php echo lang("personal_formulario_texto_categoria"); ?>    
+    <?php echo lang("renovacion_formulario_texto_categoria"); ?>    
     
     
     
@@ -236,7 +234,7 @@
   </div>  
     
   <div class="clear"></div>
-  <?php echo lang("personal_formulario_texto_consultas"); ?>
+  <?php echo lang("renovacion_formulario_texto_consultas"); ?>
 </div><!--CONTENT RIGHT-->
 
 <script type="text/javascript">

@@ -132,4 +132,23 @@ $lang['personal_registro_buscar']='Buscar';
 $lang['personal_formulario_instituciondesempeno']='<strong>Instituci&oacute;n en la que se desempe&ntilde;a*</strong>';
 $lang['personal_formulario_instituciondesempeno_texto']='<span>*La acreditaci&oacute;n personal se expedir&aacute; para personas que se desempe&ntilde;en en instituciones registradas en la CNEA. El solicitante deber&aacute; completar un formulario por cada instituci&oacute;n donde se desempe&ntilde;e, solicitando el aval al CEUA correspondiente.</span>';
 $lang['personal_formulario_formacion_titulo']='Titulo';
+$lang['renovacion_formulario_titulo']='Formulario para renovación de acreditación personal.';
+$lang['renovacion_formulario_subtitulo']='IMPORTANTE: COMPLETAR ESTE FORMULARIO SOLAMENTE EN CASO DE QUE SU ACREDITACION PERSONAL CNEA HAYA CADUCADO';
+$lang['renovacion_formulario_subtitulo_errores']='Por favor completar los campos marcados en rojo';
+$lang['renovacion_formulario_subtitulo_identificacion']='Instructivo';
+$lang['renovacion_formulario_fecha']='Fecha de solicitud';
+$lang['renovacion_formulario_nombre']='Nombres';
+$lang['renovacion_formulario_apellido']='Apellidos';
+$lang['renovacion_formulario_documento']='Documento de identidad (CI/Pasaporte)';
+$lang['renovacion_formulario_email']='Direcci&oacute;n electr&oacute;nica';
+$lang['renovacion_formulario_instituciondesempeno']='<strong>Instituci&oacute;n en la que se desempe&ntilde;a*</strong>';
+$lang['renovacion_formulario_institucion_laboratorio_unidad']='Laboratorio/Unidad';
+$lang['renovacion_formulario_institucion_cargo']='Cargo / funci&oacute;n en dicha instituci&oacute;n';
+$lang['renovacion_formulario_institucion_carga_horaria_semanal']='Carga Horaria Semanal';
+$lang['renovacion_formulario_institucion_nombre_supervisor']='Nombre del Jefe/Supervisor/Orientador';
+$lang['renovacion_formulario_subtitulo_categoria_aspirada']='&iquest;A qu&eacute; categor&iacute;a/s de acreditaci&oacute;n establecida por la CNEA aspira?';
+
+$lang['renovacion_formulario_texto_categoria']='';
+$lang['renovacion_formulario_texto_consultas']='Firma del interesado y firma de un integrante de la CEUA de la institución señalada anteriormente.
+Descargar hoja de firmas. Escanear y adjuntar luego de firmar.';
 /* End of file acreditaciones_lang.php */
