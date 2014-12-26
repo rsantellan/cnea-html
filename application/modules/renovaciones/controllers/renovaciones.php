@@ -21,6 +21,7 @@ class renovaciones extends MY_Controller {
       }
 	  $this->addJquery();
       $this->load->model('renovaciones/renovacion');
+//      $this->output->enable_profiler(TRUE);
   }
 
   function index()
@@ -47,10 +48,18 @@ class renovaciones extends MY_Controller {
   
   function show($id)
   {
+    $this->loadRenovacionData($id);
+  }
+  
+  private function loadRenovacionData($id)
+  {
+    $this->addModuleJavascript("registros", "showRenovacion.js");
+    $this->addFancyBox();
     $this->load->model('instituciones/institucion');
     $this->load->model('renovaciones/renovacionevento');
     $this->load->model('renovaciones/renovaciontitulo');
     $this->load->model('renovaciones/renovacionprotocolo');
+    $this->load->model('acreditaciones/acreditacionarchivo');
     $this->data['instituciones'] = $this->institucion->retrieveRegistros();
     $renovacion = $this->renovacion->getById($id);
     $this->data['renovacion'] = $renovacion;
@@ -59,10 +68,49 @@ class renovaciones extends MY_Controller {
     $this->data['estados'] = $estados;
     $this->data['eventos'] = $this->renovacionevento->retrieveList($renovacion->getId());
     $this->data['titulos'] = $this->renovaciontitulo->retrieveList($renovacion->getId());
+    $this->data['protocolos'] = $this->renovacionprotocolo->retrieveList($renovacion->getId(), 1);
+    $this->data['protocolootrosfines'] = $this->renovacionprotocolo->retrieveList($renovacion->getId(), 2);
+    $this->data['archivos'] = $this->acreditacionarchivo->getByAcreditacionId($renovacion->getId());
     $this->data['content'] = "renovaciones/show";
     $this->load->view("admin/layout", $this->data); 
   }
   
+  function acreditacionesSubirArchivo()
+  {
+    $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+    $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png';
+    $this -> load -> library('upload', $config);
+    $errores = array();
+    $upload_data = array();
+    $id = $this->input->post('id', true);
+    $type = $this->input->post('type', true);
+    if (!$this -> upload -> do_upload('archivo')) {
+      switch ($type) {
+        case "renovacionfirmainstitucion": 
+            $errores['archivo_firmainstitucion'] = $this -> upload -> display_errors();
+           break;
+        default:
+          break;
+      }
+
+        $this->upload->clean_errors();
+    }else{
+        $upload_data['archivo'] = $this->upload->data();
+        $this->load->model('acreditaciones/acreditacionarchivo');
+        //$this->load->model('acreditaciones/acreditacion');
+        //$this->acreditacion->doReplication($id);
+        $archivo = new $this->acreditacionarchivo;
+        $archivo->setAcreditacion_id($id);
+        $archivo->setType($type);
+        $archivo->setFilename($upload_data['archivo']['file_name']);
+        $archivo->setFilepath($upload_data['archivo']['file_path']);
+        $archivo->save();
+        redirect('renovaciones/show/'.$id);
+    }
+    $this->data['errores'] = $errores;
+    $this->loadRenovacionData($id);
+  }
+    
   function edit($id)
   {
     $this->load->model('instituciones/institucion');
@@ -99,7 +147,16 @@ class renovaciones extends MY_Controller {
     $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
     $this->load->model('instituciones/institucion');
     $this->data['instituciones'] = $this->institucion->retrieveRegistros();
-    $obj = new $this->renovacion;
+    
+    if ($id == "" || is_null($id)) 
+    {
+      $obj = new $this->renovacion;
+    }
+    else
+    {
+      $obj = $this->renovacion->getById($id);
+    }
+    
     $errores = array();
     $save = false;
     if ($this->form_validation->run() == FALSE) // validation hasn't been passed
@@ -150,6 +207,7 @@ class renovaciones extends MY_Controller {
     if($save)
     {
         $renovacionId = $obj->save();
+        
         redirect('renovaciones/show/'.$renovacionId);
     }
     else

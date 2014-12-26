@@ -736,6 +736,7 @@ class acreditacion extends MY_Model{
     {
       $this->db->where("instituciondesempeno", $institucionId);
       $this->db->where("isactive", 1);
+      $this->db->order_by("nombreapellido", "asc");
       return $this->db->get($this->getTablename())->result();
     }
     
