@@ -17,5 +17,6 @@ $lang['menu_personas_reglamento']='reglamentaci&oacute;n';
 $lang['menu_actas']='actas';
 $lang['menu_novedades']='novedades';
 $lang['menu_faq']='faq';
-$lang['menu_contacto']='contacto <span style=\"color: #ff0000;\">dasdasda</span>';
+$lang['menu_contacto']='contacto';
+$lang['menu_personas_renovacion']='Renovación';
 /* End of file menu_lang.php */

@@ -27,6 +27,8 @@ class renovacion extends MY_Model {
   private $fechaacreditacion;
   private $fechasolicitud;
   private $numregistro;
+  private $isactive;
+  private $estado;
 
   public function getId() {
     return $this->id;
@@ -166,6 +168,42 @@ class renovacion extends MY_Model {
     $this->categoriaC2 = $categoriaC2;
   }
 
+  public function getIsactive() {
+    return $this->isactive;
+  }
+
+  public function setIsactive($isactive) {
+    $this->isactive = $isactive;
+  }
+  
+  public function getEstado() {
+	return $this->estado;
+  }
+
+  public function setEstado($estado) {
+	$this->estado = $estado;
+	if($estado !== 'A'){
+	  $this->setIsactive(false);
+	}else{
+	  $this->setIsactive(true);
+	}
+  }
+
+  public function getEstadoList(){
+	return array(
+		'A' => 'Activo',
+		'N' => 'Nuevo',
+		'V' => 'Vencido no renovo',
+		'VR' => 'Vencido en renovacion',
+		'R' => 'Rechazado',
+	);
+  }
+
+  public function getEstadoName($estadoCode){
+    $list = $this->getEstadoList();
+    return $list[$estadoCode];
+  }
+  
   function __construct() {
     parent::__construct();
     $this->setTablename('renovacion');
@@ -210,6 +248,8 @@ class renovacion extends MY_Model {
         'categoriaB' => $this->getCategoriaB(),
         'categoriaC1' => $this->getCategoriaC1(),
         'categoriaC2' => $this->getCategoriaC2(),
+        'isactive' => $this->getIsactive(),
+        'estado' => $this->getEstado(),
     );
   }
   private function saveNew() {
@@ -272,6 +312,8 @@ class renovacion extends MY_Model {
     $aux->setLaboratorio($row->laboratorio);
     $aux->setNombre($row->nombre);
     $aux->setNumregistro($row->numregistro);
+    $aux->setEstado($row->estado);
+    $aux->setIsactive($row->isactive);
     return $aux;
   }
 

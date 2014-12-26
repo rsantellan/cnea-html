@@ -62,7 +62,30 @@
       <input class="<?php echo (form_error('jefe') != "")? "input_error" : "";?>" id="jefe" type="text" name="jefe" maxlength="255" value="<?php echo $obj->getJefe(); ?>"  />
     </p>
     
-    
+    <div class="clear"></div>
+    <h4>Datos sobre Acreditación Personal CNEA</h4>
+    <h5><?php echo lang("renovacion_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("renovacion_formulario_subtitulo_ver_bases"); ?></a></h5>
+    <p>
+      <div style="width: 23%; float: left;">
+        <label for="categoriaa">Categor&iacute;a A</label>
+      <input name="categoriaA" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaA() == 1)? "checked=\"checked\"" : ""; ?>> 
+    </div>
+    <div style="width: 23%; float: left;">
+      <label for="categoriab">Categor&iacute;a B</label>
+      <input name="categoriaB" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaB() == 1)? "checked=\"checked\"" : ""; ?>> 
+    </div>   
+    <div style="width: 23%; float: left;">
+      <label for="categoria_c1">Categor&iacute;a C1*</label>
+      <input name="categoriaC1" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaC1() == 1)? "checked=\"checked\"" : ""; ?>> 
+    </div>
+    <div style="width: 24%; float: left;">
+      <label for="categoria_c2">Categor&iacute;a C2**</label>
+      <input name="categoriaC2" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaC2() == 1)? "checked=\"checked\"" : ""; ?>> 
+    </div>
+    </p>
+    <div class="clear"></div>
+	
+    <?php echo lang("renovacion_formulario_texto_categoria"); ?>     
     
     <p>
       <label class="fecha_infield hasinfieldlabel" for="fechaacreditacion">Fecha de acreditación:</label>
@@ -193,31 +216,15 @@
     
     <div class="clear"></div>
     
-    
-    <h5><?php echo lang("renovacion_formulario_subtitulo_categoria_aspirada"); ?><a href="<?php echo site_url("acreditaciones/bases");?>" target="_blank"><?php echo lang("renovacion_formulario_subtitulo_ver_bases"); ?></a></h5>
-    <p>
-      <div style="width: 23%; float: left;">
-        <label for="categoriaa">Categor&iacute;a A</label>
-      <input name="categoriaA" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaA() == 1)? "checked=\"checked\"" : ""; ?>> 
-    </div>
-    <div style="width: 23%; float: left;">
-      <label for="categoriab">Categor&iacute;a B</label>
-      <input name="categoriaB" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaB() == 1)? "checked=\"checked\"" : ""; ?>> 
-    </div>   
-    <div style="width: 23%; float: left;">
-      <label for="categoria_c1">Categor&iacute;a C1*</label>
-      <input name="categoriaC1" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaC1() == 1)? "checked=\"checked\"" : ""; ?>> 
-    </div>
-    <div style="width: 24%; float: left;">
-      <label for="categoria_c2">Categor&iacute;a C2**</label>
-      <input name="categoriaC2" type="checkbox" value="1" class="radiobuttom" <?php echo ($obj->getCategoriaC2() == 1)? "checked=\"checked\"" : ""; ?>> 
-    </div>
-    </p>
+    <?php echo lang("personal_formulario_texto_firma_institucion"); ?>
+    <?php if(isset($errores['firma_institucion_upload'])): ?>
+		<span class="upload_error"><?php echo $errores['firma_institucion_upload'];?></span>
+	<?php endif;?>
+    <input type="file" name="firma_institucion_upload" id="firma_institucion_upload" class="file"/>
+    <a href="<?php echo site_url("acreditaciones/descargarFormularioEmpresa");?>" class="descargar descargar_forms">descargar</a>
     <div class="clear"></div>
-	
-    <?php echo lang("renovacion_formulario_texto_categoria"); ?>    
     
-    
+    <div class="clear"></div>
     
     <?php if(isset($errores["captcha"])): ?>
       <span class="msg_error"><?php echo $errores['captcha'];?></span>

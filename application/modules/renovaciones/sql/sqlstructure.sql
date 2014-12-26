@@ -75,3 +75,7 @@ CREATE TABLE IF NOT EXISTS `renovaciontitulo` (
 
 ALTER TABLE `renovaciontitulo`
   ADD CONSTRAINT `renovaciontitulo_ibfk_1` FOREIGN KEY (`renovacionid`) REFERENCES `renovacion` (`id`);
+  
+  
+ALTER TABLE `renovacion` ADD `isactive` TINYINT( 1 ) NOT NULL DEFAULT '0',
+    ADD `estado` VARCHAR( 2 ) NOT NULL DEFAULT 'N';  

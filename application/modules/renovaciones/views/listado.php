@@ -43,8 +43,7 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-<!-- 
+
 <a href="<?php echo site_url("renovaciones/add");?>">
   Agregar
 </a>
--->

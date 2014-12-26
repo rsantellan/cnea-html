@@ -48,8 +48,17 @@ class renovaciones extends MY_Controller {
   function show($id)
   {
     $this->load->model('instituciones/institucion');
+    $this->load->model('renovaciones/renovacionevento');
+    $this->load->model('renovaciones/renovaciontitulo');
+    $this->load->model('renovaciones/renovacionprotocolo');
     $this->data['instituciones'] = $this->institucion->retrieveRegistros();
-    $this->data['renovacion'] = $this->renovacion->getById($id);
+    $renovacion = $this->renovacion->getById($id);
+    $this->data['renovacion'] = $renovacion;
+    $this->data['institucion'] = $this->institucion->getById($renovacion->getInstitucion());
+    $estados = $this->renovacion->getEstadoList();
+    $this->data['estados'] = $estados;
+    $this->data['eventos'] = $this->renovacionevento->retrieveList($renovacion->getId());
+    $this->data['titulos'] = $this->renovaciontitulo->retrieveList($renovacion->getId());
     $this->data['content'] = "renovaciones/show";
     $this->load->view("admin/layout", $this->data); 
   }

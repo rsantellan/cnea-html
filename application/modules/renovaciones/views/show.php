@@ -10,7 +10,7 @@
     <div class="grid_5">
       <span>
         <label>Fecha de solicitud</label>
-        <?php echo $renovacion->getFecha(); ?>
+        <?php echo $renovacion->getFechasolicitud(); ?>
       </span>
     </div>
     <div class="grid_5">
@@ -22,51 +22,23 @@
     <div class="grid_5">
       <span>
         <label>Apellido</label>
-        <?php echo $renovacion->getNombreapellido(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>Formacion</label>
-        <?php echo $renovacion->getFormacion(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>Titulo</label>
-        <?php echo $renovacion->getTitulo(); ?>
+        <?php echo $renovacion->getApellido(); ?>
       </span>
     </div>
     <div class="grid_5">
       <span>
         <label>Documento</label>
-        <?php echo $renovacion->getDocumento(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>Fecha nacimiento</label>
-        <?php echo $renovacion->getFechanacimiento(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>Direccion Postal</label>
-        <?php echo $renovacion->getDireccionpostal(); ?>
+        <?php echo $renovacion->getCi(); ?>
       </span>
     </div>
     <div class="grid_5">
       <span>
         <label>Direccion Electronica</label>
-        <?php echo $renovacion->getDireccionelectronica(); ?>
+        <?php echo $renovacion->getEmail(); ?>
       </span>
     </div>
-    <div class="grid_5">
-      <span>
-        <label>Telefono Contacto</label>
-        <?php echo $renovacion->getTelefonocontacto(); ?>
-      </span>
-    </div>
+    
+    
     <div class="grid_5">
       <span>
         <label>Institución en la que se desempeña:</label>
@@ -76,39 +48,28 @@
     <div class="grid_5">
       <span>
         <label>Laboratorio/Unidad</label>
-        <?php echo $renovacion->getLaboratoriounidad(); ?>
+        <?php echo $renovacion->getLaboratorio(); ?>
       </span>
     </div>
     <div class="grid_5">
       <span>
         <label>Cargo/Funcion en la institucion</label>
-        <?php echo $renovacion->getCargofuncioninstitucion(); ?>
+        <?php echo $renovacion->getCargo(); ?>
       </span>
     </div>
     <div class="grid_5">
       <span>
         <label>Carga Horaria Semanal</label>
-        <?php echo $renovacion->getCargahorariasemanal(); ?>
+        <?php echo $renovacion->getCargahoraria(); ?>
       </span>
     </div>
     <div class="grid_5">
       <span>
         <label>Nombre supervisor</label>
-        <?php echo $renovacion->getNombresupervisor(); ?>
+        <?php echo $renovacion->getJefe(); ?>
       </span>
     </div>
-    <div class="grid_5">
-      <span>
-        <label>Especies que trabajadas</label>
-        <?php echo $renovacion->getEspeciestrabajadas(); ?>
-      </span>
-    </div>
-    <div class="grid_5">
-      <span>
-        <label>Describa las tareas</label>
-        <?php echo $renovacion->getDescribatareas(); ?>
-      </span>
-    </div>
+    
     <div class="grid_5">
       <span>
         <label>Categorias</label>
@@ -140,22 +101,72 @@
         ?>
       </span>
     </div>
+    
     <div class="grid_5">
       <span>
-        <label>Fecha de Vencimiento</label>
-        <?php echo $renovacion->getFechavencimiento(); ?>
+        <label>Fecha de acreditacion</label>
+        <?php echo $renovacion->getFechaacreditacion(); ?>
       </span>
     </div>
+    
+    <div class="grid_5">
+      <span>
+        <label>Numero de registro</label>
+        <?php echo $renovacion->getNumregistro(); ?>
+      </span>
+    </div>
+    
+    
     <div class="clear"></div>
     <a href="<?php echo site_url("registros/editarPersona/".$renovacion->getId());?>">Editar</a>
     <div class="clear"></div>
     <!-- Cursos -->
     <hr/>
-    <div class="grid_5">
-      <span>
-        <label>Realizo Cursos</label>
-        <?php echo ($renovacion->getRealizocursos() == 1)? "Si" : "No"; ?>
-      </span>
+    
+    <div class="grid_14">
+        <h4> jornadas de actualización sobre temáticas de animales de experimentación</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Lugar</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($eventos as $evento): ?>
+                <tr>
+                    <td><?php echo $evento->name;?></td>
+                    <td><?php echo $evento->fecha;?></td>
+                    <td><?php echo $evento->lugar;?></td>
+                    <td>Eliminar/<?php echo $evento->id;?></td>
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="grid_14">
+        <h4>título/s de los protocolos de experimentación animal</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($titulos as $titulo): ?>
+                <tr>
+                    <td><?php echo $titulo->name;?></td>
+                    <td><?php echo $titulo->description;?></td>
+                    <td>Eliminar/<?php echo $titulo->id;?></td>
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
     </div>
 	
 	<?php 

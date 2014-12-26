@@ -662,43 +662,68 @@ class acreditaciones extends MY_Controller {
     {
       $protocolosotrosfines_list[] = new $this->renovacionprotocolo;
     }
-    if(!$save)
+    if($save)
+/*    
 	{
 	  $this->data['content'] = 'formulariorenovacion';
 	}
     else
+*/
     {
-      $renovacionId = $renovacionId = $obj->save();
-      foreach($events_lists as $evento)
-      {
-        $evento->setRenovacionid($renovacionId);
-        $evento->save();
-      }      
-      foreach($titles_list as $title)
-      {
-        $title->setRenovacionid($renovacionId);
-        $title->save();
+      $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+      $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png';
+      $this -> load -> library('upload', $config);
+      $errores = array();
+      $upload_data = array();
+      if (!$this->upload->do_upload('firma_institucion_upload')) {
+	    $errores['firma_institucion_upload'] = $this->upload->display_errors();
+	    $this->upload->clean_errors();
+	    $save = false;
+      } else {
+	    $upload_data['firma_institucion_upload'] = $this->upload->data();
       }
-      foreach($protocolosotros_list as $protocolo)
+      if($save)
       {
-	//$isEmpy = empty($protocolo->getDescription());
-        if($protocolo->getDescription() != '')
-        {
-          $protocolo->setRenovacionid($renovacionId);
-          $protocolo->setType(1);
-          $protocolo->save();
-        }
+	  $obj->setEstado('N');
+	  $renovacionId = $obj->save();
+	  $this->load->model('acreditaciones/acreditacionarchivo');
+	  $archivo = new $this->acreditacionarchivo;
+	  $archivo->setAcreditacion_id($renovacionId);
+	  $archivo->setType("renovacionfirmainstitucion");
+	  $archivo->setFilename($upload_data['firma_institucion_upload']['file_name']);
+	  $archivo->setFilepath($upload_data['firma_institucion_upload']['file_path']);
+	  $archivo->save();
+	  foreach($events_lists as $evento)
+	  {
+	    $evento->setRenovacionid($renovacionId);
+	    $evento->save();
+	  }      
+	  foreach($titles_list as $title)
+	  {
+	    $title->setRenovacionid($renovacionId);
+	    $title->save();
+	  }
+	  foreach($protocolosotros_list as $protocolo)
+	  {
+	    //$isEmpy = empty($protocolo->getDescription());
+	    if($protocolo->getDescription() != '')
+	    {
+	      $protocolo->setRenovacionid($renovacionId);
+	      $protocolo->setType(1);
+	      $protocolo->save();
+	    }
+	  }
+	  foreach($protocolosotrosfines_list as $protocolo)
+	  {
+	    if($protocolo->getDescription() != '')
+	    {
+	      $protocolo->setRenovacionid($renovacionId);
+	      $protocolo->setType(2);
+	      $protocolo->save();
+	    }
+	  }
+	  redirect('formulario-renovacion-ok.html');
       }
-      foreach($protocolosotrosfines_list as $protocolo)
-      {
-        if($protocolo->getDescription() != '')
-        {
-          $protocolo->setRenovacionid($renovacionId);
-          $protocolo->setType(2);
-          $protocolo->save();
-        }
-      }
-      redirect('formulario-renovacion-ok.html');
     }
     $this->data['content'] = 'formulariorenovacion';
     $this->data['obj'] = $obj;
