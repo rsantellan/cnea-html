@@ -162,6 +162,7 @@ class acreditaciones extends MY_Controller {
       }
         
     }
+    $captcha = true;
     if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
        $this->data['errores'] = $errores;
     } else {
@@ -341,8 +342,7 @@ class acreditaciones extends MY_Controller {
 	  } else {
 		$upload_data['firma_institucion_upload'] = $this->upload->data();
 	  }
-	  
-	  if(isset($_FILES['categoria_upload']))
+	  if(($obj->getCategoriaC1() || $obj->getCategoriaC2()))
 	  {
 		if (!$this->upload->do_upload('categoria_upload')) {
 		  $errores['categoria_upload'] = $this->upload->display_errors();
@@ -663,36 +663,36 @@ class acreditaciones extends MY_Controller {
       $protocolosotrosfines_list[] = new $this->renovacionprotocolo;
     }
     if($save)
-/*    
-	{
-	  $this->data['content'] = 'formulariorenovacion';
-	}
-    else
-*/
     {
-      $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
-      $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png';
-      $this -> load -> library('upload', $config);
       $errores = array();
       $upload_data = array();
-      if (!$this->upload->do_upload('firma_institucion_upload')) {
+      if(isset($_FILES['firma_institucion_upload']))
+      {
+	$config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+	$config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png';
+	$this -> load -> library('upload', $config);
+	if (!$this->upload->do_upload('firma_institucion_upload')) {
 	    $errores['firma_institucion_upload'] = $this->upload->display_errors();
 	    $this->upload->clean_errors();
 	    $save = false;
-      } else {
-	    $upload_data['firma_institucion_upload'] = $this->upload->data();
+	} else {
+	      $upload_data['firma_institucion_upload'] = $this->upload->data();
+	}
       }
       if($save)
       {
 	  $obj->setEstado('N');
 	  $renovacionId = $obj->save();
-	  $this->load->model('acreditaciones/acreditacionarchivo');
-	  $archivo = new $this->acreditacionarchivo;
-	  $archivo->setAcreditacion_id($renovacionId);
-	  $archivo->setType("renovacionfirmainstitucion");
-	  $archivo->setFilename($upload_data['firma_institucion_upload']['file_name']);
-	  $archivo->setFilepath($upload_data['firma_institucion_upload']['file_path']);
-	  $archivo->save();
+	  if(count($upload_data) > 0)
+	  {
+	    $this->load->model('acreditaciones/acreditacionarchivo');
+	    $archivo = new $this->acreditacionarchivo;
+	    $archivo->setAcreditacion_id($renovacionId);
+	    $archivo->setType("renovacionfirmainstitucion");
+	    $archivo->setFilename($upload_data['firma_institucion_upload']['file_name']);
+	    $archivo->setFilepath($upload_data['firma_institucion_upload']['file_path']);
+	    $archivo->save();  
+	  }
 	  foreach($events_lists as $evento)
 	  {
 	    $evento->setRenovacionid($renovacionId);
@@ -735,6 +735,7 @@ class acreditaciones extends MY_Controller {
     $this->data['evento_list'] = $events_lists;
     $this->data['titles'] = array_shift($titles_list);
     $this->data['titles_list'] = $titles_list;
+    $this->data['errores'] = $errores;
     //$this->data['captchaImage'] = 'nada';
     $this->load->view('layout', $this->data);
     //var_dump('here');
