@@ -511,6 +511,13 @@ class acreditaciones extends MY_Controller {
     $this->form_validation->set_rules('categoriaC1', 'Categoria C1');
     $this->form_validation->set_rules('categoriaC2', 'Categoria C2');    
     
+	$validatorCounter = 1;
+	while(isset($_POST['titlename_'.$validatorCounter])){
+		$this->form_validation->set_rules('titlename_'.$validatorCounter, 'titlename_'.$validatorCounter, 'required');
+		$this->form_validation->set_rules('titledescription_'.$validatorCounter, 'titledescription_'.$validatorCounter, 'required');
+		$validatorCounter++;
+	}
+
     $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
     $this->load->model('instituciones/institucion');
     $this->data['instituciones'] = $this->institucion->retrieveRegistros();
@@ -618,7 +625,8 @@ class acreditaciones extends MY_Controller {
         $number = $number[1];
         $titulo = new $this->renovaciontitulo;
         $titulo->setNombre($_POST['titlename_'.$number]);
-        $titulo->setDescription($_POST['titledescription_'.$number]);
+        $description = (isset($_POST['titledescription_'.$number])) ? $_POST['titledescription_'.$number] :"";
+        $titulo->setDescription($description);
         $titles_list[$number] = $titulo;
       }
     }
